@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EBBF18901D74904A008E2001"
-               BuildableName = "HelloWorld (Mac).app"
-               BlueprintName = "HelloWorld (Mac)"
-               ReferencedContainer = "container:HelloWorld.xcodeproj">
+               BuildableName = "PanicPainter (Mac).app"
+               BlueprintName = "PanicPainter (Mac)"
+               ReferencedContainer = "container:PanicPainter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBBF18901D74904A008E2001"
-            BuildableName = "HelloWorld (Mac).app"
-            BlueprintName = "HelloWorld (Mac)"
-            ReferencedContainer = "container:HelloWorld.xcodeproj">
+            BuildableName = "PanicPainter (Mac).app"
+            BlueprintName = "PanicPainter (Mac)"
+            ReferencedContainer = "container:PanicPainter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBBF18901D74904A008E2001"
-            BuildableName = "HelloWorld (Mac).app"
-            BlueprintName = "HelloWorld (Mac)"
-            ReferencedContainer = "container:HelloWorld.xcodeproj">
+            BuildableName = "PanicPainter (Mac).app"
+            BlueprintName = "PanicPainter (Mac)"
+            ReferencedContainer = "container:PanicPainter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBBF18901D74904A008E2001"
-            BuildableName = "HelloWorld (Mac).app"
-            BlueprintName = "HelloWorld (Mac)"
-            ReferencedContainer = "container:HelloWorld.xcodeproj">
+            BuildableName = "PanicPainter (Mac).app"
+            BlueprintName = "PanicPainter (Mac)"
+            ReferencedContainer = "container:PanicPainter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

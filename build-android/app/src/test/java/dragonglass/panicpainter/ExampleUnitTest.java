@@ -1,4 +1,4 @@
-package edu.cornell.gdiac.helloworld;
+package dragonglass.panicpainter;
 
 import org.junit.Test;
 

@@ -28,7 +28,7 @@
 //  Version: 7/1/16
 
 // Include your application class
-#include "HelloApp.h"
+#include "PPApp.h"
 
 // This keeps us from having to write cugl:: all the time
 using namespace cugl;
@@ -48,12 +48,12 @@ using namespace cugl;
  */
 int main(int argc, char * argv[]) {
     // Change this to your application class
-    HelloApp app;
+    PPApp app;
     
     /// SET YOUR APPLICATION PROPERTIES
     
     // The unique application name
-    app.setName("Hello World");
+    app.setName("Panic Painter");
     
     // The name of your studio (for organizing save files)
     app.setOrganization("GDIAC");

@@ -1,5 +1,5 @@
 //
-//  HelloApp.h
+//  PPApp.h
 //  Cornell University Game Library (CUGL)
 //
 //  This is the header for the custom application.  It is necessary so that
@@ -27,17 +27,17 @@
 //  Author: Walker White
 //  Version: 1/8/17
 //
-#ifndef __HELLO_APP_H__
-#define __HELLO_APP_H__
+#ifndef __PANIC_PAINTER_APP_H__
+#define __PANIC_PAINTER_APP_H__
 #include <cugl/cugl.h>
 
 /**
- * Class for a simple Hello World style application
+ * Class for a simple Panic Painter style application
  *
  * The application simply moves the CUGL logo across the screen.  It also
  * provides a button to quit the application.
  */
-class HelloApp : public cugl::Application {
+class PPApp : public cugl::Application {
 protected:
     /** The loaders to (synchronously) load in assets */
     std::shared_ptr<cugl::AssetManager> _assets;
@@ -71,7 +71,7 @@ public:
      * of initialization from the constructor allows main.cpp to perform
      * advanced configuration of the application before it starts.
      */
-    HelloApp() : Application(), _countdown(-1) {}
+    PPApp() : Application(), _countdown(-1) {}
     
     /**
      * Disposes of this application, releasing all resources.
@@ -80,7 +80,7 @@ public:
      * It simply calls the dispose() method in Application.  There is nothing
      * special to do here.
      */
-    ~HelloApp() { }
+    ~PPApp() { }
     
     /**
      * The method called after OpenGL is initialized, but before running the application.
@@ -133,4 +133,4 @@ public:
     
 };
 
-#endif /* __HELLO_APP_H__ */
+#endif /* __PANIC_PAINTER_APP_H__ */

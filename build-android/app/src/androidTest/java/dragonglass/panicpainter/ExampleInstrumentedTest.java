@@ -1,4 +1,4 @@
-package edu.cornell.gdiac.helloworld;
+package dragonglass.panicpainter;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("edu.cornell.gdiac.helloworld", appContext.getPackageName());
+        assertEquals("dragonglass.panicpainter", appContext.getPackageName());
     }
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld", "HelloWorld\HelloWorld.vcxproj", "{EBA7F636-33E8-46A4-9024-D8DDFC250C64}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PanicPainter", "PanicPainter\PanicPainter.vcxproj", "{EBA7F636-33E8-46A4-9024-D8DDFC250C64}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUGL", "..\cugl\build-win10\CUGL\CUGL.vcxproj", "{60C028A4-977F-44E9-A709-D79A153D6F69}"
 EndProject

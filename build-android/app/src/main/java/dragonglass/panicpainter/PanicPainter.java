@@ -1,9 +1,9 @@
-package edu.cornell.gdiac.helloworld;
+package dragonglass.panicpainter;
 
 import org.libsdl.app.*;
 import android.os.Bundle;
 
-public class HelloWorld extends SDLActivity {
+public class PanicPainter extends SDLActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

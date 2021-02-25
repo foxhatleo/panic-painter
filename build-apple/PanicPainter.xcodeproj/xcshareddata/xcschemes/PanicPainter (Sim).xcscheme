@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EB74548B1D74D75C002FBAE6"
-               BuildableName = "HelloWorld (iOS).app"
-               BlueprintName = "HelloWorld (iOS)"
-               ReferencedContainer = "container:HelloWorld.xcodeproj">
+               BlueprintIdentifier = "EB22BF5D25D0E8BC002ACE41"
+               BuildableName = "PanicPainter (Sim).app"
+               BlueprintName = "PanicPainter (Sim)"
+               ReferencedContainer = "container:PanicPainter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EB74548B1D74D75C002FBAE6"
-            BuildableName = "HelloWorld (iOS).app"
-            BlueprintName = "HelloWorld (iOS)"
-            ReferencedContainer = "container:HelloWorld.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -53,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EB74548B1D74D75C002FBAE6"
-            BuildableName = "HelloWorld (iOS).app"
-            BlueprintName = "HelloWorld (iOS)"
-            ReferencedContainer = "container:HelloWorld.xcodeproj">
+            BlueprintIdentifier = "EB22BF5D25D0E8BC002ACE41"
+            BuildableName = "PanicPainter (Sim).app"
+            BlueprintName = "PanicPainter (Sim)"
+            ReferencedContainer = "container:PanicPainter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -70,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EB74548B1D74D75C002FBAE6"
-            BuildableName = "HelloWorld (iOS).app"
-            BlueprintName = "HelloWorld (iOS)"
-            ReferencedContainer = "container:HelloWorld.xcodeproj">
+            BlueprintIdentifier = "EB22BF5D25D0E8BC002ACE41"
+            BuildableName = "PanicPainter (Sim).app"
+            BlueprintName = "PanicPainter (Sim)"
+            ReferencedContainer = "container:PanicPainter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
