@@ -31,6 +31,14 @@
 #define __PANIC_PAINTER_APP_H__
 #include <cugl/cugl.h>
 
+enum MovingDirection {
+    TOWARDS_TOP_LEFT,
+    TOWARDS_TOP_RIGHT,
+    TOWARDS_BOTTOM_LEFT,
+    TOWARDS_BOTTOM_RIGHT,
+    RANDOM
+};
+
 /**
  * Class for a simple Panic Painter style application
  *
@@ -49,8 +57,8 @@ protected:
     /** A reference to the logo, so that we can move it around */
     std::shared_ptr<cugl::scene2::SceneNode>  _logo;
 
-    /** A countdown used to move the logo */
-    int  _countdown;
+    /** The direction that is moving towards. */
+    MovingDirection _direction;
     
     /** 
      * Internal helper to build the scene graph.
@@ -71,7 +79,7 @@ public:
      * of initialization from the constructor allows main.cpp to perform
      * advanced configuration of the application before it starts.
      */
-    PPApp() : Application(), _countdown(-1) {}
+    PPApp() : Application(), _direction(RANDOM) {}
     
     /**
      * Disposes of this application, releasing all resources.

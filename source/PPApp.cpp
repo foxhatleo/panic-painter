@@ -38,8 +38,8 @@
 // This keeps us from having to write cugl:: all the time
 using namespace cugl;
 
-// The number of frames before moving the logo to a new position
-#define TIME_STEP 60
+// The speed (higher = faster)
+#define MOVING_SPEED 3
 // This is adjusted by screen aspect ratio to get the height
 #define GAME_WIDTH 1024
 
@@ -139,17 +139,40 @@ void PPApp::onShutdown() {
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void PPApp::update(float timestep) {
-    if (_countdown == 0) {
-        // Move the logo about the screen
-        Size size = getDisplaySize();
-        size *= GAME_WIDTH/size.width;
-		float x = (float)(std::rand() % (int)(size.width/2))+size.width/4;
-		float y = (float)(std::rand() % (int)(size.height/2))+size.height/8;
-        _logo->setPosition(Vec2(x,y));
-        _countdown = TIME_STEP;
-    } else {
-        _countdown--;
+    if (_direction == RANDOM) {
+        _direction = static_cast<MovingDirection>(rand() % RANDOM);
     }
+    const Vec2 loc = _logo->getPosition();
+    const Size logoSize = _logo->getContentSize() * _logo->getScale();
+    Size size = getDisplaySize();
+    size *= GAME_WIDTH / size.width;
+    const float lBound = logoSize.width / 2;
+    const float rBound = size.width - lBound;
+    const float bBound = logoSize.height / 2;
+    const float tBound = size.height - lBound;
+    float newX = loc.x + ((_direction == TOWARDS_TOP_LEFT || _direction == TOWARDS_BOTTOM_LEFT) ? -MOVING_SPEED : MOVING_SPEED);
+    float newY = loc.y + ((_direction == TOWARDS_BOTTOM_LEFT || _direction == TOWARDS_BOTTOM_RIGHT) ? -MOVING_SPEED : MOVING_SPEED);
+    if (newX < lBound) {
+        newX = lBound;
+        if (_direction == TOWARDS_TOP_LEFT) _direction = TOWARDS_TOP_RIGHT;
+        else if (_direction == TOWARDS_BOTTOM_LEFT) _direction = TOWARDS_BOTTOM_RIGHT;
+    }
+    else if (newX > rBound) {
+        newX = rBound;
+        if (_direction == TOWARDS_TOP_RIGHT) _direction = TOWARDS_TOP_LEFT;
+        else if (_direction == TOWARDS_BOTTOM_RIGHT) _direction = TOWARDS_BOTTOM_LEFT;
+    }
+    if (newY < bBound) {
+        newY = bBound;
+        if (_direction == TOWARDS_BOTTOM_LEFT) _direction = TOWARDS_TOP_LEFT;
+        else if (_direction == TOWARDS_BOTTOM_RIGHT) _direction = TOWARDS_TOP_RIGHT;
+    }
+    else if (newY > tBound) {
+        newY = tBound;
+        if (_direction == TOWARDS_TOP_LEFT) _direction = TOWARDS_BOTTOM_LEFT;
+        else if (_direction == TOWARDS_TOP_RIGHT) _direction = TOWARDS_BOTTOM_RIGHT;
+    }
+    _logo->setPosition(newX, newY);
 }
 
 /**
@@ -174,6 +197,9 @@ void PPApp::draw() {
  * have become standard in most game engines.
  */
 void PPApp::buildScene() {
+    // Get random generator set up.
+    std::srand((int)std::time(0));
+
     Size  size  = getDisplaySize();
     float scale = GAME_WIDTH/size.width;
     size *= scale;
@@ -184,12 +210,11 @@ void PPApp::buildScene() {
     // Get the image and add it to the node.
     std::shared_ptr<Texture> texture  = _assets->get<Texture>("logo");
     _logo = scene2::PolygonNode::allocWithTexture(texture);
-    _logo->setScale(0.2f); // Magic number to rescale asset
+    _logo->setScale(0.1f); // Magic number to rescale asset
 
     // Put the logo in the middle of the screen
     _logo->setAnchor(Vec2::ANCHOR_CENTER);
     _logo->setPosition(size.width/2,size.height/2);
-
     
     // Create a button.  A button has an up image and a down image
     std::shared_ptr<Texture> up   = _assets->get<Texture>("close-normal");
@@ -228,8 +253,4 @@ void PPApp::buildScene() {
     
     // We can only activate a button AFTER it is added to a scene
     button->activate();
-
-    // Start the logo countdown and C-style random number generator
-    _countdown = TIME_STEP;
-    std::srand((int)std::time(0));
 }
