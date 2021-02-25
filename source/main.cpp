@@ -56,7 +56,7 @@ int main(int argc, char * argv[]) {
     app.setName("Panic Painter");
     
     // The name of your studio (for organizing save files)
-    app.setOrganization("GDIAC");
+    app.setOrganization("Dragonglass Studios");
 
     // Set the window properties (Only applies to OS X/Windows Desktop)
     app.setSize(GAME_WIDTH, GAME_HEIGHT);
