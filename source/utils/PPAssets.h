@@ -17,7 +17,7 @@ namespace utils {
          * @param key Key name.
          * @return The JSON object.
          */
-        static json getJsonItem(const json &json, const char* key);
+        static json_t getJsonItem(const json_t &json, const char *key);
 
         /**
          * Pull JSON file from asset manager.
@@ -25,7 +25,7 @@ namespace utils {
          * @param key Key name.
          * @return The JSON object.
          */
-        static json getJson(const asset &assets, const char* key);
+        static json_t getJson(const asset_t &assets, const char *key);
     };
 }
 

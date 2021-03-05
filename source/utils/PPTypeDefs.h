@@ -15,8 +15,8 @@ template <typename T> using    vec           = std::vector<T>;
 
 //       ORIGINAL TYPES                        ALIASES
 // =============================================================================
-typedef  shared_ptr<cugl::AssetManager>        asset;
-typedef  ptr<cugl::JsonValue>                  json;
+typedef  shared_ptr<cugl::AssetManager>        asset_t;
+typedef  ptr<cugl::JsonValue>                  json_t;
 typedef  unsigned int                          uint;
 
 #endif //PANICPAINTER_PPTYPEDEFS_H

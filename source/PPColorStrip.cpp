@@ -2,24 +2,29 @@
 
 using namespace cugl;
 
+/** Size of each dot. */
 #define COLOR_SIZE 15
+
+/** Space between dots. */
 #define PADDING 5
 
-ptr<ColorStrip> ColorStrip::alloc(float size) {
-    return alloc(Size(size, size));
+ptr<ColorStrip> ColorStrip::alloc(float size,
+                                  const vec<cugl::Color4> &colors) {
+    return alloc(Size(size, size), colors);
 }
 
-ptr<ColorStrip> ColorStrip::alloc(const Size& size) {
-    return alloc(Rect(Vec2(0, 0), size));
+ptr<ColorStrip> ColorStrip::alloc(const Size &size,
+                                  const vec<cugl::Color4> &colors) {
+    return alloc(Rect(Vec2(0, 0), size), colors);
 }
 
-ptr<ColorStrip> ColorStrip::alloc(const Rect& rect) {
-    auto result = std::make_shared<ColorStrip>();
+ptr<ColorStrip> ColorStrip::alloc(const Rect &rect,
+                                  const vec<cugl::Color4> &colors) {
+    auto result = std::make_shared<ColorStrip>(colors);
     return (result->initWithBounds(rect) ? result : nullptr);
 }
 
-void ColorStrip::update(const vec<uint>& canvasColors,
-                        const vec<Color4>& colorList) {
+void ColorStrip::update(const vec<uint> &canvasColors) {
     // If the number of colors have not changed, that means no color has been
     // taken away yet.
     if (_lastNumberOfColors == canvasColors.size()) return;
@@ -35,13 +40,13 @@ void ColorStrip::update(const vec<uint>& canvasColors,
         // Calculate the x of the leftmost dot.
         // Remember! Position lays in the center of the dot.
         auto leftMost =
-                (getWidth() - ((float)_lastNumberOfColors - 1) *
-                (COLOR_SIZE + PADDING)) / 2;
+                (getWidth() - ((float) _lastNumberOfColors - 1) *
+                              (COLOR_SIZE + PADDING)) / 2;
 
         bg->setPosition(
-                leftMost + (float)(COLOR_SIZE + PADDING) * i,
+                leftMost + (float) (COLOR_SIZE + PADDING) * i,
                 getHeight() / 2);
-        bg->setColor(colorList.at(canvasColors.at(i)));
+        bg->setColor(_colors.at(canvasColors.at(i)));
 
         addChild(bg);
     }

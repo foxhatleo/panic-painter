@@ -73,7 +73,7 @@ void PanicPainterApp::update(float timestep) {
             break;
         }
         default: {
-            CULogError("Updating unknown scene: %d", _currentScene);
+            CUAssertLog(false, "Updating unknown scene: %d", _currentScene);
             break;
         }
     }
@@ -90,7 +90,7 @@ void PanicPainterApp::draw() {
             break;
         }
         default: {
-            CULogError("Drawing unknown scene: %d", _currentScene);
+            CUAssertLog(false, "Drawing unknown scene: %d", _currentScene);
             break;
         }
     }

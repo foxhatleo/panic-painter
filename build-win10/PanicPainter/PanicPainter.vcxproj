@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)..\source\;$(SolutionDir)..\cugl\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <DisableSpecificWarnings>4068;4018;4244;4305%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4068;4018;4244;4305;4267%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -123,7 +123,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)..\source\;$(SolutionDir)..\cugl\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <DisableSpecificWarnings>4068;4018;4244;4305%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4068;4018;4244;4305;4267%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
@@ -144,7 +144,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)..\source\;$(SolutionDir)..\cugl\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <DisableSpecificWarnings>4068;4018;4244;4305%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4068;4018;4244;4305;4267%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -174,7 +174,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)..\source\;$(SolutionDir)..\cugl\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <DisableSpecificWarnings>4068;4018;4244;4305;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4068;4018;4244;4305;4267%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -187,15 +187,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\PPCanvas.h" />
+    <ClInclude Include="..\..\source\PPCanvasBlock.h" />
+    <ClInclude Include="..\..\source\PPColorStrip.h" />
     <ClInclude Include="..\..\source\PPGameScene.h" />
+    <ClInclude Include="..\..\source\PPGameState.h" />
+    <ClInclude Include="..\..\source\PPGlobalConfig.h" />
     <ClInclude Include="..\..\source\PPLoadingScene.h" />
     <ClInclude Include="..\..\source\PPApp.h" />
+    <ClInclude Include="..\..\source\utils\PPAssets.h" />
+    <ClInclude Include="..\..\source\utils\PPTimer.h" />
+    <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\main.cpp" />
     <ClCompile Include="..\..\source\PPApp.cpp" />
-    <ClCompile Include="PPLoadingScene.cpp" />
+    <ClCompile Include="..\..\source\PPCanvas.cpp" />
+    <ClCompile Include="..\..\source\PPCanvasBlock.cpp" />
+    <ClCompile Include="..\..\source\PPColorStrip.cpp" />
+    <ClCompile Include="..\..\source\PPGameScene.cpp" />
+    <ClCompile Include="..\..\source\PPGameState.cpp" />
+    <ClCompile Include="..\..\source\PPGlobalConfig.cpp" />
+    <ClCompile Include="..\..\source\PPLoadingScene.cpp" />
+    <ClCompile Include="..\..\source\utils\PPAssets.cpp" />
+    <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc" />

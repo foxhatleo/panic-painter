@@ -21,7 +21,7 @@ namespace utils {
     public:
         /** @deprecated Constructor. Use alloc() instead. */
         explicit Timer(uint duration) :
-                _duration(duration), _timeLeft((float)duration) {}
+                _duration(duration), _timeLeft((float) duration) {}
 
         /**
          * Get a new instance of a timer.

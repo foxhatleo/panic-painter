@@ -10,7 +10,7 @@
 class LoadingScene final : public cugl::Scene2 {
 private:
     /** Asset maanager. */
-    asset _assets;
+    asset_t _assets;
 
     /** Progress bar. */
     ptr<cugl::scene2::ProgressBar> _bar;
@@ -24,11 +24,15 @@ private:
 
 public:
     LoadingScene() : Scene2(), _progress(0.0f) {}
+
     ~LoadingScene() { dispose(); }
 
     void dispose() override;
-    bool init(const asset& assets);
+
+    bool init(const asset_t &assets);
+
     void update(float timestep) override;
+
     bool isPending() const;
 };
 

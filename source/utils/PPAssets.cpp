@@ -2,14 +2,14 @@
 
 using namespace utils;
 
-json Assets::getJsonItem(const json &json, const char* key) {
-    json item = json->get(key);
+json_t Assets::getJsonItem(const json_t &json, const char *key) {
+    json_t item = json->get(key);
     CUAssertLog(item != nullptr, "Cannot find %s.", key);
     return item;
 }
 
-json Assets::getJson(const asset &assets, const char* key) {
-    json r = assets->get<cugl::JsonValue>("global");
+json_t Assets::getJson(const asset_t &assets, const char *key) {
+    json_t r = assets->get<cugl::JsonValue>(key);
     CUAssertLog(r != nullptr, "Cannot find \"%s\" in JSON assets.", key);
     return r;
 }

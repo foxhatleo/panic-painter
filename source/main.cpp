@@ -8,7 +8,7 @@ using namespace cugl;
 /**
  * Main entry point of program. Shouldn't really have to change anything here.
  */
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     PanicPainterApp app;
 
     app.setName("Panic Painter");

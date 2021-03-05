@@ -22,7 +22,7 @@ protected:
     /** Sprite batch for drawing. Only have one per app. */
     ptr<cugl::SpriteBatch> _batch;
     /** Asset manager. */
-    asset _assets;
+    asset_t _assets;
     /** The current scene. */
     Scene _currentScene;
 
@@ -34,15 +34,22 @@ protected:
 public:
     /** Constructor. */
     PanicPainterApp() : cugl::Application(), _currentScene(LOADING_SCENE) {}
+
     /** Destructor. */
     ~PanicPainterApp() = default;
 
     void onStartup() override;
+
     void onShutdown() override;
+
     void onSuspend() override;
+
     void onResume() override;
+
     void onLoaded();
+
     void update(float timestep) override;
+
     void draw() override;
 };
 
