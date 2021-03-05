@@ -1,0 +1,7 @@
+{
+  "jsons": {
+    "global": "config/global.json",
+    "load": "scenes/loading.json",
+    "gameplay": "levels/gameplay.json"
+  }
+}

@@ -1770,7 +1770,7 @@ public:
      *
      * @return a (weak) pointer to the parent node.
      */
-    SceneNode* getParent() { return _parent; }
+    SceneNode* pgetParent() { return _parent; }
     
     /**
      * Returns a (weak) pointer to the parent node.

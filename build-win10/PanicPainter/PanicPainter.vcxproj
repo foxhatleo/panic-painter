@@ -187,12 +187,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\PPGameScene.h" />
+    <ClInclude Include="..\..\source\PPLoadingScene.h" />
     <ClInclude Include="..\..\source\PPApp.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\PPApp.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
+    <ClCompile Include="..\..\source\PPApp.cpp" />
+    <ClCompile Include="PPLoadingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc" />
