@@ -1,28 +1,29 @@
 #ifndef PANICPAINTER_PPGAMESCENE_H
 #define PANICPAINTER_PPGAMESCENE_H
 
-#include <cugl/cugl.h>
-#include "utils/PPTypeDefs.h"
-
+#include "utils/PPHeader.h"
 #include "utils/PPAssets.h"
-
-#include "PPGameState.h"
+#include "models/PPGameState.h"
 #include "PPCanvas.h"
 
 /**
  * This is the scene for the actual game.
  * @author Dragonglass Studios
  */
-class GameScene final : public cugl::Scene2 {
+class GameScene final : public Scene2 {
 private:
     /** Asset manager. */
     asset_t _assets;
     /** Game state. */
     GameState _state;
-    /** Scene nodes of canvases. */
+    /**
+     * Scene nodes of canvases.
+     *
+     * Outer vector is holding queues, inner is queue holding canvases.
+     */
     vec<vec<ptr<Canvas>>> _canvases;
     /** Level time text. */
-    ptr<cugl::scene2::Label> _levelTimerText;
+    ptr<Label> _levelTimerText;
 
 public:
     GameScene() : Scene2() {}

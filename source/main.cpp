@@ -1,6 +1,5 @@
 #include "PPApp.h"
 
-using namespace cugl;
 
 #define GAME_WIDTH 1024
 #define GAME_HEIGHT 576

@@ -1,11 +1,10 @@
 #ifndef PANICPAINTER_PPAPP_H
 #define PANICPAINTER_PPAPP_H
 
-#include <cugl/cugl.h>
-#include "PPLoadingScene.h"
-#include "PPGameScene.h"
-#include "PPGlobalConfig.h"
-#include "utils/PPTypeDefs.h"
+#include "utils/PPHeader.h"
+#include "scenes/loading/PPLoadingScene.h"
+#include "scenes/gameplay/PPGameScene.h"
+#include "controllers/PPGlobalConfig.h"
 
 /** An enum for the list of scenes. */
 enum Scene {
@@ -17,10 +16,10 @@ enum Scene {
  * The app entry.
  * @author Dragonglass Studios
  */
-class PanicPainterApp : public cugl::Application {
+class PanicPainterApp : public Application {
 protected:
     /** Sprite batch for drawing. Only have one per app. */
-    ptr<cugl::SpriteBatch> _batch;
+    ptr<SpriteBatch> _batch;
     /** Asset manager. */
     asset_t _assets;
     /** The current scene. */
@@ -33,7 +32,7 @@ protected:
 
 public:
     /** Constructor. */
-    PanicPainterApp() : cugl::Application(), _currentScene(LOADING_SCENE) {}
+    PanicPainterApp() : Application(), _currentScene(LOADING_SCENE) {}
 
     /** Destructor. */
     ~PanicPainterApp() = default;

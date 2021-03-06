@@ -1,7 +1,5 @@
 #include "PPTimer.h"
 
-using namespace utils;
-
 bool Timer::finished() const { return _timeLeft <= 0; }
 
 void Timer::reset() { _timeLeft = _duration; }

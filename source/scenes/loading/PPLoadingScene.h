@@ -1,23 +1,22 @@
 ﻿#ifndef PANICPAINTER_PPLOADINGSCENE_H
 #define PANICPAINTER_PPLOADINGSCENE_H
 
-#include <cugl/cugl.h>
-#include "utils/PPTypeDefs.h"
+#include "utils/PPHeader.h"
 
 /**
  * Loading scene.
  */
-class LoadingScene final : public cugl::Scene2 {
+class LoadingScene final : public Scene2 {
 private:
-    /** Asset maanager. */
+    /** Asset manager. */
     asset_t _assets;
 
     /** Progress bar. */
-    ptr<cugl::scene2::ProgressBar> _bar;
+    ptr<ProgressBar> _bar;
     /** CUGL logo. */
-    ptr<cugl::scene2::SceneNode> _brand;
+    ptr<SceneNode> _brand;
     /** Play button. */
-    ptr<cugl::scene2::Button> _button;
+    ptr<Button> _button;
 
     /** Progress of loading. */
     float _progress;

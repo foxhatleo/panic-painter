@@ -1,14 +1,12 @@
-#include <PPCanvas.h>
+#include <scenes/gameplay/PPCanvas.h>
 
-using namespace cugl;
-using namespace utils;
 
 #define PADDING 5
 
 ptr<Canvas> Canvas::alloc(const asset_t &assets,
                           const Rect &bound,
-                          const vec<cugl::Color4> &colors) {
-    auto result = std::make_shared<Canvas>();
+                          const vec<Color4> &colors) {
+    auto result = make_shared<Canvas>();
     if (result->initWithBounds(bound))
         result->_setup(assets, colors);
     else
@@ -16,7 +14,7 @@ ptr<Canvas> Canvas::alloc(const asset_t &assets,
     return result;
 }
 
-void Canvas::_setup(const asset_t &assets, const vec<cugl::Color4> &colors) {
+void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors) {
     float canvasSize = getWidth() - PADDING * 2;
     _block = CanvasBlock::alloc(assets, canvasSize, colors);
     _block->setPosition(PADDING + canvasSize / 2,
@@ -32,11 +30,13 @@ void Canvas::update(CanvasState state,
         if (_block->getParent() == nullptr) {
             addChild(_block);
         }
+
         uint canvasSize = getWidth() - PADDING * 2;
         // Set y of block depending on state.
         _block->setPositionY(
                 getHeight() - (float) canvasSize / 2 - PADDING -
                 (state == ACTIVE ? canvasSize + (float) PADDING * 2 : 0));
+
         // Update block.
         _block->update(canvasColors, timer);
     } else if (_block->getParent() != nullptr) {

@@ -8,14 +8,14 @@
 
 //                             ALIASES         ORIGINAL TYPES
 // =============================================================================
-template <typename T> using    ptr           = std::shared_ptr<T>;
-template <typename T> using    vec           = std::vector<T>;
+template <typename T> using    ptr           = shared_ptr<T>;
+template <typename T> using    vec           = vector<T>;
 
 // The following are regular typedefs.
 
 //       ORIGINAL TYPES                        ALIASES
 // =============================================================================
-typedef  shared_ptr<cugl::AssetManager>        asset_t;
+typedef  ptr<cugl::AssetManager>               asset_t;
 typedef  ptr<cugl::JsonValue>                  json_t;
 typedef  unsigned int                          uint;
 

@@ -1,6 +1,5 @@
 #include "PPColorStrip.h"
 
-using namespace cugl;
 
 /** Size of each dot. */
 #define COLOR_SIZE 15
@@ -9,18 +8,18 @@ using namespace cugl;
 #define PADDING 5
 
 ptr<ColorStrip> ColorStrip::alloc(float size,
-                                  const vec<cugl::Color4> &colors) {
+                                  const vec<Color4> &colors) {
     return alloc(Size(size, size), colors);
 }
 
 ptr<ColorStrip> ColorStrip::alloc(const Size &size,
-                                  const vec<cugl::Color4> &colors) {
+                                  const vec<Color4> &colors) {
     return alloc(Rect(Vec2(0, 0), size), colors);
 }
 
 ptr<ColorStrip> ColorStrip::alloc(const Rect &rect,
-                                  const vec<cugl::Color4> &colors) {
-    auto result = std::make_shared<ColorStrip>(colors);
+                                  const vec<Color4> &colors) {
+    auto result = make_shared<ColorStrip>(colors);
     return (result->initWithBounds(rect) ? result : nullptr);
 }
 
@@ -34,8 +33,7 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
     removeAllChildren();
 
     for (uint i = 0; i < _lastNumberOfColors; i++) {
-        auto bg = scene2::PolygonNode::alloc(
-                Rect(0, 0, COLOR_SIZE, COLOR_SIZE));
+        auto bg = PolygonNode::alloc(Rect(0, 0, COLOR_SIZE, COLOR_SIZE));
 
         // Calculate the x of the leftmost dot.
         // Remember! Position lays in the center of the dot.
@@ -46,7 +44,7 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
         bg->setPosition(
                 leftMost + (float) (COLOR_SIZE + PADDING) * i,
                 getHeight() / 2);
-        bg->setColor(_colors.at(canvasColors.at(i)));
+        bg->setColor(_colors[canvasColors[i]]);
 
         addChild(bg);
     }

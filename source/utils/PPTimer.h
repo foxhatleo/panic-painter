@@ -1,9 +1,8 @@
 #ifndef PANICPAINTER_PPTIMER_H
 #define PANICPAINTER_PPTIMER_H
 
-#include <cugl/cugl.h>
 #include <cmath>
-#include "PPTypeDefs.h"
+#include "PPHeader.h"
 
 namespace utils {
     /**
@@ -29,7 +28,7 @@ namespace utils {
          * @return A smart pointer of this timer.
          */
         static ptr<Timer> alloc(const uint duration) {
-            ptr<Timer> result = std::make_shared<Timer>(duration);
+            ptr<Timer> result = make_shared<Timer>(duration);
             return result;
         }
 

@@ -1,8 +1,5 @@
 #include "PPGameScene.h"
 
-using namespace cugl;
-using namespace utils;
-
 void GameScene::dispose() {
     Scene2::dispose();
 }
@@ -19,7 +16,7 @@ void GameScene::loadLevel(const char *levelName) {
     removeAllChildren();
 
     // Find Level file.
-    const json_t levelJson = Assets::getJson(_assets, levelName);
+    const json_t levelJson = Assets::Json::get(_assets, levelName);
 
     // Ask state to load it.
     _state.loadJson(levelJson);
@@ -53,9 +50,9 @@ void GameScene::loadLevel(const char *levelName) {
     }
 
     // Level timer label.
-    _levelTimerText = scene2::Label::alloc("1", _assets->get<Font>("roboto"));
-    _levelTimerText->setHorizontalAlignment(scene2::Label::HAlign::LEFT);
-    _levelTimerText->setVerticalAlignment(scene2::Label::VAlign::TOP);
+    _levelTimerText = Label::alloc("1", _assets->get<Font>("roboto"));
+    _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
+    _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
     _levelTimerText->setPosition(10, screenSize.height - 50);
     addChild(_levelTimerText);
 }
@@ -64,7 +61,7 @@ void GameScene::update(float timestep) {
     _state.update(timestep);
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
-            _canvases.at(i).at(i2)->update(
+            _canvases[i][i2]->update(
                     _state.getCanvasState(i, i2),
                     _state.getColorsOfCanvas(i, i2),
                     _state.getTimer(i, i2)
@@ -72,6 +69,6 @@ void GameScene::update(float timestep) {
         }
     }
     _levelTimerText->setText(
-            std::to_string(_state.getLevelTimer()->timeLeft()));
+            to_string(_state.getLevelTimer()->timeLeft()));
     Scene2::update(timestep);
 }

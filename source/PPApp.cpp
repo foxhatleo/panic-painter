@@ -1,7 +1,5 @@
 ﻿#include "PPApp.h"
 
-using namespace cugl;
-
 void PanicPainterApp::onStartup() {
     _assets = AssetManager::alloc();
     _batch = SpriteBatch::alloc();

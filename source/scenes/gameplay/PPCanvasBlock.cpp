@@ -1,11 +1,10 @@
 #include "PPCanvasBlock.h"
 
-using namespace cugl;
 
 ptr<CanvasBlock> CanvasBlock::alloc(const asset_t &assets,
                                     float size,
-                                    const vec<cugl::Color4> &colors) {
-    auto result = std::make_shared<CanvasBlock>();
+                                    const vec<Color4> &colors) {
+    auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
         result->_setup(assets, colors);
     else
@@ -14,7 +13,7 @@ ptr<CanvasBlock> CanvasBlock::alloc(const asset_t &assets,
 }
 
 void CanvasBlock::_setup(const asset_t &assets,
-                         const vec<cugl::Color4> &colors) {
+                         const vec<Color4> &colors) {
     // White background
     auto bg = scene2::PolygonNode::alloc(Rect(0, 0, getWidth(), getHeight()));
     bg->setColor(Color4::WHITE);
@@ -33,7 +32,7 @@ void CanvasBlock::_setup(const asset_t &assets,
 }
 
 void CanvasBlock::update(const vec<uint> &canvasColors,
-                         const ptr<utils::Timer> &timer) {
-    _timerText->setText(std::to_string(timer->timeLeft()));
+                         const ptr<Timer> &timer) {
+    _timerText->setText(to_string(timer->timeLeft()));
     _colorStrip->update(canvasColors);
 }

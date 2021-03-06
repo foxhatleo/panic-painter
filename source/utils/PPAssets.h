@@ -1,8 +1,7 @@
 #ifndef PANICPAINTER_PPASSETS_H
 #define PANICPAINTER_PPASSETS_H
 
-#include <cugl/cugl.h>
-#include "PPTypeDefs.h"
+#include "PPHeader.h"
 
 namespace utils {
     /**
@@ -12,20 +11,49 @@ namespace utils {
     class Assets {
     public:
         /**
-         * Load an object in a JSON object. Does not fail silently.
-         * @param json JSON object.
-         * @param key Key name.
-         * @return The JSON object.
+         * Functions for dealing with JSON.
+         *
+         * The problem with the CUGL JSON interface is that **they fail
+         * silently**. This is not ideal, so these helper functions are designed
+         * not to silence any error.
          */
-        static json_t getJsonItem(const json_t &json, const char *key);
+        class Json {
+        private:
+            static void _assertArray(const json_t &json);
 
-        /**
-         * Pull JSON file from asset manager.
-         * @param assets Asset manager.
-         * @param key Key name.
-         * @return The JSON object.
-         */
-        static json_t getJson(const asset_t &assets, const char *key);
+        public:
+            /** Get a vector of integers. Json object must be int array. */
+            static vec<int> asIntVec(const json_t &json);
+
+            /** Get a vector of elements. Json object must be array. */
+            static vec<json_t> asVec(const json_t &json);
+
+            /** Get the length of an array. */
+            static size_t getLength(const json_t &json);
+
+            /** Convert JSON object to integer. If not number, fail. */
+            static int asInt(const json_t &json);
+
+            /** Convert JSON object to integer. If not number, default value. */
+            static int asInt(const json_t &json, int defaultValue);
+
+            /** Get an object in a JSON dictionary. */
+            static json_t getItem(const json_t &json, const char *key);
+
+            /** Get an object in a JSON dictionary, nullptr if not exists. */
+            static json_t getOptional(const json_t &json, const char *key);
+
+            /** Get an integer in a JSON dictionary. */
+            static int getInt(const json_t &json, const char *key);
+
+            /** Get an integer in a JSON dictionary. */
+            static int getInt(const json_t &json,
+                              const char *key,
+                              int defaultValue);
+
+            /** Pull JSON file from asset manager. */
+            static json_t get(const asset_t &assets, const char *key);
+        };
     };
 }
 

@@ -1,8 +1,5 @@
 #include "PPGlobalConfig.h"
 
-using namespace cugl;
-using namespace utils;
-
 // This line is necessary or an LNK2001 would happen.
 // Not sure why. Not an expert on C++.
 // P.S.: This is only necessary for static attributes.
@@ -16,26 +13,25 @@ void GlobalConfig::_assertLoaded() {
 
 json_t GlobalConfig::_getTimerConfig() {
     _assertLoaded();
-    return Assets::getJsonItem(_globalConfig, "timer");
+    return Assets::Json::getItem(_globalConfig, "timer");
 }
 
 void GlobalConfig::load(const asset_t &assets) {
     if (_globalConfig != nullptr) return;
-    _globalConfig = Assets::getJson(assets, "global");
+    _globalConfig = Assets::Json::get(assets, "global");
 }
 
 uint GlobalConfig::getLevelTime() {
     _assertLoaded();
-    return Assets::getJsonItem(_getTimerConfig(), "levelTime")->asInt();
+    return Assets::Json::getInt(_getTimerConfig(), "levelTime");
 }
 
 uint GlobalConfig::getCanvasBaseTime() {
     _assertLoaded();
-    return Assets::getJsonItem(_getTimerConfig(), "canvasBaseTime")->asInt();
+    return Assets::Json::getInt(_getTimerConfig(), "canvasBaseTime");
 }
 
 uint GlobalConfig::getCanvasPerColorTime() {
     _assertLoaded();
-    return Assets::getJsonItem(
-            _getTimerConfig(), "canvasPerColorTime")->asInt();
+    return Assets::Json::getInt(_getTimerConfig(), "canvasPerColorTime");
 }

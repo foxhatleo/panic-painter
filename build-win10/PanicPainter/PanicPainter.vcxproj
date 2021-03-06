@@ -187,29 +187,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\PPCanvas.h" />
-    <ClInclude Include="..\..\source\PPCanvasBlock.h" />
-    <ClInclude Include="..\..\source\PPColorStrip.h" />
-    <ClInclude Include="..\..\source\PPGameScene.h" />
-    <ClInclude Include="..\..\source\PPGameState.h" />
-    <ClInclude Include="..\..\source\PPGlobalConfig.h" />
-    <ClInclude Include="..\..\source\PPLoadingScene.h" />
-    <ClInclude Include="..\..\source\PPApp.h" />
-    <ClInclude Include="..\..\source\utils\PPAssets.h" />
-    <ClInclude Include="..\..\source\utils\PPTimer.h" />
-    <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="..\..\source\controllers\PPGlobalConfig.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
+    <ClCompile Include="..\..\source\models\PPGameState.cpp" />
     <ClCompile Include="..\..\source\PPApp.cpp" />
-    <ClCompile Include="..\..\source\PPCanvas.cpp" />
-    <ClCompile Include="..\..\source\PPCanvasBlock.cpp" />
-    <ClCompile Include="..\..\source\PPColorStrip.cpp" />
-    <ClCompile Include="..\..\source\PPGameScene.cpp" />
-    <ClCompile Include="..\..\source\PPGameState.cpp" />
-    <ClCompile Include="..\..\source\PPGlobalConfig.cpp" />
-    <ClCompile Include="..\..\source\PPLoadingScene.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp" />
+    <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp" />
     <ClCompile Include="..\..\source\utils\PPAssets.cpp" />
     <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
   </ItemGroup>
@@ -223,6 +209,20 @@
     <ProjectReference Include="..\..\cugl\build-win10\CUGL\CUGL.vcxproj">
       <Project>{60c028a4-977f-44e9-a709-d79a153d6f69}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\controllers\PPGlobalConfig.h" />
+    <ClInclude Include="..\..\source\models\PPGameState.h" />
+    <ClInclude Include="..\..\source\PPApp.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPGameScene.h" />
+    <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h" />
+    <ClInclude Include="..\..\source\utils\PPAssets.h" />
+    <ClInclude Include="..\..\source\utils\PPHeader.h" />
+    <ClInclude Include="..\..\source\utils\PPTimer.h" />
+    <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

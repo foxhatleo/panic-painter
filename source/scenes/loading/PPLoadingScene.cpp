@@ -1,8 +1,4 @@
-// PFLoadingScene.cpp
-
 #include "PPLoadingScene.h"
-
-using namespace cugl;
 
 // This is the ideal size of the logo.
 #define SCENE_SIZE 1024
@@ -28,12 +24,12 @@ bool LoadingScene::init(const asset_t &assets) {
     layer->setContentSize(screenSize);
     layer->doLayout(); // This rearranges the children to fit the screen
 
-    _bar = std::dynamic_pointer_cast<scene2::ProgressBar>(
+    _bar = dynamic_pointer_cast<scene2::ProgressBar>(
             assets->get<scene2::SceneNode>("load_bar"));
     _brand = assets->get<scene2::SceneNode>("load_name");
-    _button = std::dynamic_pointer_cast<scene2::Button>(
+    _button = dynamic_pointer_cast<scene2::Button>(
             assets->get<scene2::SceneNode>("load_play"));
-    _button->addListener([=](const std::string &name, bool down) {
+    _button->addListener([=](const string &name, bool down) {
         this->_active = down;
     });
 
