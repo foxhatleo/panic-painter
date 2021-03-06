@@ -19,7 +19,6 @@
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Scenes\Gameplay">
       <UniqueIdentifier>{30416215-8dc6-438f-8f7e-d26d5f573308}</UniqueIdentifier>
@@ -32,6 +31,9 @@
     <ClCompile Include="..\..\source\controllers\PPGlobalConfig.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
+    <ClInclude Include="..\..\source\controllers\PPInput.cpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\source\models\PPGameState.cpp">
       <Filter>Models</Filter>
     </ClCompile>
@@ -75,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\controllers\PPGlobalConfig.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPInput.h">
       <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\models\PPGameState.h">
