@@ -32,22 +32,24 @@ void GameState::_jsonv1_loadQueues(const json_t &queues) {
 void GameState::_jsonv1_loadTimer(const json_t &timer) {
     _canvasTimers.clear();
 
+    auto &gc = GlobalConfigController::getInstance();
+
     // For time, use global if not level-defined.
     uint
             levelTime =
             Assets::Json::getInt(
                     timer, "levelTime",
-                    GlobalConfig::getLevelTime()
+                    gc.getLevelTime()
             ),
             canvasBaseTime =
             Assets::Json::getInt(
                     timer, "canvasBaseTime",
-                    GlobalConfig::getCanvasBaseTime()
+                    gc.getCanvasBaseTime()
             ),
             canvasPerColorTime =
             Assets::Json::getInt(
                     timer, "canvasPerColorTime",
-                    GlobalConfig::getCanvasPerColorTime()
+                    gc.getCanvasPerColorTime()
             );
 
 

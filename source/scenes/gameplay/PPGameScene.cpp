@@ -58,14 +58,23 @@ void GameScene::loadLevel(const char *levelName) {
 }
 
 void GameScene::update(float timestep) {
+    auto &input = InputController::getInstance();
     _state.update(timestep);
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
+            auto state = _state.getCanvasState(i, i2);
             _canvases[i][i2]->update(
-                    _state.getCanvasState(i, i2),
+                    state,
                     _state.getColorsOfCanvas(i, i2),
                     _state.getTimer(i, i2)
             );
+            if (input.isPressing() && state == ACTIVE &&
+                InputController::inScene(input.currentPoint(),
+                        _canvases[i][i2]->getInteractionNode())) {
+                _canvases[i][i2]->setInteraction(true);
+            } else {
+                _canvases[i][i2]->setInteraction(false);
+            }
         }
     }
     _levelTimerText->setText(

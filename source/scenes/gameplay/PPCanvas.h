@@ -26,6 +26,10 @@ public:
                              const Rect &bound,
                              const vec<Color4> &colors);
 
+    ptr<SceneNode> getInteractionNode() const;
+
+    void setInteraction(bool in);
+
     /** Update. */
     void update(CanvasState state,
                 const vec<uint> &canvasColors,

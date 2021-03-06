@@ -7,28 +7,32 @@
 /**
  * This includes JSON-based global configuration.
  */
-class GlobalConfig {
+class GlobalConfigController {
 private:
-    static json_t _globalConfig;
+    json_t _globalConfig;
 
     /** Make sure global config is loaded. */
-    static void _assertLoaded();
+    void _assertLoaded();
 
     /** Get timer config. */
-    static json_t _getTimerConfig();
+    json_t _getTimerConfig();
+
+    static GlobalConfigController _instance;
 
 public:
     /** Load from global config JSON. */
-    static void load(const asset_t &assets);
+    void load(const asset_t &assets);
 
     /** Level time. */
-    static uint getLevelTime();
+    uint getLevelTime();
 
     /** Canvas base time. */
-    static uint getCanvasBaseTime();
+    uint getCanvasBaseTime();
 
     /** Canvas per color time. */
-    static uint getCanvasPerColorTime();
+    uint getCanvasPerColorTime();
+
+    static GlobalConfigController &getInstance() { return _instance; }
 };
 
 #endif //PANICPAINTER_PPGLOBALCONFIG_H

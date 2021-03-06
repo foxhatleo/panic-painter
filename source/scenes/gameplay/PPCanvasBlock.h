@@ -12,6 +12,9 @@
  */
 class CanvasBlock : public SceneNode {
 private:
+    /** Background */
+    ptr<PolygonNode> _bg;
+
     /** The color strip. */
     ptr<ColorStrip> _colorStrip;
 
@@ -26,6 +29,8 @@ public:
     static ptr<CanvasBlock> alloc(const asset_t &assets,
                                   float size,
                                   const vec<Color4> &colors);
+
+    void setInteraction(bool in);
 
     /**
      * Update the canvas block.

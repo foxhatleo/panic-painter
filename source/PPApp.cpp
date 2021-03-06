@@ -4,11 +4,7 @@ void PanicPainterApp::onStartup() {
     _assets = AssetManager::alloc();
     _batch = SpriteBatch::alloc();
 
-#ifdef CU_TOUCH_SCREEN
-    Input::activate<Touchscreen>();
-#else
-    Input::activate<Mouse>();
-#endif
+    InputController::getInstance().init();
 
     _assets->attach<Font>(FontLoader::alloc()->getHook());
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
@@ -30,11 +26,7 @@ void PanicPainterApp::onShutdown() {
     _assets = nullptr;
     _batch = nullptr;
 
-#ifdef CU_TOUCH_SCREEN
-    Input::deactivate<Touchscreen>();
-#else
-    Input::deactivate<Mouse>();
-#endif
+    InputController::getInstance().dispose();
 
     AudioEngine::stop();
     Application::onShutdown();
@@ -49,10 +41,11 @@ void PanicPainterApp::onResume() {
 }
 
 void PanicPainterApp::onLoaded() {
-    GlobalConfig::load(_assets);
+    GlobalConfigController::getInstance().load(_assets);
 }
 
 void PanicPainterApp::update(float timestep) {
+    InputController::getInstance().update();
     switch (_currentScene) {
         case LOADING_SCENE: {
             if (_loading.isActive()) {

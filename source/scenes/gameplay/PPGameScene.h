@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "utils/PPAssets.h"
+#include "controllers/PPInput.h"
 #include "models/PPGameState.h"
 #include "PPCanvas.h"
 

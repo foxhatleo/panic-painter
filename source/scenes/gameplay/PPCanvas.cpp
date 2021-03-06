@@ -43,3 +43,11 @@ void Canvas::update(CanvasState state,
         removeChild(_block);
     }
 }
+
+ptr<SceneNode> Canvas::getInteractionNode() const {
+    return _block;
+}
+
+void Canvas::setInteraction(bool in) {
+    _block->setInteraction(in);
+}

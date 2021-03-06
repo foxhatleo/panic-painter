@@ -15,9 +15,9 @@ ptr<CanvasBlock> CanvasBlock::alloc(const asset_t &assets,
 void CanvasBlock::_setup(const asset_t &assets,
                          const vec<Color4> &colors) {
     // White background
-    auto bg = scene2::PolygonNode::alloc(Rect(0, 0, getWidth(), getHeight()));
-    bg->setColor(Color4::WHITE);
-    addChild(bg);
+    _bg = scene2::PolygonNode::alloc(Rect(0, 0, getWidth(), getHeight()));
+    _bg->setColor(Color4::WHITE);
+    addChild(_bg);
 
     // Color strip
     _colorStrip = ColorStrip::alloc(getWidth(), colors);
@@ -35,4 +35,8 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
                          const ptr<Timer> &timer) {
     _timerText->setText(to_string(timer->timeLeft()));
     _colorStrip->update(canvasColors);
+}
+
+void CanvasBlock::setInteraction(bool in) {
+    _bg->setColor(in ? Color4(230, 230, 230) : Color4::WHITE);
 }

@@ -5,6 +5,7 @@
 #include "scenes/loading/PPLoadingScene.h"
 #include "scenes/gameplay/PPGameScene.h"
 #include "controllers/PPGlobalConfig.h"
+#include "controllers/PPInput.h"
 
 /** An enum for the list of scenes. */
 enum Scene {
