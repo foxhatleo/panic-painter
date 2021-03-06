@@ -1,6 +1,5 @@
 #include "PPColorStrip.h"
 
-
 /** Size of each dot. */
 #define COLOR_SIZE 15
 

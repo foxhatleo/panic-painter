@@ -7,13 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5FB321425F4147D000694C3 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321025F41478000694C3 /* levels */; };
+		C5FB321525F4147D000694C3 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321025F41478000694C3 /* levels */; };
+		C5FB321625F4147D000694C3 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321025F41478000694C3 /* levels */; };
+		C5FB321725F4147D000694C3 /* scenes in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321125F41479000694C3 /* scenes */; };
+		C5FB321825F4147D000694C3 /* scenes in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321125F41479000694C3 /* scenes */; };
+		C5FB321925F4147D000694C3 /* scenes in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321125F41479000694C3 /* scenes */; };
+		C5FB321A25F4147D000694C3 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321225F4147C000694C3 /* fonts */; };
+		C5FB321B25F4147D000694C3 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321225F4147C000694C3 /* fonts */; };
+		C5FB321C25F4147D000694C3 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321225F4147C000694C3 /* fonts */; };
+		C5FB321D25F4147D000694C3 /* config in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321325F4147D000694C3 /* config */; };
+		C5FB321E25F4147D000694C3 /* config in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321325F4147D000694C3 /* config */; };
+		C5FB321F25F4147D000694C3 /* config in Resources */ = {isa = PBXBuildFile; fileRef = C5FB321325F4147D000694C3 /* config */; };
+		C5FB327925F41B9F000694C3 /* PPInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB327625F41B9F000694C3 /* PPInput.cpp */; };
+		C5FB327A25F41BA0000694C3 /* PPInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB327625F41B9F000694C3 /* PPInput.cpp */; };
+		C5FB327B25F41BA0000694C3 /* PPInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB327625F41B9F000694C3 /* PPInput.cpp */; };
+		C5FB327C25F41BA0000694C3 /* PPGlobalConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB327725F41B9F000694C3 /* PPGlobalConfig.cpp */; };
+		C5FB327D25F41BA0000694C3 /* PPGlobalConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB327725F41B9F000694C3 /* PPGlobalConfig.cpp */; };
+		C5FB327E25F41BA0000694C3 /* PPGlobalConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB327725F41B9F000694C3 /* PPGlobalConfig.cpp */; };
+		C5FB329925F41BD0000694C3 /* PPAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328425F41BCA000694C3 /* PPAssets.cpp */; };
+		C5FB329A25F41BD0000694C3 /* PPAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328425F41BCA000694C3 /* PPAssets.cpp */; };
+		C5FB329B25F41BD0000694C3 /* PPAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328425F41BCA000694C3 /* PPAssets.cpp */; };
+		C5FB329C25F41BD1000694C3 /* PPTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328625F41BCA000694C3 /* PPTimer.cpp */; };
+		C5FB329D25F41BD1000694C3 /* PPTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328625F41BCA000694C3 /* PPTimer.cpp */; };
+		C5FB329E25F41BD1000694C3 /* PPTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328625F41BCA000694C3 /* PPTimer.cpp */; };
+		C5FB329F25F41BD1000694C3 /* PPLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328B25F41BCB000694C3 /* PPLoadingScene.cpp */; };
+		C5FB32A025F41BD1000694C3 /* PPLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328B25F41BCB000694C3 /* PPLoadingScene.cpp */; };
+		C5FB32A125F41BD1000694C3 /* PPLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328B25F41BCB000694C3 /* PPLoadingScene.cpp */; };
+		C5FB32A225F41BD1000694C3 /* PPCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328E25F41BCC000694C3 /* PPCanvas.cpp */; };
+		C5FB32A325F41BD2000694C3 /* PPCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328E25F41BCC000694C3 /* PPCanvas.cpp */; };
+		C5FB32A425F41BD2000694C3 /* PPCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB328E25F41BCC000694C3 /* PPCanvas.cpp */; };
+		C5FB32A525F41BD2000694C3 /* PPGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329125F41BCC000694C3 /* PPGameScene.cpp */; };
+		C5FB32A625F41BD2000694C3 /* PPGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329125F41BCC000694C3 /* PPGameScene.cpp */; };
+		C5FB32A725F41BD2000694C3 /* PPGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329125F41BCC000694C3 /* PPGameScene.cpp */; };
+		C5FB32A825F41BD2000694C3 /* PPColorStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329325F41BCC000694C3 /* PPColorStrip.cpp */; };
+		C5FB32A925F41BD2000694C3 /* PPColorStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329325F41BCC000694C3 /* PPColorStrip.cpp */; };
+		C5FB32AA25F41BD2000694C3 /* PPColorStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329325F41BCC000694C3 /* PPColorStrip.cpp */; };
+		C5FB32AB25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */; };
+		C5FB32AC25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */; };
+		C5FB32AD25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */; };
+		C5FB32AE25F41BD2000694C3 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329825F41BCF000694C3 /* PPGameState.cpp */; };
+		C5FB32AF25F41BD2000694C3 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329825F41BCF000694C3 /* PPGameState.cpp */; };
+		C5FB32B025F41BD2000694C3 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329825F41BCF000694C3 /* PPGameState.cpp */; };
 		EB07CFB621EFF3F8000CB3A3 /* DeviceMargins.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB07CFB021EFF3EF000CB3A3 /* DeviceMargins.plist */; };
 		EB22BDE025D0E00A002ACE41 /* libcugl-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB22BDC825D0DE75002ACE41 /* libcugl-mac.a */; };
 		EB22BDFC25D0E0E2002ACE41 /* libcugl-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB22BDCA25D0DE75002ACE41 /* libcugl-ios.a */; };
 		EB22BF9025D0EA49002ACE41 /* iOS.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7454A71D74D846002FBAE6 /* iOS.xcassets */; };
 		EB22BF9125D0EA49002ACE41 /* Landscape.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7454A81D74D846002FBAE6 /* Landscape.storyboard */; };
 		EB22BF9225D0EA49002ACE41 /* Portrait.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7454A91D74D846002FBAE6 /* Portrait.storyboard */; };
-		EB22BF9625D0EA50002ACE41 /* json in Resources */ = {isa = PBXBuildFile; fileRef = EBFE7C041E19B496001007C2 /* json */; };
 		EB22BF9725D0EA51002ACE41 /* textures in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE9BA1D7498D2002FE78B /* textures */; };
 		EB22BF9B25D0EA5C002ACE41 /* DeviceMargins.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB07CFB021EFF3EF000CB3A3 /* DeviceMargins.plist */; };
 		EB2BE9B51D74952A002FE78B /* PPApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE9B21D74952A002FE78B /* PPApp.cpp */; };
@@ -73,8 +114,6 @@
 		EBDD16D525C35D3400154533 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C625C35D3400154533 /* CoreMotion.framework */; };
 		EBDD16D625C35D3400154533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C725C35D3400154533 /* CoreGraphics.framework */; };
 		EBEC12022194B6F4007E708B /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEC12012194B6F4007E708B /* Metal.framework */; };
-		EBFE7C051E19B496001007C2 /* json in Resources */ = {isa = PBXBuildFile; fileRef = EBFE7C041E19B496001007C2 /* json */; };
-		EBFE7C091E19B4AC001007C2 /* json in Resources */ = {isa = PBXBuildFile; fileRef = EBFE7C041E19B496001007C2 /* json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +141,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C5FB321025F41478000694C3 /* levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = levels; sourceTree = "<group>"; };
+		C5FB321125F41479000694C3 /* scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scenes; sourceTree = "<group>"; };
+		C5FB321225F4147C000694C3 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		C5FB321325F4147D000694C3 /* config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = config; sourceTree = "<group>"; };
+		C5FB327525F41B9F000694C3 /* PPInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPInput.h; sourceTree = "<group>"; };
+		C5FB327625F41B9F000694C3 /* PPInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPInput.cpp; sourceTree = "<group>"; };
+		C5FB327725F41B9F000694C3 /* PPGlobalConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPGlobalConfig.cpp; sourceTree = "<group>"; };
+		C5FB327825F41B9F000694C3 /* PPGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGlobalConfig.h; sourceTree = "<group>"; };
+		C5FB328325F41BCA000694C3 /* PPAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAssets.h; sourceTree = "<group>"; };
+		C5FB328425F41BCA000694C3 /* PPAssets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPAssets.cpp; sourceTree = "<group>"; };
+		C5FB328525F41BCA000694C3 /* PPTypeDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTypeDefs.h; sourceTree = "<group>"; };
+		C5FB328625F41BCA000694C3 /* PPTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPTimer.cpp; sourceTree = "<group>"; };
+		C5FB328725F41BCA000694C3 /* PPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHeader.h; sourceTree = "<group>"; };
+		C5FB328825F41BCA000694C3 /* PPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTimer.h; sourceTree = "<group>"; };
+		C5FB328B25F41BCB000694C3 /* PPLoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPLoadingScene.cpp; sourceTree = "<group>"; };
+		C5FB328C25F41BCC000694C3 /* PPLoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLoadingScene.h; sourceTree = "<group>"; };
+		C5FB328E25F41BCC000694C3 /* PPCanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPCanvas.cpp; sourceTree = "<group>"; };
+		C5FB328F25F41BCC000694C3 /* PPCanvasBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPCanvasBlock.h; sourceTree = "<group>"; };
+		C5FB329025F41BCC000694C3 /* PPCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPCanvas.h; sourceTree = "<group>"; };
+		C5FB329125F41BCC000694C3 /* PPGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPGameScene.cpp; sourceTree = "<group>"; };
+		C5FB329225F41BCC000694C3 /* PPGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGameScene.h; sourceTree = "<group>"; };
+		C5FB329325F41BCC000694C3 /* PPColorStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPColorStrip.cpp; sourceTree = "<group>"; };
+		C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPCanvasBlock.cpp; sourceTree = "<group>"; };
+		C5FB329525F41BCC000694C3 /* PPColorStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPColorStrip.h; sourceTree = "<group>"; };
+		C5FB329725F41BCF000694C3 /* PPGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGameState.h; sourceTree = "<group>"; };
+		C5FB329825F41BCF000694C3 /* PPGameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPGameState.cpp; sourceTree = "<group>"; };
 		EB07CFB021EFF3EF000CB3A3 /* DeviceMargins.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceMargins.plist; sourceTree = "<group>"; };
 		EB22BF5E25D0E8BC002ACE41 /* PanicPainter (Sim).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PanicPainter (Sim).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2BE9B21D74952A002FE78B /* PPApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPApp.cpp; sourceTree = "<group>"; };
@@ -146,7 +211,6 @@
 		EBDD16C625C35D3400154533 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		EBDD16C725C35D3400154533 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		EBEC12012194B6F4007E708B /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-		EBFE7C041E19B496001007C2 /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +285,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C5FB327425F41B9F000694C3 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB327525F41B9F000694C3 /* PPInput.h */,
+				C5FB327625F41B9F000694C3 /* PPInput.cpp */,
+				C5FB327725F41B9F000694C3 /* PPGlobalConfig.cpp */,
+				C5FB327825F41B9F000694C3 /* PPGlobalConfig.h */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		C5FB328225F41BCA000694C3 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB328325F41BCA000694C3 /* PPAssets.h */,
+				C5FB328425F41BCA000694C3 /* PPAssets.cpp */,
+				C5FB328525F41BCA000694C3 /* PPTypeDefs.h */,
+				C5FB328625F41BCA000694C3 /* PPTimer.cpp */,
+				C5FB328725F41BCA000694C3 /* PPHeader.h */,
+				C5FB328825F41BCA000694C3 /* PPTimer.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		C5FB328925F41BCB000694C3 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB328A25F41BCB000694C3 /* loading */,
+				C5FB328D25F41BCC000694C3 /* gameplay */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		C5FB328A25F41BCB000694C3 /* loading */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB328B25F41BCB000694C3 /* PPLoadingScene.cpp */,
+				C5FB328C25F41BCC000694C3 /* PPLoadingScene.h */,
+			);
+			path = loading;
+			sourceTree = "<group>";
+		};
+		C5FB328D25F41BCC000694C3 /* gameplay */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB328E25F41BCC000694C3 /* PPCanvas.cpp */,
+				C5FB328F25F41BCC000694C3 /* PPCanvasBlock.h */,
+				C5FB329025F41BCC000694C3 /* PPCanvas.h */,
+				C5FB329125F41BCC000694C3 /* PPGameScene.cpp */,
+				C5FB329225F41BCC000694C3 /* PPGameScene.h */,
+				C5FB329325F41BCC000694C3 /* PPColorStrip.cpp */,
+				C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */,
+				C5FB329525F41BCC000694C3 /* PPColorStrip.h */,
+			);
+			path = gameplay;
+			sourceTree = "<group>";
+		};
+		C5FB329625F41BCD000694C3 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB329725F41BCF000694C3 /* PPGameState.h */,
+				C5FB329825F41BCF000694C3 /* PPGameState.cpp */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		EB22BDC325D0DE75002ACE41 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,7 +364,10 @@
 		EB2BE9B71D749870002FE78B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				EBFE7C041E19B496001007C2 /* json */,
+				C5FB321325F4147D000694C3 /* config */,
+				C5FB321225F4147C000694C3 /* fonts */,
+				C5FB321025F41478000694C3 /* levels */,
+				C5FB321125F41479000694C3 /* scenes */,
 				EB2BE9BA1D7498D2002FE78B /* textures */,
 			);
 			name = Assets;
@@ -332,6 +465,10 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C5FB329625F41BCD000694C3 /* models */,
+				C5FB328925F41BCB000694C3 /* scenes */,
+				C5FB328225F41BCA000694C3 /* utils */,
+				C5FB327425F41B9F000694C3 /* controllers */,
 				EB2BE9B41D74952A002FE78B /* main.cpp */,
 				EB2BE9B31D74952A002FE78B /* PPApp.h */,
 				EB2BE9B21D74952A002FE78B /* PPApp.cpp */,
@@ -401,7 +538,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1240;
-				ORGANIZATIONNAME = "Game Design Initiative at Cornell";
+				ORGANIZATIONNAME = "Dragonglass Studios";
 				TargetAttributes = {
 					EB22BF5D25D0E8BC002ACE41 = {
 						CreatedOnToolsVersion = 12.4;
@@ -473,11 +610,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB22BF9B25D0EA5C002ACE41 /* DeviceMargins.plist in Resources */,
-				EB22BF9625D0EA50002ACE41 /* json in Resources */,
 				EB22BF9725D0EA51002ACE41 /* textures in Resources */,
 				EB22BF9025D0EA49002ACE41 /* iOS.xcassets in Resources */,
+				C5FB321925F4147D000694C3 /* scenes in Resources */,
+				C5FB321F25F4147D000694C3 /* config in Resources */,
 				EB22BF9125D0EA49002ACE41 /* Landscape.storyboard in Resources */,
 				EB22BF9225D0EA49002ACE41 /* Portrait.storyboard in Resources */,
+				C5FB321625F4147D000694C3 /* levels in Resources */,
+				C5FB321C25F4147D000694C3 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,9 +628,12 @@
 				EB7454D01D750623002FBAE6 /* textures in Resources */,
 				EB7454AB1D74D846002FBAE6 /* iOS.xcassets in Resources */,
 				EB7454AC1D74D846002FBAE6 /* Landscape.storyboard in Resources */,
-				EBFE7C051E19B496001007C2 /* json in Resources */,
+				C5FB321825F4147D000694C3 /* scenes in Resources */,
+				C5FB321E25F4147D000694C3 /* config in Resources */,
 				EB7454AD1D74D846002FBAE6 /* Portrait.storyboard in Resources */,
 				EB07CFB621EFF3F8000CB3A3 /* DeviceMargins.plist in Resources */,
+				C5FB321525F4147D000694C3 /* levels in Resources */,
+				C5FB321B25F4147D000694C3 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,9 +641,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBFE7C091E19B4AC001007C2 /* json in Resources */,
 				EB2BE9BB1D7498D2002FE78B /* textures in Resources */,
+				C5FB321A25F4147D000694C3 /* fonts in Resources */,
 				EBBF189B1D74904A008E2001 /* Mac.xcassets in Resources */,
+				C5FB321425F4147D000694C3 /* levels in Resources */,
+				C5FB321D25F4147D000694C3 /* config in Resources */,
+				C5FB321725F4147D000694C3 /* scenes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,8 +657,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5FB329E25F41BD1000694C3 /* PPTimer.cpp in Sources */,
+				C5FB32AD25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */,
+				C5FB32B025F41BD2000694C3 /* PPGameState.cpp in Sources */,
+				C5FB327B25F41BA0000694C3 /* PPInput.cpp in Sources */,
+				C5FB32A425F41BD2000694C3 /* PPCanvas.cpp in Sources */,
+				C5FB329B25F41BD0000694C3 /* PPAssets.cpp in Sources */,
+				C5FB327E25F41BA0000694C3 /* PPGlobalConfig.cpp in Sources */,
+				C5FB32A725F41BD2000694C3 /* PPGameScene.cpp in Sources */,
 				EB9CDA3925D0EAB100EE1A09 /* main.cpp in Sources */,
 				EB9CDA3525D0EAAC00EE1A09 /* PPApp.cpp in Sources */,
+				C5FB32A125F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				C5FB32AA25F41BD2000694C3 /* PPColorStrip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,8 +676,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5FB329D25F41BD1000694C3 /* PPTimer.cpp in Sources */,
+				C5FB32AC25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */,
+				C5FB32AF25F41BD2000694C3 /* PPGameState.cpp in Sources */,
+				C5FB327A25F41BA0000694C3 /* PPInput.cpp in Sources */,
+				C5FB32A325F41BD2000694C3 /* PPCanvas.cpp in Sources */,
+				C5FB329A25F41BD0000694C3 /* PPAssets.cpp in Sources */,
+				C5FB327D25F41BA0000694C3 /* PPGlobalConfig.cpp in Sources */,
+				C5FB32A625F41BD2000694C3 /* PPGameScene.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				EB7454AF1D74D891002FBAE6 /* PPApp.cpp in Sources */,
+				C5FB32A025F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				C5FB32A925F41BD2000694C3 /* PPColorStrip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,8 +695,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5FB329C25F41BD1000694C3 /* PPTimer.cpp in Sources */,
+				C5FB32AB25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */,
+				C5FB32AE25F41BD2000694C3 /* PPGameState.cpp in Sources */,
+				C5FB327925F41B9F000694C3 /* PPInput.cpp in Sources */,
+				C5FB32A225F41BD1000694C3 /* PPCanvas.cpp in Sources */,
+				C5FB329925F41BD0000694C3 /* PPAssets.cpp in Sources */,
+				C5FB327C25F41BA0000694C3 /* PPGlobalConfig.cpp in Sources */,
+				C5FB32A525F41BD2000694C3 /* PPGameScene.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				EB2BE9B51D74952A002FE78B /* PPApp.cpp in Sources */,
+				C5FB329F25F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				C5FB32A825F41BD2000694C3 /* PPColorStrip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +855,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(CUGL_INCLUDES)";
+				HEADER_SEARCH_PATHS = (
+					"$(SOURCE_ROOT)/../source",
+					"$(CUGL_INCLUDES)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -735,7 +914,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(CUGL_INCLUDES)";
+				HEADER_SEARCH_PATHS = (
+					"$(SOURCE_ROOT)/../source",
+					"$(CUGL_INCLUDES)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;

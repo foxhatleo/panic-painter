@@ -1,6 +1,5 @@
 #include "PPCanvasBlock.h"
 
-
 ptr<CanvasBlock> CanvasBlock::alloc(const asset_t &assets,
                                     float size,
                                     const vec<Color4> &colors) {
