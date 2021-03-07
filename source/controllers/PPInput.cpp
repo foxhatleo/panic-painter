@@ -49,8 +49,6 @@ void InputController::update() {
     if (_currentPressed && !_lastPressed)
         _startingPoint = mouse->pointerPosition();
     _lastPoint = mouse->pointerPosition();
-    if (_currentPressed)
-        CULog("mouse pressed at %d %d", (int)_lastPoint.x, (int)_lastPoint.y);
 #endif
     // TODO: Check if we need to the below for touchscreen
     // This is absolutely necessary for mouse, because mouse returns screen
