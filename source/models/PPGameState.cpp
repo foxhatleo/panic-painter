@@ -52,7 +52,6 @@ void GameState::_jsonv1_loadTimer(const json_t &timer) {
                     gc.getCanvasPerColorTime()
             );
 
-
     for (const auto &queueRef : _queues) {
         vec<ptr<Timer>> queueTimers;
 
@@ -108,11 +107,11 @@ CanvasState GameState::getCanvasState(uint q, uint c) const {
     // If the timer is done, then the canvas is lost.
     if (_canvasTimers[q][c]->finished()) return LOST_DUE_TO_TIME;
 
-    // If no color is left, then it is completed.
+        // If no color is left, then it is completed.
     else if (getColorsOfCanvas(q, c).empty()) return DONE;
 
-    // If it is neither done nor lost but it is the first one, it must be
-    // active.
+        // If it is neither done nor lost but it is the first one, it must be
+        // active.
     else if (c == 0) return ACTIVE;
 
     // Now we need the state of the one in front of it.
@@ -121,11 +120,11 @@ CanvasState GameState::getCanvasState(uint q, uint c) const {
     // If the previous one is active, then this one is on standby.
     if (previous == ACTIVE) return STANDBY;
 
-    // If the previous one is done or lost, then this one is the frontmost.
-    // In other words, it must be active.
+        // If the previous one is done or lost, then this one is the frontmost.
+        // In other words, it must be active.
     else if (previous == DONE || previous == LOST_DUE_TO_TIME) return ACTIVE;
 
-    // In all other scenarios, the canvas is hidden.
+        // In all other scenarios, the canvas is hidden.
     else return HIDDEN;
 }
 

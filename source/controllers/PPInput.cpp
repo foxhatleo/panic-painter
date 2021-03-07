@@ -49,7 +49,16 @@ void InputController::update() {
     if (_currentPressed && !_lastPressed)
         _startingPoint = mouse->pointerPosition();
     _lastPoint = mouse->pointerPosition();
+    if (_currentPressed)
+        CULog("mouse pressed at %d %d", (int)_lastPoint.x, (int)_lastPoint.y);
 #endif
+    // TODO: Check if we need to the below for touchscreen
+    // This is absolutely necessary for mouse, because mouse returns screen
+    // coordinates, not world ones. The difference is that origin in world is
+    // bottom left, while for world it is top left.
+    auto screenHeight = Application::get()->getDisplayHeight();
+    _startingPoint.y = screenHeight - _startingPoint.y;
+    _lastPoint.y = screenHeight - _lastPoint.y;
 }
 
 bool InputController::isPressing() const {
@@ -85,7 +94,7 @@ Vec2 InputController::releasingPoint() const {
 }
 
 bool InputController::inScene(const Vec2 &point,
-                              const ptr<SceneNode>& scene) {
+                              const ptr<SceneNode> &scene) {
     return inScene(point, *scene.get());
 }
 
