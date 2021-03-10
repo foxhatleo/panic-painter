@@ -10,21 +10,26 @@ private:
     TouchID _pressedId;
     Vec2 _startingPoint;
     Vec2 _lastPoint;
+    float _timeHeld;
+  
 
     static InputController _instance;
     InputController() :
     _pressedId(-1),
     _lastPressed(false),
-    _currentPressed(false) {}
+    _currentPressed(false), 
+    _timeHeld(0.0f){}
 
 public:
     void init();
     void dispose();
-    void update();
+    void update(float timestep);
 
     bool isPressing() const;
     bool justPressed() const;
     bool justReleased() const;
+    float timeHeld() const; 
+    bool completeHold() const;
     Vec2 startingPoint() const;
     Vec2 movedDist() const;
     Vec2 currentPoint() const;

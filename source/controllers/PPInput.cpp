@@ -1,6 +1,7 @@
 #include "PPInput.h"
 
 #define MOVE_THRESHOLD 5
+#define HELD_THRESHOLD 1.0f
 
 InputController InputController::_instance;
 
@@ -21,16 +22,18 @@ void InputController::dispose() {
 #endif
 }
 
-void InputController::update() {
+void InputController::update(float timestep) {
     _lastPressed = _currentPressed;
 #ifdef CU_TOUCH_SCREEN
     auto *touchscreen = Input::get<Touchscreen>();
     if (_pressedId != -1) {
         if (touchscreen->touchDown(_pressedId)) {
             _currentPressed = true;
-            _lastPoint = touchscreen->touchPosition(_pressedId)
+            _lastPoint = touchscreen->touchPosition(_pressedId);
+            _touchHeld += timestep;
         } else {
             _currentPressed = false;
+            _touchHeld = 0; 
             _pressedId = -1;
         }
     } else {
@@ -46,8 +49,10 @@ void InputController::update() {
 #else
     auto *mouse = Input::get<Mouse>();
     _currentPressed = mouse->buttonDown().hasLeft();
-    if (_currentPressed && !_lastPressed)
+    if (_currentPressed && !_lastPressed) {
+        _timeHeld += timestep;
         _startingPoint = mouse->pointerPosition();
+    }
     _lastPoint = mouse->pointerPosition();
 #endif
 }
@@ -58,6 +63,14 @@ bool InputController::isPressing() const {
 
 bool InputController::justPressed() const {
     return _currentPressed && !_lastPressed;
+}
+
+float InputController::timeHeld() const {
+    return _timeHeld; 
+}
+
+bool InputController::completeHold() const {
+    return _timeHeld  > HELD_THRESHOLD;
 }
 
 bool InputController::justReleased() const {
