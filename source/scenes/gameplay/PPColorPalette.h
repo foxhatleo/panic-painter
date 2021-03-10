@@ -23,7 +23,7 @@ public:
     
     /** @deprecated Constructor. */
     explicit ColorPalette(const vec<Color4> &colors) :
-            SceneNode(), _colors(colors) {};
+            SceneNode(), _colors(colors), _selectedColor(0) {};
     
     /** Allocate a color palette with bounds. */
     static ptr<ColorPalette> alloc(const Rect &rect,

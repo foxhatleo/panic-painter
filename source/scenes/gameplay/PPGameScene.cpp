@@ -54,7 +54,12 @@ void GameScene::loadLevel(const char *levelName) {
     _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
     _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
     _levelTimerText->setPosition(10, screenSize.height - 50);
+    
+    _palette = ColorPalette::alloc(50, _state.getColors());
+    _palette->setPosition(50, 50);
+    
     addChild(_levelTimerText);
+    addChild(_palette);
 }
 
 void GameScene::update(float timestep) {
@@ -77,6 +82,7 @@ void GameScene::update(float timestep) {
             }
         }
     }
+    
     _levelTimerText->setText(
             to_string(_state.getLevelTimer()->timeLeft()));
     Scene2::update(timestep);

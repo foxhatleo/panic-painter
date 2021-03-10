@@ -14,7 +14,7 @@
 
 ptr<ColorPalette> ColorPalette::alloc(float size,
                                   const vec<Color4> &colors) {
-    return alloc(Size(size, size), colors);
+    return alloc(Size(PALETTE_COLOR_SIZE * 5 + PADDING * 4, size), colors);
 }
 
 ptr<ColorPalette> ColorPalette::alloc(const Size &size,

@@ -6,6 +6,7 @@
 #include "controllers/PPInput.h"
 #include "models/PPGameState.h"
 #include "PPCanvas.h"
+#include "PPColorPalette.h"
 
 /**
  * This is the scene for the actual game.
@@ -25,6 +26,8 @@ private:
     vec<vec<ptr<Canvas>>> _canvases;
     /** Level time text. */
     ptr<Label> _levelTimerText;
+    
+    ptr<ColorPalette> _palette;
 
 public:
     GameScene() : Scene2() {}

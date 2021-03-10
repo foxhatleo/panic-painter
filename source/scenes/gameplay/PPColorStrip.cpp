@@ -26,7 +26,7 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
     // If the number of colors have not changed, that means no color has been
     // taken away yet.
     if (_lastNumberOfColors == canvasColors.size()) return;
-    _lastNumberOfColors = canvasColors.size();
+    _lastNumberOfColors = (uint) canvasColors.size();
 
     // Just redo the color dots. Remove them all.
     removeAllChildren();
