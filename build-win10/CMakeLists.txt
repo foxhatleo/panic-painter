@@ -27,7 +27,8 @@ set(PP_FILES
         ../source/utils/PPTypeDefs.h
         ../source/utils/PPHeader.h
         ../source/controllers/PPInput.h
-        ../source/controllers/PPInput.cpp)
+        ../source/controllers/PPInput.cpp
+        ../source/utils/PPAnimation.h ../source/utils/PPAnimation.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
