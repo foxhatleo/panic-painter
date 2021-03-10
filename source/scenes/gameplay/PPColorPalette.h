@@ -13,13 +13,17 @@
 
 class ColorPalette : public SceneNode {
     
+    /** The index of the selected color in the palette. */
     uint _selectedColor;
+    
+    /** The color list. */
+    const vec<Color4> _colors;
     
 public:
     
     /** @deprecated Constructor. */
     explicit ColorPalette(const vec<Color4> &colors) :
-            SceneNode() {};
+            SceneNode(), _colors(colors) {};
     
     /** Allocate a color palette with bounds. */
     static ptr<ColorPalette> alloc(const Rect &rect,
@@ -33,13 +37,17 @@ public:
     static ptr<ColorPalette> alloc(float size,
                                  const vec<Color4> &colors);
     
+    /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
         _selectedColor = colorIndex;
     }
     
+    /** Get the selected color. */
     uint getSelectedColor() {
         return _selectedColor;
     }
+    
+    void update(float timestamp);
 };
 
 #endif /* PP_COLOR_PALETTE_H */
