@@ -198,6 +198,7 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp" />
     <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp" />
     <ClCompile Include="..\..\source\utils\PPAssets.cpp" />
+    <ClCompile Include="..\..\source\utils\PPAnimation.cpp" />
     <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +225,7 @@
     <ClInclude Include="..\..\source\utils\PPAssets.h" />
     <ClInclude Include="..\..\source\utils\PPHeader.h" />
     <ClInclude Include="..\..\source\utils\PPTimer.h" />
+    <ClInclude Include="..\..\source\utils\PPAnimation.h" />
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
