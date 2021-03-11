@@ -64,16 +64,22 @@ void GameScene::update(float timestep) {
     _state.update(timestep);
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
-            if (input.moved()) {
-                if (InputController::inScene(input.startingPoint(),
-                    _canvases[i][i2]->getInteractionNode()) &&
-                    (input.startingPoint().x + input.movedDist().x) > _canvases[i][i2]->getWidth()) {
-                    //Drag
-                    _canvases[i][i2]->update(DONE, _state.getColorsOfCanvas(i, i2),
-                        _state.getTimer(i, i2));
+            auto state = _state.getCanvasState(i, i2);
+            if (state == ACTIVE && input.isPressing() && input.completeHold() && 
+                InputController::inScene(input.currentPoint(), _canvases[i][i2]->getInteractionNode()) && 
+                InputController::inScene(input.startingPoint(), _canvases[i][i2]->getInteractionNode())) {
+                CULog("success hold");
+            }
+            if (state == ACTIVE && input.isPressing() && input.moved()) {
+                float distDragged = input.startingPoint().x + input.movedDist().x;
+                if (distDragged > _canvases[i][i2]->getInteractionNode()->getPositionX() ||
+                    (InputController::inScene(input.currentPoint(), _canvases[i][i2]->getInteractionNode())
+                        && !InputController::inScene(input.startingPoint(), _canvases[i][i2]->getInteractionNode()))) {
+                    CULog("success drag");
+                        //Drag success
+                        //TODO add logic
                 }
             }
-            auto state = _state.getCanvasState(i, i2);
             _canvases[i][i2]->update(
                     state,
                     _state.getColorsOfCanvas(i, i2),
