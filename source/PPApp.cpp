@@ -45,7 +45,7 @@ void PanicPainterApp::onLoaded() {
 }
 
 void PanicPainterApp::update(float timestep) {
-    InputController::getInstance().update();
+    InputController::getInstance().update(timestep);
     switch (_currentScene) {
         case LOADING_SCENE: {
             if (_loading.isActive()) {

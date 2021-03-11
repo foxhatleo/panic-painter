@@ -1,7 +1,7 @@
 #include "PPInput.h"
 
 #define MOVE_THRESHOLD 5
-#define HELD_THRESHOLD 1.0f
+#define HELD_THRESHOLD 0.5f
 
 InputController InputController::_instance;
 
