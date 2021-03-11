@@ -2,9 +2,10 @@
 #define PANICPAINTER_PPCANVAS_H
 
 #include "utils/PPHeader.h"
-#include "models/PPGameState.h"
+#include "controllers/PPGameState.h"
 #include "utils/PPTypeDefs.h"
 #include "utils/PPTimer.h"
+#include "utils/PPAnimation.h"
 #include "PPCanvasBlock.h"
 
 /**
@@ -16,6 +17,9 @@ class Canvas : public SceneNode {
 private:
     /** Block */
     ptr<CanvasBlock> _block;
+
+    /** Previous state. */
+    CanvasState _previousState;
 
     /** Set up. */
     void _setup(const asset_t &assets, const vec<Color4> &colors);

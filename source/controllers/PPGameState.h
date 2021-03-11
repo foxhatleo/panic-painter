@@ -25,7 +25,7 @@ enum CanvasState {
     DONE,
 };
 
-class GameState {
+class GameStateController {
 private:
     /** The list of colors for this level. */
     vec<Color4> _colors;

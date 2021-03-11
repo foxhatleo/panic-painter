@@ -4,7 +4,7 @@
 #include "utils/PPHeader.h"
 #include "utils/PPAssets.h"
 #include "controllers/PPInput.h"
-#include "models/PPGameState.h"
+#include "controllers/PPGameState.h"
 #include "PPCanvas.h"
 
 /**
@@ -16,7 +16,7 @@ private:
     /** Asset manager. */
     asset_t _assets;
     /** Game state. */
-    GameState _state;
+    GameStateController _state;
     /**
      * Scene nodes of canvases.
      *

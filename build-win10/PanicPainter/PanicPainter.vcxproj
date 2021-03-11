@@ -190,7 +190,7 @@
     <ClCompile Include="..\..\source\controllers\PPGlobalConfig.cpp" />
     <ClCompile Include="..\..\source\controllers\PPInput.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
-    <ClCompile Include="..\..\source\models\PPGameState.cpp" />
+    <ClCompile Include="..\..\source\controllers\PPGameState.cpp" />
     <ClCompile Include="..\..\source\PPApp.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
@@ -198,6 +198,7 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp" />
     <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp" />
     <ClCompile Include="..\..\source\utils\PPAssets.cpp" />
+    <ClCompile Include="..\..\source\utils\PPAnimation.cpp" />
     <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -214,7 +215,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\source\controllers\PPGlobalConfig.h" />
     <ClInclude Include="..\..\source\controllers\PPInput.h" />
-    <ClInclude Include="..\..\source\models\PPGameState.h" />
+    <ClInclude Include="..\..\source\controllers\PPGameState.h" />
     <ClInclude Include="..\..\source\PPApp.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\..\source\utils\PPAssets.h" />
     <ClInclude Include="..\..\source\utils\PPHeader.h" />
     <ClInclude Include="..\..\source\utils\PPTimer.h" />
+    <ClInclude Include="..\..\source\utils\PPAnimation.h" />
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

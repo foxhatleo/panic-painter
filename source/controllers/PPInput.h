@@ -11,9 +11,9 @@ private:
     Vec2 _startingPoint;
     Vec2 _lastPoint;
     float _timeHeld;
-  
 
     static InputController _instance;
+
     InputController() :
     _pressedId(-1),
     _lastPressed(false),
@@ -22,22 +22,35 @@ private:
 
 public:
     void init();
+
     void dispose();
+
     void update(float timestep);
 
     bool isPressing() const;
+
     bool justPressed() const;
+
     bool justReleased() const;
-    float timeHeld() const; 
+
+    float timeHeld() const;
+
     bool completeHold() const;
+
     Vec2 startingPoint() const;
+
     Vec2 movedDist() const;
+
     Vec2 currentPoint() const;
+
     Vec2 releasingPoint() const;
+
     bool moved() const;
 
     static bool inScene(const Vec2 &point, const ptr<SceneNode> &scene);
+
     static bool inScene(const Vec2 &point, const SceneNode &scene);
+
     static bool inScene(const Vec2 &point, const Rect &bound);
 
     static InputController &getInstance() { return _instance; }

@@ -5,10 +5,10 @@
 xcuserdata
 local.properties
 
-# The below is for developing in CLion.
-# Because CLion and CMake is not the *offical* way to build this project.
-# We are ignoring it.
-CMakeLists.txt
 cmake-build-debug
-.idea
-CMake
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml

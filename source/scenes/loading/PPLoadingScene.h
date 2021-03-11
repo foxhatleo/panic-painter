@@ -13,8 +13,6 @@ private:
 
     /** Progress bar. */
     ptr<ProgressBar> _bar;
-    /** CUGL logo. */
-    ptr<SceneNode> _brand;
     /** Play button. */
     ptr<Button> _button;
 
