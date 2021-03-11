@@ -222,12 +222,10 @@ target_compile_definitions(Box2D PRIVATE
 if(MSVC)
     target_compile_options(Box2D PRIVATE
             $<$<CONFIG:Debug>:
-            /Gm;
             /Od;
             /RTC1
             >
             $<$<CONFIG:Release>:
-            /Gm-;
             /Ox;
             /GF;
             /fp:fast;

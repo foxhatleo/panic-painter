@@ -42,6 +42,7 @@ void PanicPainterApp::onResume() {
 
 void PanicPainterApp::onLoaded() {
     GlobalConfigController::getInstance().load(_assets);
+    InputController::getInstance().loadConfig();
 }
 
 void PanicPainterApp::update(float timestep) {

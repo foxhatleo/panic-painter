@@ -8,9 +8,17 @@ void GlobalConfigController::_assertLoaded() {
                 "Did you call load()?");
 }
 
-json_t GlobalConfigController::_getTimerConfig() {
+json_t GlobalConfigController::_getConfig(const char *name) {
     _assertLoaded();
-    return Assets::Json::getItem(_globalConfig, "timer");
+    return Assets::Json::getItem(_globalConfig, name);
+}
+
+json_t GlobalConfigController::_getTimerConfig() {
+    return _getConfig("timer");
+}
+
+json_t GlobalConfigController::_getInputConfig() {
+    return _getConfig("input");
 }
 
 void GlobalConfigController::load(const asset_t &assets) {
@@ -19,16 +27,21 @@ void GlobalConfigController::load(const asset_t &assets) {
 }
 
 uint GlobalConfigController::getLevelTime() {
-    _assertLoaded();
     return Assets::Json::getInt(_getTimerConfig(), "levelTime");
 }
 
 uint GlobalConfigController::getCanvasBaseTime() {
-    _assertLoaded();
     return Assets::Json::getInt(_getTimerConfig(), "canvasBaseTime");
 }
 
 uint GlobalConfigController::getCanvasPerColorTime() {
-    _assertLoaded();
     return Assets::Json::getInt(_getTimerConfig(), "canvasPerColorTime");
+}
+
+float GlobalConfigController::getInputHoldThreshold() {
+    return Assets::Json::getFloat(_getInputConfig(), "holdThreshold");
+}
+
+float GlobalConfigController::getInputMoveThreshold() {
+    return Assets::Json::getFloat(_getInputConfig(), "moveThreshold");
 }

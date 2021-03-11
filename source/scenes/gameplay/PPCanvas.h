@@ -32,7 +32,9 @@ public:
 
     ptr<SceneNode> getInteractionNode() const;
 
-    void setInteraction(bool in);
+    void setHover(float in);
+
+    CanvasState getState() const;
 
     /** Update. */
     void update(CanvasState state,

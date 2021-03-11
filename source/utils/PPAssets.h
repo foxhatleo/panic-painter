@@ -37,6 +37,12 @@ namespace utils {
             /** Convert JSON object to integer. If not number, default value. */
             static int asInt(const json_t &json, int defaultValue);
 
+            /** Convert JSON object to float. If not number, fail. */
+            static float asFloat(const json_t &json);
+
+            /** Convert JSON object to float. If not number, default value. */
+            static float asFloat(const json_t &json, float defaultValue);
+
             /** Get an object in a JSON dictionary. */
             static json_t getItem(const json_t &json, const char *key);
 
@@ -50,6 +56,14 @@ namespace utils {
             static int getInt(const json_t &json,
                               const char *key,
                               int defaultValue);
+
+            /** Get a float in a JSON dictionary. */
+            static float getFloat(const json_t &json, const char *key);
+
+            /** Get a float in a JSON dictionary. */
+            static float getFloat(const json_t &json,
+                                  const char *key,
+                                  float defaultValue);
 
             /** Pull JSON file from asset manager. */
             static json_t get(const asset_t &assets, const char *key);

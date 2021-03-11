@@ -86,6 +86,10 @@ ptr<SceneNode> Canvas::getInteractionNode() const {
     return _block;
 }
 
-void Canvas::setInteraction(bool in) {
-    _block->setInteraction(in);
+void Canvas::setHover(float in) {
+    _block->setHover(in);
+}
+
+CanvasState Canvas::getState() const {
+    return _previousState;
 }

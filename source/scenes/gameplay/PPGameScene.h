@@ -5,6 +5,7 @@
 #include "utils/PPAssets.h"
 #include "controllers/PPInput.h"
 #include "controllers/PPGameState.h"
+#include "utils/PPAnimation.h"
 #include "PPCanvas.h"
 
 /**
@@ -25,6 +26,11 @@ private:
     vec<vec<ptr<Canvas>>> _canvases;
     /** Level time text. */
     ptr<Label> _levelTimerText;
+    /**
+     * For now we tell the user an action is completed with a flashing
+     * effect.
+     */
+    ptr<PolygonNode> _flash;
 
 public:
     GameScene() : Scene2() {}
