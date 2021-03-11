@@ -1,7 +1,5 @@
 #include "PPGameScene.h"
 
-#define ANIMATION_RELATIVE 10000000
-
 void GameScene::dispose() {
     Scene2::dispose();
 }
