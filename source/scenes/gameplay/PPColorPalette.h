@@ -10,6 +10,8 @@
 #define PP_COLOR_PALETTE_H
 
 #include "utils/PPHeader.h"
+#include "utils/PPAnimation.h"
+#include "controllers/PPInput.h"
 
 class ColorPalette : public SceneNode {
     
@@ -18,24 +20,19 @@ class ColorPalette : public SceneNode {
     
     /** The color list. */
     const vec<Color4> _colors;
+
+    /** Buttons. */
+    vec<ptr<PolygonNode>> _buttons;
+
+    void _setup();
     
 public:
     
     /** @deprecated Constructor. */
-    explicit ColorPalette(const vec<Color4> &colors) :
-            SceneNode(), _colors(colors), _selectedColor(0) {};
-    
-    /** Allocate a color palette with bounds. */
-    static ptr<ColorPalette> alloc(const Rect &rect,
-                                 const vec<Color4> &colors);
+    explicit ColorPalette(const Vec2 &pos, const vec<Color4> &colors) :
+        SceneNode(), _colors(colors), _selectedColor(0) {};
 
-    /** Allocate a color palette with size and position at (0,0). */
-    static ptr<ColorPalette> alloc(const Size &size,
-                                 const vec<Color4> &colors);
-
-    /** Allocate a color palette in a square of (size,size). */
-    static ptr<ColorPalette> alloc(float size,
-                                 const vec<Color4> &colors);
+    static ptr<ColorPalette> alloc(const Vec2 &pos, const vec<Color4> &colors);
     
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
@@ -47,7 +44,7 @@ public:
         return _selectedColor;
     }
     
-    void update(float timestamp);
+    void update();
 };
 
 #endif /* PP_COLOR_PALETTE_H */

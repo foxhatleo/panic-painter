@@ -41,7 +41,7 @@ namespace utils {
     };
 
     /**
-     * Visual animatio engine for scene nodes.
+     * Visual animation engine for scene nodes.
      *
      * To see how to start an animation, see alloc().
      *
@@ -131,8 +131,10 @@ namespace utils {
          * @param target The target to be animated.
          * @param duration The duration, in seconds.
          * @param vars A map of options:
-         *  - "x" for animating x-position.
-         *  - "y" for animation y-position.
+         *  - "x" for x-position.
+         *  - "y" for y-position.
+         *  - "scaleX" for x-scale.
+         *  - "scaleY" for y-scale.
          *  - "angle" for rotation.
          *  - "opacity" for alpha.
          *  - "delay" (default: 0): The time before the animation actually
@@ -149,7 +151,7 @@ namespace utils {
             const ptr<SceneNode> &target,
             float duration,
             const unordered_map<string, float> &vars,
-            Easing ease = LINEAR);
+            Easing ease = POWER1_OUT);
 
         /**
          * Similar to alloc, but instead of creating an animation, simply render

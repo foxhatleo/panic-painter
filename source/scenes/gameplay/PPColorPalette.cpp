@@ -8,41 +8,36 @@
 
 #include "PPColorPalette.h"
 
-#define PALETTE_COLOR_SIZE 25
+#define PALETTE_COLOR_SIZE 40
 /** Space between dots. */
-#define PADDING 5
+#define PADDING 8
 
-ptr<ColorPalette> ColorPalette::alloc(float size,
-                                  const vec<Color4> &colors) {
-    return alloc(Size(PALETTE_COLOR_SIZE * 5 + PADDING * 4, size), colors);
-}
-
-ptr<ColorPalette> ColorPalette::alloc(const Size &size,
-                                  const vec<Color4> &colors) {
-    return alloc(Rect(Vec2(0, 0), size), colors);
-}
-
-ptr<ColorPalette> ColorPalette::alloc(const Rect &rect,
-                                  const vec<Color4> &colors) {
+ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos, const vec<Color4> &colors) {
     auto result = make_shared<ColorPalette>(colors);
-    return (result->initWithBounds(rect) ? result : nullptr);
+    if (result->initWithPosition(pos))
+        result->_setup();
+    else
+        return nullptr;
+    return result;
 }
 
-void ColorPalette::update(float timestamp) {
-    uint numColors = (uint) _colors.size();
-    
-    auto leftmost = (getWidth() - ((float) numColors - 1) * PALETTE_COLOR_SIZE + PADDING) / 2;
-    for (uint i = 0; i < numColors; i++) {
-        auto bg = PolygonNode::alloc(Rect(0, 0, PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE));
-        bg->setPosition(
-                        leftmost + (float) (PALETTE_COLOR_SIZE + PADDING) * i,
-                getHeight() / 2);
-        bg->setColor(_colors[i]);
-        addChild(bg);
-        
-        if (i == _selectedColor) {
-            bg->setColor(Color4(_colors[i].r, _colors[i].g, _colors[i].b, 0.5)); // add some transparency for now. We may want to replace this with a border instead.
-        }
+void ColorPalette::_setup() {
+    setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
+    setContentSize(colors.length * (PALETTE_COLOR_SIZE + PADDING) + PADDING,
+                   PALETTE_COLOR_SIZE + PADDING * 2);
+    setColor(Color4::WHITE);
+
+    for (uint i = 0, j = _colors.size(); i < j; i++) {
+        auto btn = PolygonNode::alloc(
+            Rect(PADDING, PADDGING + (PADDING + PALETTE_COLOR_SIZE) * i,
+                 PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE));
+        btn.setAnchor(Vec2::CENTER);
+        btn.setColor(_colors[i]);
+        if (i != _selectedColor) Animation::set(btn, {{"scaleX", .8}, {"scaleY", .8}});
+        _buttons.push_back(btn);
     }
-    
+}
+
+void ColorPalette::update() {
+    auto &input = InputController::getInstance();
 }
