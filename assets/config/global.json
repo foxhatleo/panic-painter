@@ -3,5 +3,9 @@
     "levelTime": 120,
     "canvasBaseTime": 5,
     "canvasPerColorTime": 2
+  },
+  "input": {
+    "holdThreshold": 0.5,
+    "moveThreshold": 10
   }
 }

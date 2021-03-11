@@ -4,7 +4,8 @@
 #include "utils/PPHeader.h"
 #include "utils/PPAssets.h"
 #include "controllers/PPInput.h"
-#include "models/PPGameState.h"
+#include "controllers/PPGameState.h"
+#include "utils/PPAnimation.h"
 #include "PPCanvas.h"
 #include "PPColorPalette.h"
 
@@ -17,7 +18,7 @@ private:
     /** Asset manager. */
     asset_t _assets;
     /** Game state. */
-    GameState _state;
+    GameStateController _state;
     /**
      * Scene nodes of canvases.
      *
@@ -28,6 +29,12 @@ private:
     ptr<Label> _levelTimerText;
     
     ptr<ColorPalette> _palette;
+
+    /**
+     * For now we tell the user an action is completed with a flashing
+     * effect.
+     */
+    ptr<PolygonNode> _flash;
 
 public:
     GameScene() : Scene2() {}

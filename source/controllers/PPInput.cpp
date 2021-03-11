@@ -1,7 +1,5 @@
 #include "PPInput.h"
 
-#define MOVE_THRESHOLD 5
-
 InputController InputController::_instance;
 
 void InputController::init() {
@@ -13,6 +11,12 @@ void InputController::init() {
 #endif
 }
 
+void InputController::loadConfig() {
+    auto &gc = GlobalConfigController::getInstance();
+    _holdThreshold = gc.getInputHoldThreshold();
+    _moveThreshold = gc.getInputMoveThreshold();
+}
+
 void InputController::dispose() {
 #ifdef CU_TOUCH_SCREEN
     Input::deactivate<Touchscreen>();
@@ -21,33 +25,47 @@ void InputController::dispose() {
 #endif
 }
 
-void InputController::update() {
+void InputController::update(float timestep) {
     _lastPressed = _currentPressed;
 #ifdef CU_TOUCH_SCREEN
     auto *touchscreen = Input::get<Touchscreen>();
     if (_pressedId != -1) {
         if (touchscreen->touchDown(_pressedId)) {
             _currentPressed = true;
-            _lastPoint = touchscreen->touchPosition(_pressedId)
+            _lastPoint = touchscreen->touchPosition(_pressedId);
+            _timeHeld += timestep;
         } else {
             _currentPressed = false;
+            _timeHeld = 0;
             _pressedId = -1;
         }
     } else {
-        if (touchscreen->touchCount() > 0) {
+        bool hasInput = touchscreen->touchCount() > 0;
+        if (hasInput && !_currentPressIgnored) {
             _pressedId = touchscreen->touchSet()[0];
             _currentPressed = true;
             _startingPoint = _lastPoint =
                     touchscreen->touchPosition(_pressedId);
-        } else {
+        } else if (!hasInput) {
+            _currentPressIgnored = false;
             _currentPressed = false;
+            _timeHeld = 0;
+            _pressedId = -1;
         }
     }
 #else
     auto *mouse = Input::get<Mouse>();
-    _currentPressed = mouse->buttonDown().hasLeft();
-    if (_currentPressed && !_lastPressed)
-        _startingPoint = mouse->pointerPosition();
+    bool hasInput = mouse->buttonDown().hasLeft();
+    _currentPressed = hasInput && !_currentPressIgnored;
+    if (_currentPressed) {
+        if (!_lastPressed) _startingPoint = mouse->pointerPosition();
+        else _timeHeld += timestep;
+    } else {
+        _timeHeld = 0;
+    }
+    if (!hasInput) {
+        _currentPressIgnored = false;
+    }
     _lastPoint = mouse->pointerPosition();
 #endif
     // TODO: Check if we need to the below for touchscreen
@@ -67,6 +85,18 @@ bool InputController::justPressed() const {
     return _currentPressed && !_lastPressed;
 }
 
+float InputController::timeHeld() const {
+    return _timeHeld; 
+}
+
+float InputController::progressCompleteHold() const {
+    return min(1.0f, _timeHeld / _holdThreshold);
+}
+
+bool InputController::completeHold() const {
+    return progressCompleteHold() == 1;
+}
+
 bool InputController::justReleased() const {
     return !_currentPressed && _lastPressed;
 }
@@ -75,12 +105,12 @@ Vec2 InputController::startingPoint() const {
     return _startingPoint;
 }
 
-Vec2 InputController::movedDist() const {
+Vec2 InputController::movedVec() const {
     return _lastPoint - _startingPoint;
 }
 
-bool InputController::moved() const {
-    return movedDist().length() > MOVE_THRESHOLD;
+bool InputController::hasMoved() const {
+    return movedVec().length() > _moveThreshold;
 }
 
 Vec2 InputController::currentPoint() const {
@@ -106,4 +136,19 @@ bool InputController::inScene(const Vec2 &point,
 bool InputController::inScene(const Vec2 &point,
                               const Rect &bound) {
     return bound.contains(point);
+}
+
+void InputController::ignoreThisTouch() {
+    _currentPressIgnored = true;
+    _currentPressed = false;
+    _pressedId = -1;
+    _timeHeld = 0;
+}
+
+float InputController::getHoldThreshold() const {
+    return _holdThreshold;
+}
+
+float InputController::getMoveThreshold() const {
+    return _moveThreshold;
 }

@@ -27,6 +27,16 @@ int Assets::Json::asInt(const json_t &json, const int defaultValue) {
     return json->asInt(defaultValue);
 }
 
+float Assets::Json::asFloat(const json_t &json) {
+    CUAssertLog(json != nullptr && json->isNumber(), "Not a number.");
+    return json->asFloat();
+}
+
+float Assets::Json::asFloat(const json_t &json, float defaultValue) {
+    if (json == nullptr) return defaultValue;
+    return json->asFloat(defaultValue);
+}
+
 int Assets::Json::getInt(const json_t &json, const char *key) {
     return asInt(getItem(json, key));
 }
@@ -35,6 +45,16 @@ int Assets::Json::getInt(const json_t &json,
                          const char *key,
                          int defaultValue) {
     return asInt(getOptional(json, key), defaultValue);
+}
+
+float Assets::Json::getFloat(const json_t &json, const char *key) {
+    return asFloat(getItem(json, key));
+}
+
+float Assets::Json::getFloat(const json_t &json,
+                           const char *key,
+                           float defaultValue) {
+    return asFloat(getOptional(json, key), defaultValue);
 }
 
 void Assets::Json::_assertArray(const json_t &json) {

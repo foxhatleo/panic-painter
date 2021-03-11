@@ -36,6 +36,7 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
     _colorStrip->update(canvasColors);
 }
 
-void CanvasBlock::setInteraction(bool in) {
-    _bg->setColor(in ? Color4(230, 230, 230) : Color4::WHITE);
+void CanvasBlock::setHover(float in) {
+    Color4 full = Color4(220, 220, 220);
+    _bg->setColor(Color4::WHITE - (Color4::WHITE - full) * in);
 }

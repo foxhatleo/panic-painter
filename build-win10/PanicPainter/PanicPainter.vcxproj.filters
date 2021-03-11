@@ -8,9 +8,6 @@
     <Filter Include="Controllers">
       <UniqueIdentifier>{3083c6df-fc9c-476b-9d8e-25645cebdc1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Models">
-      <UniqueIdentifier>{a2990fcb-28bf-4b52-8201-8db9646162f4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utilities">
       <UniqueIdentifier>{f6637c87-62cf-4959-b55d-ac6028e0c45e}</UniqueIdentifier>
     </Filter>
@@ -34,8 +31,8 @@
     <ClInclude Include="..\..\source\controllers\PPInput.cpp">
       <Filter>Controllers</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\source\models\PPGameState.cpp">
-      <Filter>Models</Filter>
+    <ClCompile Include="..\..\source\controllers\PPGameState.cpp">
+      <Filter>Controllers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\utils\PPTimer.cpp">
       <Filter>Utilities</Filter>
@@ -85,8 +82,8 @@
     <ClInclude Include="..\..\source\controllers\PPInput.h">
       <Filter>Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\models\PPGameState.h">
-      <Filter>Models</Filter>
+    <ClInclude Include="..\..\source\controllers\PPGameState.h">
+      <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\utils\PPTimer.h">
       <Filter>Utilities</Filter>

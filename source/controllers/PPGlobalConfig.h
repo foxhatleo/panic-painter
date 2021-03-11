@@ -14,8 +14,16 @@ private:
     /** Make sure global config is loaded. */
     void _assertLoaded();
 
+    /** Get sub-config. */
+    json_t _getConfig(const char *name);
+
     /** Get timer config. */
     json_t _getTimerConfig();
+
+    /** Get input config. */
+    json_t _getInputConfig();
+
+    /** Get timer */
 
     static GlobalConfigController _instance;
 
@@ -31,6 +39,10 @@ public:
 
     /** Canvas per color time. */
     uint getCanvasPerColorTime();
+
+    float getInputHoldThreshold();
+
+    float getInputMoveThreshold();
 
     static GlobalConfigController &getInstance() { return _instance; }
 };

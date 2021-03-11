@@ -18,8 +18,8 @@ set(PP_FILES
         ../source/scenes/gameplay/PPGameScene.h
         ../source/scenes/loading/PPLoadingScene.h
         ../source/scenes/loading/PPLoadingScene.cpp
-        ../source/models/PPGameState.h
-        ../source/models/PPGameState.cpp
+        ../source/controllers/PPGameState.h
+        ../source/controllers/PPGameState.cpp
         ../source/utils/PPAssets.cpp
         ../source/utils/PPAssets.h
         ../source/utils/PPTimer.cpp
@@ -28,7 +28,8 @@ set(PP_FILES
         ../source/utils/PPHeader.h
         ../source/controllers/PPInput.h
         ../source/controllers/PPInput.cpp
-        ../source/utils/PPAnimation.h ../source/utils/PPAnimation.cpp)
+        ../source/utils/PPAnimation.h
+        ../source/utils/PPAnimation.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
@@ -221,12 +222,10 @@ target_compile_definitions(Box2D PRIVATE
 if(MSVC)
     target_compile_options(Box2D PRIVATE
             $<$<CONFIG:Debug>:
-            /Gm;
             /Od;
             /RTC1
             >
             $<$<CONFIG:Release>:
-            /Gm-;
             /Ox;
             /GF;
             /fp:fast;

@@ -30,7 +30,7 @@ public:
                                   float size,
                                   const vec<Color4> &colors);
 
-    void setInteraction(bool in);
+    void setHover(float in);
 
     /**
      * Update the canvas block.

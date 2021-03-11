@@ -2,7 +2,7 @@
 
 using Json = Assets::Json;
 
-void GameState::_jsonv1_loadColors(const json_t &colors) {
+void GameStateController::_jsonv1_loadColors(const json_t &colors) {
     _colors.clear();
     for (const auto &n: Json::asVec(colors)) {
         const vec<int> c = Json::asIntVec(n);
@@ -11,7 +11,7 @@ void GameState::_jsonv1_loadColors(const json_t &colors) {
     }
 }
 
-void GameState::_jsonv1_loadQueues(const json_t &queues) {
+void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _queues.clear();
 
     // Build each queue.
@@ -29,7 +29,7 @@ void GameState::_jsonv1_loadQueues(const json_t &queues) {
     }
 }
 
-void GameState::_jsonv1_loadTimer(const json_t &timer) {
+void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
     _canvasTimers.clear();
 
     auto &gc = GlobalConfigController::getInstance();
@@ -71,13 +71,13 @@ void GameState::_jsonv1_loadTimer(const json_t &timer) {
     _levelTimer = Timer::alloc(levelTime);
 }
 
-void GameState::_jsonv1_load(const json_t &json) {
+void GameStateController::_jsonv1_load(const json_t &json) {
     _jsonv1_loadColors(Assets::Json::getItem(json, "colors"));
     _jsonv1_loadQueues(Assets::Json::getItem(json, "queues"));
     _jsonv1_loadTimer(Assets::Json::getOptional(json, "timer"));
 }
 
-void GameState::loadJson(const json_t &json) {
+void GameStateController::loadJson(const json_t &json) {
     int version = Assets::Json::getInt(json, "version");
 
     // Load state by version of level JSON.
@@ -88,7 +88,7 @@ void GameState::loadJson(const json_t &json) {
         CUAssertLog(false, "Unknown level version %d.", version);
 }
 
-void GameState::update(float timestep) {
+void GameStateController::update(float timestep) {
     _levelTimer->update(timestep);
     for (uint i = 0, j = _queues.size(); i < j; i++) {
         // For each queue, update the timer of the active canvas only.
@@ -100,7 +100,7 @@ void GameState::update(float timestep) {
     }
 }
 
-CanvasState GameState::getCanvasState(uint q, uint c) const {
+CanvasState GameStateController::getCanvasState(uint q, uint c) const {
     // The state of a canvas is derived from its timer, remaining colors, and
     // the state of the canvas in front of it.
 
@@ -128,25 +128,25 @@ CanvasState GameState::getCanvasState(uint q, uint c) const {
     else return HIDDEN;
 }
 
-vec<uint> GameState::getColorsOfCanvas(uint q, uint c) const {
+vec<uint> GameStateController::getColorsOfCanvas(uint q, uint c) const {
     return _queues[q][c];
 }
 
-vec<Color4> GameState::getColors() const {
+vec<Color4> GameStateController::getColors() const {
     return _colors;
 }
 
-int GameState::_getActiveIndexOfQueue(uint q) const {
+int GameStateController::_getActiveIndexOfQueue(uint q) const {
     for (int i = 0, j = numCanvases(q); i < j; i++) {
         if (getCanvasState(q, i) == ACTIVE) return i;
     }
     return -1;
 }
 
-ptr<Timer> GameState::getTimer(uint q, uint c) const {
+ptr<Timer> GameStateController::getTimer(uint q, uint c) const {
     return _canvasTimers[q][c];
 }
 
-ptr<Timer> GameState::getLevelTimer() const {
+ptr<Timer> GameStateController::getLevelTimer() const {
     return _levelTimer;
 }

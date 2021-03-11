@@ -190,7 +190,7 @@
     <ClCompile Include="..\..\source\controllers\PPGlobalConfig.cpp" />
     <ClCompile Include="..\..\source\controllers\PPInput.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
-    <ClCompile Include="..\..\source\models\PPGameState.cpp" />
+    <ClCompile Include="..\..\source\controllers\PPGameState.cpp" />
     <ClCompile Include="..\..\source\PPApp.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
@@ -215,7 +215,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\source\controllers\PPGlobalConfig.h" />
     <ClInclude Include="..\..\source\controllers\PPInput.h" />
-    <ClInclude Include="..\..\source\models\PPGameState.h" />
+    <ClInclude Include="..\..\source\controllers\PPGameState.h" />
     <ClInclude Include="..\..\source\PPApp.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />

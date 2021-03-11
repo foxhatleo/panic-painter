@@ -2,7 +2,7 @@
 #define PANICPAINTER_PPCANVAS_H
 
 #include "utils/PPHeader.h"
-#include "models/PPGameState.h"
+#include "controllers/PPGameState.h"
 #include "utils/PPTypeDefs.h"
 #include "utils/PPTimer.h"
 #include "utils/PPAnimation.h"
@@ -32,7 +32,9 @@ public:
 
     ptr<SceneNode> getInteractionNode() const;
 
-    void setInteraction(bool in);
+    void setHover(float in);
+
+    CanvasState getState() const;
 
     /** Update. */
     void update(CanvasState state,
