@@ -131,6 +131,7 @@ void Animation::_render(float timestep) {
                 if (v < 0) v += M_PI * 2;
             }
             _lockedTarget->setAngle(v);
+
         }
     }
     _unlock();
@@ -263,4 +264,16 @@ float Animation::ease(Easing e, float p) {
             return easeInOutWithIn(SINE_IN);
     }
     return p;
+}
+
+bool Animation::hasActiveAnimationsOf(const ptr<SceneNode> &obj) {
+    for (auto &current : _globalList) {
+        bool locked = current->_lock();
+        if (locked && current->_lockedTarget == obj) {
+            return true;
+        } else if (locked) {
+            current->_unlock();
+        }
+    }
+    return false;
 }

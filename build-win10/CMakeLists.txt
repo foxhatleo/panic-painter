@@ -10,6 +10,8 @@ set(PP_FILES
         ../source/controllers/PPGlobalConfig.h
         ../source/scenes/gameplay/PPCanvas.cpp
         ../source/scenes/gameplay/PPCanvas.h
+        ../source/scenes/gameplay/PPColorPalette.cpp
+        ../source/scenes/gameplay/PPColorPalette.h
         ../source/scenes/gameplay/PPCanvasBlock.cpp
         ../source/scenes/gameplay/PPCanvasBlock.h
         ../source/scenes/gameplay/PPColorStrip.cpp

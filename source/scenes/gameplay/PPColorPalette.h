@@ -14,6 +14,11 @@
 #include "controllers/PPInput.h"
 
 class ColorPalette : public SceneNode {
+    enum ColorButtonState {
+        PRESSED,
+        ACTIVE,
+        INACTIVE,
+    };
     
     /** The index of the selected color in the palette. */
     uint _selectedColor;
@@ -24,12 +29,17 @@ class ColorPalette : public SceneNode {
     /** Buttons. */
     vec<ptr<PolygonNode>> _buttons;
 
+    /** Button hover states. */
+    vec<ColorButtonState> _buttonStates;
+
     void _setup();
+
+    void _animateButtonState(uint ind, const ColorButtonState s);
     
 public:
     
     /** @deprecated Constructor. */
-    explicit ColorPalette(const Vec2 &pos, const vec<Color4> &colors) :
+    explicit ColorPalette(const vec<Color4> &colors) :
         SceneNode(), _colors(colors), _selectedColor(0) {};
 
     static ptr<ColorPalette> alloc(const Vec2 &pos, const vec<Color4> &colors);
@@ -40,7 +50,7 @@ public:
     }
     
     /** Get the selected color. */
-    uint getSelectedColor() {
+    uint getSelectedColor() const {
         return _selectedColor;
     }
     

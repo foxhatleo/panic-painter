@@ -5,9 +5,10 @@
 #define STARTING_Y_OFFSET 30
 #define STARTING_ANGLE 60
 #define ENDING_X_OFFSET -20
-#define ENDING_Y_OFFSET -30
+#define ENDING_Y_OFFSET -200
 #define ENDING_ANGLE -60
 #define DURATION .5
+#define DURATION_OUT 2
 #define EASE STRONG_OUT
 
 ptr<Canvas> Canvas::alloc(const asset_t &assets,
@@ -63,21 +64,25 @@ void Canvas::update(CanvasState state,
                     {"opacity", 255},
                     {"angle", 0},
                 },
-                STRONG_OUT);
+                EASE);
         }
 
         // Update block.
         _block->update(canvasColors, timer);
     } else if (_block->getParent() != nullptr && state != _previousState) {
         Animation::alloc(
-            _block, DURATION,
+            _block, DURATION_OUT,
             {
                 {"x", Animation::relative(ENDING_X_OFFSET)},
                 {"y", Animation::relative(ENDING_Y_OFFSET)},
                 {"opacity", 0},
                 {"angle", ENDING_ANGLE},
-            },
-            STRONG_OUT);
+            }, EASE);
+        if (state == DONE) {
+            _block->markDone();
+        } else {
+            _block->markLost();
+        }
     }
     _previousState = state;
 }

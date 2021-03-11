@@ -172,6 +172,9 @@ namespace utils {
         /** Kill all animations of an object. */
         static void killAnimationsOf(const ptr<SceneNode> &obj);
 
+        /** Check if active animations exist for an object. */
+        static bool hasActiveAnimationsOf(const ptr<SceneNode> &obj);
+
         /** Update all animations globally. */
         static void updateGlobal(float timestep);
     };

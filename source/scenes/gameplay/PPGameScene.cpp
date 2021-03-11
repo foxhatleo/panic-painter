@@ -63,8 +63,7 @@ void GameScene::loadLevel(const char *levelName) {
     _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
     _levelTimerText->setPosition(10, screenSize.height - 50);
     
-    _palette = ColorPalette::alloc(Vec2(0, pw / 2), _state.getColors());
-    _palette->setPosition(50, 50);
+    _palette = ColorPalette::alloc(Vec2(pw / 2, 0), _state.getColors());
     
     addChild(_levelTimerText);
     addChild(_palette);
@@ -72,18 +71,32 @@ void GameScene::loadLevel(const char *levelName) {
 
 void GameScene::update(float timestep) {
     auto &input = InputController::getInstance();
+
+    // So the first thing is to update the game state.
     _state.update(timestep);
 
+    // This is a flag indicating if the flash effect should be started for this frame.
     bool flash = false;
+
+    // This saves the position of the canvas where dragging starts.
+    // If {-1, -1} that means we are not dragging.
     int dragStart[2] = {-1, -1};
 
+    // First passthrough of the canvas.
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
+
+            // Get the derived canvas state and pass it to the canvases.
             auto state = _state.getCanvasState(i, i2);
+            _canvases[i][i2]->update(state, _state.getColorsOfCanvas(i, i2), _state.getTimer(i, i2));
 
-            if (!input.isPressing()) _canvases[i][i2]->setHover(0);
+            // At the beginning of a frame, set canvas hover to 0.
+            _canvases[i][i2]->setHover(0);
 
+            // This whole block is for processing inputs.
+            // Only process input on active canvases.
             if (state == ACTIVE) {
+                // Cache two useful input values.
                 bool startingPointIn =
                     InputController::inScene(input.startingPoint(), _canvases[i][i2]->getInteractionNode());
                 bool currentPointIn =
@@ -91,14 +104,15 @@ void GameScene::update(float timestep) {
 
                 // SCRIBBLING
                 if (!input.hasMoved() && input.isPressing() && startingPointIn && currentPointIn) {
-                    // Waiting for hold to end:
-                    if (!input.completeHold())
+                    if (!input.completeHold()) {
+                        // Waiting for hold to end:
                         _canvases[i][i2]->setHover(2 * input.progressCompleteHold());
+                    } else {
                         // Finished waiting.
                         // Perform scribbling action.
-                    else {
                         input.ignoreThisTouch();
                         flash = true;
+                        _state.clearColor(i, i2, _palette->getSelectedColor());
                     }
                 }
 
@@ -106,21 +120,26 @@ void GameScene::update(float timestep) {
                 else if (startingPointIn && input.hasMoved() && (input.justReleased() || input.isPressing())) {
                     dragStart[0] = i;
                     dragStart[1] = i2;
-                    // Delay the handling of dragging.
+                    // Save the starting canvas index.
+                    // The actual processing of dragging will be done in the second passthrough.
                 }
 
             }
-
-            _canvases[i][i2]->update(state, _state.getColorsOfCanvas(i, i2), _state.getTimer(i, i2));
         }
     }
 
-    // Handle drag here. Requires a second passthrough the canvas matrix.
+    // Handle drag here.
     if (dragStart[0] >= 0) {
+        // This is the list of canvases that are covered by the drag.
+        vec<pair<int, int>> toClear;
+
+        // The second passthrough the canvas matrix.
         for (uint i = 0, j = _state.numQueues(); i < j; i++) {
             for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
+                // Again we don't deal with anything that is not active.
                 if (_canvases[i][i2]->getState() != ACTIVE) continue;
 
+                // This whole block basically checks if this dragging session covers this canvas.
                 ptr<SceneNode> in_start = _canvases[dragStart[0]][dragStart[1]];
                 ptr<SceneNode> in_end = _canvases[i][i2];
                 Mat4 in_start_mat = in_start->getNodeToWorldTransform();
@@ -135,17 +154,29 @@ void GameScene::update(float timestep) {
                      input.currentPoint().x >= in_end_box.getMinX())
                     ) {
                     _canvases[i][i2]->setHover(input.isPressing() ? 1 : 0);
-                    if (input.justReleased()) flash = true;
+                    toClear.push_back({i, i2});
                 }
             }
         }
+
+        // When dragging is done, make sure more than 1 canvas is covered.
+        // If there is only one, that means the user started dragging but went back to the original canvas.
+        // This suggests that he/she/they gave up on dragging.
+        if (input.justReleased() && toClear.size() > 1) {
+            for (auto &p : toClear) {
+                _state.clearColor(p.first, p.second, _palette->getSelectedColor());
+            }
+            flash = true;
+        }
     }
 
+    // Show flash animation if necessary.
     if (flash) {
         Animation::set(_flash, {{"opacity", 1}});
         Animation::alloc(_flash, .3, {{"opacity", 0}});
     }
 
+    _palette->update();
     _levelTimerText->setText(
         to_string(_state.getLevelTimer()->timeLeft()));
     Scene2::update(timestep);

@@ -7,7 +7,7 @@ void InputController::init() {
     Input::activate<Touchscreen>();
 #else
     Input::activate<Mouse>();
-    Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::ALWAYS);
+    Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::DRAG);
 #endif
 }
 
@@ -60,21 +60,22 @@ void InputController::update(float timestep) {
     if (_currentPressed) {
         if (!_lastPressed) _startingPoint = mouse->pointerPosition();
         else _timeHeld += timestep;
+        _lastPoint = mouse->pointerPosition();
     } else {
         _timeHeld = 0;
     }
     if (!hasInput) {
         _currentPressIgnored = false;
     }
-    _lastPoint = mouse->pointerPosition();
 #endif
     // TODO: Check if we need to the below for touchscreen
     // This is absolutely necessary for mouse, because mouse returns screen
     // coordinates, not world ones. The difference is that origin in world is
     // bottom left, while for world it is top left.
     auto screenHeight = Application::get()->getDisplayHeight();
-    _startingPoint.y = screenHeight - _startingPoint.y;
-    _lastPoint.y = screenHeight - _lastPoint.y;
+    if (_currentPressed & !_lastPressed)
+        _startingPoint.y = screenHeight - _startingPoint.y;
+    if (_currentPressed) _lastPoint.y = screenHeight - _lastPoint.y;
 }
 
 bool InputController::isPressing() const {

@@ -13,10 +13,12 @@ void GameStateController::_jsonv1_loadColors(const json_t &colors) {
 
 void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _queues.clear();
+    _wrongActions.clear();
 
     // Build each queue.
     for (const auto &queue : Json::asVec(queues)) {
         vec<vec<uint>> queue_s;
+        vec<bool> wa_queue_s;
 
         // Build canvas of each queue.
         for (const auto &canvas : Json::asVec(queue)) {
@@ -24,7 +26,9 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
             // This is to cast vec<int> to vec<uint>.
             vec<uint> colors(r.begin(), r.end());
             queue_s.push_back(colors);
+            wa_queue_s.push_back(false);
         }
+        _wrongActions.push_back(wa_queue_s);
         _queues.push_back(queue_s);
     }
 }
@@ -104,8 +108,10 @@ CanvasState GameStateController::getCanvasState(uint q, uint c) const {
     // The state of a canvas is derived from its timer, remaining colors, and
     // the state of the canvas in front of it.
 
+    if (_wrongActions[q][c]) return LOST_DUE_TO_WRONG_ACTION;
+
     // If the timer is done, then the canvas is lost.
-    if (_canvasTimers[q][c]->finished()) return LOST_DUE_TO_TIME;
+    else if (_canvasTimers[q][c]->finished()) return LOST_DUE_TO_TIME;
 
     // If no color is left, then it is completed.
     else if (getColorsOfCanvas(q, c).empty()) return DONE;
@@ -122,7 +128,8 @@ CanvasState GameStateController::getCanvasState(uint q, uint c) const {
 
     // If the previous one is done or lost, then this one is the frontmost.
     // In other words, it must be active.
-    else if (previous == DONE || previous == LOST_DUE_TO_TIME) return ACTIVE;
+    else if (previous == DONE || previous == LOST_DUE_TO_TIME || previous == LOST_DUE_TO_WRONG_ACTION)
+        return ACTIVE;
 
     // In all other scenarios, the canvas is hidden.
     else return HIDDEN;
@@ -149,4 +156,17 @@ ptr<Timer> GameStateController::getTimer(uint q, uint c) const {
 
 ptr<Timer> GameStateController::getLevelTimer() const {
     return _levelTimer;
+}
+
+void GameStateController::clearColor(uint q, uint c, uint colorInd) {
+    vec<uint> &colors = _queues[q][c];
+    auto it = begin(colors);
+    while (it != end(colors)) {
+        if (*it == colorInd) {
+            colors.erase(it);
+            return;
+        }
+        else ++it;
+    }
+    _wrongActions[q][c] = true;
 }

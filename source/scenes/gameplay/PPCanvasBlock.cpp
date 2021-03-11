@@ -28,6 +28,18 @@ void CanvasBlock::_setup(const asset_t &assets,
     _timerText->setVerticalAlignment(scene2::Label::VAlign::BOTTOM);
     _timerText->setPosition(getWidth() / 2, 5);
     addChild(_timerText);
+
+    _hoverAllowed = true;
+}
+
+void CanvasBlock::markLost() {
+    _hoverAllowed = false;
+    _bg->setColor(Color4(170, 46, 37));
+}
+
+void CanvasBlock::markDone() {
+    _hoverAllowed = false;
+    _bg->setColor(Color4(82, 178, 2));
 }
 
 void CanvasBlock::update(const vec<uint> &canvasColors,
@@ -37,6 +49,7 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
 }
 
 void CanvasBlock::setHover(float in) {
+    if (!_hoverAllowed) return;
     Color4 full = Color4(220, 220, 220);
     _bg->setColor(Color4::WHITE - (Color4::WHITE - full) * in);
 }

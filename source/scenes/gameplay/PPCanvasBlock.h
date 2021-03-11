@@ -4,6 +4,7 @@
 #include "utils/PPHeader.h"
 #include "utils/PPTimer.h"
 #include "PPColorStrip.h"
+#include "utils/PPAnimation.h"
 
 /**
  * Canvas block is the little square that represents a canvas. It also includes
@@ -21,6 +22,9 @@ private:
     /** The timer text. */
     ptr<Label> _timerText;
 
+    /** If hover is allowed. */
+    bool _hoverAllowed;
+
     /** Set up this block. */
     void _setup(const asset_t &assets, const vec<Color4> &colors);
 
@@ -31,6 +35,9 @@ public:
                                   const vec<Color4> &colors);
 
     void setHover(float in);
+
+    void markLost();
+    void markDone();
 
     /**
      * Update the canvas block.

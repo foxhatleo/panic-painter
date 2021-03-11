@@ -21,6 +21,9 @@ enum CanvasState {
     /** Lost because the canvas timer ran out. */
     LOST_DUE_TO_TIME,
 
+    /** Lost because of an wrong action. */
+    LOST_DUE_TO_WRONG_ACTION,
+
     /** Done. All the colors fulfilled. */
     DONE,
 };
@@ -44,6 +47,11 @@ private:
      * leave the empty canvas as-is.
      */
     vec<vec<vec<uint>>> _queues;
+
+    /**
+     * This records which canvases are lost due to wrong actions.
+     */
+    vec<vec<bool>> _wrongActions;
 
     /**
      * The canvas timers. The outer vector is the one holding queues. The inner
@@ -112,6 +120,9 @@ public:
 
     /** Get the level timer. */
     ptr<Timer> getLevelTimer() const;
+
+    /** Clear a color on a canvas. */
+    void clearColor(uint q, uint c, uint colorInd);
 };
 
 #endif //PANICPAINTER_PPGAMESTATE_H
