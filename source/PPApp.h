@@ -2,6 +2,7 @@
 #define PANICPAINTER_PPAPP_H
 
 #include "utils/PPHeader.h"
+#include "utils/PPAnimation.h"
 #include "scenes/loading/PPLoadingScene.h"
 #include "scenes/gameplay/PPGameScene.h"
 #include "controllers/PPGlobalConfig.h"

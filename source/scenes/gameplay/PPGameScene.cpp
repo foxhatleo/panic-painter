@@ -1,5 +1,7 @@
 #include "PPGameScene.h"
 
+#define ANIMATION_RELATIVE 10000000
+
 void GameScene::dispose() {
     Scene2::dispose();
 }
@@ -75,7 +77,7 @@ void GameScene::update(float timestep) {
             );
             if (input.isPressing() && state == ACTIVE &&
                 InputController::inScene(input.currentPoint(),
-                        _canvases[i][i2]->getInteractionNode())) {
+                                         _canvases[i][i2]->getInteractionNode())) {
                 _canvases[i][i2]->setInteraction(true);
             } else {
                 _canvases[i][i2]->setInteraction(false);

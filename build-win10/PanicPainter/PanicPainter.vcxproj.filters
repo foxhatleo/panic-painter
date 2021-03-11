@@ -40,6 +40,9 @@
     <ClCompile Include="..\..\source\utils\PPTimer.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\utils\PPAnimation.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\utils\PPAssets.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -92,6 +95,9 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\utils\PPAssets.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPAnimation.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\PPApp.h">

@@ -52,7 +52,6 @@ void GameState::_jsonv1_loadTimer(const json_t &timer) {
                     gc.getCanvasPerColorTime()
             );
 
-
     for (const auto &queueRef : _queues) {
         vec<ptr<Timer>> queueTimers;
 
