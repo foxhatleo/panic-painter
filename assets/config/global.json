@@ -6,6 +6,6 @@
   },
   "input": {
     "holdThreshold": 0.5,
-    "moveThreshold": 10
+    "moveThreshold": 30
   }
 }
