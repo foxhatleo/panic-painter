@@ -10,10 +10,16 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := main
 LOCAL_C_INCLUDES := $(CUGL_PATH)/include
+LOCAL_C_INCLUDES += $(PROJ_PATH)/source
 
-# Add your application source files here...
-LOCAL_SRC_FILES := $(subst $(LOCAL_PATH)/,, \
-	$(wildcard $(PROJ_PATH)/source/*.cpp))
+define walk
+  $(wildcard $(1)) $(foreach e, $(wildcard $(1)/*), $(call walk, $(e)))
+endef
+
+ALL_FILES_IN_SOURCE = $(call walk, $(PROJ_PATH)/source)
+CPP_SOURCE_FILES := $(filter %.cpp, $(ALL_FILES_IN_SOURCE))
+
+LOCAL_SRC_FILES := $(CPP_SOURCE_FILES:$(LOCAL_PATH)/%=%)
 
 # Line the libraries
 LOCAL_SHARED_LIBRARIES := hidapi
