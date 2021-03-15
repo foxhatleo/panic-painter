@@ -111,6 +111,9 @@
 		EBDD16D525C35D3400154533 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C625C35D3400154533 /* CoreMotion.framework */; };
 		EBDD16D625C35D3400154533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C725C35D3400154533 /* CoreGraphics.framework */; };
 		EBEC12022194B6F4007E708B /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEC12012194B6F4007E708B /* Metal.framework */; };
+		EEBBEFCC25FEB25B003FA168 /* PanicPainter (Mac).app in Resources */ = {isa = PBXBuildFile; fileRef = EBBF18911D74904A008E2001 /* PanicPainter (Mac).app */; };
+		EEBBEFCF25FEB263003FA168 /* PanicPainter (iOS).app in Resources */ = {isa = PBXBuildFile; fileRef = EB74548C1D74D75C002FBAE6 /* PanicPainter (iOS).app */; };
+		EEBBEFD025FEB266003FA168 /* PanicPainter (Sim).app in Resources */ = {isa = PBXBuildFile; fileRef = EB22BF5E25D0E8BC002ACE41 /* PanicPainter (Sim).app */; };
 		EEFA1A4425F68DA7004641A1 /* PPColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */; };
 		EEFA1A6925FA815D004641A1 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A6725FA815D004641A1 /* PPGameState.cpp */; };
 		EEFA1A6A25FA815D004641A1 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A6725FA815D004641A1 /* PPGameState.cpp */; };
@@ -618,6 +621,7 @@
 				EB22BF9B25D0EA5C002ACE41 /* DeviceMargins.plist in Resources */,
 				EB22BF9725D0EA51002ACE41 /* textures in Resources */,
 				EB22BF9025D0EA49002ACE41 /* iOS.xcassets in Resources */,
+				EEBBEFD025FEB266003FA168 /* PanicPainter (Sim).app in Resources */,
 				C5FB321925F4147D000694C3 /* scenes in Resources */,
 				C5FB321F25F4147D000694C3 /* config in Resources */,
 				EB22BF9125D0EA49002ACE41 /* Landscape.storyboard in Resources */,
@@ -636,6 +640,7 @@
 				EB7454AC1D74D846002FBAE6 /* Landscape.storyboard in Resources */,
 				C5FB321825F4147D000694C3 /* scenes in Resources */,
 				C5FB321E25F4147D000694C3 /* config in Resources */,
+				EEBBEFCF25FEB263003FA168 /* PanicPainter (iOS).app in Resources */,
 				EB7454AD1D74D846002FBAE6 /* Portrait.storyboard in Resources */,
 				EB07CFB621EFF3F8000CB3A3 /* DeviceMargins.plist in Resources */,
 				C5FB321525F4147D000694C3 /* levels in Resources */,
@@ -651,6 +656,7 @@
 				C5FB321A25F4147D000694C3 /* fonts in Resources */,
 				EBBF189B1D74904A008E2001 /* Mac.xcassets in Resources */,
 				C5FB321425F4147D000694C3 /* levels in Resources */,
+				EEBBEFCC25FEB25B003FA168 /* PanicPainter (Mac).app in Resources */,
 				C5FB321D25F4147D000694C3 /* config in Resources */,
 				C5FB321725F4147D000694C3 /* scenes in Resources */,
 			);
@@ -949,6 +955,7 @@
 				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.mac.PanicPainter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -964,6 +971,7 @@
 				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.mac.PanicPainter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
