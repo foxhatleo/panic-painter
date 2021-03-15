@@ -46,9 +46,6 @@
 		C5FB32AB25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */; };
 		C5FB32AC25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */; };
 		C5FB32AD25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */; };
-		C5FB32AE25F41BD2000694C3 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329825F41BCF000694C3 /* PPGameState.cpp */; };
-		C5FB32AF25F41BD2000694C3 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329825F41BCF000694C3 /* PPGameState.cpp */; };
-		C5FB32B025F41BD2000694C3 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5FB329825F41BCF000694C3 /* PPGameState.cpp */; };
 		EB07CFB621EFF3F8000CB3A3 /* DeviceMargins.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB07CFB021EFF3EF000CB3A3 /* DeviceMargins.plist */; };
 		EB22BDE025D0E00A002ACE41 /* libcugl-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB22BDC825D0DE75002ACE41 /* libcugl-mac.a */; };
 		EB22BDFC25D0E0E2002ACE41 /* libcugl-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB22BDCA25D0DE75002ACE41 /* libcugl-ios.a */; };
@@ -114,7 +111,17 @@
 		EBDD16D525C35D3400154533 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C625C35D3400154533 /* CoreMotion.framework */; };
 		EBDD16D625C35D3400154533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C725C35D3400154533 /* CoreGraphics.framework */; };
 		EBEC12022194B6F4007E708B /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEC12012194B6F4007E708B /* Metal.framework */; };
+		EEBBEFCC25FEB25B003FA168 /* PanicPainter (Mac).app in Resources */ = {isa = PBXBuildFile; fileRef = EBBF18911D74904A008E2001 /* PanicPainter (Mac).app */; };
+		EEBBEFCF25FEB263003FA168 /* PanicPainter (iOS).app in Resources */ = {isa = PBXBuildFile; fileRef = EB74548C1D74D75C002FBAE6 /* PanicPainter (iOS).app */; };
+		EEBBEFD025FEB266003FA168 /* PanicPainter (Sim).app in Resources */ = {isa = PBXBuildFile; fileRef = EB22BF5E25D0E8BC002ACE41 /* PanicPainter (Sim).app */; };
 		EEFA1A4425F68DA7004641A1 /* PPColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */; };
+		EEFA1A6925FA815D004641A1 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A6725FA815D004641A1 /* PPGameState.cpp */; };
+		EEFA1A6A25FA815D004641A1 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A6725FA815D004641A1 /* PPGameState.cpp */; };
+		EEFA1A6B25FA815D004641A1 /* PPGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A6725FA815D004641A1 /* PPGameState.cpp */; };
+		EEFA1A7125FA816D004641A1 /* PPAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */; };
+		EEFA1A7225FA816D004641A1 /* PPAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */; };
+		EEFA1A7325FA816D004641A1 /* PPAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */; };
+		EEFA1A9025FBFF3A004641A1 /* PPColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,8 +173,6 @@
 		C5FB329325F41BCC000694C3 /* PPColorStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPColorStrip.cpp; sourceTree = "<group>"; };
 		C5FB329425F41BCC000694C3 /* PPCanvasBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPCanvasBlock.cpp; sourceTree = "<group>"; };
 		C5FB329525F41BCC000694C3 /* PPColorStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPColorStrip.h; sourceTree = "<group>"; };
-		C5FB329725F41BCF000694C3 /* PPGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGameState.h; sourceTree = "<group>"; };
-		C5FB329825F41BCF000694C3 /* PPGameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPGameState.cpp; sourceTree = "<group>"; };
 		EB07CFB021EFF3EF000CB3A3 /* DeviceMargins.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceMargins.plist; sourceTree = "<group>"; };
 		EB22BF5E25D0E8BC002ACE41 /* PanicPainter (Sim).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PanicPainter (Sim).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2BE9B21D74952A002FE78B /* PPApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPApp.cpp; sourceTree = "<group>"; };
@@ -214,6 +219,10 @@
 		EBEC12012194B6F4007E708B /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PPColorPalette.cpp; sourceTree = "<group>"; };
 		EEFA1A4325F68DA7004641A1 /* PPColorPalette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPColorPalette.h; sourceTree = "<group>"; };
+		EEFA1A6725FA815D004641A1 /* PPGameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPGameState.cpp; sourceTree = "<group>"; };
+		EEFA1A6825FA815D004641A1 /* PPGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGameState.h; sourceTree = "<group>"; };
+		EEFA1A6F25FA816D004641A1 /* PPAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAnimation.h; sourceTree = "<group>"; };
+		EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPAnimation.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +300,8 @@
 		C5FB327425F41B9F000694C3 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EEFA1A6725FA815D004641A1 /* PPGameState.cpp */,
+				EEFA1A6825FA815D004641A1 /* PPGameState.h */,
 				C5FB327525F41B9F000694C3 /* PPInput.h */,
 				C5FB327625F41B9F000694C3 /* PPInput.cpp */,
 				C5FB327725F41B9F000694C3 /* PPGlobalConfig.cpp */,
@@ -306,6 +317,8 @@
 				C5FB328425F41BCA000694C3 /* PPAssets.cpp */,
 				C5FB328525F41BCA000694C3 /* PPTypeDefs.h */,
 				C5FB328625F41BCA000694C3 /* PPTimer.cpp */,
+				EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */,
+				EEFA1A6F25FA816D004641A1 /* PPAnimation.h */,
 				C5FB328725F41BCA000694C3 /* PPHeader.h */,
 				C5FB328825F41BCA000694C3 /* PPTimer.h */,
 			);
@@ -345,15 +358,6 @@
 				EEFA1A4325F68DA7004641A1 /* PPColorPalette.h */,
 			);
 			path = gameplay;
-			sourceTree = "<group>";
-		};
-		C5FB329625F41BCD000694C3 /* models */ = {
-			isa = PBXGroup;
-			children = (
-				C5FB329725F41BCF000694C3 /* PPGameState.h */,
-				C5FB329825F41BCF000694C3 /* PPGameState.cpp */,
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 		EB22BDC325D0DE75002ACE41 /* Products */ = {
@@ -470,7 +474,6 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C5FB329625F41BCD000694C3 /* models */,
 				C5FB328925F41BCB000694C3 /* scenes */,
 				C5FB328225F41BCA000694C3 /* utils */,
 				C5FB327425F41B9F000694C3 /* controllers */,
@@ -547,15 +550,16 @@
 				TargetAttributes = {
 					EB22BF5D25D0E8BC002ACE41 = {
 						CreatedOnToolsVersion = 12.4;
-						DevelopmentTeam = G6P7H83FK6;
+						DevelopmentTeam = KMCB293693;
 						ProvisioningStyle = Automatic;
 					};
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = G6P7H83FK6;
+						DevelopmentTeam = KMCB293693;
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = KMCB293693;
 					};
 				};
 			};
@@ -617,6 +621,7 @@
 				EB22BF9B25D0EA5C002ACE41 /* DeviceMargins.plist in Resources */,
 				EB22BF9725D0EA51002ACE41 /* textures in Resources */,
 				EB22BF9025D0EA49002ACE41 /* iOS.xcassets in Resources */,
+				EEBBEFD025FEB266003FA168 /* PanicPainter (Sim).app in Resources */,
 				C5FB321925F4147D000694C3 /* scenes in Resources */,
 				C5FB321F25F4147D000694C3 /* config in Resources */,
 				EB22BF9125D0EA49002ACE41 /* Landscape.storyboard in Resources */,
@@ -635,6 +640,7 @@
 				EB7454AC1D74D846002FBAE6 /* Landscape.storyboard in Resources */,
 				C5FB321825F4147D000694C3 /* scenes in Resources */,
 				C5FB321E25F4147D000694C3 /* config in Resources */,
+				EEBBEFCF25FEB263003FA168 /* PanicPainter (iOS).app in Resources */,
 				EB7454AD1D74D846002FBAE6 /* Portrait.storyboard in Resources */,
 				EB07CFB621EFF3F8000CB3A3 /* DeviceMargins.plist in Resources */,
 				C5FB321525F4147D000694C3 /* levels in Resources */,
@@ -650,6 +656,7 @@
 				C5FB321A25F4147D000694C3 /* fonts in Resources */,
 				EBBF189B1D74904A008E2001 /* Mac.xcassets in Resources */,
 				C5FB321425F4147D000694C3 /* levels in Resources */,
+				EEBBEFCC25FEB25B003FA168 /* PanicPainter (Mac).app in Resources */,
 				C5FB321D25F4147D000694C3 /* config in Resources */,
 				C5FB321725F4147D000694C3 /* scenes in Resources */,
 			);
@@ -664,7 +671,6 @@
 			files = (
 				C5FB329E25F41BD1000694C3 /* PPTimer.cpp in Sources */,
 				C5FB32AD25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */,
-				C5FB32B025F41BD2000694C3 /* PPGameState.cpp in Sources */,
 				C5FB327B25F41BA0000694C3 /* PPInput.cpp in Sources */,
 				C5FB32A425F41BD2000694C3 /* PPCanvas.cpp in Sources */,
 				C5FB329B25F41BD0000694C3 /* PPAssets.cpp in Sources */,
@@ -673,7 +679,9 @@
 				EB9CDA3925D0EAB100EE1A09 /* main.cpp in Sources */,
 				EB9CDA3525D0EAAC00EE1A09 /* PPApp.cpp in Sources */,
 				C5FB32A125F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				EEFA1A7325FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				C5FB32AA25F41BD2000694C3 /* PPColorStrip.cpp in Sources */,
+				EEFA1A6B25FA815D004641A1 /* PPGameState.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,7 +691,6 @@
 			files = (
 				C5FB329D25F41BD1000694C3 /* PPTimer.cpp in Sources */,
 				C5FB32AC25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */,
-				C5FB32AF25F41BD2000694C3 /* PPGameState.cpp in Sources */,
 				C5FB327A25F41BA0000694C3 /* PPInput.cpp in Sources */,
 				C5FB32A325F41BD2000694C3 /* PPCanvas.cpp in Sources */,
 				C5FB329A25F41BD0000694C3 /* PPAssets.cpp in Sources */,
@@ -692,7 +699,10 @@
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				EB7454AF1D74D891002FBAE6 /* PPApp.cpp in Sources */,
 				C5FB32A025F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				EEFA1A7225FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				C5FB32A925F41BD2000694C3 /* PPColorStrip.cpp in Sources */,
+				EEFA1A6A25FA815D004641A1 /* PPGameState.cpp in Sources */,
+				EEFA1A9025FBFF3A004641A1 /* PPColorPalette.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,7 +712,7 @@
 			files = (
 				C5FB329C25F41BD1000694C3 /* PPTimer.cpp in Sources */,
 				C5FB32AB25F41BD2000694C3 /* PPCanvasBlock.cpp in Sources */,
-				C5FB32AE25F41BD2000694C3 /* PPGameState.cpp in Sources */,
+				EEFA1A6925FA815D004641A1 /* PPGameState.cpp in Sources */,
 				C5FB327925F41B9F000694C3 /* PPInput.cpp in Sources */,
 				EEFA1A4425F68DA7004641A1 /* PPColorPalette.cpp in Sources */,
 				C5FB32A225F41BD1000694C3 /* PPCanvas.cpp in Sources */,
@@ -712,6 +722,7 @@
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				EB2BE9B51D74952A002FE78B /* PPApp.cpp in Sources */,
 				C5FB329F25F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				EEFA1A7125FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				C5FB32A825F41BD2000694C3 /* PPColorStrip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,7 +742,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6P7H83FK6;
+				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/../cugl/build-apple/Resources/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
@@ -756,7 +767,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6P7H83FK6;
+				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/../cugl/build-apple/Resources/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
@@ -777,6 +788,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = KMCB293693;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
@@ -797,6 +809,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = KMCB293693;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
@@ -939,8 +952,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.mac.PanicPainter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -953,8 +968,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.mac.PanicPainter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

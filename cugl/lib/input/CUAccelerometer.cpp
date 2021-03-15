@@ -227,7 +227,7 @@ bool Accelerometer::updateState(const SDL_Event& event, const Timestamp& stamp) 
     _current.set(SDL_JoystickGetAxis(_input, _xaxis),SDL_JoystickGetAxis(_input, _yaxis),SDL_JoystickGetAxis(_input, 2));
     _current *= SDL_MAX_GFORCE / INT16_MAX;
 #if defined (__IPHONEOS__)
-	_currentCanvases.y = -_currentCanvases.y;
+	_current.y = -_current.y;
 #endif
     _update = true;
     if (_current.distanceSquared(_anchor) >= _threshold) {
