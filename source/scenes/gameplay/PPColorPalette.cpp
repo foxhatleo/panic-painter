@@ -44,7 +44,7 @@ void ColorPalette::_setup() {
     
     int x = getWidth() - 35;
     int y = getHeight() - 90;
-    float curvature = 0.2;
+    float curvature = 0.15;
         
     for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
         auto btn = PolygonNode::allocWithTexture(_colorTexture);
