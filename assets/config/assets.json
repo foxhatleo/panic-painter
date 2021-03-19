@@ -1,4 +1,9 @@
 {
+  "textures": {
+     "color_circle": {
+         "file": "textures/color_circle.png"
+     }
+  },
   "jsons": {
     "global": "config/global.json",
     "load": "scenes/loading.json",

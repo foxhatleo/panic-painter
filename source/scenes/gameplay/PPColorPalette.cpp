@@ -14,9 +14,11 @@
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
 
-ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos, const vec<Color4> &colors) {
-    auto result = make_shared<ColorPalette>(colors);
+ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos, const vec<Color4> &colors, const ptr<Texture>& colorTexture) {
+    auto result = make_shared<ColorPalette>(colors, colorTexture);
+    // change to init with texture after changing the header file
     if (result->initWithPosition(pos))
+        // result->setPosition(pos)
         result->_setup();
     else
         return nullptr;
@@ -35,9 +37,13 @@ void ColorPalette::_setup() {
     bg->setPosition(0, 0);
     bg->setColor(Color4::WHITE);
     addChild(bg);
-
+    
+    // probably would need to completely change the positioning of the colors.
     for (uint i = 0, j = _colors.size(); i < j; i++) {
-        auto btn = PolygonNode::alloc(Rect(0, 0, PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE));
+        // change to allocWithTexture, set tint
+        // auto btn = PolygonNode::alloc(Rect(0, 0, PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE));
+        auto btn = PolygonNode::allocWithTexture(_colorTexture);
+        btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
             -gw / 2 + PADDING + PALETTE_COLOR_SIZE / 2 + (PADDING + PALETTE_COLOR_SIZE) * i,
