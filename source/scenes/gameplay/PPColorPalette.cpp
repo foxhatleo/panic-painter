@@ -39,26 +39,21 @@ void ColorPalette::_setup() {
 
     auto bg = PolygonNode::allocWithTexture(_paletteTexture);
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
-    //bg->setPosition(0, 0);
     bg->setContentSize(palette_width, palette_height);
     addChild(bg);
     
     int x = getWidth() - 35;
     int y = getHeight() - 90;
-    
-    
-    
-    // probably would need to completely change the positioning of the colors.
+    float curvature = 0.2;
+        
     for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
-        // change to allocWithTexture, set tint
-        // auto btn = PolygonNode::alloc(Rect(0, 0, PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE));
         auto btn = PolygonNode::allocWithTexture(_colorTexture);
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
-        // PADDING + PALETTE_COLOR_SIZE / 2 + (PADDING + PALETTE_COLOR_SIZE) * i
         btn->setPosition(
-        x - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i / 5,
-            y - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE);
+            x - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature,
+            y - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
+        );
         btn->setColor(_colors[i]);
         if (i != _selectedColor)
             Animation::set(btn, {{"scaleX", INACTIVE_SCALE}, {"scaleY", INACTIVE_SCALE}});
