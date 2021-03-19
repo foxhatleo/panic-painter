@@ -11,7 +11,7 @@
 
 #include "utils/PPHeader.h"
 #include "utils/PPAnimation.h"
-#include "controllers/PPInput.h"
+#include "controllers/PPInputController.h"
 
 class ColorPalette : public SceneNode {
     enum ColorButtonState {

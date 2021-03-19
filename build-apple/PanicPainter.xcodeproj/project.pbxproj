@@ -949,7 +949,7 @@
 				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.mac.PanicPainter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -965,7 +965,7 @@
 				DEVELOPMENT_TEAM = KMCB293693;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.mac.PanicPainter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

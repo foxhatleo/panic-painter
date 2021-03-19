@@ -13,7 +13,7 @@ namespace utils {
     class Timer {
     private:
         /** The duration of the timer. */
-        uint _duration;
+        float _duration;
         /** Time point when the timer started. */
         float _timeLeft;
 
@@ -27,7 +27,7 @@ namespace utils {
          * @param duration In seconds.
          * @return A smart pointer of this timer.
          */
-        static ptr<Timer> alloc(const uint duration) {
+        static ptr<Timer> alloc(const float duration) {
             ptr<Timer> result = make_shared<Timer>(duration);
             return result;
         }
@@ -39,10 +39,10 @@ namespace utils {
         void reset();
 
         /** The duration of this timer. */
-        uint getDuration() const;
+        float getDuration() const;
 
         /** Time that is left. */
-        uint timeLeft() const;
+        float timeLeft() const;
 
         /** Progress the timer. */
         void update(float timestep);
