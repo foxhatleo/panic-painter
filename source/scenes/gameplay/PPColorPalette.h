@@ -33,8 +33,11 @@ class ColorPalette : public SceneNode {
     /** Button hover states. */
     vec<ColorButtonState> _buttonStates;
     
-    /** Color circle texture*/
+    /** Color circle texture */
     ptr<Texture> _colorTexture;
+    
+    /** Wooden palette texture */
+    ptr<Texture> _paletteTexture;
 
     void _setup();
 
@@ -43,12 +46,13 @@ class ColorPalette : public SceneNode {
 public:
     
     /** @deprecated Constructor. */
-    explicit ColorPalette(const vec<Color4> &colors, const ptr<Texture>& colorTexture) :
+    explicit ColorPalette(const vec<Color4> &colors, const ptr<Texture>& colorTexture, const ptr<Texture>& paletteTexture) :
         SceneNode(), _colors(colors), _selectedColor(0) {
             _colorTexture = colorTexture;
+            _paletteTexture = paletteTexture;
         };
 
-    static ptr<ColorPalette> alloc(const Vec2 &pos, const vec<Color4> &colors, const ptr<Texture>& colorTexture);
+    static ptr<ColorPalette> alloc(const Vec2 &pos, const vec<Color4> &colors, const ptr<Texture>& colorTexture, const ptr<Texture>& paletteTexture);
     
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {

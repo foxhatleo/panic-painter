@@ -64,10 +64,9 @@ void GameScene::loadLevel(const char *levelName) {
     _levelTimerText->setPosition(10, screenSize.height - 50);
     
     // change position to keep it to the left of the screen.
-    CULog("loading texture");
     auto colorTexture = _assets->get<Texture>("color_circle");
-    CULog(colorTexture == nullptr ? "true" : "false");
-    _palette = ColorPalette::alloc(Vec2(pw / 2, 0), _state.getColors(), colorTexture);
+    auto paletteTexture = _assets->get<Texture>("palette");
+    _palette = ColorPalette::alloc(Vec2(-50, 0), _state.getColors(), colorTexture, paletteTexture);
     
     // load palette texture
     // use setTexture in palette to add it to the ColorPalette module

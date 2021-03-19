@@ -2,6 +2,9 @@
   "textures": {
      "color_circle": {
          "file": "textures/color_circle.png"
+     },
+     "palette": {
+         "file": "textures/palette.png"
      }
   },
   "jsons": {
