@@ -539,6 +539,8 @@ public:
 
 #pragma mark -
 #pragma mark Value Access
+    const std::vector<std::shared_ptr<JsonValue>> asArray() const;
+
     /** 
      * Returns this node as a string.
      *

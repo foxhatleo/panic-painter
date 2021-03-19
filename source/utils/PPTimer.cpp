@@ -9,8 +9,8 @@ void Timer::update(float timestep) {
     if (_timeLeft < 0.01f) _timeLeft = 0;
 }
 
-uint Timer::getDuration() const { return _duration; }
+float Timer::getDuration() const { return _duration; }
 
-uint Timer::timeLeft() const {
-    return _timeLeft < 0.01f ? 0 : ceil(_timeLeft);
+float Timer::timeLeft() const {
+    return _timeLeft < 0.01f ? 0 : _timeLeft;
 }

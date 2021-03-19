@@ -2,12 +2,12 @@
 #define PANICPAINTER_PPGAMESCENE_H
 
 #include "utils/PPHeader.h"
-#include "utils/PPAssets.h"
-#include "controllers/PPInput.h"
-#include "controllers/PPGameState.h"
+#include "controllers/PPInputController.h"
+#include "controllers/PPGameStateController.h"
 #include "utils/PPAnimation.h"
 #include "PPCanvas.h"
 #include "PPColorPalette.h"
+#include "controllers/PPActionController.h"
 
 /**
  * This is the scene for the actual game.
@@ -30,11 +30,7 @@ private:
     
     ptr<ColorPalette> _palette;
 
-    /**
-     * For now we tell the user an action is completed with a flashing
-     * effect.
-     */
-    ptr<PolygonNode> _flash;
+    ptr<ActionController> _action;
 
 public:
     GameScene() : Scene2() {}

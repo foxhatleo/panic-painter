@@ -23,31 +23,26 @@
     <Filter Include="Scenes\Loading">
       <UniqueIdentifier>{a03da77f-fb14-4918-88a2-240b5baa44af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{0c54b165-221a-4191-9051-54c4640ab79d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\controllers\PPGlobalConfig.cpp">
-      <Filter>Controllers</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\source\controllers\PPInput.cpp">
-      <Filter>Controllers</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\source\controllers\PPGameState.cpp">
-      <Filter>Controllers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\utils\PPTimer.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\utils\PPAnimation.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\utils\PPAssets.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\main.cpp">
       <Filter>Application</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\PPApp.cpp">
       <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp">
+      <Filter>Scenes\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPInput.cpp" />
+    <ClCompile Include="..\..\source\utils\PPAnimation.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\utils\PPTimer.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp">
       <Filter>Scenes\Gameplay</Filter>
@@ -55,17 +50,17 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp">
-      <Filter>Scenes\Loading</Filter>
+    <ClCompile Include="..\..\source\controllers\PPGameStateController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPGlobalConfigController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPInputController.cpp">
+      <Filter>Controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,14 +74,17 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\controllers\PPGlobalConfig.h">
-      <Filter>Controllers</Filter>
+    <ClInclude Include="..\..\source\PPApp.h">
+      <Filter>Application</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\controllers\PPInput.h">
-      <Filter>Controllers</Filter>
+    <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h">
+      <Filter>Scenes\Loading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\controllers\PPGameState.h">
-      <Filter>Controllers</Filter>
+    <ClInclude Include="..\..\source\utils\PPAnimation.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPHeader.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\utils\PPTimer.h">
       <Filter>Utilities</Filter>
@@ -94,25 +92,7 @@
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\utils\PPAssets.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\utils\PPAnimation.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\PPApp.h">
-      <Filter>Application</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\utils\PPHeader.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPalette.h">
@@ -121,8 +101,20 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPGameScene.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h">
-      <Filter>Scenes\Loading</Filter>
+    <ClInclude Include="..\..\source\models\PPGameState.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPActionController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPGameStateController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPGlobalConfigController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPInputController.h">
+      <Filter>Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
