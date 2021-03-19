@@ -440,6 +440,16 @@ bool JsonValue::isValue() const {
 
 #pragma mark -
 #pragma mark Value Access
+const std::vector<std::shared_ptr<JsonValue>> JsonValue::asArray() const {
+    CUAssertLog(_type == Type::ArrayType || _type == Type::ObjectType,
+                "Value type cannot be converted to array: %d", _type);
+    std::vector<std::shared_ptr<JsonValue>> result;
+    for(auto it = _children.begin(); it != _children.end(); it++) {
+        result.push_back(*it);
+    }
+    return result;
+}
+
 /**
  * Returns this node as a string.
  *

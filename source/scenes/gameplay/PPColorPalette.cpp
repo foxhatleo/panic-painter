@@ -14,8 +14,13 @@
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
 
-ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos, const vec<Color4> &colors, const ptr<Texture>& colorTexture, const ptr<Texture>& paletteTexture) {
-    auto result = make_shared<ColorPalette>(colors, colorTexture, paletteTexture);
+ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos,
+                                      const vec<Color4> &colors,
+                                      const asset_t &assets) {
+    auto colorTexture = assets->get<Texture>("color_circle");
+    auto paletteTexture = assets->get<Texture>("palette");
+    auto result =
+        make_shared<ColorPalette>(colors, colorTexture, paletteTexture);
     // change to init with texture after changing the header file
     if (result->initWithPosition(pos))
         result->_setup();

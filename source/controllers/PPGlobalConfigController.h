@@ -1,8 +1,7 @@
-#ifndef PANICPAINTER_PPGLOBALCONFIG_H
-#define PANICPAINTER_PPGLOBALCONFIG_H
+#ifndef PANICPAINTER_PPGLOBALCONFIGCONTROLLER_H
+#define PANICPAINTER_PPGLOBALCONFIGCONTROLLER_H
 
 #include "utils/PPHeader.h"
-#include "utils/PPAssets.h"
 
 /**
  * This includes JSON-based global configuration.
@@ -32,19 +31,17 @@ public:
     void load(const asset_t &assets);
 
     /** Level time. */
-    uint getLevelTime();
+    float getLevelTime();
 
     /** Canvas base time. */
-    uint getCanvasBaseTime();
+    float getCanvasBaseTime();
 
     /** Canvas per color time. */
-    uint getCanvasPerColorTime();
-
-    float getInputHoldThreshold();
+    float getCanvasPerColorTime();
 
     float getInputMoveThreshold();
 
     static GlobalConfigController &getInstance() { return _instance; }
 };
 
-#endif //PANICPAINTER_PPGLOBALCONFIG_H
+#endif //PANICPAINTER_PPGLOBALCONFIGCONTROLLER_H

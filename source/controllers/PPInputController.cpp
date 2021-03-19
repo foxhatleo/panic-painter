@@ -1,4 +1,4 @@
-#include "PPInput.h"
+#include "PPInputController.h"
 
 InputController InputController::_instance;
 
@@ -13,7 +13,6 @@ void InputController::init() {
 
 void InputController::loadConfig() {
     auto &gc = GlobalConfigController::getInstance();
-    _holdThreshold = gc.getInputHoldThreshold();
     _moveThreshold = gc.getInputMoveThreshold();
 }
 
@@ -25,7 +24,7 @@ void InputController::dispose() {
 #endif
 }
 
-void InputController::update(float timestep) {
+void InputController::update() {
     _lastPressed = _currentPressed;
 #ifdef CU_TOUCH_SCREEN
     auto *touchscreen = Input::get<Touchscreen>();
@@ -33,10 +32,8 @@ void InputController::update(float timestep) {
         if (touchscreen->touchDown(_pressedId)) {
             _currentPressed = true;
             _lastPoint = touchscreen->touchPosition(_pressedId);
-            _timeHeld += timestep;
         } else {
             _currentPressed = false;
-            _timeHeld = 0;
             _pressedId = -1;
         }
     } else {
@@ -49,7 +46,6 @@ void InputController::update(float timestep) {
         } else if (!hasInput) {
             _currentPressIgnored = false;
             _currentPressed = false;
-            _timeHeld = 0;
             _pressedId = -1;
         }
     }
@@ -59,19 +55,15 @@ void InputController::update(float timestep) {
     _currentPressed = hasInput && !_currentPressIgnored;
     if (_currentPressed) {
         if (!_lastPressed) _startingPoint = mouse->pointerPosition();
-        else _timeHeld += timestep;
         _lastPoint = mouse->pointerPosition();
-    } else {
-        _timeHeld = 0;
     }
     if (!hasInput) {
         _currentPressIgnored = false;
     }
 #endif
-    // TODO: Check if we need to the below for touchscreen
-    // This is absolutely necessary for mouse, because mouse returns screen
-    // coordinates, not world ones. The difference is that origin in world is
-    // bottom left, while for world it is top left.
+    // This is necessary, because input returns screen coordinates, not world
+    // ones. The difference is that origin in world is bottom left, while for
+    // world it is top left.
     auto screenHeight = Application::get()->getDisplayHeight();
     if (_currentPressed & !_lastPressed)
         _startingPoint.y = screenHeight - _startingPoint.y;
@@ -84,18 +76,6 @@ bool InputController::isPressing() const {
 
 bool InputController::justPressed() const {
     return _currentPressed && !_lastPressed;
-}
-
-float InputController::timeHeld() const {
-    return _timeHeld; 
-}
-
-float InputController::progressCompleteHold() const {
-    return min(1.0f, _timeHeld / _holdThreshold);
-}
-
-bool InputController::completeHold() const {
-    return progressCompleteHold() == 1;
 }
 
 bool InputController::justReleased() const {
@@ -130,7 +110,7 @@ bool InputController::inScene(const Vec2 &point,
 bool InputController::inScene(const Vec2 &point,
                               const SceneNode &scene) {
     Rect r = scene.getNodeToWorldTransform().transform(
-            Rect(Vec2::ZERO, scene.getContentSize()));
+        Rect(Vec2::ZERO, scene.getContentSize()));
     return inScene(point, r);
 }
 
@@ -142,14 +122,6 @@ bool InputController::inScene(const Vec2 &point,
 void InputController::ignoreThisTouch() {
     _currentPressIgnored = true;
     _currentPressed = false;
+    _lastPressed = true;
     _pressedId = -1;
-    _timeHeld = 0;
-}
-
-float InputController::getHoldThreshold() const {
-    return _holdThreshold;
-}
-
-float InputController::getMoveThreshold() const {
-    return _moveThreshold;
 }

@@ -11,7 +11,7 @@
 
 #include "utils/PPHeader.h"
 #include "utils/PPAnimation.h"
-#include "controllers/PPInput.h"
+#include "controllers/PPInputController.h"
 
 // change to texturedNode
 class ColorPalette : public SceneNode {
@@ -41,18 +41,22 @@ class ColorPalette : public SceneNode {
 
     void _setup();
 
-    void _animateButtonState(uint ind, const ColorButtonState s);
+    void _animateButtonState(uint ind, ColorButtonState s);
     
 public:
     
     /** @deprecated Constructor. */
-    explicit ColorPalette(const vec<Color4> &colors, const ptr<Texture>& colorTexture, const ptr<Texture>& paletteTexture) :
+    explicit ColorPalette(const vec<Color4> &colors,
+                          const ptr<Texture>& colorTexture,
+                          const ptr<Texture>& paletteTexture) :
         SceneNode(), _colors(colors), _selectedColor(0) {
             _colorTexture = colorTexture;
             _paletteTexture = paletteTexture;
         };
 
-    static ptr<ColorPalette> alloc(const Vec2 &pos, const vec<Color4> &colors, const ptr<Texture>& colorTexture, const ptr<Texture>& paletteTexture);
+    static ptr<ColorPalette> alloc(const Vec2 &pos,
+                                   const vec<Color4> &colors,
+                                   const asset_t &assets);
     
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
