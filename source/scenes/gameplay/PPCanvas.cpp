@@ -98,5 +98,5 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
 
 
 void Canvas::setHover(bool value) {
-    // tODO: Implement this.
+    _block->setHover(value);
 }

@@ -24,17 +24,33 @@ void GameScene::loadLevel(const char *levelName) {
     _state.loadJson(levelJson);
 
     Size screenSize = Application::get()->getDisplaySize();
+    
+    // Viewport width
+    float pw = screenSize.width;
+    // Queue width
+    float sw = screenSize.width / 5;
+    // Queue height
+    float sh = screenSize.height;
 
     // Clear canvases.
     _canvases.clear();
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         vec<ptr<Canvas>> queue;
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
+            
+            float
+                x = (pw - (sw * j)) / 2 + sw * i,
+                y = 0,
+                w = sw,
+                h = sh;
+            
             auto c = Canvas::alloc(
                 _assets,
                 _state.getColors(),
                 _state.getTimer(i, i2),
                 i, j);
+            c->setPosition(x, y);
+            c->setContentSize(w, h);
             addChild(c);
             queue.insert(queue.begin(), 1, c);
         }
