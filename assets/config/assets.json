@@ -5,6 +5,9 @@
      },
      "palette": {
          "file": "textures/palette.png"
+     },
+     "panda": {
+         "file": "textures/characters/panda.png"
      }
   },
   "jsons": {
