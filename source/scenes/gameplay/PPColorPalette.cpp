@@ -8,14 +8,20 @@
 
 #include "PPColorPalette.h"
 
-#define PALETTE_COLOR_SIZE 50.0f
+#define PALETTE_COLOR_SIZE 45.0f
 /** Space between dots. */
 #define PADDING 15.0f
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
 
-ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos, const vec<Color4> &colors) {
-    auto result = make_shared<ColorPalette>(colors);
+ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos,
+                                      const vec<Color4> &colors,
+                                      const asset_t &assets) {
+    auto colorTexture = assets->get<Texture>("color_circle");
+    auto paletteTexture = assets->get<Texture>("palette");
+    auto result =
+        make_shared<ColorPalette>(colors, colorTexture, paletteTexture);
+    // change to init with texture after changing the header file
     if (result->initWithPosition(pos))
         result->_setup();
     else
@@ -24,24 +30,30 @@ ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos, const vec<Color4> &colors
 }
 
 void ColorPalette::_setup() {
-    float gw = (float)_colors.size() * (PALETTE_COLOR_SIZE + PADDING) + PADDING;
-    float gh = PALETTE_COLOR_SIZE + PADDING * 2;
+    
+    int palette_width = 190;
+    int palette_height = 260;
 
-    setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
-    setContentSize(gw, gh);
+    setAnchor(Vec2::ANCHOR_CENTER);
+    setContentSize(palette_width, palette_height);
 
-    auto bg = PolygonNode::alloc(Rect(0, 0, gw, gh));
+    auto bg = PolygonNode::allocWithTexture(_paletteTexture);
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
-    bg->setPosition(0, 0);
-    bg->setColor(Color4::WHITE);
+    bg->setContentSize(palette_width, palette_height);
     addChild(bg);
-
-    for (uint i = 0, j = _colors.size(); i < j; i++) {
-        auto btn = PolygonNode::alloc(Rect(0, 0, PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE));
+    
+    int x = getWidth() - 35;
+    int y = getHeight() - 90;
+    float curvature = 0.15;
+        
+    for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
+        auto btn = PolygonNode::allocWithTexture(_colorTexture);
+        btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
-            -gw / 2 + PADDING + PALETTE_COLOR_SIZE / 2 + (PADDING + PALETTE_COLOR_SIZE) * i,
-            PADDING + PALETTE_COLOR_SIZE / 2);
+            x - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature,
+            y - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
+        );
         btn->setColor(_colors[i]);
         if (i != _selectedColor)
             Animation::set(btn, {{"scaleX", INACTIVE_SCALE}, {"scaleY", INACTIVE_SCALE}});
@@ -63,7 +75,7 @@ void ColorPalette::_animateButtonState(uint ind, const ColorButtonState s) {
 void ColorPalette::update() {
     auto &input = InputController::getInstance();
     if (input.isPressing() || input.justReleased()) {
-        for (uint i = 0, j = _colors.size(); i < j; i++) {
+        for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
             auto &btn = _buttons[i];
 
             // Reset scale back to 1 for the purpose of input detection.
@@ -86,7 +98,7 @@ void ColorPalette::update() {
             }
         }
     } else {
-        for (uint i = 0, j = _colors.size(); i < j; i++)
+        for (uint i = 0, j = (uint) _colors.size(); i < j; i++)
             _animateButtonState(i, _selectedColor == i ? ACTIVE : INACTIVE);
     }
 }

@@ -47,8 +47,10 @@ void GameScene::loadLevel(const char *levelName) {
     _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
     _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
     _levelTimerText->setPosition(10, screenSize.height - 50);
-    
-    _palette = ColorPalette::alloc(Vec2(0, 0), _state.getColors());
+
+    // change position to keep it to the left of the screen.
+    _palette =
+        ColorPalette::alloc(Vec2(-50, 0), _state.getColors(), _assets);
     
     addChild(_levelTimerText);
     addChild(_palette);

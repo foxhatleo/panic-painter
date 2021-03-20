@@ -13,6 +13,7 @@
 #include "utils/PPAnimation.h"
 #include "controllers/PPInputController.h"
 
+// change to texturedNode
 class ColorPalette : public SceneNode {
     enum ColorButtonState {
         PRESSED,
@@ -31,18 +32,31 @@ class ColorPalette : public SceneNode {
 
     /** Button hover states. */
     vec<ColorButtonState> _buttonStates;
+    
+    /** Color circle texture */
+    ptr<Texture> _colorTexture;
+    
+    /** Wooden palette texture */
+    ptr<Texture> _paletteTexture;
 
     void _setup();
 
-    void _animateButtonState(uint ind, const ColorButtonState s);
+    void _animateButtonState(uint ind, ColorButtonState s);
     
 public:
     
     /** @deprecated Constructor. */
-    explicit ColorPalette(const vec<Color4> &colors) :
-        SceneNode(), _colors(colors), _selectedColor(0) {};
+    explicit ColorPalette(const vec<Color4> &colors,
+                          const ptr<Texture>& colorTexture,
+                          const ptr<Texture>& paletteTexture) :
+        SceneNode(), _colors(colors), _selectedColor(0) {
+            _colorTexture = colorTexture;
+            _paletteTexture = paletteTexture;
+        };
 
-    static ptr<ColorPalette> alloc(const Vec2 &pos, const vec<Color4> &colors);
+    static ptr<ColorPalette> alloc(const Vec2 &pos,
+                                   const vec<Color4> &colors,
+                                   const asset_t &assets);
     
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
