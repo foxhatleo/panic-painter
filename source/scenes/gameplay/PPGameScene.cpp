@@ -27,7 +27,6 @@ void GameScene::loadLevel(const char *levelName) {
 
     // Clear canvases.
     _canvases.clear();
-
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         vec<ptr<Canvas>> queue;
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
