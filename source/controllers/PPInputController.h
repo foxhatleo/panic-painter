@@ -27,6 +27,11 @@ private:
     /** Cached move threshold. */
     float _moveThreshold;
 
+    float _holdThreshold; 
+
+    /** The time held (to calculate a tap) */
+    float _timeHeld;
+
     static InputController _instance;
 
     InputController() :
@@ -47,7 +52,7 @@ public:
     void dispose();
 
     /** Update the input controller. */
-    void update();
+    void update(float timestep);
 
     /** If the user is currently pressing down. */
     bool isPressing() const;
@@ -72,6 +77,12 @@ public:
 
     /** Get whether the finger has moved according to the move threshold. */
     bool hasMoved() const;
+
+    /**Get the time held to see if it constitutes a tap*/
+    float timeHeld() const;
+
+    /**See if the time held is under the max */
+    bool wasTap() const;
 
     /** Ignore the current touch. */
     void ignoreThisTouch();

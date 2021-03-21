@@ -14,6 +14,7 @@ void InputController::init() {
 void InputController::loadConfig() {
     auto &gc = GlobalConfigController::getInstance();
     _moveThreshold = gc.getInputMoveThreshold();
+    _holdThreshold = 0.1; 
 }
 
 void InputController::dispose() {
@@ -24,7 +25,7 @@ void InputController::dispose() {
 #endif
 }
 
-void InputController::update() {
+void InputController::update(float timestep) {
     _lastPressed = _currentPressed;
 #ifdef CU_TOUCH_SCREEN
     auto *touchscreen = Input::get<Touchscreen>();
@@ -32,9 +33,11 @@ void InputController::update() {
         if (touchscreen->touchDown(_pressedId)) {
             _currentPressed = true;
             _lastPoint = touchscreen->touchPosition(_pressedId);
+            _timeHeld += timestep;
         } else {
             _currentPressed = false;
             _pressedId = -1;
+            _timeHeld = 0;
         }
     } else {
         bool hasInput = touchscreen->touchCount() > 0;
@@ -46,6 +49,7 @@ void InputController::update() {
         } else if (!hasInput) {
             _currentPressIgnored = false;
             _currentPressed = false;
+            _timeHeld = 0; 
             _pressedId = -1;
         }
     }
@@ -92,6 +96,13 @@ Vec2 InputController::movedVec() const {
 
 bool InputController::hasMoved() const {
     return movedVec().length() > _moveThreshold;
+}
+
+float InputController::timeHeld() const {
+    return _timeHeld; 
+}
+bool InputController::wasTap() const {
+    return _timeHeld < _holdThreshold;
 }
 
 Vec2 InputController::currentPoint() const {

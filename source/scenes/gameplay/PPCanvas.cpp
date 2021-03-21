@@ -13,9 +13,9 @@
 
 ptr<Canvas> Canvas::alloc(const asset_t &assets, const vec<Color4> &colors,
                           const ptr<Timer> &timer, uint queueInd,
-                          uint numOfQueues) {
+                          uint numOfQueues, const Rect &bound) {
     auto result = make_shared<Canvas>();
-    if (result->init())
+    if (result->initWithBounds(bound))
         result->_setup(assets, colors, timer, queueInd, numOfQueues);
     else
         return nullptr;
@@ -28,7 +28,7 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _colors = colors;
     _queueInd = queueInd;
     _numOfQueues = numOfQueues;
-    
+    CULog("the width is: %f", getWidth());
     float canvasSize = getWidth() - PADDING * 2;
         _block = CanvasBlock::alloc(assets, canvasSize, colors);
         _block->setAnchor(Vec2::ANCHOR_CENTER);
@@ -98,5 +98,5 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
 
 
 void Canvas::setHover(bool value) {
-    _block->setHover(value);
+    _block->setHover(static_cast<float>(value));
 }

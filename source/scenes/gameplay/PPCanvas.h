@@ -56,7 +56,8 @@ public:
                              const vec<Color4> &colors,
                              const ptr<Timer> &timer,
                              uint queueInd,
-                             uint numOfQueues);
+                             uint numOfQueues,
+                             const Rect &bound);
 
     ptr<SceneNode> getInteractionNode() const;
 

@@ -54,7 +54,7 @@ void PanicPainterApp::onLoaded() {
 void PanicPainterApp::update(float timestep) {
     // Update global controllers.
     Animation::updateGlobal(timestep);
-    InputController::getInstance().update();
+    InputController::getInstance().update(timestep);
 
     switch (_currentScene) {
         case LOADING_SCENE: {

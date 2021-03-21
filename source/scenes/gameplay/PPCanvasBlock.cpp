@@ -1,8 +1,9 @@
 #include "PPCanvasBlock.h"
 
-ptr<CanvasBlock> CanvasBlock::alloc(const asset_t &assets,
-                                    float size,
-                                    const vec<Color4> &colors) {
+ptr<CanvasBlock> CanvasBlock::alloc(const asset_t& assets,
+    float size,
+    const vec<Color4>& colors) {
+    CULog("size is: %f", size);
     auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
         result->_setup(assets, colors);
@@ -11,8 +12,8 @@ ptr<CanvasBlock> CanvasBlock::alloc(const asset_t &assets,
     return result;
 }
 
-void CanvasBlock::_setup(const asset_t &assets,
-                         const vec<Color4> &colors) {
+void CanvasBlock::_setup(const asset_t& assets,
+    const vec<Color4>& colors) {
     // White background
     _bg = scene2::PolygonNode::alloc(Rect(0, 0, getWidth(), getHeight()));
     _bg->setColor(Color4::WHITE);
@@ -42,8 +43,8 @@ void CanvasBlock::markDone() {
     _bg->setColor(Color4(82, 178, 2));
 }
 
-void CanvasBlock::update(const vec<uint> &canvasColors,
-                         const ptr<Timer> &timer) {
+void CanvasBlock::update(const vec<uint>& canvasColors,
+    const ptr<Timer>& timer) {
     _timerText->setText(to_string(timer->timeLeft()));
     _colorStrip->update(canvasColors);
 }

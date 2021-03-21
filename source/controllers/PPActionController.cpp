@@ -28,29 +28,17 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                     InputController::inScene(input.startingPoint(), _canvases[i][i2]->getInteractionNode());
                 bool currentPointIn =
                     InputController::inScene(input.currentPoint(), _canvases[i][i2]->getInteractionNode());
-
                 // SCRIBBLING
                 // TODO: Implement this!
-                if (currentPointIn && !input.hasMoved() && input.justReleased()) {
-                    if (currentTap[0] == i && currentTap[1] == i2) {
+               if (startingPointIn && currentPointIn && !input.hasMoved() && 
+                   (input.justReleased() && input.wasTap())) {
                     //The last tap was here. Keeping this in two if statements in case we want anmiations for each tap
-                        numTaps++;
-                        if (numTaps % 3 == 0) {
-                            _state.clearColor(currentTap[0], currentTap[1], selectedColor);
-                            numTaps = 0; 
-                            currentTap[0] = -1;
-                            currentTap[1] = -1; 
-                        }
-                    }
-                    else {
-                        currentTap[0] = i; 
-                        currentTap[1] = i; 
-                        numTaps = 1; 
-                    }
+                        _state.clearColor(i, i2, selectedColor);
+
                 }
 
                 // DRAGGING
-                /*else */if (startingPointIn && input.hasMoved() &&
+                /* else */ if (startingPointIn && input.hasMoved() &&
                     (input.justReleased() || input.isPressing())) {
                     dragStart[0] = i;
                     dragStart[1] = i2;
@@ -72,9 +60,9 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
             for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
                 // Again we don't deal with anything that is not active.
                 if (activeCanvases.find(pair<uint, uint>(i, i2)) ==
-                    activeCanvases.end())
+                    activeCanvases.end()) {
                     break;
-
+                }
                 // This whole block basically checks if this dragging session covers this canvas.
                 ptr<SceneNode> in_start = _canvases[dragStart[0]][dragStart[1]];
                 ptr<SceneNode> in_end = _canvases[i][i2];
@@ -100,6 +88,7 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
         // This suggests that he/she/they gave up on dragging.
         if (input.justReleased() && toClear.size() > 1) {
             for (auto& p : toClear) {
+
                 _state.clearColor(p.first, p.second, selectedColor);
             }
         }

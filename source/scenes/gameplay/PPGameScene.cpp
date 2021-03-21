@@ -43,14 +43,12 @@ void GameScene::loadLevel(const char *levelName) {
                 y = 0,
                 w = sw,
                 h = sh;
-            
+            CULog("w is %f and h is %f", w, h);
             auto c = Canvas::alloc(
                 _assets,
                 _state.getColors(),
                 _state.getTimer(i, i2),
-                i, j);
-            c->setPosition(x, y);
-            c->setContentSize(w, h);
+                i, j, Rect(x, y, w, h));
             addChild(c);
             queue.insert(queue.begin(), 1, c);
         }
