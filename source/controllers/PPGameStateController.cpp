@@ -86,7 +86,7 @@ void GameStateController::update(float timestep) {
         // Do not update any timer if no active canvas exists.
         // This means The queue is empty.
         if (ind < 0) continue;
-//        _state.canvasTimers[i][ind]->update(timestep);
+        _state.canvasTimers[i][ind]->update(timestep);
     }
 }
 
