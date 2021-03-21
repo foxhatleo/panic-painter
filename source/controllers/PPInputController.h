@@ -22,12 +22,14 @@ private:
         TouchID _touchId;
         float _timeSinceLastInstance;
 
+        static Vec2 _inputToScreen(Vec2 pt);
+
     public:
         explicit InputInstance(float timeSinceLastInstance);
 
         float getHoldTime() const { return _holdTime; }
-        Vec2 getStartPoint() const { return _startPoint; }
-        Vec2 getLastPoint() const { return _lastPoint; }
+        Vec2 getStartPoint() const { return _inputToScreen(_startPoint); }
+        Vec2 getLastPoint() const { return _inputToScreen(_lastPoint); }
         float getTotalMovement() const { return _totalMovement; }
         bool getCurrentlyDown() const { return _currentlyDown; }
         bool isJustTap() const

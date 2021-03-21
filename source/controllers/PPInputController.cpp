@@ -49,6 +49,10 @@ bool InputController::InputInstance::update(float timestep) {
     return true;
 }
 
+Vec2 InputController::InputInstance::_inputToScreen(Vec2 pt) {
+    return Vec2(pt.x, Application::get()->getDisplayHeight() - pt.y);
+}
+
 void InputController::init() {
 #ifdef CU_TOUCH_SCREEN
     Input::activate<Touchscreen>();

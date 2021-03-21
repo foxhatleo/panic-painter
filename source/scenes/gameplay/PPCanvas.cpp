@@ -1,15 +1,14 @@
 #include "PPCanvas.h"
 
-#define PADDING 100
-#define STARTING_X_OFFSET 20
-#define STARTING_Y_OFFSET 30
-#define STARTING_ANGLE 60
-#define ENDING_X_OFFSET -20
-#define ENDING_Y_OFFSET -200
-#define ENDING_ANGLE -60
-#define DURATION .5
-#define DURATION_OUT 2
-#define EASE STRONG_OUT
+#define PADDING 5
+#define PALETTE_PADDING 120
+#define MAX_QUEUE 6
+#define OFFSET_FROM_TOP 240
+#define ADD_OFFSET_PER_ROW 240
+#define OFFSCREEN_ANIMATION_OFFSET 50
+#define EASING STRONG_OUT
+#define DURATION 0.5
+#define MINI_SCALE 0.75
 
 ptr<Canvas> Canvas::alloc(const asset_t &assets, const vec<Color4> &colors,
                           const ptr<Timer> &timer, uint queueInd,
@@ -28,23 +27,23 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _colors = colors;
     _queueInd = queueInd;
     _numOfQueues = numOfQueues;
-    CULog("the width is: %f", getWidth());
-    float canvasSize = getWidth() - PADDING * 2;
-        _block = CanvasBlock::alloc(assets, canvasSize, colors);
-        _block->setAnchor(Vec2::ANCHOR_CENTER);
-        _block->setPosition(PADDING + canvasSize / 2,
-                            getHeight() - 30);
-        _block->setAnchor(Vec2::ANCHOR_CENTER);
-        addChild(_block);
-        Animation::set(
-            _block,
-            {
-                {"angle", STARTING_ANGLE},
-                {"opacity", 0},
-                {"x", Animation::relative(STARTING_X_OFFSET)},
-                {"y", Animation::relative(STARTING_Y_OFFSET)},
-            });
-        _previousState = HIDDEN;
+
+    float containerWidth = getWidth() - PALETTE_PADDING;
+    float laneWidth = containerWidth / MAX_QUEUE;
+    float laneX =
+        (containerWidth - laneWidth * numOfQueues) / 2 +
+        laneWidth / 2 + laneWidth * queueInd + PALETTE_PADDING;
+    float canvasSize = laneWidth - PADDING * 2;
+
+    _block = CanvasBlock::alloc(assets, canvasSize, colors);
+    _block->setScale(MINI_SCALE, MINI_SCALE);
+    _block->setAnchor(Vec2::ANCHOR_CENTER);
+    _block->setPosition(
+        laneX,
+        getHeight() - OFFSET_FROM_TOP + OFFSCREEN_ANIMATION_OFFSET);
+    _block->setColor(Color4(255, 255, 255, 0));
+    addChild(_block);
+    _previousState = HIDDEN;
 }
 
 ptr<SceneNode> Canvas::getInteractionNode() const {
@@ -59,44 +58,35 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
             addChild(_block);
         }
 
-        uint canvasSize = getWidth() - PADDING * 2;
         // Set y of block depending on state.
         if (state != _previousState) {
-            float targetY =
-                getHeight() - (float)canvasSize / 2 - PADDING -
-                (state == ACTIVE ? canvasSize + (float)PADDING * 2 : 0);
-            Animation::alloc(
-                _block, DURATION,
-                {
-                    {"x", PADDING + canvasSize / 2},
-                    {"y", targetY},
-                    {"opacity", 255},
-                    {"angle", 0},
-                },
-                EASE);
+            float targetY = getHeight() - OFFSET_FROM_TOP;
+            if (state == ACTIVE) targetY -= ADD_OFFSET_PER_ROW;
+            Animation::alloc(_block, DURATION, {
+                {"y", targetY},
+                {"opacity", 1},
+                {"scaleX", state == ACTIVE ? 1 : MINI_SCALE},
+                {"scaleY", state == ACTIVE ? 1 : MINI_SCALE},
+            }, EASING);
         }
 
         // Update block.
         _block->update(canvasColors, _timer);
     } else if (_block->getParent() != nullptr && state != _previousState) {
-        Animation::alloc(
-            _block, DURATION_OUT,
-            {
-                {"x", Animation::relative(ENDING_X_OFFSET)},
-                {"y", Animation::relative(ENDING_Y_OFFSET)},
-                {"opacity", 0},
-                {"angle", ENDING_ANGLE},
-            }, EASE);
         if (state == DONE) {
             _block->markDone();
         } else {
             _block->markLost();
         }
+        Animation::alloc(_block, DURATION, {
+            {"y", getHeight() - OFFSET_FROM_TOP - ADD_OFFSET_PER_ROW - OFFSCREEN_ANIMATION_OFFSET},
+            {"opacity", 0},
+        }, EASING);
     }
     _previousState = state;
 }
 
 
 void Canvas::setHover(bool value) {
-    _block->setHover(static_cast<float>(value));
+    _block->setHover(value);
 }

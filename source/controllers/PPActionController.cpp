@@ -1,4 +1,4 @@
-#include "PPActionController.h";
+#include "PPActionController.h"
 
 void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
     uint selectedColor) {
@@ -6,9 +6,7 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
 
     // This saves the position of the canvas where dragging starts.
     // If {-1, -1} that means we are not dragging.
-    int dragStart[2] = { -1, -1 };
-    //This saves the position of the last tap. 
-    int currentTap[2] = { -1, -1 };
+    int dragStart[2] = {-1, -1};
 
     // First passthrough of the canvas.
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
@@ -33,8 +31,12 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                     _state.clearColor(i, i2, selectedColor);
                 }
 
+                if (input.isPressing() && startingPointIn && currentPointIn) {
+                    _canvases[i][i2]->setHover(true);
+                }
+
                 // DRAGGING
-                else if (startingPointIn && input.hasMoved() &&
+                if (startingPointIn && input.hasMoved() &&
                     (input.justReleased() || input.isPressing())) {
                     dragStart[0] = i;
                     dragStart[1] = i2;
@@ -57,11 +59,12 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                 // Again we don't deal with anything that is not active.
                 if (activeCanvases.find(pair<uint, uint>(i, i2)) ==
                     activeCanvases.end()) {
-                    break;
+                    continue;
                 }
                 // This whole block basically checks if this dragging session covers this canvas.
-                ptr<SceneNode> in_start = _canvases[dragStart[0]][dragStart[1]];
-                ptr<SceneNode> in_end = _canvases[i][i2];
+                ptr<SceneNode> in_start =
+                    _canvases[dragStart[0]][dragStart[1]]->getInteractionNode();
+                ptr<SceneNode> in_end = _canvases[i][i2]->getInteractionNode();
                 Mat4 in_start_mat = in_start->getNodeToWorldTransform();
                 Mat4 in_end_mat = in_end->getNodeToWorldTransform();
                 Rect in_start_box = in_start_mat.transform(Rect(Vec2::ZERO, in_start->getContentSize()));

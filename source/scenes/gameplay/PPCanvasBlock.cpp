@@ -3,7 +3,6 @@
 ptr<CanvasBlock> CanvasBlock::alloc(const asset_t& assets,
     float size,
     const vec<Color4>& colors) {
-    CULog("size is: %f", size);
     auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
         result->_setup(assets, colors);
@@ -12,32 +11,21 @@ ptr<CanvasBlock> CanvasBlock::alloc(const asset_t& assets,
     return result;
 }
 
-void CanvasBlock::_setup(const asset_t& assets,
-    const vec<Color4>& colors) {
-    
-    //Rectangle only version
-    //_bg = scene2::PolygonNode::alloc(Rect(0, 0, getWidth(), getHeight()));
-    
-    //Load in the panda texture from scene and attach to a new polygon node
+void CanvasBlock::_setup(const asset_t& assets, const vec<Color4>& colors) {
+
+    // Load in the panda texture from scene and attach to a new polygon node
     _bg = scene2::PolygonNode::allocWithTexture(assets->get<Texture>("panda"));
     _bg->setColor(Color4::WHITE);
-    
-    _bg->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
-    //TODO: Adjust the scale
-    float scale = 0.13f;
-    int sprite_width = (int) 1208 * scale;
-    int sprite_height = (int) 2112 * scale;
-    
-    //Do we need both?
-    setContentSize(sprite_width, sprite_height);
-    _bg->setContentSize(sprite_width, sprite_height);
-    _bg->setPosition(getWidth() / 2, 0);
+    float scale = getWidth() / _bg->getWidth();
+    _bg->setScale(scale, scale);
+    _bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    _bg->setPosition(0, 0);
     addChild(_bg);
     
     
     // Color strip
     _colorStrip = ColorStrip::alloc(getWidth(), colors);
-    _colorStrip->setPosition(getWidth() / 2, getHeight()/2 - 15);
+    _colorStrip->setPosition(getWidth() / 2, getHeight() / 2 + 15);
     addChild(_colorStrip);
 
     
@@ -63,12 +51,12 @@ void CanvasBlock::markDone() {
 
 void CanvasBlock::update(const vec<uint>& canvasColors,
     const ptr<Timer>& timer) {
-    _timerText->setText(to_string(timer->timeLeft()));
+    _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
     _colorStrip->update(canvasColors);
 }
 
-void CanvasBlock::setHover(float in) {
+void CanvasBlock::setHover(bool in) {
     if (!_hoverAllowed) return;
     Color4 full = Color4(220, 220, 220);
-    _bg->setColor(Color4::WHITE - (Color4::WHITE - full) * in);
+    _bg->setColor(in ? full : Color4::WHITE);
 }

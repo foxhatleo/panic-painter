@@ -34,7 +34,7 @@ public:
                                   float size,
                                   const vec<Color4> &colors);
 
-    void setHover(float in);
+    void setHover(bool in);
 
     void markLost();
     void markDone();

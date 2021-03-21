@@ -14,8 +14,6 @@
  */
 class Canvas : public SceneNode {
 private:
-    // ADD ANY FIELDS YOU NEED HERE.
-    
     /** Block */
     ptr<CanvasBlock> _block;
     
