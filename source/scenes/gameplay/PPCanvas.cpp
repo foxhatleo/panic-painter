@@ -1,6 +1,6 @@
 #include "PPCanvas.h"
 
-#define PADDING 5
+#define PADDING 100
 #define STARTING_X_OFFSET 20
 #define STARTING_Y_OFFSET 30
 #define STARTING_ANGLE 60
