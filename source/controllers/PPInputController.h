@@ -4,42 +4,54 @@
 #include "utils/PPHeader.h"
 #include "controllers/PPGlobalConfigController.h"
 
+#define MAX_INPUT_INSTANCES_SAVED 5
+
 class InputController {
 private:
-    /** The pressed state of last frame. */
-    bool _lastPressed;
+    static float _moveThreshold;
+    static float _holdThreshold;
+    static float _consecutiveTapThreshold;
 
-    /** The pressed state of this frame. */
-    bool _currentPressed;
+    class InputInstance {
+    private:
+        float _holdTime;
+        Vec2 _startPoint;
+        Vec2 _lastPoint;
+        float _totalMovement;
+        bool _currentlyDown;
+        TouchID _touchId;
+        float _timeSinceLastInstance;
 
-    /** If current touch is ignored explicitly. */
-    bool _currentPressIgnored;
+    public:
+        explicit InputInstance(float timeSinceLastInstance);
 
-    /** The ID of the finger that is pressed. */
-    TouchID _pressedId;
+        float getHoldTime() const { return _holdTime; }
+        Vec2 getStartPoint() const { return _startPoint; }
+        Vec2 getLastPoint() const { return _lastPoint; }
+        float getTotalMovement() const { return _totalMovement; }
+        bool getCurrentlyDown() const { return _currentlyDown; }
+        bool isJustTap() const
+        {
+            return _holdTime < _holdThreshold && isStationary();
+        }
+        bool isStationary() const
+        { return _totalMovement < _moveThreshold; }
+        bool hasMoved() const { return !isStationary(); }
+        float getTimeSinceLastInstance() const { return _timeSinceLastInstance; }
 
-    /** Starting point of the finger. */
-    Vec2 _startingPoint;
+        bool update(float timestep);
+        void ignore() { _currentlyDown = false; }
+    };
 
-    /** The last point of where the finger is. */
-    Vec2 _lastPoint;
-
-    /** Cached move threshold. */
-    float _moveThreshold;
-
-    float _holdThreshold; 
-
-    /** The time held (to calculate a tap) */
-    float _timeHeld;
+    deque<ptr<InputInstance>> _inputs;
+    ptr<InputInstance> _currentInput;
+    float _timeWithoutInput;
 
     static InputController _instance;
 
     InputController() :
-        _pressedId(-1),
-        _lastPressed(false),
-        _currentPressed(false),
-        _currentPressIgnored(false),
-        _moveThreshold(0) {}
+        _currentInput(nullptr),
+        _timeWithoutInput(0) {}
 
 public:
     /** Initialize. */
@@ -57,35 +69,27 @@ public:
     /** If the user is currently pressing down. */
     bool isPressing() const;
 
-    /** If the user just put down their finger this frame. */
-    bool justPressed() const;
-
     /** If the user just released their finger this frame. */
     bool justReleased() const;
 
     /** The starting point of the ongoing touch or last touch. */
     Vec2 startingPoint() const;
 
-    /** The vector of movement for this finger. */
-    Vec2 movedVec() const;
-
     /** The current point. */
     Vec2 currentPoint() const;
-
-    /** The releasing point. This is the same as current point. */
-    Vec2 releasingPoint() const;
 
     /** Get whether the finger has moved according to the move threshold. */
     bool hasMoved() const;
 
-    /**Get the time held to see if it constitutes a tap*/
-    float timeHeld() const;
-
     /**See if the time held is under the max */
-    bool wasTap() const;
+    bool isJustTap() const;
 
     /** Ignore the current touch. */
     void ignoreThisTouch();
+
+    bool didDoubleTap();
+
+    bool didTripleTap();
 
     /** Utility function to check if a point is in a scene node. */
     static bool inScene(const Vec2 &point, const ptr<SceneNode> &scene);

@@ -10,6 +10,10 @@ set(PP_FILES
         ../source/controllers/PPGlobalConfigController.h
         ../source/scenes/gameplay/PPCanvas.cpp
         ../source/scenes/gameplay/PPCanvas.h
+        ../source/scenes/gameplay/PPCanvasBlock.cpp
+        ../source/scenes/gameplay/PPCanvasBlock.h
+        ../source/scenes/gameplay/PPColorStrip.cpp
+        ../source/scenes/gameplay/PPColorStrip.h
         ../source/scenes/gameplay/PPColorPalette.cpp
         ../source/scenes/gameplay/PPColorPalette.h
         ../source/scenes/gameplay/PPGameScene.cpp
@@ -26,7 +30,9 @@ set(PP_FILES
         ../source/controllers/PPInputController.cpp
         ../source/models/PPGameState.h
         ../source/utils/PPAnimation.h
-        ../source/utils/PPAnimation.cpp ../source/controllers/PPActionController.h)
+        ../source/utils/PPAnimation.cpp
+        ../source/controllers/PPActionController.h
+        ../source/controllers/PPActionController.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 

@@ -28,10 +28,10 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                     InputController::inScene(input.startingPoint(), _canvases[i][i2]->getInteractionNode());
                 bool currentPointIn =
                     InputController::inScene(input.currentPoint(), _canvases[i][i2]->getInteractionNode());
+
                 // SCRIBBLING
-                // TODO: Implement this!
-               if (startingPointIn && currentPointIn && !input.hasMoved() && 
-                   (input.justReleased() && input.wasTap())) {
+                if (startingPointIn && currentPointIn && !input.hasMoved() &&
+                   (input.justReleased() && input.isJustTap())) {
                    /*if (currentTap[0] == i && currentTap[1] == i2) {
                        numTaps++;
                        if (numTaps % 3 == 0) {*/
@@ -48,7 +48,7 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                 }
 
                 // DRAGGING
-                /* else */ if (startingPointIn && input.hasMoved() &&
+                else if (startingPointIn && input.hasMoved() &&
                     (input.justReleased() || input.isPressing())) {
                     dragStart[0] = i;
                     dragStart[1] = i2;
