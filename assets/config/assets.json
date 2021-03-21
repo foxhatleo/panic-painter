@@ -8,6 +8,9 @@
      },
      "panda": {
          "file": "textures/characters/panda.png"
+     },
+     "background": {
+         "file": "textures/background.png"
      }
   },
   "jsons": {

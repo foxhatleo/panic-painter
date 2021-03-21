@@ -9,8 +9,6 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
     int dragStart[2] = { -1, -1 };
     //This saves the position of the last tap. 
     int currentTap[2] = { -1, -1 };
-    //This saves the number of taps that have occurred thus far. Once this number reaches 3, then a scribble occurred
-    int numTaps = 0; 
 
     // First passthrough of the canvas.
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
@@ -30,21 +28,9 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                     InputController::inScene(input.currentPoint(), _canvases[i][i2]->getInteractionNode());
 
                 // SCRIBBLING
-                if (startingPointIn && currentPointIn && !input.hasMoved() &&
-                   (input.justReleased() && input.isJustTap())) {
-                   /*if (currentTap[0] == i && currentTap[1] == i2) {
-                       numTaps++;
-                       if (numTaps % 3 == 0) {*/
-                           _state.clearColor(i, i2, selectedColor);
-                           currentTap[0] = -1; 
-                           currentTap[1] = -1; 
-                           numTaps == 0; 
-                       //}
-                   //}
-        
-                    //The last tap was here. Keeping this in two if statements in case we want anmiations for each tap
-
-
+                if (input.didTripleTap() && input.justReleased() &&
+                    startingPointIn && currentPointIn) {
+                    _state.clearColor(i, i2, selectedColor);
                 }
 
                 // DRAGGING
@@ -98,7 +84,6 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
         // This suggests that he/she/they gave up on dragging.
         if (input.justReleased() && toClear.size() > 1) {
             for (auto& p : toClear) {
-
                 _state.clearColor(p.first, p.second, selectedColor);
             }
         }
