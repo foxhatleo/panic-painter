@@ -1,7 +1,8 @@
 #include "PPCanvasBlock.h"
 #include <string>
 
-ptr<CanvasBlock> CanvasBlock::alloc(const asset_t& assets,
+ptr<CanvasBlock> CanvasBlock::alloc(
+    const asset_t &assets,
     float size,
     const vec<Color4>& colors) {
     auto result = make_shared<CanvasBlock>();
@@ -12,7 +13,7 @@ ptr<CanvasBlock> CanvasBlock::alloc(const asset_t& assets,
     return result;
 }
 
-void CanvasBlock::_setup(const asset_t& assets, const vec<Color4>& colors) {
+void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors) {
     
     string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2", "dog-1", "dog-2", "dog-3", "frog", "octopus"};
     
@@ -27,7 +28,8 @@ void CanvasBlock::_setup(const asset_t& assets, const vec<Color4>& colors) {
     _bg->setPosition(0, 0);
     addChild(_bg);
     
-    _talk_bubble = scene2::PolygonNode::allocWithTexture(assets->get<Texture>("talk_bubble"));
+    _talk_bubble = scene2::PolygonNode::allocWithTexture(assets->get<Texture>
+        ("talk-bubble"));
     _talk_bubble->setColor(Color4::WHITE);
     float scaleBubble = getWidth() /( _talk_bubble->getWidth()*1.55);
     _talk_bubble->setScale(scaleBubble, scaleBubble);
@@ -36,8 +38,10 @@ void CanvasBlock::_setup(const asset_t& assets, const vec<Color4>& colors) {
     addChild(_talk_bubble);
     
     // Color strip
-    _colorStrip = ColorStrip::alloc(getWidth(), colors);
-    _colorStrip->setPosition(_talk_bubble->getWidth()/2, getHeight()*2 - (_talk_bubble->getHeight()/2));
+    _colorStrip = ColorStrip::alloc(assets, colors);
+    _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
+    auto bubbleBox = _talk_bubble->getBoundingBox();
+    _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
     addChild(_colorStrip);
 
     

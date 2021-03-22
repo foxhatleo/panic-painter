@@ -19,21 +19,16 @@ protected:
     /** Color list. */
     const vec<Color4> _colors;
 
+    const asset_t &_assets;
+
 public:
     /** @deprecated Constructor. */
-    explicit ColorStrip(const vec<Color4> &colors) :
-            SceneNode(), _lastNumberOfColors(0), _colors(colors) {};
+    explicit ColorStrip(const asset_t &assets, const vec<Color4> &colors) :
+            SceneNode(), _lastNumberOfColors(0),
+            _colors(colors), _assets(assets) {};
 
-    /** Allocate a color strip with bounds. */
-    static ptr<ColorStrip> alloc(const Rect &rect,
-                                 const vec<Color4> &colors);
-
-    /** Allocate a color strip with size and position at (0,0). */
-    static ptr<ColorStrip> alloc(const Size &size,
-                                 const vec<Color4> &colors);
-
-    /** Allocate a color strip in a square of (size,size). */
-    static ptr<ColorStrip> alloc(float size,
+    /** Allocate a color strip. */
+    static ptr<ColorStrip> alloc(const asset_t &assets,
                                  const vec<Color4> &colors);
 
     /**

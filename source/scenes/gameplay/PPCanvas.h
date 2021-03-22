@@ -22,14 +22,6 @@ private:
     
     /** The timer instance. */
     ptr<Timer> _timer;
-    
-    
-    vec<Color4> _colors;
-    
-    uint _queueInd;
-    
-    uint _numOfQueues;
-
 
     /**
      * Set up.

@@ -6,6 +6,7 @@
   },
   "input": {
     "holdThreshold": 0.5,
-    "moveThreshold": 30
+    "moveThreshold": 30,
+    "consecutiveTapThreshold": 0.5
   }
 }

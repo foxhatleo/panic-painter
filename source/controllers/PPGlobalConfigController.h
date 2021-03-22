@@ -5,6 +5,7 @@
 
 /**
  * This includes JSON-based global configuration.
+ * @author Dragonglass Studios
  */
 class GlobalConfigController {
 private:
@@ -39,7 +40,14 @@ public:
     /** Canvas per color time. */
     float getCanvasPerColorTime();
 
+    /** Move threshold. */
     float getInputMoveThreshold();
+
+    /** Hold threshold. */
+    float getInputHoldThreshold();
+
+    /** Consecutive tap threshold. */
+    float getInputConsecutiveTapThreshold();
 
     static GlobalConfigController &getInstance() { return _instance; }
 };

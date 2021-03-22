@@ -24,9 +24,6 @@ ptr<Canvas> Canvas::alloc(const asset_t &assets, const vec<Color4> &colors,
 void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
                     const ptr<Timer> &timer, uint queueInd, uint numOfQueues) {
     _timer = timer;
-    _colors = colors;
-    _queueInd = queueInd;
-    _numOfQueues = numOfQueues;
 
     float containerWidth = getWidth() - PALETTE_PADDING;
     float laneWidth = containerWidth / MAX_QUEUE;
@@ -72,6 +69,8 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
 
         // Update block.
         _block->update(canvasColors, _timer);
+
+    // If the block is going from shown to hidden.
     } else if (_block->getParent() != nullptr && state != _previousState) {
         if (state == DONE) {
             _block->markDone();

@@ -1,24 +1,27 @@
 #include "PPInputController.h"
 
+#define MAX_INPUT_INSTANCES_SAVED 3
+
+// This is necessary for static initializations.
 InputController InputController::_instance;
 float InputController::_moveThreshold;
 float InputController::_holdThreshold;
 float InputController::_consecutiveTapThreshold;
 
 InputController::InputInstance::InputInstance(float timeSinceLastInstance) {
-    _totalMovement = 0;
-    _currentlyDown = true;
-    _timeSinceLastInstance = timeSinceLastInstance;
-    _holdTime = 0;
+    totalMovement = 0;
+    currentlyDown = true;
+    this->timeSinceLastInstance = timeSinceLastInstance;
+    holdTime = 0;
 #ifdef CU_TOUCH_SCREEN
     auto *touchscreen = Input::get<Touchscreen>();
     auto touches = touchscreen->touchSet();
-    _touchId = touches[0];
-    _startPoint = _lastPoint = touchscreen->touchPosition(_touchId);
+    touchId = touches[0];
+    startingPoint = lastPoint = touchscreen->touchPosition(touchId);
 #else
     auto *mouse = Input::get<Mouse>();
-    _touchId = -1;
-    _startPoint = _lastPoint = mouse->pointerPosition();
+    touchId = -1;
+    startingPoint = lastPoint = mouse->pointerPosition();
 #endif
 }
 
@@ -27,30 +30,29 @@ bool InputController::InputInstance::update(float timestep) {
     auto *touchscreen = Input::get<Touchscreen>();
     auto touches = touchscreen->touchSet();
     bool hasInput =
-        find(touches.begin(), touches.end(), _touchId) != touches.end();
-    if (!hasInput) {
-        _currentlyDown = false;
-        return false;
-    } else if (!_currentlyDown) return true;
-    Vec2 oldLastPoint = _lastPoint;
-    _lastPoint = touchscreen->touchPosition(_touchId);
+        find(touches.begin(), touches.end(), touchId) != touches.end();
 #else
     auto *mouse = Input::get<Mouse>();
     bool hasInput = mouse->buttonDown().hasLeft();
-    if (!hasInput) {
-        _currentlyDown = false;
-        return false;
-    } else if (!_currentlyDown) return true;
-    Vec2 oldLastPoint = _lastPoint;
-    _lastPoint = mouse->pointerPosition();
 #endif
-    _holdTime += timestep;
-    _totalMovement += (_lastPoint - oldLastPoint).length();
+    if (!hasInput) {
+        currentlyDown = false;
+        return false;
+    } else if (!currentlyDown) return true;
+    Vec2 oldLastPoint = lastPoint;
+    lastPoint =
+#ifdef CU_TOUCH_SCREEN
+        touchscreen->touchPosition(touchId);
+#else
+        mouse->pointerPosition();
+#endif
+    holdTime += timestep;
+    totalMovement += (lastPoint - oldLastPoint).length();
     return true;
 }
 
 Vec2 InputController::InputInstance::_inputToScreen(Vec2 pt) {
-    return Vec2(pt.x, Application::get()->getDisplayHeight() - pt.y);
+    return {pt.x, (float) Application::get()->getDisplayHeight() - pt.y};
 }
 
 void InputController::init() {
@@ -65,8 +67,8 @@ void InputController::init() {
 void InputController::loadConfig() {
     auto &gc = GlobalConfigController::getInstance();
     _moveThreshold = gc.getInputMoveThreshold();
-    _holdThreshold = 0.2;
-    _consecutiveTapThreshold = 0.5;
+    _holdThreshold = gc.getInputHoldThreshold();
+    _consecutiveTapThreshold = gc.getInputConsecutiveTapThreshold();
 }
 
 void InputController::dispose() {
@@ -96,7 +98,7 @@ void InputController::update(float timestep) {
             _timeWithoutInput += timestep;
         }
     } else {
-        if (!_currentInput->getCurrentlyDown())
+        if (!_currentInput->currentlyDown)
             _timeWithoutInput += timestep;
         if (!_currentInput->update(timestep))
             _currentInput = nullptr;
@@ -104,7 +106,7 @@ void InputController::update(float timestep) {
 }
 
 bool InputController::isPressing() const {
-    return _currentInput != nullptr && _currentInput->getCurrentlyDown();
+    return _currentInput != nullptr && _currentInput->currentlyDown;
 }
 
 bool InputController::justReleased() const {
@@ -112,15 +114,11 @@ bool InputController::justReleased() const {
 }
 
 Vec2 InputController::startingPoint() const {
-    return !_inputs.empty() ? _inputs.front()->getStartPoint() : Vec2(0, 0);
+    return !_inputs.empty() ? _inputs.front()->getStartingPoint() : Vec2(0, 0);
 }
 
 bool InputController::hasMoved() const {
     return !_inputs.empty() && _inputs.front()->hasMoved();
-}
-
-bool InputController::isJustTap() const {
-    return !_inputs.empty() && _inputs.front()->isJustTap();
 }
 
 Vec2 InputController::currentPoint() const {
@@ -151,14 +149,14 @@ void InputController::ignoreThisTouch() {
 
 bool InputController::didDoubleTap() {
     return _inputs.size() >= 2 &&
-        _inputs[0]->isJustTap() &&
-        _inputs[1]->isJustTap() &&
-        _inputs[0]->getTimeSinceLastInstance() <= _consecutiveTapThreshold;
+           _inputs[0]->isJustTap() &&
+           _inputs[1]->isJustTap() &&
+           _inputs[0]->timeSinceLastInstance <= _consecutiveTapThreshold;
 }
 
 bool InputController::didTripleTap() {
     return didDoubleTap() &&
-        _inputs.size() >= 3 &&
-        _inputs[2]->isJustTap() &&
-        _inputs[1]->getTimeSinceLastInstance() <= _consecutiveTapThreshold;
+           _inputs.size() >= 3 &&
+           _inputs[2]->isJustTap() &&
+           _inputs[1]->timeSinceLastInstance <= _consecutiveTapThreshold;
 }

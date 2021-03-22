@@ -1,8 +1,8 @@
 #include "PPActionController.h"
 
-void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
-    uint selectedColor) {
-    auto& input = InputController::getInstance();
+void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
+                              uint selectedColor) {
+    auto &input = InputController::getInstance();
 
     // This saves the position of the canvas where dragging starts.
     // If {-1, -1} that means we are not dragging.
@@ -21,9 +21,11 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                 activeCanvases.end()) {
                 // Cache two useful input values.
                 bool startingPointIn =
-                    InputController::inScene(input.startingPoint(), _canvases[i][i2]->getInteractionNode());
+                    InputController::inScene(input.startingPoint(),
+                                             _canvases[i][i2]->getInteractionNode());
                 bool currentPointIn =
-                    InputController::inScene(input.currentPoint(), _canvases[i][i2]->getInteractionNode());
+                    InputController::inScene(input.currentPoint(),
+                                             _canvases[i][i2]->getInteractionNode());
 
                 // SCRIBBLING
                 if (input.didTripleTap() && input.justReleased() &&
@@ -67,17 +69,19 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
                 ptr<SceneNode> in_end = _canvases[i][i2]->getInteractionNode();
                 Mat4 in_start_mat = in_start->getNodeToWorldTransform();
                 Mat4 in_end_mat = in_end->getNodeToWorldTransform();
-                Rect in_start_box = in_start_mat.transform(Rect(Vec2::ZERO, in_start->getContentSize()));
-                Rect in_end_box = in_end_mat.transform(Rect(Vec2::ZERO, in_end->getContentSize()));
+                Rect in_start_box = in_start_mat.transform(
+                    Rect(Vec2::ZERO, in_start->getContentSize()));
+                Rect in_end_box = in_end_mat.transform(
+                    Rect(Vec2::ZERO, in_end->getContentSize()));
 
                 if (
                     (i == dragStart[0] && i2 == dragStart[1]) ||
                     (in_start_box.getMinX() > in_end_box.getMinX() ?
-                        input.currentPoint().x <= in_end_box.getMaxX() :
-                        input.currentPoint().x >= in_end_box.getMinX())
+                     input.currentPoint().x <= in_end_box.getMaxX() :
+                     input.currentPoint().x >= in_end_box.getMinX())
                     ) {
                     _canvases[i][i2]->setHover(input.isPressing());
-                    toClear.push_back({ i, i2 });
+                    toClear.push_back({i, i2});
                 }
             }
         }
@@ -86,7 +90,7 @@ void ActionController::update(const set<pair<uint, uint>>& activeCanvases,
         // If there is only one, that means the user started dragging but went back to the original canvas.
         // This suggests that he/she/they gave up on dragging.
         if (input.justReleased() && toClear.size() > 1) {
-            for (auto& p : toClear) {
+            for (auto &p : toClear) {
                 _state.clearColor(p.first, p.second, selectedColor);
             }
         }

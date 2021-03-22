@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        dragonglass {
+            storeFile file('C:\\Users\\leoliang\\dragonglass.jks')
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 

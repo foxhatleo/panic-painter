@@ -1,6 +1,6 @@
 {
   "textures": {
-     "color_circle": {
+     "color-circle": {
          "file": "textures/color_circle.png"
      },
      "palette": {
@@ -12,7 +12,7 @@
     "background": {
       "file": "textures/background.png"
     },
-    "talk_bubble": {
+    "talk-bubble": {
       "file": "textures/talk_bubble.png"
     },
      "cat-1": {

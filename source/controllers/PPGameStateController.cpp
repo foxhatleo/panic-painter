@@ -39,11 +39,13 @@ void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
     // For time, use global if not level-defined.
     float
         levelTime = timer == nullptr ? gc.getLevelTime() :
-        timer->getFloat("levelTime", gc.getLevelTime()),
+                    timer->getFloat("levelTime", gc.getLevelTime()),
         canvasBaseTime = timer == nullptr ? gc.getCanvasBaseTime() :
-        timer->getFloat("canvasBaseTime", gc.getCanvasBaseTime()),
+                         timer->getFloat("canvasBaseTime",
+                                         gc.getCanvasBaseTime()),
         canvasPerColorTime = timer == nullptr ? gc.getCanvasPerColorTime() :
-        timer->getFloat("canvasPerColorTime", gc.getCanvasPerColorTime());
+                             timer->getFloat("canvasPerColorTime",
+                                             gc.getCanvasPerColorTime());
 
     for (const auto &queueRef : _state.queues) {
         vec<ptr<Timer>> queueTimers;
@@ -115,10 +117,10 @@ CanvasState GameStateController::getCanvasState(uint q, uint c) const {
     // If the previous one is done or lost, then this one is the frontmost.
     // In other words, it must be active.
     else if (previous == DONE || previous == LOST_DUE_TO_TIME ||
-    previous == LOST_DUE_TO_WRONG_ACTION)
+             previous == LOST_DUE_TO_WRONG_ACTION)
         return ACTIVE;
 
-    // In all other scenarios, the canvas is hidden.
+        // In all other scenarios, the canvas is hidden.
     else return HIDDEN;
 }
 

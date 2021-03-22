@@ -2,51 +2,92 @@
 #define PANICPAINTER_PPINPUTCONTROLLER_H
 
 #include "utils/PPHeader.h"
-#include "controllers/PPGlobalConfigController.h"
+#include "PPGlobalConfigController.h"
 
-#define MAX_INPUT_INSTANCES_SAVED 5
-
+/**
+ * InputController deals with raw input of either mouse of touch. It supports
+ * only one touch at a time.
+ * @author Dragonglass Studios
+ */
 class InputController {
 private:
+    /** Move threshold. */
     static float _moveThreshold;
+
+    /** Hold threshold. */
     static float _holdThreshold;
+
+    /** Max between consecutive touches for double-, triple-tap, etc. */
     static float _consecutiveTapThreshold;
 
-    class InputInstance {
-    private:
-        float _holdTime;
-        Vec2 _startPoint;
-        Vec2 _lastPoint;
-        float _totalMovement;
-        bool _currentlyDown;
-        TouchID _touchId;
-        float _timeSinceLastInstance;
+    /**
+     * Record of a single touch/click.
+     */
+    struct InputInstance {
+        /** Time held down. */
+        float holdTime;
 
+        /** Starting point of this input in input coordinate not screen. */
+        Vec2 startingPoint;
+
+        /** Last point of this input in input coordinate not screen. */
+        Vec2 lastPoint;
+
+        /** Total movement of this input instance. */
+        float totalMovement;
+
+        /** Whether this input is currently active and not ignored. */
+        bool currentlyDown;
+
+        /** Touch ID for touch screen. */
+        TouchID touchId;
+
+        /** Time since last input instance. */
+        float timeSinceLastInstance;
+
+        /** Convert an input coordinate to screen. */
         static Vec2 _inputToScreen(Vec2 pt);
 
-    public:
+        /** Constructor. */
         explicit InputInstance(float timeSinceLastInstance);
 
-        float getHoldTime() const { return _holdTime; }
-        Vec2 getStartPoint() const { return _inputToScreen(_startPoint); }
-        Vec2 getLastPoint() const { return _inputToScreen(_lastPoint); }
-        float getTotalMovement() const { return _totalMovement; }
-        bool getCurrentlyDown() const { return _currentlyDown; }
-        bool isJustTap() const
-        {
-            return _holdTime < _holdThreshold && isStationary();
-        }
-        bool isStationary() const
-        { return _totalMovement < _moveThreshold; }
-        bool hasMoved() const { return !isStationary(); }
-        float getTimeSinceLastInstance() const { return _timeSinceLastInstance; }
+        /** Starting point in screen coordinates. */
+        Vec2 getStartingPoint() const { return _inputToScreen(startingPoint); }
 
+        /** Last point in screen coordinates. */
+        Vec2 getLastPoint() const { return _inputToScreen(lastPoint); }
+
+        /** Whether this input is just a tap. */
+        bool isJustTap() const {
+            return holdTime < _holdThreshold && !hasMoved();
+        }
+
+        /** Whether this input has moved (farther than move threshold). */
+        bool hasMoved() const { return totalMovement >= _moveThreshold; }
+
+        /**
+         * Update.
+         * @return False if **physical input** is no longer active.
+         */
         bool update(float timestep);
-        void ignore() { _currentlyDown = false; }
+
+        /** Ignore this input. */
+        void ignore() { currentlyDown = false; }
     };
 
+    /** The queue of inputs. Front is newest, back is oldest. */
     deque<ptr<InputInstance>> _inputs;
+
+    /**
+     * Current input. This is nullptr when no **physical input** exists (i.e.
+     * when no mouse or touch is down) This is *not* nullptr when physical
+     * input exists but it is ignored.
+     */
     ptr<InputInstance> _currentInput;
+
+    /**
+     * Counter for time since last input release.
+     */
     float _timeWithoutInput;
 
     static InputController _instance;
@@ -83,14 +124,13 @@ public:
     /** Get whether the finger has moved according to the move threshold. */
     bool hasMoved() const;
 
-    /**See if the time held is under the max */
-    bool isJustTap() const;
-
     /** Ignore the current touch. */
     void ignoreThisTouch();
 
+    /** Check if last input resulted in a double tap. */
     bool didDoubleTap();
 
+    /** Check if last input resulted in a triple tap. */
     bool didTripleTap();
 
     /** Utility function to check if a point is in a scene node. */
