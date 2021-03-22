@@ -34,11 +34,15 @@ private:
     
     ptr<PolygonNode> _levelProgressBar;
     
+    ptr<PolygonNode> _levelProgressBarBackground;
+    
     float _totalLevelTime;
     
     float _progressBarWidth;
 
     bool _pauseRequest;
+    
+    string format_time(float timeRemaining);
 
 public:
     GameScene() : Scene2() {}
