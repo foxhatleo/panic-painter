@@ -106,6 +106,7 @@
 		EBDD16D625C35D3400154533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C725C35D3400154533 /* CoreGraphics.framework */; };
 		EBEC12022194B6F4007E708B /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEC12012194B6F4007E708B /* Metal.framework */; };
 		EE8DD0FF26080CD300F12ACE /* PPActionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8DD0FB26080CD300F12ACE /* PPActionController.cpp */; };
+		EE8DD10B2608E1E500F12ACE /* PPPauseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8DD1062608E1E500F12ACE /* PPPauseScene.cpp */; };
 		EEAF56A1260694F4005C6FF7 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEAF56A0260694F4005C6FF7 /* PPCanvasBlock.cpp */; };
 		EEAF56AB26069574005C6FF7 /* PPColorStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEAF56A926069574005C6FF7 /* PPColorStrip.cpp */; };
 		EEFA1A4425F68DA7004641A1 /* PPColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */; };
@@ -207,6 +208,8 @@
 		EBDD16C725C35D3400154533 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		EBEC12012194B6F4007E708B /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EE8DD0FB26080CD300F12ACE /* PPActionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPActionController.cpp; sourceTree = "<group>"; };
+		EE8DD1062608E1E500F12ACE /* PPPauseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPPauseScene.cpp; sourceTree = "<group>"; };
+		EE8DD1072608E1E500F12ACE /* PPPauseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPauseScene.h; sourceTree = "<group>"; };
 		EEAF56A0260694F4005C6FF7 /* PPCanvasBlock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PPCanvasBlock.cpp; sourceTree = "<group>"; };
 		EEAF56A82606951F005C6FF7 /* PPCanvasBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPCanvasBlock.h; sourceTree = "<group>"; };
 		EEAF56A926069574005C6FF7 /* PPColorStrip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PPColorStrip.cpp; sourceTree = "<group>"; };
@@ -328,6 +331,7 @@
 		C5FB328925F41BCB000694C3 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				EE8DD1052608E1E500F12ACE /* pause */,
 				C5FB328A25F41BCB000694C3 /* loading */,
 				C5FB328D25F41BCC000694C3 /* gameplay */,
 			);
@@ -484,6 +488,15 @@
 			);
 			name = Source;
 			path = ../source;
+			sourceTree = "<group>";
+		};
+		EE8DD1052608E1E500F12ACE /* pause */ = {
+			isa = PBXGroup;
+			children = (
+				EE8DD1062608E1E500F12ACE /* PPPauseScene.cpp */,
+				EE8DD1072608E1E500F12ACE /* PPPauseScene.h */,
+			);
+			path = pause;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -715,6 +728,7 @@
 				C5621DB52604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
 				EB2BE9B51D74952A002FE78B /* PPApp.cpp in Sources */,
 				C5FB329F25F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				EE8DD10B2608E1E500F12ACE /* PPPauseScene.cpp in Sources */,
 				EEFA1A7125FA816D004641A1 /* PPAnimation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
