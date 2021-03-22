@@ -1,4 +1,5 @@
 #include "PPCanvasBlock.h"
+#include <string>
 
 ptr<CanvasBlock> CanvasBlock::alloc(const asset_t& assets,
     float size,
@@ -12,9 +13,13 @@ ptr<CanvasBlock> CanvasBlock::alloc(const asset_t& assets,
 }
 
 void CanvasBlock::_setup(const asset_t& assets, const vec<Color4>& colors) {
+    
+    string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2", "dog-1", "dog-2", "dog-3", "frog", "octopus"};
+    
+    int p = rand() % NUM_CHARACTERS;
 
     // Load in the panda texture from scene and attach to a new polygon node
-    _bg = scene2::PolygonNode::allocWithTexture(assets->get<Texture>("panda"));
+    _bg = scene2::PolygonNode::allocWithTexture(assets->get<Texture>(characters[p]));
     _bg->setColor(Color4::WHITE);
     float scale = getWidth() / _bg->getWidth();
     _bg->setScale(scale, scale);
@@ -35,6 +40,7 @@ void CanvasBlock::_setup(const asset_t& assets, const vec<Color4>& colors) {
     _timerText->setVerticalAlignment(scene2::Label::VAlign::BOTTOM);
     _timerText->setPosition(getWidth() / 2, 35);
     addChild(_timerText);
+
 
     _hoverAllowed = true;
 }
