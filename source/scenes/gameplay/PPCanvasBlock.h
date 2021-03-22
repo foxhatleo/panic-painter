@@ -5,6 +5,8 @@
 #include "utils/PPTimer.h"
 #include "PPColorStrip.h"
 #include "utils/PPAnimation.h"
+#include <string>
+#define NUM_CHARACTERS 10
 
 /**
  * Canvas block is the little square that represents a canvas. It also includes
@@ -30,6 +32,7 @@ private:
 
     /** Set up this block. */
     void _setup(const asset_t &assets, const vec<Color4> &colors);
+    
 
 public:
     /** Allocate canvas block with a particular length on the side. */

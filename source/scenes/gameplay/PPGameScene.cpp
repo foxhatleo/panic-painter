@@ -1,4 +1,5 @@
 #include "PPGameScene.h"
+#include <ctime>
 
 #define ANIMATION_RELATIVE 10000000
 
@@ -10,6 +11,7 @@ bool GameScene::init(const asset_t &assets) {
     Size screenSize = Application::get()->getDisplaySize();
     if (assets == nullptr || !Scene2::init(screenSize)) return false;
     _assets = assets;
+    srand(time(0));
     return true;
 }
 
@@ -29,7 +31,6 @@ void GameScene::loadLevel(const char *levelName) {
         ("background"));
     background->setContentSize(Application::get()->getDisplaySize());
     addChild(background);
-
     // Clear canvases.
     _canvases.clear();
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {

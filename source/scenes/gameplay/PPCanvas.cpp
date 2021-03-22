@@ -71,7 +71,6 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
         }
 
         // Update block.
-        CULog("%f", _timer->timeLeft());
         _block->update(canvasColors, _timer);
     } else if (_block->getParent() != nullptr && state != _previousState) {
         if (state == DONE) {
