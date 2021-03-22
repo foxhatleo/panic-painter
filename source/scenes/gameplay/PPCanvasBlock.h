@@ -16,6 +16,9 @@ private:
     /** Background */
     ptr<PolygonNode> _bg;
 
+    /*The request bubble*/
+    ptr<PolygonNode> _talk_bubble;
+
     /** The color strip. */
     ptr<ColorStrip> _colorStrip;
 

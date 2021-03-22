@@ -9,9 +9,12 @@
      "panda": {
          "file": "textures/characters/panda.png"
      },
-     "background": {
-         "file": "textures/background.png"
-     }
+    "background": {
+      "file": "textures/background.png"
+    },
+    "talk_bubble": {
+      "file": "textures/talk_bubble.png"
+    }
   },
   "jsons": {
     "global": "config/global.json",

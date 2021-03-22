@@ -37,7 +37,6 @@
     <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp">
       <Filter>Scenes\Loading</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\controllers\PPInput.cpp" />
     <ClCompile Include="..\..\source\utils\PPAnimation.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -61,6 +60,15 @@
     </ClCompile>
     <ClCompile Include="..\..\source\controllers\PPInputController.cpp">
       <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPActionController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp">
+      <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="..\..\source\controllers\PPInputController.h">
       <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h">
+      <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

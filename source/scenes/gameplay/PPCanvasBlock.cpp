@@ -22,6 +22,13 @@ void CanvasBlock::_setup(const asset_t& assets, const vec<Color4>& colors) {
     _bg->setPosition(0, 0);
     addChild(_bg);
     
+   /* _talk_bubble = scene2::PolygonNode::allocWithTexture(assets->get<Texture>("talk_bubble"));
+    _talk_bubble->setColor(Color4::WHITE);
+    float scaleBubble = getWidth() / _talk_bubble->getWidth();
+    _talk_bubble->setScale(scaleBubble, scaleBubble);
+    _talk_bubble->setAnchor(Vec2::ANCHOR_TOP_RIGHT);
+    _talk_bubble->setPosition(0, 0);
+    addChild(_talk_bubble);*/
     
     // Color strip
     _colorStrip = ColorStrip::alloc(getWidth(), colors);
