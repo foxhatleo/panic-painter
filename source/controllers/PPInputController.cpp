@@ -147,14 +147,19 @@ void InputController::ignoreThisTouch() {
         _currentInput->ignore();
 }
 
-bool InputController::didDoubleTap() {
+
+bool InputController::isJustTap() const {
+    return !_inputs.empty() && _inputs.front()->isJustTap();
+}
+
+bool InputController::didDoubleTap() const {
     return _inputs.size() >= 2 &&
            _inputs[0]->isJustTap() &&
            _inputs[1]->isJustTap() &&
            _inputs[0]->timeSinceLastInstance <= _consecutiveTapThreshold;
 }
 
-bool InputController::didTripleTap() {
+bool InputController::didTripleTap() const {
     return didDoubleTap() &&
            _inputs.size() >= 3 &&
            _inputs[2]->isJustTap() &&

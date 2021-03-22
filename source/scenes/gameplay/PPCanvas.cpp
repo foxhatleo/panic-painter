@@ -1,6 +1,6 @@
 #include "PPCanvas.h"
 
-#define PADDING 5
+#define PADDING 0
 #define PALETTE_PADDING 120
 #define MAX_QUEUE 6
 #define OFFSET_FROM_TOP 240

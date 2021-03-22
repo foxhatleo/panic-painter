@@ -5,6 +5,7 @@
 #include "utils/PPAnimation.h"
 #include "scenes/loading/PPLoadingScene.h"
 #include "scenes/gameplay/PPGameScene.h"
+#include "scenes/pause/PPPauseScene.h"
 #include "controllers/PPGlobalConfigController.h"
 #include "controllers/PPInputController.h"
 

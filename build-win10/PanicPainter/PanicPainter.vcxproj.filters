@@ -26,6 +26,9 @@
     <Filter Include="Models">
       <UniqueIdentifier>{0c54b165-221a-4191-9051-54c4640ab79d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Pause">
+      <UniqueIdentifier>{a1a0c970-5c51-4088-b971-4b935ff8bb6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\main.cpp">
@@ -69,6 +72,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp">
       <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\pause\PPPauseScene.cpp">
+      <Filter>Scenes\Pause</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h">
       <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\pause\PPPauseScene.h">
+      <Filter>Scenes\Pause</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

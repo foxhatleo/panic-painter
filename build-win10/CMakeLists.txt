@@ -32,7 +32,9 @@ set(PP_FILES
         ../source/utils/PPAnimation.h
         ../source/utils/PPAnimation.cpp
         ../source/controllers/PPActionController.h
-        ../source/controllers/PPActionController.cpp)
+        ../source/controllers/PPActionController.cpp
+        ../source/scenes/pause/PPPauseScene.h
+        ../source/scenes/pause/PPPauseScene.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
@@ -179,8 +181,7 @@ set(BOX2D_FILES
         "../cugl/external/Box2D/Dynamics/Joints/b2WeldJoint.cpp"
         "../cugl/external/Box2D/Dynamics/Joints/b2WeldJoint.h"
         "../cugl/external/Box2D/Dynamics/Joints/b2WheelJoint.cpp"
-        "../cugl/external/Box2D/Dynamics/Joints/b2WheelJoint.h"
-        )
+        "../cugl/external/Box2D/Dynamics/Joints/b2WheelJoint.h")
 add_library(Box2D STATIC ${BOX2D_FILES})
 use_props(Box2D "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 set(ROOT_NAMESPACE Box2D)

@@ -77,6 +77,10 @@ void PanicPainterApp::update(float timestep) {
         }
         case GAME_SCENE: {
             _gameplay.update(timestep);
+            if (_gameplay.getPauseRequest()) {
+                // TODO: Now it is screen.
+                _gameplay.loadLevel("gameplay");
+            }
             break;
         }
 

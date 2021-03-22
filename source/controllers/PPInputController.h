@@ -127,11 +127,14 @@ public:
     /** Ignore the current touch. */
     void ignoreThisTouch();
 
+    /** Check if last touch is just a tap. */
+    bool isJustTap() const;
+
     /** Check if last input resulted in a double tap. */
-    bool didDoubleTap();
+    bool didDoubleTap() const;
 
     /** Check if last input resulted in a triple tap. */
-    bool didTripleTap();
+    bool didTripleTap() const;
 
     /** Utility function to check if a point is in a scene node. */
     static bool inScene(const Vec2 &point, const ptr<SceneNode> &scene);

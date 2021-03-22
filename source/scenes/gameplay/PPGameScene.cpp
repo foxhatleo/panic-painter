@@ -80,6 +80,13 @@ void GameScene::update(float timestep) {
     // So the first thing is to update the game state.
     _state.update(timestep);
 
+    auto &input = InputController::getInstance();
+    if (input.justReleased() && input.isJustTap() &&
+    Rect(0, this->getSize().height - 120, 120, 120)
+    .contains(input.currentPoint())) {
+        _pauseRequest = true;
+    }
+
     set<pair<uint, uint>> activeCanvases;
 
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
