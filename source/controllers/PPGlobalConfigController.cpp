@@ -41,3 +41,11 @@ float GlobalConfigController::getCanvasPerColorTime() {
 float GlobalConfigController::getInputMoveThreshold() {
     return _getInputConfig()->getFloat("moveThreshold");
 }
+
+float GlobalConfigController::getInputHoldThreshold() {
+    return _getInputConfig()->getFloat("holdThreshold");
+}
+
+float GlobalConfigController::getInputConsecutiveTapThreshold() {
+    return _getInputConfig()->getFloat("consecutiveTapThreshold");
+}

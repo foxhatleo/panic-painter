@@ -31,6 +31,14 @@ private:
     ptr<ColorPalette> _palette;
 
     ptr<ActionController> _action;
+    
+    ptr<PolygonNode> _levelProgressBar;
+    
+    float _totalLevelTime;
+    
+    float _progressBarWidth;
+
+    bool _pauseRequest;
 
 public:
     GameScene() : Scene2() {}
@@ -48,6 +56,12 @@ public:
      * @param levelName The name of the level, must be defined in assets JSON.
      */
     void loadLevel(const char *levelName);
+
+    bool getPauseRequest() {
+        bool r = _pauseRequest;
+        _pauseRequest = false;
+        return r;
+    }
 };
 
 #endif //PANICPAINTER_PPGAMESCENE_H

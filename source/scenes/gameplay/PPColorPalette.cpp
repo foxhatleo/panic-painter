@@ -8,16 +8,16 @@
 
 #include "PPColorPalette.h"
 
-#define PALETTE_COLOR_SIZE 45.0f
+#define PALETTE_COLOR_SIZE 50.0f
 /** Space between dots. */
-#define PADDING 15.0f
+#define PADDING 12.0f
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
 
 ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos,
                                       const vec<Color4> &colors,
                                       const asset_t &assets) {
-    auto colorTexture = assets->get<Texture>("color_circle");
+    auto colorTexture = assets->get<Texture>("color-circle");
     auto paletteTexture = assets->get<Texture>("palette");
     auto result =
         make_shared<ColorPalette>(colors, colorTexture, paletteTexture);

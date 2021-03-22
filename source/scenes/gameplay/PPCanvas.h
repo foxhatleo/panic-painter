@@ -6,6 +6,7 @@
 #include "utils/PPTypeDefs.h"
 #include "utils/PPTimer.h"
 #include "utils/PPAnimation.h"
+#include "PPCanvasBlock.h"
 
 /**
  * Canvas is the container for one character and the canvas.
@@ -13,7 +14,14 @@
  */
 class Canvas : public SceneNode {
 private:
-    // ADD ANY FIELDS YOU NEED HERE.
+    /** Block */
+    ptr<CanvasBlock> _block;
+    
+    /** Previous state. */
+    CanvasState _previousState;
+    
+    /** The timer instance. */
+    ptr<Timer> _timer;
 
     /**
      * Set up.
@@ -38,7 +46,8 @@ public:
                              const vec<Color4> &colors,
                              const ptr<Timer> &timer,
                              uint queueInd,
-                             uint numOfQueues);
+                             uint numOfQueues,
+                             const Rect &bound);
 
     ptr<SceneNode> getInteractionNode() const;
 

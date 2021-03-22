@@ -6,6 +6,10 @@
 #include "models/PPGameState.h"
 #include "controllers/PPGlobalConfigController.h"
 
+/**
+ * GameStateController initializes and modifies game state.
+ * @author Dragonglass Studios
+ */
 class GameStateController {
 private:
     GameState _state;

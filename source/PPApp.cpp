@@ -54,7 +54,7 @@ void PanicPainterApp::onLoaded() {
 void PanicPainterApp::update(float timestep) {
     // Update global controllers.
     Animation::updateGlobal(timestep);
-    InputController::getInstance().update();
+    InputController::getInstance().update(timestep);
 
     switch (_currentScene) {
         case LOADING_SCENE: {
@@ -77,11 +77,16 @@ void PanicPainterApp::update(float timestep) {
         }
         case GAME_SCENE: {
             _gameplay.update(timestep);
+            if (_gameplay.getPauseRequest()) {
+                // TODO: Now it is screen.
+                _gameplay.loadLevel("gameplay");
+            }
             break;
         }
 
         default: {
-            CUAssertLog(false, "Trying to update unknown scene: %d",
+            CUAssertLog(false,
+                        "Trying to update unknown scene: %d",
                         _currentScene);
             break;
         }
@@ -101,7 +106,8 @@ void PanicPainterApp::draw() {
         }
 
         default: {
-            CUAssertLog(false, "Trying to draw unknown scene: %d",
+            CUAssertLog(false,
+                        "Trying to draw unknown scene: %d",
                         _currentScene);
             break;
         }
