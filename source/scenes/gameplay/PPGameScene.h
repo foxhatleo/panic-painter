@@ -31,6 +31,12 @@ private:
     ptr<ColorPalette> _palette;
 
     ptr<ActionController> _action;
+    
+    ptr<PolygonNode> _levelProgressBar;
+    
+    float _totalLevelTime;
+    
+    float _progressBarWidth;
 
 public:
     GameScene() : Scene2() {}
