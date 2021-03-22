@@ -41,6 +41,12 @@
      },
      "octopus": {
          "file": "textures/characters/octopus.png"
+     },
+     "level-timer-foreground": {
+         "file": "textures/level-progress/level-timer-foreground.png"
+     },
+     "level-timer-background": {
+         "file": "textures/level-progress/level-timer-background.png"
      }
   },
   "jsons": {
@@ -51,6 +57,10 @@
   "fonts": {
     "roboto": {
       "file": "fonts/Roboto-Regular.ttf",
+      "size": 40
+    },
+    "jua": {
+      "file": "fonts/Jua-Regular.ttf",
       "size": 40
     }
   }
