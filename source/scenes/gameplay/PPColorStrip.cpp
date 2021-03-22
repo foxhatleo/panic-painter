@@ -1,10 +1,10 @@
 #include "PPColorStrip.h"
 
 /** Size of each dot. */
-#define COLOR_SIZE 15
+#define COLOR_SIZE 30
 
 /** Space between dots. */
-#define PADDING 5
+#define PADDING 2
 
 ptr<ColorStrip> ColorStrip::alloc(const asset_t& assets,
                                   const vec<Color4> &colors) {
@@ -20,10 +20,6 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
 
     // Just redo the color dots. Remove them all.
     removeAllChildren();
-
-    auto a = PolygonNode::alloc(Rect(0, 0, 3, 3));
-    a->setColor(Color4f(1, 0, 0, 1));
-    addChild(a);
 
     for (uint i = 0; i < _lastNumberOfColors; i++) {
         auto colorTexture = _assets->get<Texture>("color-circle");

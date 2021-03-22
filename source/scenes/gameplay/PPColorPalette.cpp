@@ -8,9 +8,9 @@
 
 #include "PPColorPalette.h"
 
-#define PALETTE_COLOR_SIZE 45.0f
+#define PALETTE_COLOR_SIZE 50.0f
 /** Space between dots. */
-#define PADDING 15.0f
+#define PADDING 12.0f
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
 
