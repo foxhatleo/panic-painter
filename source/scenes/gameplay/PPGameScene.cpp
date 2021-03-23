@@ -49,41 +49,16 @@ void GameScene::loadLevel(const char *levelName) {
         _canvases.push_back(queue);
     }
 
-    // Level timer label.
-    _levelTimerText = Label::alloc("1", _assets->get<Font>("jua"));
-    _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
-    _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
-    _levelTimerText->setPosition(screenSize.width - 140, screenSize.height - 50);
-    
-    Rect boundingRect = Rect(0, screenSize.height - 30, screenSize.width - 150, 40);
-    _levelProgressBarBackground = PolygonNode::allocWithTexture(_assets->get<Texture>("level-timer-background"), boundingRect);
-    _levelProgressBarBackground->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
-    _levelProgressBarBackground->setPosition(0, screenSize.height - 30);
-    
-    _levelProgressBar = PolygonNode::allocWithTexture(_assets->get<Texture>("level-timer-foreground"), boundingRect);
-    _levelProgressBar->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
-    _levelProgressBar->setPosition(0, screenSize.height - 30);
-    
-    _totalLevelTime = _state.getLevelTimer()->timeLeft();
-    _progressBarWidth = screenSize.width - 150;
+    _globalTimer = GlobalTimer::alloc(_assets, screenSize);
 
     // change position to keep it to the left of the screen.
     _palette =
         ColorPalette::alloc(Vec2(-50, 0), _state.getColors(), _assets);
     
-    addChild(_levelProgressBarBackground);
-    addChild(_levelProgressBar);
-    addChild(_levelTimerText);
+    addChild(_globalTimer);
     addChild(_palette);
 
     _action = make_shared<ActionController>(_state, _canvases);
-}
-
-string GameScene::format_time(float timeRemaining) {
-    timeRemaining = ceil(timeRemaining);
-    uint seconds_left = (uint) timeRemaining % 60;
-    uint minutes_left = (uint) timeRemaining / 60;
-    return to_string(minutes_left) + ":" + (seconds_left < 10 ? "0" + to_string(seconds_left) : to_string(seconds_left));
 }
 
 void GameScene::update(float timestep) {
@@ -115,9 +90,7 @@ void GameScene::update(float timestep) {
 
     _palette->update();
     _action->update(activeCanvases, _palette->getSelectedColor());
+    _globalTimer->update(_state.getLevelTimer());
 
-    _levelTimerText->setText(format_time(_state.getLevelTimer()->timeLeft()));
-    
-    _levelProgressBar->setContentSize((_state.getLevelTimer()->timeLeft() / _totalLevelTime ) * _progressBarWidth, 40);
     Scene2::update(timestep);
 }

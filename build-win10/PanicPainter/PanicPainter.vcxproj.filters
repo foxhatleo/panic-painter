@@ -49,6 +49,9 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
@@ -131,6 +134,9 @@
       <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h">
