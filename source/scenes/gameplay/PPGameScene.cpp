@@ -11,7 +11,7 @@ bool GameScene::init(const asset_t &assets) {
     Size screenSize = Application::get()->getDisplaySize();
     if (assets == nullptr || !Scene2::init(screenSize)) return false;
     _assets = assets;
-    srand(time(0));
+    srand((uint) time(0));
     return true;
 }
 
@@ -49,28 +49,13 @@ void GameScene::loadLevel(const char *levelName) {
         _canvases.push_back(queue);
     }
 
-    // Level timer label.
-    _levelTimerText = Label::alloc("1", _assets->get<Font>("roboto"));
-    _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
-    _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
-    _levelTimerText->setPosition(10, screenSize.height - 50);
-    
-    _levelProgressBar = PolygonNode::alloc(Rect(50, screenSize.height - 50, screenSize.width - 100, 40));
-    //_levelProgressBar = PolygonNode::alloc();
-    _levelProgressBar->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
-    _levelProgressBar->setPosition(50, screenSize.height - 50);
-    //_levelProgressBar->setContentSize(screenSize.width - 50, 50);
-    _levelProgressBar->setColor(Color4(76, 171, 26));
-    
-    _totalLevelTime = _state.getLevelTimer()->timeLeft();
-    _progressBarWidth = screenSize.width - 100;
+    _globalTimer = GlobalTimer::alloc(_assets, screenSize);
 
     // change position to keep it to the left of the screen.
     _palette =
         ColorPalette::alloc(Vec2(-50, 0), _state.getColors(), _assets);
     
-    addChild(_levelProgressBar);
-    addChild(_levelTimerText);
+    addChild(_globalTimer);
     addChild(_palette);
 
     _action = make_shared<ActionController>(_state, _canvases);
@@ -105,10 +90,7 @@ void GameScene::update(float timestep) {
 
     _palette->update();
     _action->update(activeCanvases, _palette->getSelectedColor());
+    _globalTimer->update(_state.getLevelTimer());
 
-    _levelTimerText->setText(
-        to_string((uint)ceil(_state.getLevelTimer()->timeLeft())));
-    
-    _levelProgressBar->setContentSize((_state.getLevelTimer()->timeLeft() / _totalLevelTime ) * _progressBarWidth, 40);
     Scene2::update(timestep);
 }

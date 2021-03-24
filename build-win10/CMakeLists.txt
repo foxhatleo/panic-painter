@@ -34,7 +34,7 @@ set(PP_FILES
         ../source/controllers/PPActionController.h
         ../source/controllers/PPActionController.cpp
         ../source/scenes/pause/PPPauseScene.h
-        ../source/scenes/pause/PPPauseScene.cpp)
+        ../source/scenes/pause/PPPauseScene.cpp ../source/scenes/gameplay/PPGlobalTimer.h ../source/scenes/gameplay/PPGlobalTimer.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 

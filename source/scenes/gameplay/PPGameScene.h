@@ -7,6 +7,7 @@
 #include "utils/PPAnimation.h"
 #include "PPCanvas.h"
 #include "PPColorPalette.h"
+#include "PPGlobalTimer.h"
 #include "controllers/PPActionController.h"
 
 /**
@@ -25,23 +26,17 @@ private:
      * Outer vector is holding queues, inner is queue holding canvases.
      */
     vec<vec<ptr<Canvas>>> _canvases;
-    /** Level time text. */
-    ptr<Label> _levelTimerText;
+
+    ptr<GlobalTimer> _globalTimer;
     
     ptr<ColorPalette> _palette;
 
     ptr<ActionController> _action;
-    
-    ptr<PolygonNode> _levelProgressBar;
-    
-    float _totalLevelTime;
-    
-    float _progressBarWidth;
 
     bool _pauseRequest;
 
 public:
-    GameScene() : Scene2() {}
+    GameScene() : Scene2(), _pauseRequest(false) {}
 
     ~GameScene() { dispose(); }
 

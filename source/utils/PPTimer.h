@@ -46,6 +46,8 @@ namespace utils {
 
         /** Progress the timer. */
         void update(float timestep);
+
+        string formatTime() const;
     };
 }
 
