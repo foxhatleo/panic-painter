@@ -14,7 +14,7 @@
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
 
-ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos,
+ptr<ColorPalette> ColorPalette::alloc(const Rect &bounds,
                                       const vec<Color4> &colors,
                                       const asset_t &assets) {
     auto colorTexture = assets->get<Texture>("color-circle");
@@ -22,7 +22,7 @@ ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos,
     auto result =
         make_shared<ColorPalette>(colors, colorTexture, paletteTexture);
     // change to init with texture after changing the header file
-    if (result->initWithPosition(pos))
+    if (result->initWithBounds(bounds))
         result->_setup();
     else
         return nullptr;
@@ -30,12 +30,15 @@ ptr<ColorPalette> ColorPalette::alloc(const Vec2 &pos,
 }
 
 void ColorPalette::_setup() {
+
+    // TODO: REMOVE THE DEBUG BACKGROUND BELOW.
+    ptr<PolygonNode> debugArea = PolygonNode::alloc(
+        Rect(0, 0, getWidth(), getHeight()));
+    debugArea->setColor(Color4(255, 0, 0, 127));
+    addChild(debugArea);
     
     int palette_width = 190;
     int palette_height = 260;
-
-    setAnchor(Vec2::ANCHOR_CENTER);
-    setContentSize(palette_width, palette_height);
 
     auto bg = PolygonNode::allocWithTexture(_paletteTexture);
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);

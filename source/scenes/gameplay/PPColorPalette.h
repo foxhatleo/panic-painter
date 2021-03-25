@@ -54,7 +54,7 @@ public:
             _paletteTexture = paletteTexture;
         };
 
-    static ptr<ColorPalette> alloc(const Vec2 &pos,
+    static ptr<ColorPalette> alloc(const Rect &bounds,
                                    const vec<Color4> &colors,
                                    const asset_t &assets);
     
