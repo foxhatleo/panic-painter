@@ -8,7 +8,7 @@
 
 #include "PPColorPaletteView.h"
 
-#define PALETTE_COLOR_SIZE 50.0f
+#define PALETTE_COLOR_SIZE 40.0f
 /** Space between dots. */
 #define PADDING 12.0f
 #define INACTIVE_SCALE 0.75f
@@ -35,10 +35,11 @@ void ColorPaletteView::_setup() {
     int palette_height = 260;
 
     auto bg = PolygonNode::allocWithTexture(_paletteTexture);
-    //bg->setAnchor(Vec2::ANCHOR_MIDDLE_RIGHT);
+    bg->setAnchor(Vec2::ANCHOR_TOP_RIGHT);
     bg->setContentSize(palette_width, palette_height);
     // Add offset percentage.
-    bg->setPositionX(bg->getPositionX() * 0.45f);
+    bg->setPositionX(bg->getPositionX() - 150);
+    bg->setPositionY(bg->getBoundingBox().getMaxY() / 2);
     addChild(bg);
     
     auto newBoundingBox = bg->getBoundingBox();

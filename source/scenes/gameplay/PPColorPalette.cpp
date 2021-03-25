@@ -34,6 +34,7 @@ void ColorPalette::_setup(const Rect &bounds,
                           const vec<Color4> &colors,
                           const asset_t &assets) {
     _paletteView = ColorPaletteView::alloc(bounds, colors, assets);
+    _paletteView->setScale(Application::get()->getDisplayWidth() / 1024, Application::get()->getDisplayHeight() / 576);
     addChild(_paletteView);
 }
 
