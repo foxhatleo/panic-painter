@@ -33,8 +33,16 @@ ptr<ColorPalette> ColorPalette::alloc(const Rect &bounds,
 void ColorPalette::_setup(const Rect &bounds,
                           const vec<Color4> &colors,
                           const asset_t &assets) {
-    _paletteView = ColorPaletteView::alloc(bounds, colors, assets);
-    _paletteView->setScale(Application::get()->getDisplayWidth() / 1024, Application::get()->getDisplayHeight() / 576);
+#ifdef VIEW_DEBUG
+    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
+    n->setColor(Color4f(0, 0, 1, .3));
+    addChild(n);
+#endif
+
+    _paletteView = ColorPaletteView::alloc(colors, assets);
+    float scale = getWidth() / _paletteView->getWidth();
+    _paletteView->setScale(scale);
+    _paletteView->setPositionY(getHeight() / 2);
     addChild(_paletteView);
 }
 

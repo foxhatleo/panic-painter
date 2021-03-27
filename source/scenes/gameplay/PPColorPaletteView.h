@@ -53,9 +53,9 @@ public:
             _paletteTexture = paletteTexture;
         };
 
-    static ptr<ColorPaletteView> alloc(const Rect &bounds,
-                                   const vec<Color4> &colors,
-                                   const asset_t &assets);
+    static ptr<ColorPaletteView> alloc(
+        const vec<Color4> &colors,
+        const asset_t &assets);
     
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {

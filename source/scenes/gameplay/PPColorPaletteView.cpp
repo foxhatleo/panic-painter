@@ -13,16 +13,18 @@
 #define PADDING 12.0f
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
+#define PALETTE_WIDTH 190
+#define PALETTE_HEIGHT 260
+#define NEGATIVE_MARGIN_LEFT 0.4f /* = 40% of PALETTE_WIDTH */
 
-ptr<ColorPaletteView> ColorPaletteView::alloc(const Rect &bounds,
-                                      const vec<Color4> &colors,
-                                      const asset_t &assets) {
+ptr<ColorPaletteView> ColorPaletteView::alloc(
+    const vec<Color4> &colors,
+    const asset_t &assets) {
     auto colorTexture = assets->get<Texture>("color-circle");
     auto paletteTexture = assets->get<Texture>("palette");
     auto result =
         make_shared<ColorPaletteView>(colors, colorTexture, paletteTexture);
-    // change to init with texture after changing the header file
-    if (result->initWithBounds(bounds))
+    if (result->init())
         result->_setup();
     else
         return nullptr;
@@ -30,34 +32,48 @@ ptr<ColorPaletteView> ColorPaletteView::alloc(const Rect &bounds,
 }
 
 void ColorPaletteView::_setup() {
-
-    int palette_width = 190;
-    int palette_height = 260;
+    setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
+    setPosition(Vec2::ZERO);
 
     auto bg = PolygonNode::allocWithTexture(_paletteTexture);
-    bg->setAnchor(Vec2::ANCHOR_TOP_RIGHT);
-    bg->setContentSize(palette_width, palette_height);
-    // Add offset percentage.
-    bg->setPositionX(bg->getPositionX() - 150);
-    bg->setPositionY(bg->getBoundingBox().getMaxY() / 2);
+    bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    bg->setContentSize(PALETTE_WIDTH, PALETTE_HEIGHT);
+    bg->setPositionX(-NEGATIVE_MARGIN_LEFT * bg->getContentWidth());
+    setContentSize(bg->getContentWidth() * (1 - NEGATIVE_MARGIN_LEFT),
+                   bg->getContentHeight());
+
+#ifdef VIEW_DEBUG
+    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
+    n->setColor(Color4f(1, 0, 0, .3));
+    addChild(n);
+#endif
+
     addChild(bg);
-    
-    auto newBoundingBox = bg->getBoundingBox();
-    int x = newBoundingBox.getMaxX() - 35;
-    int y = newBoundingBox.getMaxY() - 90;
+
+    float btnStartX = getContentWidth() - 35;
+    float btnStartY = getContentHeight() - 90;
     float curvature = 0.15;
         
-    for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
+    for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
         auto btn = PolygonNode::allocWithTexture(_colorTexture);
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
-            x - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature,
-            y - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
+            btnStartX - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature,
+            btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
         );
         btn->setColor(_colors[i]);
-        if (i != _selectedColor)
-            Animation::set(btn, {{"scaleX", INACTIVE_SCALE}, {"scaleY", INACTIVE_SCALE}});
+
+        if (i != _selectedColor) {
+            Animation::set(
+                btn,
+                {
+                    {"scaleX", INACTIVE_SCALE},
+                    {"scaleY", INACTIVE_SCALE}
+                }
+            );
+        }
+
         addChild(btn);
         _buttons.push_back(btn);
         _buttonStates.push_back(i != _selectedColor ? INACTIVE : ACTIVE);
@@ -67,10 +83,18 @@ void ColorPaletteView::_setup() {
 void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     if (_buttonStates[ind] == s) return;
     _buttonStates[ind] = s;
-    float scale = s == INACTIVE ? INACTIVE_SCALE : (s == PRESSED ? PRESSED_SCALE : 1);
-    Animation::alloc(_buttons[ind], .2,
-                     {{"scaleX", scale}, {"scaleY", scale}},
-                     STRONG_OUT);
+
+    float scale = s == INACTIVE ?
+        INACTIVE_SCALE :
+        (s == PRESSED ? PRESSED_SCALE : 1);
+    Animation::alloc(
+        _buttons[ind], .2,
+        {
+            {"scaleX", scale},
+            {"scaleY", scale}
+        },
+        STRONG_OUT
+    );
 }
 
 void ColorPaletteView::update() {
