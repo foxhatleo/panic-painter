@@ -2,9 +2,9 @@
 
 ptr<GlobalTimer> GlobalTimer::alloc(
     const asset_t &assets,
-    const Size entireScreen) {
+    const Rect &bounds) {
     auto result = make_shared<GlobalTimer>(assets);
-    if (result->initWithBounds(entireScreen))
+    if (result->initWithBounds(bounds))
         result->_setup();
     else
         return nullptr;
@@ -12,13 +12,20 @@ ptr<GlobalTimer> GlobalTimer::alloc(
 }
 
 void GlobalTimer::_setup() {
-    // Level timer label.
-    _levelTimerText = Label::alloc("1", _assets->get<Font>("jua"));
-    _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
-    _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
-    _levelTimerText->setPosition(getWidth() - 140, getHeight() - 50);
+#ifdef VIEW_DEBUG
+    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
+    n->setColor(Color4f(0, 1, 1, .3));
+    addChild(n);
+#endif
 
-    Rect boundingRect = Rect(0, getHeight() - 30, getWidth() - 150, 40);
+    // Level timer label.
+//    auto font = _assets->get<Font>("jua");
+//    _levelTimerText = Label::alloc("1", font);
+//    _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
+//    _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
+//    _levelTimerText->setPosition(getWidth() - 140, getHeight() - 50);
+
+    Rect boundingRect = Rect(0, getHeight() - 30, getWidth(), 40);
     _levelProgressBarBackground = PolygonNode::allocWithTexture(_assets->get<Texture>("level-timer-background"), boundingRect);
     _levelProgressBarBackground->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     _levelProgressBarBackground->setPosition(0, getHeight() - 30);
@@ -27,15 +34,15 @@ void GlobalTimer::_setup() {
     _levelProgressBar->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     _levelProgressBar->setPosition(0, getHeight() - 30);
 
-    _progressBarWidth = getWidth() - 150;
+    _progressBarWidth = getWidth();
 
     addChild(_levelProgressBarBackground);
     addChild(_levelProgressBar);
-    addChild(_levelTimerText);
+//    addChild(_levelTimerText);
 }
 
 void GlobalTimer::update(const ptr<Timer> &levelTimer) {
-    _levelTimerText->setText(levelTimer->formatTime());
+//    _levelTimerText->setText(levelTimer->formatTime());
     float progress = levelTimer->timeLeft() / levelTimer->getDuration();
     _levelProgressBar->setContentSize(progress * _progressBarWidth, 40);
 }

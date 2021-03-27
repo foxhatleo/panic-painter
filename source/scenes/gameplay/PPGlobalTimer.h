@@ -24,7 +24,7 @@ public:
 
     static ptr<GlobalTimer> alloc(
         const asset_t &assets,
-        Size entireScreen);
+        const Rect &bounds);
 
     void update(const ptr<Timer> &levelTimer);
 };

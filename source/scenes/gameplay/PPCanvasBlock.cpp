@@ -14,7 +14,12 @@ ptr<CanvasBlock> CanvasBlock::alloc(
 }
 
 void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors) {
-    
+#ifdef VIEW_DEBUG
+    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
+    n->setColor(Color4f(0, 1, 0, .3));
+    addChild(n);
+#endif
+
     string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2", "dog-1", "dog-2", "dog-3", "frog", "octopus"};
     
     int p = rand() % NUM_CHARACTERS;
@@ -38,12 +43,11 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors) {
     addChild(_talk_bubble);
     
     // Color strip
-    _colorStrip = ColorStrip::alloc(assets, colors);
+    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors);
     _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
     auto bubbleBox = _talk_bubble->getBoundingBox();
     _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
     addChild(_colorStrip);
-
     
     // Timer label
     _timerText = scene2::Label::alloc("", assets->get<Font>("roboto"));
@@ -51,7 +55,6 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors) {
     _timerText->setVerticalAlignment(scene2::Label::VAlign::BOTTOM);
     _timerText->setPosition(getWidth() / 2, 35);
     addChild(_timerText);
-
 
     _hoverAllowed = true;
 }
