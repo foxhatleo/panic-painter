@@ -4,7 +4,7 @@
 #include <cugl/cugl.h>
 #include "PPTypeDefs.h"
 
-#define VIEW_DEBUG
+//#define VIEW_DEBUG
 
 namespace utils {};
 namespace animation {};
