@@ -2,6 +2,8 @@
 #include <ctime>
 
 #define ANIMATION_RELATIVE 10000000
+#define PALETTE_WIDTH .1f
+#define TIMER_HEIGHT .1f
 
 void GameScene::dispose() {
     Scene2::dispose();
@@ -37,12 +39,16 @@ void GameScene::loadLevel(const char *levelName) {
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         vec<ptr<Canvas>> queue;
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
+            auto bound = Application::get()->getSafeBounds();
+            bound.origin.x += PALETTE_WIDTH * bound.size.width;
+            bound.size.width *= (1 - PALETTE_WIDTH);
+            bound.size.height *= (1 - TIMER_HEIGHT);
             auto c = Canvas::alloc(
                 _assets,
                 _state.getColors(),
                 _state.getTimer(i, i2),
                 i, j,
-                Application::get()->getDisplayBounds()
+                bound
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -50,13 +56,19 @@ void GameScene::loadLevel(const char *levelName) {
         _canvases.push_back(queue);
     }
 
-    _globalTimer = GlobalTimer::alloc(_assets, screenSize);
+    auto gtBound = Application::get()->getSafeBounds();
+    gtBound.origin.y += (1 - TIMER_HEIGHT) * gtBound.size.height;
+    gtBound.size.height *= TIMER_HEIGHT;
+    _globalTimer = GlobalTimer::alloc(_assets, gtBound);
 
     // change position to keep it to the left of the screen.
     _palette =
         ColorPalette::alloc(Rect(
             safeArea.origin,
-            Size(safeArea.size.width * .15f, safeArea.size.height)
+            Size(
+                safeArea.size.width * PALETTE_WIDTH,
+                safeArea.size.height * (1 - TIMER_HEIGHT)
+            )
         ), _state.getColors(), _assets);
     
     addChild(_globalTimer);

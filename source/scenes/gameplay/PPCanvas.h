@@ -14,6 +14,11 @@
  */
 class Canvas : public SceneNode {
 private:
+    float _startingY;
+    float _yForStandBy;
+    float _yForActive;
+    float _yAfterLeaving;
+
     /** Block */
     ptr<CanvasBlock> _block;
     

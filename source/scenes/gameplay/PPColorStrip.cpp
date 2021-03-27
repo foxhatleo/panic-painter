@@ -1,14 +1,10 @@
 #include "PPColorStrip.h"
 
-/** Size of each dot. */
-#define COLOR_SIZE 30
-
-/** Space between dots. */
-#define PADDING 2
-
-ptr<ColorStrip> ColorStrip::alloc(const asset_t& assets,
-                                  const vec<Color4> &colors) {
-    auto result = make_shared<ColorStrip>(assets, colors);
+ptr<ColorStrip> ColorStrip::alloc(
+        uint size,
+        const asset_t& assets,
+        const vec<Color4> &colors) {
+    auto result = make_shared<ColorStrip>(size, assets, colors);
     return (result->init() ? result : nullptr);
 }
 
@@ -25,15 +21,15 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
         auto colorTexture = _assets->get<Texture>("color-circle");
         auto bg = PolygonNode::allocWithTexture(colorTexture);
         bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-        bg->setContentSize(COLOR_SIZE, COLOR_SIZE);
+        bg->setContentSize(_size, _size);
 
         float leftMostX =
-            (-PADDING * ((float)_lastNumberOfColors - 1) -
-                (float)_lastNumberOfColors * COLOR_SIZE) / 2;
+            (-(_size * 0.3f) * ((float)_lastNumberOfColors - 1) -
+                (float)_lastNumberOfColors * _size) / 2;
 
         bg->setPosition(
-            leftMostX + (float)(PADDING + COLOR_SIZE) * (float)i,
-            -(float)COLOR_SIZE / 2);
+            leftMostX + (float)((_size * 0.3f) + _size) * (float)i,
+            -(float)_size / 2);
         bg->setColor(_colors[canvasColors[i]]);
 
         addChild(bg);
