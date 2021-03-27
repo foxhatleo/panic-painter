@@ -26,6 +26,7 @@ void GameScene::loadLevel(const char *levelName) {
     _state.loadJson(levelJson);
 
     Size screenSize = Application::get()->getDisplaySize();
+    Rect safeArea = Application::get()->getSafeBounds();
 
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("background"));
@@ -53,7 +54,10 @@ void GameScene::loadLevel(const char *levelName) {
 
     // change position to keep it to the left of the screen.
     _palette =
-        ColorPalette::alloc(Vec2(-50, 0), _state.getColors(), _assets);
+        ColorPalette::alloc(Rect(
+            safeArea.origin,
+            Size(safeArea.size.width * .15f, safeArea.size.height)
+        ), _state.getColors(), _assets);
     
     addChild(_globalTimer);
     addChild(_palette);

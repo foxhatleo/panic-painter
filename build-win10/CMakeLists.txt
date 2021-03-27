@@ -16,6 +16,8 @@ set(PP_FILES
         ../source/scenes/gameplay/PPColorStrip.h
         ../source/scenes/gameplay/PPColorPalette.cpp
         ../source/scenes/gameplay/PPColorPalette.h
+        ../source/scenes/gameplay/PPColorPaletteView.cpp
+        ../source/scenes/gameplay/PPColorPaletteView.h
         ../source/scenes/gameplay/PPGameScene.cpp
         ../source/scenes/gameplay/PPGameScene.h
         ../source/scenes/loading/PPLoadingScene.h
@@ -34,7 +36,9 @@ set(PP_FILES
         ../source/controllers/PPActionController.h
         ../source/controllers/PPActionController.cpp
         ../source/scenes/pause/PPPauseScene.h
-        ../source/scenes/pause/PPPauseScene.cpp ../source/scenes/gameplay/PPGlobalTimer.h ../source/scenes/gameplay/PPGlobalTimer.cpp)
+        ../source/scenes/pause/PPPauseScene.cpp
+        ../source/scenes/gameplay/PPGlobalTimer.h
+        ../source/scenes/gameplay/PPGlobalTimer.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 

@@ -12,60 +12,37 @@
 #include "utils/PPHeader.h"
 #include "utils/PPAnimation.h"
 #include "controllers/PPInputController.h"
+#include "PPColorPaletteView.h"
 
 // change to texturedNode
 class ColorPalette : public SceneNode {
-    enum ColorButtonState {
-        PRESSED,
-        ACTIVE,
-        INACTIVE,
-    };
     
-    /** The index of the selected color in the palette. */
-    uint _selectedColor;
-    
-    /** The color list. */
-    const vec<Color4> _colors;
+    ptr<ColorPaletteView> _paletteView;
 
-    /** Buttons. */
-    vec<ptr<PolygonNode>> _buttons;
-
-    /** Button hover states. */
-    vec<ColorButtonState> _buttonStates;
-    
-    /** Color circle texture */
-    ptr<Texture> _colorTexture;
-    
-    /** Wooden palette texture */
-    ptr<Texture> _paletteTexture;
-
-    void _setup();
-
-    void _animateButtonState(uint ind, ColorButtonState s);
-    
+    void _setup(const Rect &bounds,
+                const vec<Color4> &colors,
+                const asset_t &assets);    
 public:
     
     /** @deprecated Constructor. */
     explicit ColorPalette(const vec<Color4> &colors,
                           const ptr<Texture>& colorTexture,
-                          const ptr<Texture>& paletteTexture) :
-        SceneNode(), _colors(colors), _selectedColor(0) {
-            _colorTexture = colorTexture;
-            _paletteTexture = paletteTexture;
-        };
+                          const ptr<Texture>& paletteTexture) {};
 
-    static ptr<ColorPalette> alloc(const Vec2 &pos,
+    static ptr<ColorPalette> alloc(const Rect &bounds,
                                    const vec<Color4> &colors,
                                    const asset_t &assets);
     
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
-        _selectedColor = colorIndex;
+        //_selectedColor = colorIndex;
+        _paletteView->setColor(colorIndex);
     }
+    
     
     /** Get the selected color. */
     uint getSelectedColor() const {
-        return _selectedColor;
+        return _paletteView->getSelectedColor();
     }
     
     void update();
