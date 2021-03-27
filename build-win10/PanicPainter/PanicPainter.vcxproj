@@ -195,6 +195,7 @@
     <ClCompile Include="..\..\source\PPApp.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\..\source\PPApp.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPalette.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h" />

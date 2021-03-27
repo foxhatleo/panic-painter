@@ -165,3 +165,10 @@ bool InputController::didTripleTap() const {
            _inputs[2]->isJustTap() &&
            _inputs[1]->timeSinceLastInstance <= _consecutiveTapThreshold;
 }
+
+void InputController::clearPreviousTaps() {
+    _inputs.clear();
+    if (_currentInput != nullptr) {
+        _inputs.push_front(_currentInput);
+    }
+}

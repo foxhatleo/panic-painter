@@ -79,6 +79,9 @@
     <ClCompile Include="..\..\source\scenes\pause\PPPauseScene.cpp">
       <Filter>Scenes\Pause</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc">
@@ -144,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\pause\PPPauseScene.h">
       <Filter>Scenes\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h">
+      <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

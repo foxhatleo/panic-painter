@@ -31,6 +31,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 if (input.didTripleTap() && input.justReleased() &&
                     startingPointIn && currentPointIn) {
                     _state.clearColor(i, i2, selectedColor);
+                    input.clearPreviousTaps();
                 }
 
                 if (input.isPressing() && startingPointIn && currentPointIn) {

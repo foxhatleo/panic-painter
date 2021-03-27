@@ -136,6 +136,8 @@ public:
     /** Check if last input resulted in a triple tap. */
     bool didTripleTap() const;
 
+    void clearPreviousTaps();
+
     /** Utility function to check if a point is in a scene node. */
     static bool inScene(const Vec2 &point, const ptr<SceneNode> &scene);
 
