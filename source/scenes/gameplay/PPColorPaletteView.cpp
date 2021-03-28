@@ -126,6 +126,20 @@ void ColorPaletteView::update() {
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++)
             _animateButtonState(i, _selectedColor == i ? ACTIVE : INACTIVE);
     }
+    
+    // Enable swipe up/down on palette for color switching.
+    Vec2 sp = input.startingPoint();
+    bool startingPointIn = InputController::inScene(sp, getBoundingBox());
+    
+    Vec2 cp = input.currentPoint();
+    if (startingPointIn && input.justReleased()) {
+        if (sp.y - cp.y > 50 && _selectedColor < _colors.size() - 1) {
+            _selectedColor += 1;
+        } else if (cp.y - sp.y > 50 && _selectedColor > 0) {
+            _selectedColor -= 1;
+        }
+    }
+    
 }
 
 
