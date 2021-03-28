@@ -59,7 +59,7 @@ void ColorPaletteView::_setup() {
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
-            btnStartX - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature,
+            btnStartX - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature + (i == 0 ? 50 : 0),
             btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
         );
         btn->setColor(_colors[i]);
@@ -82,16 +82,29 @@ void ColorPaletteView::_setup() {
 
 void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     if (_buttonStates[ind] == s) return;
+    ColorButtonState oldState = _buttonStates[ind];
     _buttonStates[ind] = s;
-
+    float btnStartX = getContentWidth() - 35;
+    float originalX = btnStartX - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * 0.15;
     float scale = s == INACTIVE ?
         INACTIVE_SCALE :
         (s == PRESSED ? PRESSED_SCALE : 1);
+    float newX;
+    if (oldState == ACTIVE && s == PRESSED) {
+        newX = originalX + 50;
+    } else if (oldState == INACTIVE & s == PRESSED) {
+        newX = originalX;
+    } else if (s == ACTIVE) {
+        newX = originalX + 50;
+    } else {
+        newX = originalX;
+    }
     Animation::alloc(
         _buttons[ind], .2,
         {
             {"scaleX", scale},
-            {"scaleY", scale}
+            {"scaleY", scale},
+            {"positionX", newX}
         },
         STRONG_OUT
     );
