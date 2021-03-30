@@ -16,6 +16,7 @@
 #define PALETTE_WIDTH 190
 #define PALETTE_HEIGHT 260
 #define NEGATIVE_MARGIN_LEFT 0.4f /* = 40% of PALETTE_WIDTH */
+#define CURVATURE 0.15 /** Curvature constant for the palette. */
 
 ptr<ColorPaletteView> ColorPaletteView::alloc(
     const vec<Color4> &colors,
@@ -29,6 +30,10 @@ ptr<ColorPaletteView> ColorPaletteView::alloc(
     else
         return nullptr;
     return result;
+}
+
+float ColorPaletteView::_computeXPositioning(uint ind) {
+    return getContentWidth() - 35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
 }
 
 void ColorPaletteView::_setup() {
@@ -50,16 +55,14 @@ void ColorPaletteView::_setup() {
 
     addChild(bg);
 
-    float btnStartX = getContentWidth() - 35;
     float btnStartY = getContentHeight() - 90;
-    float curvature = 0.15;
         
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
         auto btn = PolygonNode::allocWithTexture(_colorTexture);
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
-            btnStartX - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature + (i == 0 ? 50 : 0),
+            this->_computeXPositioning(i) + (i == 0 ? 50 : 0),
             btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
         );
         btn->setColor(_colors[i]);
@@ -84,8 +87,7 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     if (_buttonStates[ind] == s) return;
     ColorButtonState oldState = _buttonStates[ind];
     _buttonStates[ind] = s;
-    float btnStartX = getContentWidth() - 35;
-    float originalX = btnStartX - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * 0.15;
+    float originalX = this->_computeXPositioning(ind);
     float scale = s == INACTIVE ?
         INACTIVE_SCALE :
         (s == PRESSED ? PRESSED_SCALE : 1);
@@ -145,11 +147,39 @@ void ColorPaletteView::update() {
     bool startingPointIn = InputController::inScene(sp, getBoundingBox());
     
     Vec2 cp = input.currentPoint();
+    
+    float diff = cp.y - sp.y;
+    ptr<PolygonNode> currButton = _buttons[_selectedColor];
+    ptr<PolygonNode> otherButton = nullptr;
+    bool moved = false;
+    bool up = false;
+    if (input.hasMoved()) {
+        moved = true;
+        if (diff > 0 && _selectedColor > 0) {
+            otherButton = _buttons[_selectedColor - 1];
+            float x2 = this->_computeXPositioning(_selectedColor - 1);
+            otherButton->setPositionX(x2 + diff > x2 + 50 ? x2 + 50 : x2 + diff);
+            up = true;
+        } else if (diff < 0 && _selectedColor < _colors.size() - 1) {
+            otherButton = _buttons[_selectedColor + 1];
+            float x2 = this->_computeXPositioning(_selectedColor + 1);
+            otherButton->setPositionX(x2 - diff > x2 + 50 ? x2 + 50 : x2 - diff) ;
+            up = false;
+        }
+    }
+    
     if (startingPointIn && input.justReleased()) {
         if (sp.y - cp.y > 50 && _selectedColor < _colors.size() - 1) {
+            currButton->setPositionX(this->_computeXPositioning(_selectedColor));
             _selectedColor += 1;
         } else if (cp.y - sp.y > 50 && _selectedColor > 0) {
+            currButton->setPositionX(this->_computeXPositioning(_selectedColor));
             _selectedColor -= 1;
+        } else {
+            currButton->setPositionX(this->_computeXPositioning(_selectedColor) + 50);
+            if (moved && otherButton != nullptr) {
+                otherButton->setPositionX(this->_computeXPositioning(_selectedColor + (up ? 1 : -1)));
+            }
         }
     }
     

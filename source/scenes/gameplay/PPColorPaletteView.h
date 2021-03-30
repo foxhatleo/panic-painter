@@ -43,6 +43,8 @@ class ColorPaletteView : public SceneNode {
 
     void _animateButtonState(uint ind, ColorButtonState s);
     
+    float _computeXPositioning(uint ind);
+    
 public:
     /** @deprecated Constructor. */
     explicit ColorPaletteView(const vec<Color4> &colors,
