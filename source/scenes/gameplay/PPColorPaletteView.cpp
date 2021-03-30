@@ -176,10 +176,13 @@ void ColorPaletteView::update() {
             currButton->setPositionX(this->_computeXPositioning(_selectedColor));
             _selectedColor -= 1;
         } else {
-            currButton->setPositionX(this->_computeXPositioning(_selectedColor) + 50);
             if (moved && otherButton != nullptr) {
                 otherButton->setPositionX(this->_computeXPositioning(_selectedColor + (up ? 1 : -1)));
             }
+            for (uint i = 0; i < _colors.size(); i++) {
+                _buttons[i]->setPositionX(this->_computeXPositioning(i));
+            }
+            currButton->setPositionX(this->_computeXPositioning(_selectedColor) + 50);
         }
     }
     
