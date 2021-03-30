@@ -153,7 +153,7 @@ void ColorPaletteView::update() {
     ptr<PolygonNode> otherButton = nullptr;
     bool moved = false;
     bool up = false;
-    if (input.hasMoved()) {
+    if (startingPointIn && input.isPressing()) {
         moved = true;
         if (diff > 0 && _selectedColor > 0) {
             otherButton = _buttons[_selectedColor - 1];
