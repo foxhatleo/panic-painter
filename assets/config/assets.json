@@ -12,6 +12,9 @@
     "background": {
       "file": "textures/background.png"
     },
+    "menu": {
+      "file": "textures/menu.png"
+    },
     "talk-bubble": {
       "file": "textures/talk_bubble.png"
     },

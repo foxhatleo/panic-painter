@@ -29,6 +29,7 @@ void PanicPainterApp::onStartup() {
 void PanicPainterApp::onShutdown() {
     _loading.dispose();
     _gameplay.dispose();
+    _menu.dispose();
     _assets = nullptr;
     _batch = nullptr;
 
@@ -70,8 +71,10 @@ void PanicPainterApp::update(float timestep) {
 
                 // Start initializing game scene.
                 _gameplay.init(_assets);
-                _gameplay.loadLevel("gameplay");
-                _currentScene = GAME_SCENE;
+
+                // Initialize Menu_Scene and set scene to menu
+                _menu.init(_assets);
+                _currentScene = MENU_SCENE;
             }
             break;
         }
@@ -80,6 +83,13 @@ void PanicPainterApp::update(float timestep) {
             if (_gameplay.getPauseRequest()) {
                 // TODO: Now it is screen.
                 _gameplay.loadLevel("gameplay");
+            }
+            break;
+        }
+        case MENU_SCENE: {
+            if (false) {  // do some getter that returns what screen to go too -- level or last played level or what have you
+                _gameplay.loadLevel("gameplay");
+                _currentScene = GAME_SCENE;
             }
             break;
         }
@@ -102,6 +112,11 @@ void PanicPainterApp::draw() {
 
         case GAME_SCENE: {
             _gameplay.render(_batch);
+            break;
+        }
+
+        case MENU_SCENE: {
+            _menu.render(_batch);
             break;
         }
 
