@@ -112,9 +112,49 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     );
 }
 
+uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
+    float colorsHeight = (PADDING + PALETTE_COLOR_SIZE / 2) * 4 * PRESSED_SCALE;
+    int numColorsSwipedOn = diff > 0 ?
+        max((int)floor(4 * diff / colorsHeight), -3)
+        :min((int) floor(4 * diff / colorsHeight), 3);
+    
+    int indexOfOtherColor = diff > 0 ? max((int)_selectedColor - numColorsSwipedOn, 0) : min((int)_selectedColor - numColorsSwipedOn, 3);
+    
+    return indexOfOtherColor;
+}
+
 void ColorPaletteView::update() {
     auto &input = InputController::getInstance();
+    Vec2 sp = input.startingPoint();
+    bool startingPointIn = InputController::inScene(sp, getBoundingBox());
+    
+    Vec2 cp = input.currentPoint();
+    
+    float diff = cp.y - sp.y;
+    int indexOfOtherColor = -1;
+    
     if (input.isPressing() || input.justReleased()) {
+        
+        
+        if (startingPointIn && input.isPressing()) {
+            indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
+            for (uint i = 0; i < _colors.size(); i++) {
+                if (i != indexOfOtherColor && _buttonStates[i] != ACTIVE) {
+                    Animation::alloc(
+                        _buttons[i], .3,
+                        {{ "positionX", this->_computeXPositioning(i) }},
+                        STRONG_OUT
+                    );
+                }
+            }
+            
+            Animation::alloc(
+                _buttons[indexOfOtherColor], .3,
+                {{ "positionX", this->_computeXPositioning(indexOfOtherColor) + 50 }},
+                STRONG_OUT
+            );
+        }
+        
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
             auto &btn = _buttons[i];
 
@@ -143,52 +183,13 @@ void ColorPaletteView::update() {
     }
     
     // Enable swipe up/down on palette for color switching.
-    Vec2 sp = input.startingPoint();
-    bool startingPointIn = InputController::inScene(sp, getBoundingBox());
-    
-    Vec2 cp = input.currentPoint();
-    
-    float diff = cp.y - sp.y;
-    ptr<PolygonNode> currButton = _buttons[_selectedColor];
-    ptr<PolygonNode> otherButton = nullptr;
-    bool moved = false;
-    bool up = false;
-    if (startingPointIn && input.isPressing()) {
-        moved = true;
-        if (diff > 0 && _selectedColor > 0) {
-            otherButton = _buttons[_selectedColor - 1];
-            float x2 = this->_computeXPositioning(_selectedColor - 1);
-            otherButton->setPositionX(x2 + diff > x2 + 50 ? x2 + 50 : x2 + diff);
-            up = true;
-        } else if (diff < 0 && _selectedColor < _colors.size() - 1) {
-            otherButton = _buttons[_selectedColor + 1];
-            float x2 = this->_computeXPositioning(_selectedColor + 1);
-            otherButton->setPositionX(x2 - diff > x2 + 50 ? x2 + 50 : x2 - diff) ;
-            up = false;
-        }
-    }
     
     if (startingPointIn && input.justReleased()) {
-        if (sp.y - cp.y > 50 && _selectedColor < _colors.size() - 1) {
-            currButton->setPositionX(this->_computeXPositioning(_selectedColor));
-            _selectedColor += 1;
-        } else if (cp.y - sp.y > 50 && _selectedColor > 0) {
-            currButton->setPositionX(this->_computeXPositioning(_selectedColor));
-            _selectedColor -= 1;
-        } else {
-            for (uint i = 0; i < _colors.size(); i++) {
-                if (i != _selectedColor) {
-                    Animation::alloc(
-                        _buttons[i], .1,
-                        {{ "positionX", this->_computeXPositioning(i) }},
-                        STRONG_OUT
-                    );
-                }
-            }
-            currButton->setPositionX(this->_computeXPositioning(_selectedColor) + 50);
+        indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
+        if (indexOfOtherColor != -1 && indexOfOtherColor != _selectedColor) {
+            _selectedColor = indexOfOtherColor;
         }
     }
-    
 }
 
 

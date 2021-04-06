@@ -45,6 +45,8 @@ class ColorPaletteView : public SceneNode {
     
     float _computeXPositioning(uint ind);
     
+    uint _computeColorIndexAfterSwipe(float diff);
+    
 public:
     /** @deprecated Constructor. */
     explicit ColorPaletteView(const vec<Color4> &colors,
