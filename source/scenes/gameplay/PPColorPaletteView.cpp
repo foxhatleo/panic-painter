@@ -101,7 +101,7 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     float newX;
     if (oldState == ACTIVE && s == PRESSED) {
         newX = originalX + 50;
-    } else if (oldState == INACTIVE & s == PRESSED) {
+    } else if (oldState == INACTIVE && s == PRESSED) {
         newX = originalX;
     } else if (s == ACTIVE) {
         newX = originalX + 50;
