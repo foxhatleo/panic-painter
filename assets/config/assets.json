@@ -12,8 +12,8 @@
     "background": {
       "file": "textures/background.png"
     },
-    "menu": {
-      "file": "textures/menu.png"
+    "menubackground": {
+      "file": "textures/menubackground.png"
     },
     "talk-bubble": {
       "file": "textures/talk_bubble.png"
@@ -55,7 +55,8 @@
   "jsons": {
     "global": "config/global.json",
     "load": "scenes/loading.json",
-    "gameplay": "levels/gameplay.json"
+    "gameplay": "levels/gameplay.json",
+    "menu": "scenes/menu.json"
   },
   "fonts": {
     "roboto": {
