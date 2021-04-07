@@ -15,6 +15,10 @@
 #define PRESSED_SCALE 1.2f
 #define PALETTE_WIDTH 190
 #define PALETTE_HEIGHT 260
+#define NEGATIVE_MARGIN_LEFT_WO_LAYOUT 0.2f /* = 20% of PALETTE_WIDTH */
+// The difference between the one above and below is that if you increase the
+// value below, the palette will enlarge to try to fill the container space.
+// The one above wouldn't do that.
 #define NEGATIVE_MARGIN_LEFT 0.4f /* = 40% of PALETTE_WIDTH */
 #define CURVATURE 0.15 /** Curvature constant for the palette. */
 
@@ -33,7 +37,9 @@ ptr<ColorPaletteView> ColorPaletteView::alloc(
 }
 
 float ColorPaletteView::_computeXPositioning(uint ind) {
-    return getContentWidth() - 35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
+    return getContentWidth() - NEGATIVE_MARGIN_LEFT_WO_LAYOUT * PALETTE_WIDTH -
+    35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind
+    * ind * CURVATURE;
 }
 
 void ColorPaletteView::_setup() {
@@ -43,7 +49,8 @@ void ColorPaletteView::_setup() {
     auto bg = PolygonNode::allocWithTexture(_paletteTexture);
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bg->setContentSize(PALETTE_WIDTH, PALETTE_HEIGHT);
-    bg->setPositionX(-NEGATIVE_MARGIN_LEFT * bg->getContentWidth());
+    bg->setPositionX(-(NEGATIVE_MARGIN_LEFT + NEGATIVE_MARGIN_LEFT_WO_LAYOUT)
+    * bg->getContentWidth());
     setContentSize(bg->getContentWidth() * (1 - NEGATIVE_MARGIN_LEFT),
                    bg->getContentHeight());
 
