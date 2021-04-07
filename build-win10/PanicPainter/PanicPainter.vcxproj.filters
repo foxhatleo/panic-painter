@@ -82,9 +82,6 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scenes\gameplay\PPSplashEffect.cpp">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc">
@@ -152,12 +149,6 @@
       <Filter>Scenes\Pause</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPSplashEffect.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPSplashNode.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
