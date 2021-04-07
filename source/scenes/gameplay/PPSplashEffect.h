@@ -12,16 +12,16 @@ protected:
 	//Likely not useful now, but may be necessary when getting actual paint textures later on
 	/*Additionally, we likely do not need InputController and can do this instead using 
 	GameState/actionController. Including it just in case we don't want to route through GameState*/
-	const asset_t& _assets;
-	const Color4 _selectedColor; 
+	const asset_t& _assets; 
+
+	/*Other alternative is to just use gameState or grab all needed values here*/
 	const InputController& _input; 
 
 public:
 	/** Allocate canvas block with a particular length on the side. This can also be a Rect bounds if easier */
 	static ptr<SplashEffect> alloc(const asset_t& assets,
-		float size,
-		const Color4 colors, const InputController& input);
-	void update(); 
+		float size, const InputController& input);
+	void update(Color4 currentColor); 
 
 	void draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) override; 
 
