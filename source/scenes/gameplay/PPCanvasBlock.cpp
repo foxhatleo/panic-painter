@@ -4,22 +4,24 @@
 ptr<CanvasBlock> CanvasBlock::alloc(
     const asset_t &assets,
     float size,
-    const vec<Color4>& colors) {
+    const vec<Color4>& colors, const int numCanvasColors) {
     auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
-        result->_setup(assets, colors);
+        result->_setup(assets, colors, numCanvasColors);
     else
         return nullptr;
     return result;
 }
 
-void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors) {
+void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors) {
 #ifdef VIEW_DEBUG
     auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
     addChild(n);
 #endif
-
+    _isActive = false; 
+    _initialColorNumber = numCanvasColors; 
+    _numAnimations = 0; 
     string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2", "dog-1", "dog-2", "dog-3", "frog", "octopus"};
     _texture_array[0] = assets->get<Texture>("husky-emotion-1");
     _texture_array[1] = assets->get<Texture>("husky-emotion-2");
@@ -33,7 +35,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors) {
     _bg = scene2::AnimationNode::alloc(_texture_array[0], 1, 19);
     _bg->setColor(Color4::WHITE);
     float horizontalScale = getWidth() / (_bg->getWidth());
-    float verticalScale = getHeight() / (_bg->getHeight());
+    float verticalScale = getHeight() / (_bg->getHeight()*0.75);
     _bg->setScale(horizontalScale, verticalScale);
     _bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _bg->setPosition(0, 0);
@@ -74,20 +76,32 @@ void CanvasBlock::markDone() {
     _hoverAllowed = false;
     _bg->setColor(Color4(82, 178, 2));
 }
+void CanvasBlock::setIsActive(bool isActive) {
+    _isActive = isActive;
+}
 
 void CanvasBlock::update(const vec<uint>& canvasColors,
     const ptr<Timer>& timer) {
     _updateFrame++; 
-    CULog("current frame is %d", _bg->getFrame());
-    if (_updateFrame %7 == 0) {
-       /* if (_bg->getFrame() == 18) {
+    if (!_isActive) {
+        _bg->setFrame(0);
+    }
+    else if (_updateFrame %4 == 0) {
+       if (_bg->getFrame() == _bg->getSize() - 1) {
+           CULog("number of colors is %d", _initialColorNumber);
+           if (_numAnimations == (REPEAT_FILMSTRIP * _initialColorNumber) - 1) {
+               _angerLevel = (_angerLevel + 1) % 3;
+               _numAnimations = 0; 
+           }
+           else {
+               _numAnimations++; 
+           }
             _bg->setTexture(_texture_array[_angerLevel]);
-            (_angerLevel++)%3;
             _bg->setFrame(0);
         }
-        else {*/
-            _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
-       // }
+        else {
+            _bg->setFrame(_bg->getFrame() + 1);
+        }
         _updateFrame = 0; 
     }
     _timerText->setText(to_string((uint)ceil(timer->timeLeft())));

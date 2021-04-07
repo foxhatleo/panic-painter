@@ -48,7 +48,8 @@ void GameScene::loadLevel(const char *levelName) {
                 _state.getColors(),
                 _state.getTimer(i, i2),
                 i, j,
-                bound
+                bound,
+                _state.getColorsOfCanvas(i, i2).size()
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);

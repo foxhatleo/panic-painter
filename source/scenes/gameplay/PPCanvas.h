@@ -38,12 +38,14 @@ private:
      * example, if there are 5 queues and this is in queue 2, the index would
      * be 1.
      * @param numOfQueues This is the total number of rows.
+     * @param numCanvasColors. This is the number of colors this canvas initially has. Needed for animation
      */
     void _setup(const asset_t &assets,
                 const vec<Color4> &colors,
                 const ptr<Timer> &timer,
                 uint queueInd,
-                uint numOfQueues);
+                uint numOfQueues, 
+                const int numCanvasColors);
 
 public:
     /** Allocate canvas with a particular bound. See _setup() for arguments. */
@@ -52,7 +54,8 @@ public:
                              const ptr<Timer> &timer,
                              uint queueInd,
                              uint numOfQueues,
-                             const Rect &bound);
+                             const Rect &bound, 
+                             const int numCanvasColors);
 
     ptr<SceneNode> getInteractionNode() const;
 

@@ -1,56 +1,62 @@
 {
   "textures": {
-     "color-circle": {
-         "file": "textures/color_circle.png"
-     },
-     "palette": {
-         "file": "textures/palette.png"
-     },
-     "panda": {
-         "file": "textures/characters/panda.png"
-     },
+    "color-circle": {
+      "file": "textures/color_circle.png"
+    },
+    "palette": {
+      "file": "textures/palette.png"
+    },
+    "panda": {
+      "file": "textures/characters/panda.png"
+    },
     "background": {
       "file": "textures/background.png"
     },
     "talk-bubble": {
       "file": "textures/talk_bubble.png"
     },
-     "cat-1": {
-         "file": "textures/characters/cat-1.png"
-     },
-     "cat-2": {
-         "file": "textures/characters/cat-2.png"
-     },
-     "bird-1": {
-         "file": "textures/characters/bird-1.png"
-     },
-     "bird-2": {
-         "file": "textures/characters/bird-2.png"
-     },
-     "dog-1": {
-         "file": "textures/characters/dog-1.png"
-     },
-     "dog-2": {
-         "file": "textures/characters/dog-2.png"
-     },
-     "dog-3": {
-         "file": "textures/characters/dog-3.png"
-     },
-     "frog": {
-         "file": "textures/characters/frog.png"
-     },
+    "cat-1": {
+      "file": "textures/characters/cat-1.png"
+    },
+    "cat-2": {
+      "file": "textures/characters/cat-2.png"
+    },
+    "bird-1": {
+      "file": "textures/characters/bird-1.png"
+    },
+    "bird-2": {
+      "file": "textures/characters/bird-2.png"
+    },
+    "dog-1": {
+      "file": "textures/characters/dog-1.png"
+    },
+    "dog-2": {
+      "file": "textures/characters/dog-2.png"
+    },
+    "dog-3": {
+      "file": "textures/characters/dog-3.png"
+    },
+    "frog": {
+      "file": "textures/characters/frog.png"
+    },
     "octopus": {
       "file": "textures/characters/octopus.png"
     },
     "husky-emotion-1": {
       "file": "textures/characters/husky_emotion_stage1.png"
     },
-     "level-timer-foreground": {
-         "file": "textures/level-progress/level-timer-foreground.png"
-     },
-     "level-timer-background": {
-         "file": "textures/level-progress/level-timer-background.png"
-     }
+    "husky-emotion-2": {
+      "file": "textures/characters/husky_emotion_stage2.png"
+    },
+    "husky-emotion-3": {
+      "file": "textures/characters/husky_emotion_stage3.png"
+    },
+    "level-timer-foreground": {
+      "file": "textures/level-progress/level-timer-foreground.png"
+    },
+    "level-timer-background": {
+      "file": "textures/level-progress/level-timer-background.png"
+    }
   },
   "jsons": {
     "global": "config/global.json",
