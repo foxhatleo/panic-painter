@@ -21,14 +21,20 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors) {
 #endif
 
     string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2", "dog-1", "dog-2", "dog-3", "frog", "octopus"};
-    
+    _texture_array[0] = assets->get<Texture>("husky-emotion-1");
+    _texture_array[1] = assets->get<Texture>("husky-emotion-2");
+    _texture_array[2] = assets->get<Texture>("husky-emotion-3");
+
     int p = rand() % NUM_CHARACTERS;
+    _updateFrame = 0; 
+    _angerLevel = 0; 
     float talk_height = p == 3 || p == 4 || p == 9 || p == 2 ? 1.75 : 2.0; 
     // Load in the panda texture from scene and attach to a new polygon node
-    _bg = scene2::PolygonNode::allocWithTexture(assets->get<Texture>(characters[p]));
+    _bg = scene2::AnimationNode::alloc(_texture_array[0], 1, 19);
     _bg->setColor(Color4::WHITE);
-    float scale = getWidth() / _bg->getWidth();
-    _bg->setScale(scale, scale);
+    float horizontalScale = getWidth() / (_bg->getWidth());
+    float verticalScale = getHeight() / (_bg->getHeight());
+    _bg->setScale(horizontalScale, verticalScale);
     _bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _bg->setPosition(0, 0);
     addChild(_bg);
@@ -71,6 +77,19 @@ void CanvasBlock::markDone() {
 
 void CanvasBlock::update(const vec<uint>& canvasColors,
     const ptr<Timer>& timer) {
+    _updateFrame++; 
+    CULog("current frame is %d", _bg->getFrame());
+    if (_updateFrame %7 == 0) {
+       /* if (_bg->getFrame() == 18) {
+            _bg->setTexture(_texture_array[_angerLevel]);
+            (_angerLevel++)%3;
+            _bg->setFrame(0);
+        }
+        else {*/
+            _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
+       // }
+        _updateFrame = 0; 
+    }
     _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
     _colorStrip->update(canvasColors);
 }

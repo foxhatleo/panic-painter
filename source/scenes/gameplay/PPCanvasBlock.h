@@ -16,7 +16,9 @@
 class CanvasBlock : public SceneNode {
 private:
     /** Background */
-    ptr<PolygonNode> _bg;
+    ptr<AnimationNode> _bg;
+
+    ptr<Texture> _texture_array[3]; 
 
     /*The request bubble*/
     ptr<PolygonNode> _talk_bubble;
@@ -29,6 +31,8 @@ private:
 
     /** If hover is allowed. */
     bool _hoverAllowed;
+    int _updateFrame; 
+    int _angerLevel;
 
     /** Set up this block. */
     void _setup(const asset_t &assets, const vec<Color4> &colors);
