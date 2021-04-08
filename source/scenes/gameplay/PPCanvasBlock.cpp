@@ -58,12 +58,12 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
     addChild(_colorStrip);
     
-    // Timer label
-    _timerText = scene2::Label::alloc("", assets->get<Font>("roboto"));
+    // Timer label. Uncomment for debugging purposes
+    /*_timerText = scene2::Label::alloc("", assets->get<Font>("roboto"));
     _timerText->setHorizontalAlignment(scene2::Label::HAlign::CENTER);
     _timerText->setVerticalAlignment(scene2::Label::VAlign::BOTTOM);
     _timerText->setPosition(getWidth() / 2, 35);
-    addChild(_timerText);
+    addChild(_timerText);*/
 
     _hoverAllowed = true;
 }
@@ -107,7 +107,8 @@ void CanvasBlock::update(const vec<uint>& canvasColors,
         }
         _updateFrame = 0;
     }
-    _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
+    //Commenting instead of removing for debug purposes
+  //  _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
     _colorStrip->update(canvasColors);
 }
 
