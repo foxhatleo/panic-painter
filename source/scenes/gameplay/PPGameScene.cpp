@@ -75,7 +75,7 @@ void GameScene::loadLevel(const char *levelName) {
                                   Application::get()->getDisplayBounds(),
                                   1);
 
-    addChild(_palette);
+    addChild(_splash);
     addChild(_globalTimer);
     addChild(_palette);
 
