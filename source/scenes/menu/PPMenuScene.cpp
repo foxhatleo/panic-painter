@@ -98,6 +98,9 @@ void MenuScene::deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& sce
     }
 }
 
+void MenuScene::resetState() {
+    _state = HOME;
+}
 
 void MenuScene::update(float timestep) {
 }

@@ -70,8 +70,11 @@ void PanicPainterApp::update(float timestep) {
                 _loading.dispose();
                 onLoaded();
 
-                // Start initializing game scene.
+                // Initializing game scene.
                 _gameplay.init(_assets);
+
+                // Initialize level select screen
+                _level.init(_assets);
 
                 // Initialize Menu_Scene and set scene to menu
                 _menu.init(_assets);
@@ -89,22 +92,30 @@ void PanicPainterApp::update(float timestep) {
         }
         case MENU_SCENE: {
             if (_menu.getState() == PLAY) { 
+                //_menu.dispose();
                 _gameplay.loadLevel("level1"); //TODO: once have save system, should play latest level
                 _currentScene = GAME_SCENE;
+                _menu.resetState();
             }
             else if (_menu.getState() == LEVELS) {
-                _level.init(_assets);
+                //_menu.dispose();
                 _currentScene = LEVEL_SCENE;
+                _menu.resetState();
             }
             break;
         }
         case LEVEL_SCENE: {
             if (_level.getState() == BACK) {
+                //_level.dispose();
+                //_menu.init(_assets);
                 _currentScene = MENU_SCENE;
+                _level.resetState();
             }
             else if (_level.getState() == SELECTED) {
+                //_level.dispose();
                 _gameplay.loadLevel(_level.getLevel().c_str()); // fetch the specific level
                 _currentScene = GAME_SCENE;
+                _level.resetState();
             }
             break;
         }

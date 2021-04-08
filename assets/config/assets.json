@@ -98,6 +98,12 @@
     },
     "level3": {
       "file": "textures/levelselect/level3.png"
+    },
+    "backbutton": {
+      "file": "textures/backbutton.png"
+    },
+    "menubutton": {
+      "file": "textures/menubutton.png"
     }
   },
   "jsons": {

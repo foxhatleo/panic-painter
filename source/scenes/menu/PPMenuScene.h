@@ -39,6 +39,8 @@ public:
     void update(float timestep) override;
 
     MenuRequest getState() const;
+
+    void resetState();
 };
 
 #endif //PANICPAINTER_PPPAUSESCENE_H

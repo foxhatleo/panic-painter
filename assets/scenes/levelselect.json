@@ -13,7 +13,7 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [3.1, 0.8],
+                  "anchor" : [3.2, 0.9],
                   "scale"    : 0.17
                 },
                 "children": {
@@ -34,7 +34,7 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [2.5, 0.3],
+                  "anchor" : [2.6, 0.35],
                   "scale"    : 0.17
                 },
                 "children": {
@@ -55,7 +55,7 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [1.5, 0.8],
+                  "anchor" : [1.8, 0.8],
                   "scale"    : 0.17
                 },
                 "children": {
@@ -63,6 +63,27 @@
                     "type": "Image",
                     "data": {
                       "texture": "level3"
+                    }
+                  }
+                },
+                "layout": {
+                    "padding" : [0,0,0,50]
+                }
+            },
+            "menubutton": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [2.4, -1.0],
+                  "scale"    : 0.5
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "menubutton"
                     }
                   }
                 },

@@ -46,6 +46,8 @@ public:
 
     string getLevel();
 
+    void resetState();
+
 };
 
 #endif //PANICPAINTER_PPLEVELSELECTSCENE_H
