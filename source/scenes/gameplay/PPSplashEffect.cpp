@@ -1,5 +1,12 @@
 #include "PPSplashEffect.h"
 
+ptr<SplashEffect>
+SplashEffect::alloc(const asset_t& assets, const Rect& bounds, float scale) {
+    auto n = make_shared<SplashEffect>(assets, scale);
+    if (!n->initWithBounds(bounds)) return nullptr;
+    return n;
+}
+
 void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     // Decrease opacity of all points by a bit.
     for (auto &i : _queue) {
@@ -28,9 +35,7 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     }
 }
 
-ptr<SplashEffect>
-SplashEffect::alloc(const asset_t &assets, const Rect &bounds, float scale) {
-    auto n = make_shared<SplashEffect>(assets, scale);
-    if (!n->initWithBounds(bounds)) return nullptr;
-    return n;
+void SplashEffect::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) {
+    batch->setSplats(Vec2(100, 100), Vec2(200, 200), Vec2(300, 300), Vec2(400, 400),
+        Vec4(255, 0, 0, 0), Vec4(0, 255, 0, 0), Vec4(0, 0, 255, 0), Vec4(255, 255, 0, 0));
 }
