@@ -15,10 +15,6 @@
 #define PRESSED_SCALE 1.2f
 #define PALETTE_WIDTH 190
 #define PALETTE_HEIGHT 260
-#define NEGATIVE_MARGIN_LEFT_WO_LAYOUT 0.2f /* = 20% of PALETTE_WIDTH */
-// The difference between the one above and below is that if you increase the
-// value below, the palette will enlarge to try to fill the container space.
-// The one above wouldn't do that.
 #define NEGATIVE_MARGIN_LEFT 0.4f /* = 40% of PALETTE_WIDTH */
 #define CURVATURE 0.15 /** Curvature constant for the palette. */
 
