@@ -38,7 +38,9 @@ set(PP_FILES
         ../source/scenes/pause/PPPauseScene.h
         ../source/scenes/pause/PPPauseScene.cpp
         ../source/scenes/gameplay/PPGlobalTimer.h
-        ../source/scenes/gameplay/PPGlobalTimer.cpp)
+        ../source/scenes/gameplay/PPGlobalTimer.cpp
+        ../source/scenes/gameplay/PPSplashEffect.h
+        ../source/scenes/gameplay/PPSplashEffect.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
