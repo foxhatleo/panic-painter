@@ -111,6 +111,12 @@ void GameScene::update(float timestep) {
     // Check if the level is complete
     if (activeCanvases.size() == 0) {
         this->_complete = true;
+        auto levelcomplete = PolygonNode::allocWithTexture(_assets->get<Texture>
+            ("levelcomplete"));
+        levelcomplete->setContentSize(Application::get()->getDisplaySize());
+        // levelcomplete->setContentSize(Application::get()->getDisplaySize()/1.3);
+        //levelcomplete->setAnchor(Vec2::ANCHOR_CENTER);
+        addChild(levelcomplete);
     }
 
     Scene2::update(timestep);
