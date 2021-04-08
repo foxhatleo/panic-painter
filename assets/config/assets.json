@@ -42,6 +42,9 @@
     "octopus": {
       "file": "textures/characters/octopus.png"
     },
+    "husky-blink": {
+      "file": "textures/characters/husky_blink.png"
+    },
     "husky-emotion-1": {
       "file": "textures/characters/husky_emotion_stage1.png"
     },

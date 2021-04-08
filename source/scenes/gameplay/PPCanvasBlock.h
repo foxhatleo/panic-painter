@@ -7,7 +7,7 @@
 #include "utils/PPAnimation.h"
 #include <string>
 #define NUM_CHARACTERS 10
-#define REPEAT_FILMSTRIP 2
+#define SWITCH_FILMSTRIP 12
 
 /**
  * Canvas block is the little square that represents a canvas. It also includes
@@ -19,7 +19,7 @@ private:
     /** Background */
     ptr<AnimationNode> _bg;
 
-    ptr<Texture> _texture_array[3]; 
+    ptr<Texture> _texture_array[4]; 
 
     /*The request bubble*/
     ptr<PolygonNode> _talk_bubble;
@@ -40,8 +40,6 @@ private:
     bool _isActive;
     /*How many colors did this canvas start out with? This is needed to know how many animations to loop through*/
     int _initialColorNumber;
-    /*How many times has one animation been played*/
-    int _numAnimations; 
 
     /** Set up this block. */
     void _setup(const asset_t &assets, const vec<Color4> &colors, const int numCanvasColors);
@@ -58,6 +56,7 @@ public:
     void markLost();
     void markDone();
     void setIsActive(bool isActive);
+    bool isFrameComplete();
 
     /**
      * Update the canvas block.
