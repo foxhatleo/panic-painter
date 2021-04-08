@@ -116,7 +116,8 @@ void GameScene::update(float timestep) {
     canvasArea.size.height -= canvasArea.size.height * TIMER_HEIGHT;
     bool pressing = input.isPressing() &&
         InputController::inScene(input.currentPoint(), canvasArea);
-    _splash->update(timestep, _palette->getSelectedColor(),
+    _splash->update(timestep,
+                    _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
     _globalTimer->update(_state.getLevelTimer());

@@ -26,16 +26,20 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
                 _queue[i] = _queue[i - 1];
             // Update the point and color.
             _queue[0].point = point;
-            _queue[0].color.set(
-                currentColor.r,
-                currentColor.g,
-                currentColor.b,
-                1);
+            _queue[0].color = Vec4(currentColor);
         }
     }
 }
 
 void SplashEffect::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) {
-    batch->setSplats(Vec2(100, 100), Vec2(200, 200), Vec2(300, 300), Vec2(400, 400),
-        Vec4(255, 0, 0, 0), Vec4(0, 255, 0, 0), Vec4(0, 0, 255, 0), Vec4(255, 255, 0, 0));
+    batch->setSplats(
+        _queue[0].point,
+        _queue[1].point,
+        _queue[2].point,
+        _queue[3].point,
+        _queue[0].color,
+        _queue[1].color,
+        _queue[2].color,
+        _queue[3].color
+    );
 }
