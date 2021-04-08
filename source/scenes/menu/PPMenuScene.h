@@ -21,18 +21,13 @@ private:
     /** Asset manager. */
     asset_t _assets;
 
-    /** Play/resume button. */
-    ptr<Button> _playButton;
-
-    /** Level select button. */
-    ptr<Button> _levelsButton;
-
-    /** Settings button. */
-    ptr<Button> _settingsButton;
-
     MenuRequest _state;
 
+    ptr<cugl::scene2::SceneNode> _scene;
+
     void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+
+    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 
 public:
     MenuScene() : Scene2() {}

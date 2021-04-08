@@ -1,8 +1,7 @@
 #include "PPMenuScene.h"
 
 void MenuScene::dispose() {
-    _playButton->deactivate();
-    _playButton = nullptr;
+    deactivateUI(_scene);
     Scene2::dispose();
 }
 
@@ -20,9 +19,9 @@ bool MenuScene::init(const asset_t& assets) {
 
     _assets = assets;
     _assets->loadDirectory("scenes/menu.json");
-    std::shared_ptr<scene2::SceneNode> scene = _assets->get<scene2::SceneNode>("menuscene");
-    scene->setContentSize(screenSize);
-    scene->doLayout(); // Repositions the HUD
+    _scene = _assets->get<scene2::SceneNode>("menuscene");
+    _scene->setContentSize(screenSize);
+    _scene->doLayout(); // Repositions the HUD
 
     // Initialize background
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
@@ -30,49 +29,11 @@ bool MenuScene::init(const asset_t& assets) {
     srand((uint)time(0));
     menuBackground->setContentSize(Application::get()->getDisplaySize());
     addChild(menuBackground);
-    activateUI(scene);
 
-    addChild(scene);
-    return true;
+    // Initialize buttons
+    activateUI(_scene);
 
-    /*
-    Size screenSize = Application::get()->getDisplaySize();
-    if (assets == nullptr || !Scene2::init(screenSize)) return false;
-    _assets = assets;
-    srand((uint)time(0));
-    _assets->loadDirectory("scenes/menu.json");
-
-    
-    auto layer = assets->get<scene2::SceneNode>("load");
-    layer->setContentSize(screenSize);
-    layer->doLayout(); // This rearranges the children to fit the screen */
-
-    //Initialize buttons 
-    /*
-    _playButton = std::dynamic_pointer_cast<scene2::Button>(scene->getChildByName("playbutton"));
-    _playButton->addListener([=](const string& name, bool down) {
-        this->_state = PLAY;
-        });
-    _playButton->activate();
-
-    _levelsButton = std::dynamic_pointer_cast<scene2::Button>(scene->getChildByName("levelsbutton"));
-    _levelsButton->addListener([=](const string& name, bool down) {
-        this->_state = LEVELS;
-        });
-    _levelsButton->activate();
-
-    _settingsButton = std::dynamic_pointer_cast<scene2::Button>(scene->getChildByName("settingsbutton"));
-    _settingsButton->addListener([=](const string& name, bool down) {
-        this->_state = SETTINGS;
-        });
-    _settingsButton->activate();*/
-
-    //_playButton = dynamic_pointer_cast<scene2::Button>(
-    //    assets->get<scene2::SceneNode>("play")); // CHANGE -- WHERE ARE ASSET DETAILS 
-    
-    /*Application::get()->setClearColor(Color4(192, 192, 192, 255));
-    addChild(layer);*/
-
+    addChild(_scene);
     return true;
 }
 
@@ -114,10 +75,21 @@ void MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene
     }
 }
 
+void MenuScene::deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
+    std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(scene);
+    if (button != nullptr) {
+        button->deactivate();
+    }
+    else {
+        // Go deeper
+        for (Uint32 ii = 0; ii < scene->getChildCount(); ii++) {
+            deactivateUI(scene->getChild(ii));
+        }
+    }
+}
 
-void MenuScene::update(float timestep) { //LOOK INTO
-    auto& input = InputController::getInstance();
-    Scene2::update(timestep);
+
+void MenuScene::update(float timestep) {
 }
 
 MenuRequest MenuScene::getState() const {
