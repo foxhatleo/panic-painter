@@ -84,6 +84,10 @@ void PanicPainterApp::update(float timestep) {
                 // TODO: Now it is screen.
                 _gameplay.loadLevel("gameplay");
             }
+            /*
+            else if (_gameplay.isComplete()) {
+                _currentScene = MENU_SCENE;
+            }*/ 
             break;
         }
         case MENU_SCENE: {

@@ -107,6 +107,11 @@ void GameScene::update(float timestep) {
     _palette->update();
     _action->update(activeCanvases, _palette->getSelectedColor());
     _globalTimer->update(_state.getLevelTimer());
+    
+    // Check if the level is complete
+    if (activeCanvases.size() == 0) {
+        this->_complete = true;
+    }
 
     Scene2::update(timestep);
 }
