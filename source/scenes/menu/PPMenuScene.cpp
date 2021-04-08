@@ -1,5 +1,7 @@
 #include "PPMenuScene.h"
 
+#define SCENE_SIZE 1024
+
 void MenuScene::dispose() {
     deactivateUI(_scene);
     Scene2::dispose();
@@ -10,6 +12,14 @@ bool MenuScene::init(const asset_t& assets) {
     
     // Initialize the scene to a locked width
     Size screenSize = Application::get()->getDisplaySize();
+
+    // Lock the scene to a reasonable resolution
+    if (screenSize.width > screenSize.height) {
+        screenSize *= SCENE_SIZE / screenSize.width;
+    } else {
+        screenSize *= SCENE_SIZE / screenSize.height;
+    }
+
     if (assets == nullptr) {
         return false;
     }
@@ -27,7 +37,7 @@ bool MenuScene::init(const asset_t& assets) {
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("menubackground"));
     srand((uint)time(0));
-    menuBackground->setContentSize(Application::get()->getDisplaySize());
+    menuBackground->setContentSize(screenSize);
     addChild(menuBackground);
 
     // Initialize buttons
@@ -50,19 +60,19 @@ void MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene
         if(button->getName() == "playbutton") {
             button->addListener([=](const string& name, bool down) {
                 //CULog("PLAY STATUS");
-                this->_state = PLAY;
+                if (!down) this->_state = PLAY;
                 });
         }
         if (button->getName() == "levelsbutton") {
             button->addListener([=](const string& name, bool down) {
                 //CULog("LEVEL STATUS");
-                this->_state = LEVELS;
+                if (!down) this->_state = LEVELS;
                 });
         }
         if (button->getName() == "settingsbutton") {
             button->addListener([=](const string& name, bool down) {
                 //CULog("SETTINGS STATUS");
-                this->_state = SETTINGS;
+                if (!down) this->_state = SETTINGS;
                 });
         }
         button->activate();
