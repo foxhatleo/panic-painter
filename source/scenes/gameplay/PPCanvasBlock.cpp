@@ -90,12 +90,13 @@ void CanvasBlock::update(const vec<uint>& canvasColors,
     int value = _updateFrame % ((rand() % 100) + 12);
     if (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP) {
         //Just keep it on blink. However, if eyes are closed, open them quickly
-        if(value == 0 || ((_bg->getFrame() + 1) %3 == 0 && _updateFrame %4 == 0))
+        if(value == 0 || ((_bg->getFrame()+1) %3 == 0 && value < 2))
         _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
     }
     else if (_updateFrame %6 == 0) {
         //Do we need to switch stages of anger ie switch animations? 
-        if (_bg->getFrame() == _bg->getSize() - 1) {
+        //Note: if a blink, switch the blink immediately to prevent the uniform blinking issue
+        if (_bg->getFrame() == _bg->getSize() - 1 || _angerLevel == 0) {
              if (timer->timeLeft() < (SWITCH_FILMSTRIP - (_angerLevel * 3))) {
                 _angerLevel = _angerLevel == 3 ? _angerLevel : (_angerLevel + 1);
              }
