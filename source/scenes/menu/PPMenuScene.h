@@ -32,6 +32,8 @@ private:
 
     MenuRequest _state;
 
+    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+
 public:
     MenuScene() : Scene2() {}
 

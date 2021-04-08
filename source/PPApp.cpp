@@ -87,7 +87,7 @@ void PanicPainterApp::update(float timestep) {
             break;
         }
         case MENU_SCENE: {
-            if (false) {  // do some getter that returns what screen to go too -- level or last played level or what have you
+            if (_menu.getState() == PLAY) {  // do some getter that returns what screen to go too -- level or last played level or what have you
                 _gameplay.loadLevel("gameplay");
                 _currentScene = GAME_SCENE;
             }

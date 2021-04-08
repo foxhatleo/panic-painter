@@ -1,48 +1,104 @@
 {
   "textures": {
-    "play": {
-      "file": "textures/cugl-play.png",
-      "wrapS": "clamp",
-      "wrapT": "clamp",
-      "minfilter": "linear",
-      "magfilter": "linear"
+    "menubackground": {
+       "file":   "textures/menu/menubackground.png"
+    },
+    "levelsbutton": {
+        "file":   "textures/menu/levelsbutton.png"
+    },
+    "playbutton": {
+        "file": "textures/menu/playbutton.png"
+    },
+    "settingsbutton": {
+         "file": "textures/menu/settingsbutton.png"
     }
   },
+  "fonts": {
+		"jua": {
+			"file":     "fonts/Jua-Regular.ttf",
+			"size":     48
+		}
+	},
+  "widgets": {
+      "textbutton" : "widgets/textbutton.json"
+  },
+
   "scene2s": {
-    "menu": {
-      "type": "Solid",
+    "menuscene": {
+      "type": "Node",
+      "comment"   : "This is the root node of the scene for the menu",
       "format": {
         "type": "Anchored"
       },
-      "data": {
-        "color": [ 0, 0, 0, 255 ]
-      },
       "children": {
-        "play": {
-          "type": "Button",
-          "data": {
-            "upnode": "up",
-            "pushable": [ 144, 280, 240, 184, 280, 144, 320, 184, 416, 280, 320, 376, 280, 416, 184, 376 ],
-            "visible": true,
-            "pushsize": true,
-            "anchor": [ 0.5, 0.5 ],
-            "scale": 0.8
-          },
-          "children": {
-            "up": {
-              "type": "Image",
+
+            "playbutton": {
+              "type": "Button",
               "data": {
-                "texture": "play"
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0.0, -1.0],
+                "scale"    : 0.2
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "playbutton"
+                  }
+                }
+              },
+              "layout": {
+                "priority" : 1,
+                "padding" : [0,0,0,50]
+              }
+            },
+            "levelsbutton": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0.0, 0.5],
+                "scale"    : 0.2
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "levelsbutton"
+                  }
+                }
+              },
+              "layout": {
+                "priority" : 2,
+                "padding" : [0,0,0,50]
+              }
+            },
+            "settingsbutton": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0.0, 1.5],
+                "scale"    : 0.2
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "settingsbutton"
+                  }
+                }
+              },
+              "layout": {
+                "priority" : 3,
+                "padding" : [0,0,0,50]
               }
             }
-          },
-          "layout": {
-            "x_anchor": "center",
-            "y_anchor": "middle",
-            "y_offset": 0,
-            "absolute": true
-          }
-        },
+
       }
     }
   }
