@@ -37,9 +37,7 @@ ptr<ColorPaletteView> ColorPaletteView::alloc(
 }
 
 float ColorPaletteView::_computeXPositioning(uint ind) {
-    return getContentWidth() - NEGATIVE_MARGIN_LEFT_WO_LAYOUT * PALETTE_WIDTH -
-    35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind
-    * ind * CURVATURE;
+    return getContentWidth() - 35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
 }
 
 void ColorPaletteView::_setup() {
@@ -49,8 +47,7 @@ void ColorPaletteView::_setup() {
     auto bg = PolygonNode::allocWithTexture(_paletteTexture);
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bg->setContentSize(PALETTE_WIDTH, PALETTE_HEIGHT);
-    bg->setPositionX(-(NEGATIVE_MARGIN_LEFT + NEGATIVE_MARGIN_LEFT_WO_LAYOUT)
-    * bg->getContentWidth());
+    bg->setPositionX(-NEGATIVE_MARGIN_LEFT * bg->getContentWidth());
     setContentSize(bg->getContentWidth() * (1 - NEGATIVE_MARGIN_LEFT),
                    bg->getContentHeight());
 
