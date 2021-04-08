@@ -4,7 +4,7 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     // Decrease opacity of all points by a bit.
     for (auto &i : _queue) {
         i.color.w -= (timestep / FADE_DURATION);
-        if (i.color.z < 0) i.color.z = 0;
+        if (i.color.w < 0) i.color.w = 0;
     }
 
     // Reset ticker if no input.
