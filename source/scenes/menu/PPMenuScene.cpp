@@ -49,19 +49,19 @@ void MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene
         CULog("Activating button %s", button->getName().c_str());
         if(button->getName() == "playbutton") {
             button->addListener([=](const string& name, bool down) {
-                CULog("PLAY STATUS");
+                //CULog("PLAY STATUS");
                 this->_state = PLAY;
                 });
         }
         if (button->getName() == "levelsbutton") {
             button->addListener([=](const string& name, bool down) {
-                CULog("LEVEL STATUS");
+                //CULog("LEVEL STATUS");
                 this->_state = LEVELS;
                 });
         }
         if (button->getName() == "settingsbutton") {
             button->addListener([=](const string& name, bool down) {
-                CULog("SETTINGS STATUS");
+                //CULog("SETTINGS STATUS");
                 this->_state = SETTINGS;
                 });
         }
