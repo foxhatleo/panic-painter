@@ -26,11 +26,6 @@ bool LoadingScene::init(const asset_t &assets) {
 
     _bar = dynamic_pointer_cast<scene2::ProgressBar>(
             assets->get<scene2::SceneNode>("load_bar"));
-    _button = dynamic_pointer_cast<scene2::Button>(
-            assets->get<scene2::SceneNode>("load_play"));
-    _button->addListener([=](const string &name, bool down) {
-        this->_active = down;
-    });
 
     Application::get()->setClearColor(Color4(192, 192, 192, 255));
     addChild(layer);
@@ -39,8 +34,6 @@ bool LoadingScene::init(const asset_t &assets) {
 }
 
 void LoadingScene::dispose() {
-    if (isPending()) _button->deactivate();
-    _button = nullptr;
     _bar = nullptr;
     _assets = nullptr;
     _progress = 0.0f;
@@ -53,13 +46,8 @@ void LoadingScene::update(float progress) {
         if (_progress >= 1) {
             _progress = 1.0f;
             _bar->setVisible(false);
-            _button->setVisible(true);
-            _button->activate();
+            this->_active = false;
         }
         _bar->setProgress(_progress);
     }
-}
-
-bool LoadingScene::isPending() const {
-    return _button != nullptr && _button->isVisible();
 }

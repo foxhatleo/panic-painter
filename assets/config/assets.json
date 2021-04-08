@@ -12,6 +12,9 @@
     "background": {
       "file": "textures/background.png"
     },
+    "menubackground": {
+      "file": "textures/menubackground.png"
+    },
     "talk-bubble": {
       "file": "textures/talk_bubble.png"
     },
@@ -59,12 +62,31 @@
     },
     "level-timer-background": {
       "file": "textures/level-progress/level-timer-background.png"
+    },
+    "levelsbutton": {
+      "file":   "textures/menu/levelsbutton.png"
+    },
+    "playbutton": {
+      "file": "textures/menu/playbutton.png"
+    },
+    "settingsbutton": {
+      "file": "textures/menu/settingsbutton.png"
+    },
+    "stand": {
+      "file": "textures/menu/stand.png"
+    },
+    "greensplatter": {
+      "file": "textures/menu/greensplatter.png"
+    },
+    "redsplatter": {
+      "file": "textures/menu/redsplatter.png"
     }
   },
   "jsons": {
     "global": "config/global.json",
     "load": "scenes/loading.json",
-    "gameplay": "levels/gameplay.json"
+    "gameplay": "levels/gameplay.json",
+    "menu": "scenes/menu.json"
   },
   "fonts": {
     "roboto": {

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6925f7-7519-4c43-b4b3-98bb0cf2d85a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.idea/panic-painter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/panic-painter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build-win10/PanicPainter/PanicPainter.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../build-win10/PanicPainter/PanicPainter.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build-win10/PanicPainter/PanicPainter.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/../../build-win10/PanicPainter/PanicPainter.vcxproj.filters" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +40,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1404" y="144" key="FileChooserDialogImpl" timestamp="1616421592127">
+    <state x="-1404" y="144" key="FileChooserDialogImpl" timestamp="1617661574224">
       <screen x="-1920" y="-132" width="1920" height="1040" />
     </state>
+    <state x="-1404" y="144" key="FileChooserDialogImpl/0.0.1536.824/-1920.-132.1920.1040/1920.-132.1920.1040@-1920.-132.1920.1040" timestamp="1617661574224" />
     <state x="-1404" y="144" key="FileChooserDialogImpl/0.0.1536.824/1920.-132.1920.1040/-1920.-132.1920.1040@-1920.-132.1920.1040" timestamp="1616421592127" />
   </component>
 </project>

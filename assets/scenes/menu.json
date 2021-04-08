@@ -1,0 +1,119 @@
+{
+  "scene2s": {
+    "menuscene": {
+      "type": "Node",
+      "comment"   : "This is the root node of the scene for the menu",
+      "format": {
+        "type": "Anchored"
+      },
+      "children": {
+        "greensplatter": {
+          "type": "Image",
+          "data": {
+            "visible"  : true,
+            "anchor" : [0, 1],
+            "scale"    : 0.26,
+            "texture": "greensplatter"
+          },
+          "layout": {
+            "x_anchor": "left",
+            "y_anchor": "top",
+            "x_offset": 0.028,
+            "y_offset": -0.12
+          }
+        },
+        "redsplatter": {
+          "type": "Image",
+          "data": {
+            "visible"  : true,
+            "anchor" : [1, 0],
+            "scale"    : 0.26,
+            "texture": "redsplatter"
+          },
+          "layout": {
+            "x_anchor": "right",
+            "y_anchor": "bottom"
+          }
+        },
+        "stand": {
+          "type": "Image",
+          "data": {
+            "visible"  : true,
+            "anchor" : [1.18, 0.53],
+            "scale"    : 0.28,
+            "texture": "stand"
+          },
+          "layout": {
+            "priority" : 1
+          }
+        },
+        "playbutton": {
+          "type": "Button",
+          "data": {
+            "upnode": "up",
+            "visible"  : true,
+            "pushsize" : true,
+            "anchor" : [0.0, -0.75],
+            "scale"    : 0.24
+          },
+          "children": {
+            "up": {
+              "type": "Image",
+              "data": {
+                "texture": "playbutton"
+              }
+            }
+          },
+          "layout": {
+            "priority" : 1,
+            "padding" : [10,1,0,50]
+          }
+        },
+        "levelsbutton": {
+          "type": "Button",
+          "data": {
+            "upnode": "up",
+            "visible"  : true,
+            "pushsize" : true,
+            "anchor" : [0.0, 0.55],
+            "scale"    : 0.24
+          },
+          "children": {
+            "up": {
+              "type": "Image",
+              "data": {
+                "texture": "levelsbutton"
+              }
+            }
+          },
+          "layout": {
+            "priority" : 2,
+            "padding" : [0,0,0,50]
+          }
+        },
+        "settingsbutton": {
+          "type": "Button",
+          "data": {
+            "upnode": "up",
+            "visible"  : true,
+            "pushsize" : true,
+            "anchor" : [0.0, 1.5],
+            "scale"    : 0.24
+          },
+          "children": {
+            "up": {
+              "type": "Image",
+              "data": {
+                "texture": "settingsbutton"
+              }
+            }
+          },
+          "layout": {
+            "priority" : 3,
+            "padding" : [0,0,0,50]
+          }
+        }
+      }
+    }
+  }
+}
