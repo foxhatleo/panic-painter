@@ -31,7 +31,12 @@ protected:
 
 public:
     explicit SplashEffect(const asset_t& assets) :
-    _assets(assets), _input(InputController::getInstance()) {}
+    _assets(assets), _input(InputController::getInstance()) {
+        for (uint i = 0; i < QUEUE_MAX_SIZE; i++) {
+            _queue[i].point = Vec2::ZERO;
+            _queue[i].color = Color4(0, 0, 0, 0);
+        }
+    }
 
 	/** Allocate canvas block with a particular length on the side. This can also be a Rect bounds if easier */
 	static ptr<SplashEffect> alloc(
