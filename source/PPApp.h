@@ -6,13 +6,16 @@
 #include "scenes/loading/PPLoadingScene.h"
 #include "scenes/gameplay/PPGameScene.h"
 #include "scenes/pause/PPPauseScene.h"
+#include "scenes/menu/PPMenuScene.h"
 #include "controllers/PPGlobalConfigController.h"
 #include "controllers/PPInputController.h"
+
 
 /** An enum for the list of scenes. */
 enum Scene {
     LOADING_SCENE,
     GAME_SCENE,
+    MENU_SCENE,
 };
 
 /**
@@ -32,6 +35,8 @@ protected:
     LoadingScene _loading;
     /** Gameplay scene. */
     GameScene _gameplay;
+    /** Menu scene. */
+    MenuScene _menu;
 
 public:
     /** Constructor. */
