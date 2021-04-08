@@ -44,7 +44,15 @@ uniform vec2 uBlur;
 uniform sampler2D uTexture;
 
 //TODO: Custom Uniforms
-uniform vec2 uSplatPosition;
+//uniform vec2 uSplatPosition;
+uniform vec2 uS1;
+uniform vec2 uS2;
+uniform vec2 uS3;
+uniform vec2 uS4;
+uniform vec4 uC1;
+uniform vec4 uC2;
+uniform vec4 uC3;
+uniform vec4 uC4;
 
 
 // The output color
@@ -148,6 +156,10 @@ vec4 blursample(vec2 coord) {
     return result;
 }
 
+float euclideanDistance(vec2 a, vec2 b){
+    return sqrt(pow((a.x - b.x), 2.0) + pow((a.y - b.y), 2.0));
+}
+
 /**
  * Performs the main fragment shading.
  */
@@ -196,12 +208,27 @@ void main(void) {
     
     
     //Draw a circle
-    float radius = 100;
-    vec2 test = uSplatPosition;
-    float distToPoint = sqrt(pow((outPosition.x - uSplatPosition.x), 2) + pow((outPosition.y - uSplatPosition.y), 2));
-
-    if(distToPoint < radius){
-        result = vec4(0.0, 250.0, 0.0, 1.0);
+    float radius = 69;
+//    vec2 test = uS1;
+    
+    float dist1 = euclideanDistance(outPosition, uS1);
+    if(dist1 < radius){
+        result = uC1;
+    }
+    
+    float dist2 = euclideanDistance(outPosition, uS2);
+    if(dist2 < radius){
+        result = uC2;
+    }
+    
+    float dist3 = euclideanDistance(outPosition, uS3);
+    if(dist3 < radius){
+        result = uC3;
+    }
+    
+    float dist4 = euclideanDistance(outPosition, uS4);
+    if(dist4 < radius){
+        result = uC4;
     }
     
     
