@@ -69,7 +69,7 @@ void ColorPaletteView::_setup() {
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
-            this->_computeXPositioning(i) + (i == 0 ? 50 : 0),
+            this->_computeXPositioning(i),
             btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
         );
         btn->setColor(_colors[i]);
@@ -92,28 +92,15 @@ void ColorPaletteView::_setup() {
 
 void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     if (_buttonStates[ind] == s) return;
-    ColorButtonState oldState = _buttonStates[ind];
     _buttonStates[ind] = s;
-    float originalX = this->_computeXPositioning(ind);
     float scale = s == INACTIVE ?
         INACTIVE_SCALE :
         (s == PRESSED ? PRESSED_SCALE : 1);
-    float newX;
-    if (oldState == ACTIVE && s == PRESSED) {
-        newX = originalX + 50;
-    } else if (oldState == INACTIVE && s == PRESSED) {
-        newX = originalX;
-    } else if (s == ACTIVE) {
-        newX = originalX + 50;
-    } else {
-        newX = originalX;
-    }
     Animation::alloc(
         _buttons[ind], .2,
         {
             {"scaleX", scale},
             {"scaleY", scale},
-            {"positionX", newX}
         },
         STRONG_OUT
     );
@@ -146,18 +133,17 @@ void ColorPaletteView::update() {
         if (startingPointIn && input.isPressing()) {
             indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
             for (uint i = 0; i < _colors.size(); i++) {
-                if (i != indexOfOtherColor && _buttonStates[i] != ACTIVE) {
                     Animation::alloc(
                         _buttons[i], .3,
-                        {{ "positionX", this->_computeXPositioning(i) }},
+                        {{ "scaleX", INACTIVE_SCALE }, { "scaleY", INACTIVE_SCALE }},
                         STRONG_OUT
                     );
-                }
             }
             
             Animation::alloc(
                 _buttons[indexOfOtherColor], .3,
-                {{ "positionX", this->_computeXPositioning(indexOfOtherColor) + 50 }},
+                {{"scaleX", PRESSED_SCALE},
+                {"scaleY", PRESSED_SCALE}},
                 STRONG_OUT
             );
         }
@@ -190,7 +176,6 @@ void ColorPaletteView::update() {
     }
     
     // Enable swipe up/down on palette for color switching.
-    
     if (startingPointIn && input.justReleased()) {
         indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
         if (indexOfOtherColor != -1 && indexOfOtherColor != _selectedColor) {
