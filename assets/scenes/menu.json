@@ -11,6 +11,15 @@
     },
     "settingsbutton": {
          "file": "textures/menu/settingsbutton.png"
+    },
+    "stand": {
+      "file": "textures/menu/stand.png"
+    },
+    "greensplatter": {
+      "file": "textures/menu/greensplatter.png"
+    },
+    "redsplatter": {
+      "file": "textures/menu/redsplatter.png"
     }
   },
   "fonts": {
@@ -31,15 +40,14 @@
         "type": "Anchored"
       },
       "children": {
-
             "playbutton": {
               "type": "Button",
               "data": {
                 "upnode": "up",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0.0, -1.0],
-                "scale"    : 0.2
+                "anchor" : [0.0, -0.8],
+                "scale"    : 0.24
               },
               "children": {
                 "up": {
@@ -51,7 +59,7 @@
               },
               "layout": {
                 "priority" : 1,
-                "padding" : [0,0,0,50]
+                "padding" : [10,1,0,50]
               }
             },
             "levelsbutton": {
@@ -60,8 +68,8 @@
                 "upnode": "up",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0.0, 0.5],
-                "scale"    : 0.2
+                "anchor" : [0.0, 0.6],
+                "scale"    : 0.24
               },
               "children": {
                 "up": {
@@ -83,7 +91,7 @@
                 "visible"  : true,
                 "pushsize" : true,
                 "anchor" : [0.0, 1.5],
-                "scale"    : 0.2
+                "scale"    : 0.24
               },
               "children": {
                 "up": {
@@ -98,7 +106,6 @@
                 "padding" : [0,0,0,50]
               }
             }
-
       }
     }
   }

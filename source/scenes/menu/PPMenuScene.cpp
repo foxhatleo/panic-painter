@@ -40,6 +40,30 @@ bool MenuScene::init(const asset_t& assets) {
     menuBackground->setContentSize(screenSize);
     addChild(menuBackground);
 
+    // Initialize other textures (Ideally this would be handled more from the JSON, but 
+    //    I was having trouble getting that to work so it is hard-coded here
+    //    feel free to move to the JSON)
+    auto stand = PolygonNode::allocWithTexture(_assets->get<Texture>
+        ("stand"));
+    auto anchor = Vec2(0.36, 0.03); // Hard-coded values
+    stand->setAnchor(anchor);
+    stand->setScale(.28); // Hard-coded values
+    addChild(stand);
+
+    auto greensplatter = PolygonNode::allocWithTexture(_assets->get<Texture>
+        ("greensplatter"));
+    auto anchor2 = Vec2(0.05, 0.2); // Hard-coded values
+    greensplatter->setAnchor(anchor2);
+    greensplatter->setScale(.26); // Hard-coded values
+    addChild(greensplatter);
+
+    auto redsplatter = PolygonNode::allocWithTexture(_assets->get<Texture>
+        ("redsplatter"));
+    auto anchor3 = Vec2(0.82, 0.0); // Hard-coded values
+    redsplatter->setAnchor(anchor3);
+    redsplatter->setScale(.26); // Hard-coded values
+    addChild(redsplatter);
+
     // Initialize buttons
     activateUI(_scene);
 
