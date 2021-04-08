@@ -493,6 +493,13 @@ public:
     void setShader(const std::shared_ptr<Shader>& shader);
     
     /**
+     *Sets the splatter locations for this batch.
+     *
+     *@param 
+     */
+    void setSplats(const Vec2 splatPosition);
+    
+    /**
      * Returns the shader for this sprite batch
      *
      * This value may NOT be changed during a drawing pass. See the

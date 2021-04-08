@@ -43,6 +43,10 @@ uniform vec2 uBlur;
 // The texture for sampling
 uniform sampler2D uTexture;
 
+//TODO: Custom Uniforms
+uniform vec2 uSplatPosition;
+
+
 // The output color
 out vec4 frag_color;
 
@@ -189,6 +193,18 @@ void main(void) {
         result *= scissormask(outPosition);
     }
 
+    
+    
+    //Draw a circle
+    float radius = 100;
+    vec2 test = uSplatPosition;
+    float distToPoint = sqrt(pow((outPosition.x - uSplatPosition.x), 2) + pow((outPosition.y - uSplatPosition.y), 2));
+
+    if(distToPoint < radius){
+        result = vec4(0.0, 250.0, 0.0, 1.0);
+    }
+    
+    
     frag_color = result;
 }
 /////////// SHADER END //////////)"

@@ -343,6 +343,12 @@ bool SpriteBatch::init(unsigned int capacity, const std::shared_ptr<Shader>& sha
 
     _shader->setUniformBlock("uContext",_unifbuff);
     
+    
+    //Set all needed uniforms here
+    //TODO:
+    //Vec2 tempVec = ;
+    _shader->setUniformVec2("uSplatPosition", Vec2(0,0));
+    
     _context = new Context();
     _context->dirty = DIRTY_ALL_VALS;
     return true;
@@ -385,6 +391,14 @@ void SpriteBatch::setShader(const std::shared_ptr<Shader>& shader) {
     _shader = shader;
     _vertbuff->attach(_shader);
     _shader->setUniformBlock("uContext", _unifbuff);
+    
+    //Initialize vals Not needed i guess?
+    //_shader->setUniformVec2("uSplatPosition", Vec2(0,0));
+}
+
+
+void SpriteBatch::setSplats(const Vec2 splatPosition){
+    _shader->setUniformVec2("uSplatPosition", splatPosition);
 }
 
 
