@@ -7,7 +7,7 @@
 #include "utils/PPAnimation.h"
 #include <string>
 #define NUM_CHARACTERS 10
-#define SWITCH_FILMSTRIP 12
+#define SWITCH_FILMSTRIP 9
 
 /**
  * Canvas block is the little square that represents a canvas. It also includes

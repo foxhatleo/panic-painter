@@ -88,7 +88,7 @@ void CanvasBlock::update(const vec<uint>& canvasColors,
     const ptr<Timer>& timer) {
     _updateFrame++; 
     int value = _updateFrame % ((rand() % 100) + 12);
-    if (!_isActive) {
+    if (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP) {
         //Just keep it on blink. However, if eyes are closed, open them quickly
         if(value == 0 || ((_bg->getFrame() + 1) %3 == 0 && _updateFrame %4 == 0))
         _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
@@ -96,7 +96,7 @@ void CanvasBlock::update(const vec<uint>& canvasColors,
     else if (_updateFrame %6 == 0) {
         //Do we need to switch stages of anger ie switch animations? 
         if (_bg->getFrame() == _bg->getSize() - 1) {
-             if (timer->timeLeft() < (SWITCH_FILMSTRIP / (_angerLevel + 1))) {
+             if (timer->timeLeft() < (SWITCH_FILMSTRIP - (_angerLevel * 3))) {
                 _angerLevel = _angerLevel == 3 ? _angerLevel : (_angerLevel + 1);
              }
              _bg->setTexture(_texture_array[_angerLevel]);
