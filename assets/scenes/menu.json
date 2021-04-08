@@ -39,7 +39,7 @@
           "type": "Image",
           "data": {
             "visible"  : true,
-            "anchor" : [1.36, 0.53],
+            "anchor" : [1.18, 0.53],
             "scale"    : 0.28,
             "texture": "stand"
           },
@@ -53,7 +53,7 @@
             "upnode": "up",
             "visible"  : true,
             "pushsize" : true,
-            "anchor" : [0.0, -0.8],
+            "anchor" : [0.0, -0.75],
             "scale"    : 0.24
           },
           "children": {
@@ -75,7 +75,7 @@
             "upnode": "up",
             "visible"  : true,
             "pushsize" : true,
-            "anchor" : [0.0, 0.6],
+            "anchor" : [0.0, 0.55],
             "scale"    : 0.24
           },
           "children": {
