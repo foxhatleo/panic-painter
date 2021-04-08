@@ -1,37 +1,4 @@
 {
-  "textures": {
-    "menubackground": {
-       "file":   "textures/menu/menubackground.png"
-    },
-    "levelsbutton": {
-        "file":   "textures/menu/levelsbutton.png"
-    },
-    "playbutton": {
-        "file": "textures/menu/playbutton.png"
-    },
-    "settingsbutton": {
-         "file": "textures/menu/settingsbutton.png"
-    },
-    "stand": {
-      "file": "textures/menu/stand.png"
-    },
-    "greensplatter": {
-      "file": "textures/menu/greensplatter.png"
-    },
-    "redsplatter": {
-      "file": "textures/menu/redsplatter.png"
-    }
-  },
-  "fonts": {
-		"jua": {
-			"file":     "fonts/Jua-Regular.ttf",
-			"size":     48
-		}
-	},
-  "widgets": {
-      "textbutton" : "widgets/textbutton.json"
-  },
-
   "scene2s": {
     "menuscene": {
       "type": "Node",
@@ -40,72 +7,112 @@
         "type": "Anchored"
       },
       "children": {
-            "playbutton": {
-              "type": "Button",
+        "greensplatter": {
+          "type": "Image",
+          "data": {
+            "visible"  : true,
+            "anchor" : [0, 1],
+            "scale"    : 0.26,
+            "texture": "greensplatter"
+          },
+          "layout": {
+            "x_anchor": "left",
+            "y_anchor": "top",
+            "x_offset": 0.028,
+            "y_offset": -0.12
+          }
+        },
+        "redsplatter": {
+          "type": "Image",
+          "data": {
+            "visible"  : true,
+            "anchor" : [1, 0],
+            "scale"    : 0.26,
+            "texture": "redsplatter"
+          },
+          "layout": {
+            "x_anchor": "right",
+            "y_anchor": "bottom"
+          }
+        },
+        "stand": {
+          "type": "Image",
+          "data": {
+            "visible"  : true,
+            "anchor" : [1.36, 0.53],
+            "scale"    : 0.28,
+            "texture": "stand"
+          },
+          "layout": {
+            "priority" : 1
+          }
+        },
+        "playbutton": {
+          "type": "Button",
+          "data": {
+            "upnode": "up",
+            "visible"  : true,
+            "pushsize" : true,
+            "anchor" : [0.0, -0.8],
+            "scale"    : 0.24
+          },
+          "children": {
+            "up": {
+              "type": "Image",
               "data": {
-                "upnode": "up",
-                "visible"  : true,
-                "pushsize" : true,
-                "anchor" : [0.0, -0.8],
-                "scale"    : 0.24
-              },
-              "children": {
-                "up": {
-                  "type": "Image",
-                  "data": {
-                    "texture": "playbutton"
-                  }
-                }
-              },
-              "layout": {
-                "priority" : 1,
-                "padding" : [10,1,0,50]
-              }
-            },
-            "levelsbutton": {
-              "type": "Button",
-              "data": {
-                "upnode": "up",
-                "visible"  : true,
-                "pushsize" : true,
-                "anchor" : [0.0, 0.6],
-                "scale"    : 0.24
-              },
-              "children": {
-                "up": {
-                  "type": "Image",
-                  "data": {
-                    "texture": "levelsbutton"
-                  }
-                }
-              },
-              "layout": {
-                "priority" : 2,
-                "padding" : [0,0,0,50]
-              }
-            },
-            "settingsbutton": {
-              "type": "Button",
-              "data": {
-                "upnode": "up",
-                "visible"  : true,
-                "pushsize" : true,
-                "anchor" : [0.0, 1.5],
-                "scale"    : 0.24
-              },
-              "children": {
-                "up": {
-                  "type": "Image",
-                  "data": {
-                    "texture": "settingsbutton"
-                  }
-                }
-              },
-              "layout": {
-                "priority" : 3,
-                "padding" : [0,0,0,50]
+                "texture": "playbutton"
               }
             }
+          },
+          "layout": {
+            "priority" : 1,
+            "padding" : [10,1,0,50]
+          }
+        },
+        "levelsbutton": {
+          "type": "Button",
+          "data": {
+            "upnode": "up",
+            "visible"  : true,
+            "pushsize" : true,
+            "anchor" : [0.0, 0.6],
+            "scale"    : 0.24
+          },
+          "children": {
+            "up": {
+              "type": "Image",
+              "data": {
+                "texture": "levelsbutton"
+              }
+            }
+          },
+          "layout": {
+            "priority" : 2,
+            "padding" : [0,0,0,50]
+          }
+        },
+        "settingsbutton": {
+          "type": "Button",
+          "data": {
+            "upnode": "up",
+            "visible"  : true,
+            "pushsize" : true,
+            "anchor" : [0.0, 1.5],
+            "scale"    : 0.24
+          },
+          "children": {
+            "up": {
+              "type": "Image",
+              "data": {
+                "texture": "settingsbutton"
+              }
+            }
+          },
+          "layout": {
+            "priority" : 3,
+            "padding" : [0,0,0,50]
+          }
+        }
       }
     }
   }
