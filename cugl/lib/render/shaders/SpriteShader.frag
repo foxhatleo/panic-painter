@@ -209,28 +209,32 @@ void main(void) {
     
     //Draw a circle
     float radius = 69;
-//    vec2 test = uS1;
+    vec2 test = uS1;
+    vec4 dotColor = vec4(0);
     
     float dist1 = euclideanDistance(outPosition, uS1);
     if(dist1 < radius){
-        result = uC1;
+        dotColor = uC1;
     }
-    
+
     float dist2 = euclideanDistance(outPosition, uS2);
     if(dist2 < radius){
-        result = uC2;
+        dotColor = uC2;
     }
-    
+
     float dist3 = euclideanDistance(outPosition, uS3);
     if(dist3 < radius){
-        result = uC3;
+        dotColor = uC3;
     }
-    
+
     float dist4 = euclideanDistance(outPosition, uS4);
     if(dist4 < radius){
-        result = uC4;
+        dotColor = uC4;
     }
     
+    
+    //alpha combine splatter and result, assuming result wont use alpha
+    result = dotColor.w * dotColor + (1-dotColor.w)*result;
     
     frag_color = result;
 }
