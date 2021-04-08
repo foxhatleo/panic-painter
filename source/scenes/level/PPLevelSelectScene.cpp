@@ -1,22 +1,16 @@
-#include "PPMenuScene.h"
+#include "PPLevelSelectScene.h"
 
 #define SCENE_SIZE 1024
 
-void MenuScene::dispose() {
-    deactivateUI(_scene);
-    Scene2::dispose();
-}
-
-bool MenuScene::init(const asset_t& assets) {
-    _state = HOME;
-    
+bool LevelSelectScene::init(const asset_t& assets) {
     // Initialize the scene to a locked width
     Size screenSize = Application::get()->getDisplaySize();
 
     // Lock the scene to a reasonable resolution
     if (screenSize.width > screenSize.height) {
         screenSize *= SCENE_SIZE / screenSize.width;
-    } else {
+    }
+    else {
         screenSize *= SCENE_SIZE / screenSize.height;
     }
 
@@ -28,14 +22,14 @@ bool MenuScene::init(const asset_t& assets) {
     }
 
     _assets = assets;
-    _assets->loadDirectory("scenes/menu.json");
-    _scene = _assets->get<scene2::SceneNode>("menuscene");
+    _assets->loadDirectory("scenes/levelselect.json");
+    _scene = _assets->get<scene2::SceneNode>("levelselectscene");
     _scene->setContentSize(screenSize);
     _scene->doLayout(); // Repositions the HUD
 
     // Initialize background
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
-        ("menubackground"));
+        ("levelsbackground"));
     srand((uint)time(0));
     menuBackground->setContentSize(screenSize);
     addChild(menuBackground);
@@ -47,34 +41,28 @@ bool MenuScene::init(const asset_t& assets) {
     return true;
 }
 
+void LevelSelectScene::dispose() {
+    deactivateUI(_scene);
+    Scene2::dispose();
+}
+
 /**
  * Activates the UI elements to make them interactive
  *
  * The elements do not actually do anything.  They just visually respond
  * to input.
  */
-void MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
+void LevelSelectScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(scene);
     if (button != nullptr) {
-        //CULog("Activating button %s", button->getName().c_str());
-        if(button->getName() == "playbutton") {
-            button->addListener([=](const string& name, bool down) {
-                //CULog("PLAY STATUS");
-                if (!down) this->_state = PLAY;
-                });
-        }
-        if (button->getName() == "levelsbutton") {
-            button->addListener([=](const string& name, bool down) {
-                //CULog("LEVEL STATUS");
-                if (!down) this->_state = LEVELS;
-                });
-        }
-        if (button->getName() == "settingsbutton") {
-            button->addListener([=](const string& name, bool down) {
-                //CULog("SETTINGS STATUS");
-                if (!down) this->_state = SETTINGS;
-                });
-        }
+        CULog("Activating button %s", button->getName().c_str());
+        // if(button->getName()=="forward"){} //TODO: forward and back arrows, menu button, etc
+        button->addListener([=](const string& name, bool down) {
+            if (!down) {
+                _levelSelected = button->getName();
+                _state = SELECTED;
+            }
+            });
         button->activate();
     }
     else {
@@ -85,7 +73,7 @@ void MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene
     }
 }
 
-void MenuScene::deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
+void LevelSelectScene::deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(scene);
     if (button != nullptr) {
         button->deactivate();
@@ -98,10 +86,13 @@ void MenuScene::deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& sce
     }
 }
 
-
-void MenuScene::update(float timestep) {
+string LevelSelectScene::getLevel() {
+    return _levelSelected;
 }
 
-MenuRequest MenuScene::getState() const {
+LevelRequest LevelSelectScene::getState() const {
     return _state;
+}
+
+void LevelSelectScene::update(float timestep) {
 }

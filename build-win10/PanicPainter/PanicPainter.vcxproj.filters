@@ -32,6 +32,9 @@
     <Filter Include="Scenes\Menu">
       <UniqueIdentifier>{e7bf19da-561f-44a9-a829-3b13a5737fe7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Level">
+      <UniqueIdentifier>{f57ef6e7-b8d0-4f77-900e-717ca32d408e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\main.cpp">
@@ -87,6 +90,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp">
       <Filter>Scenes\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp">
+      <Filter>Scenes\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +165,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h">
       <Filter>Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h">
+      <Filter>Scenes\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
