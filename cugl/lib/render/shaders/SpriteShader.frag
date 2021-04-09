@@ -64,13 +64,15 @@ uniform vec2 uViewport;
 const int MAGIC_BOX_ITERS = 11; //Adjust this: higher = more detail, 11
 const float MAGIC_BOX_MAGIC = .55; //This number is scary, dont mess with it, .55
 //Splatter
-float centerThreshold = 0.0; //Closer they are, further it goes?
-float edgeThreshold = 80.0;
-float splatFalloffSize = .9;
+float centerThreshold = 1.0; //Closer they are, further it goes?
+float edgeThreshold = 100.0;
+float splatFalloffSize = .8;
 float splatCutoffSize = .2;
 vec4 defaultColor = vec4(0,0,0,0);
+vec2 iResolution = uViewport;
 
-vec2 iResolution = vec2(500, 500); //TODO: get real resolution value
+
+
 
 // The output color
 out vec4 frag_color;
@@ -344,8 +346,9 @@ void main(void) {
     // uv are screen coordinates, uniformly scaled to go from 0..1 vertically
     vec2 uv = outPosition.xy / iResolution.yy;
     
+    vec2 uvOffset = vec2(-200,100);
     //Get splats
-    vec4 dotColor = getSplatColorAtPixel(outPosition,uv);
+    vec4 dotColor = getSplatColorAtPixel(outPosition,(uv)*1.5+uvOffset);
     
     //Alpha blending - Blend of Result from above and splatter
     result = overlayColors(dotColor, result);

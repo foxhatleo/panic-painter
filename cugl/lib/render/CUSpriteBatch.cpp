@@ -357,6 +357,8 @@ bool SpriteBatch::init(unsigned int capacity, const std::shared_ptr<Shader>& sha
     _shader->setUniformVec4("uC3", Vec4(0,0,0,0));
     _shader->setUniformVec4("uC4", Vec4(0,0,0,0));
     
+    _shader->setUniformVec2("uViewport", Vec2(0,0));
+    
     
     _context = new Context();
     _context->dirty = DIRTY_ALL_VALS;
