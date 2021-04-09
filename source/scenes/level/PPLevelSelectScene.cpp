@@ -55,7 +55,7 @@ void LevelSelectScene::dispose() {
 void LevelSelectScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(scene);
     if (button != nullptr) {
-        CULog("Activating button %s", button->getName().c_str());
+//        CULog("Activating button %s", button->getName().c_str());
         if(button->getName()=="menubutton"){
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
