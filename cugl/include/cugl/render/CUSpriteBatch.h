@@ -358,7 +358,7 @@ public:
      */
     static std::shared_ptr<SpriteBatch> alloc() {
         std::shared_ptr<SpriteBatch> result = std::make_shared<SpriteBatch>();
-        return (result->init() ? result : nullptr);
+        return (result->init() ? result : nullptr);//
     }
 
     /**
