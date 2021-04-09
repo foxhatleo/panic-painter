@@ -13,8 +13,6 @@ private:
 
     /** Progress bar. */
     ptr<ProgressBar> _bar;
-    /** Play button. */
-    ptr<Button> _button;
 
     /** Progress of loading. */
     float _progress;
@@ -30,7 +28,6 @@ public:
 
     void update(float timestep) override;
 
-    bool isPending() const;
 };
 
 #endif // PANICPAINTER_PPLOADINGSCENE_H

@@ -28,7 +28,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                                              _canvases[i][i2]->getInteractionNode());
 
                 // SCRIBBLING
-                if (input.didTripleTap() && input.justReleased() &&
+                if (input.didDoubleTap() && input.justReleased() &&
                     startingPointIn && currentPointIn) {
                     _state.clearColor(i, i2, selectedColor);
                     input.clearPreviousTaps();

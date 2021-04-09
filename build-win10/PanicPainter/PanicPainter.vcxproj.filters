@@ -29,6 +29,9 @@
     <Filter Include="Scenes\Pause">
       <UniqueIdentifier>{a1a0c970-5c51-4088-b971-4b935ff8bb6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Menu">
+      <UniqueIdentifier>{e7bf19da-561f-44a9-a829-3b13a5737fe7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\main.cpp">
@@ -84,6 +87,8 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPSplashEffect.cpp">
       <Filter>Scenes\Gameplay</Filter>
+    <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp">
+      <Filter>Scenes\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +164,8 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPSplashNode.h">
       <Filter>Scenes\Gameplay</Filter>
+    <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h">
+      <Filter>Scenes\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
