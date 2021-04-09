@@ -85,8 +85,11 @@ void PanicPainterApp::update(float timestep) {
         case GAME_SCENE: {
             _gameplay.update(timestep);
             if (_gameplay.getPauseRequest()) {
-                // TODO: Now it is screen.
-                _gameplay.loadLevel("gameplay");
+                // TODO: Change this to pause screen when it's done.
+                _currentScene = LEVEL_SCENE;
+            }
+            else if (_gameplay.isComplete()) {
+                _currentScene = LEVEL_SCENE;
             }
             break;
         }
@@ -115,6 +118,7 @@ void PanicPainterApp::update(float timestep) {
                 //_level.dispose();
                 _gameplay.loadLevel(_level.getLevel().c_str()); // fetch the specific level
                 _currentScene = GAME_SCENE;
+                _menu.resetState();
                 _level.resetState();
             }
             break;

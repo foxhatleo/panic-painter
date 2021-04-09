@@ -34,12 +34,17 @@ private:
 
     ptr<ActionController> _action;
 
+    // Boolean indicating level is complete
+    ptr<Timer> _complete;
+
+    ptr<SceneNode> _congratulations;
+
     ptr<SplashEffect> _splash;
 
     bool _pauseRequest;
 
 public:
-    GameScene() : Scene2(), _pauseRequest(false) {}
+    GameScene() : Scene2(), _pauseRequest(false), _complete(nullptr) {}
 
     ~GameScene() { dispose(); }
 
@@ -60,6 +65,8 @@ public:
         _pauseRequest = false;
         return r;
     }
+
+    bool isComplete() { return _complete != nullptr && _complete->finished(); }
 };
 
 #endif //PANICPAINTER_PPGAMESCENE_H

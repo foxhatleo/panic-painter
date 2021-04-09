@@ -81,6 +81,9 @@
     "redsplatter": {
       "file": "textures/menu/redsplatter.png"
     },
+    "levelcomplete": {
+      "file": "textures/levelcomplete.png"
+    },
     "levelsbackground": {
       "file": "textures/levelselect/levelsbackground.png"
     },
