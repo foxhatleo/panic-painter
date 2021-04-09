@@ -41,8 +41,6 @@ public:
     void resetState();
 
     MenuRequest getState() const;
-
-    void resetState();
 };
 
 #endif //PANICPAINTER_PPPAUSESCENE_H
