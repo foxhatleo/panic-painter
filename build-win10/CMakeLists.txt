@@ -39,6 +39,8 @@ set(PP_FILES
         ../source/scenes/pause/PPPauseScene.cpp
         ../source/scenes/gameplay/PPGlobalTimer.h
         ../source/scenes/gameplay/PPGlobalTimer.cpp
+        ../source/scenes/gameplay/PPSplashEffect.h
+        ../source/scenes/gameplay/PPSplashEffect.cpp
         ../source/scenes/menu/PPMenuScene.h
         ../source/scenes/menu/PPMenuScene.cpp)
 

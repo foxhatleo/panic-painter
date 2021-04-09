@@ -128,6 +128,9 @@
 		EEFA1A7225FA816D004641A1 /* PPAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */; };
 		EEFA1A7325FA816D004641A1 /* PPAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */; };
 		EEFA1A9025FBFF3A004641A1 /* PPColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */; };
+		EF24BCF4261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF24BCF3261F8FE200B69D31 /* PPSplashEffect.cpp */; };
+		EF24BCF5261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF24BCF3261F8FE200B69D31 /* PPSplashEffect.cpp */; };
+		EF24BCF6261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF24BCF3261F8FE200B69D31 /* PPSplashEffect.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +243,9 @@
 		EEFA1A4325F68DA7004641A1 /* PPColorPalette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPColorPalette.h; sourceTree = "<group>"; };
 		EEFA1A6F25FA816D004641A1 /* PPAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAnimation.h; sourceTree = "<group>"; };
 		EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPAnimation.cpp; sourceTree = "<group>"; };
+		EF24BCEE261F8FE200B69D31 /* PPSplashEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSplashEffect.h; sourceTree = "<group>"; };
+		EF24BCF2261F8FE200B69D31 /* PPSplashNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSplashNode.h; sourceTree = "<group>"; };
+		EF24BCF3261F8FE200B69D31 /* PPSplashEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPSplashEffect.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +389,9 @@
 		C5FB328D25F41BCC000694C3 /* gameplay */ = {
 			isa = PBXGroup;
 			children = (
+				EF24BCF3261F8FE200B69D31 /* PPSplashEffect.cpp */,
+				EF24BCEE261F8FE200B69D31 /* PPSplashEffect.h */,
+				EF24BCF2261F8FE200B69D31 /* PPSplashNode.h */,
 				C5621DC8260B8D5800875B72 /* PPCanvasBlock.cpp */,
 				C5621DC3260B8D2700875B72 /* PPCanvasBlock.h */,
 				C5621DC4260B8D3400875B72 /* PPColorStrip.cpp */,
@@ -737,6 +746,7 @@
 				C5621DB72604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
 				C5621DB42604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				C5621DCE260B8D7400875B72 /* PPGlobalTimer.cpp in Sources */,
+				EF24BCF6261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				C5FB32A125F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
 				EEFA1A7325FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				C5621DCB260B8D7300875B72 /* PPColorStrip.cpp in Sources */,
@@ -763,6 +773,7 @@
 				EEFA1A7225FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				C5621DCA260B8D7200875B72 /* PPColorStrip.cpp in Sources */,
 				C5621DD6260B8E3C00875B72 /* PPPauseScene.cpp in Sources */,
+				EF24BCF5261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				EEFA1A9025FBFF3A004641A1 /* PPColorPalette.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -778,6 +789,7 @@
 				C5FB32A225F41BD1000694C3 /* PPCanvas.cpp in Sources */,
 				C5621DB22604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				C5FB32A525F41BD2000694C3 /* PPGameScene.cpp in Sources */,
+				EF24BCF4261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				C5621DB52604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
 				EE1BF6CC261F96400045482E /* PPLevelSelectScene.cpp in Sources */,

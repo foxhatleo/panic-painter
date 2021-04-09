@@ -343,6 +343,23 @@ bool SpriteBatch::init(unsigned int capacity, const std::shared_ptr<Shader>& sha
 
     _shader->setUniformBlock("uContext",_unifbuff);
     
+    
+    //Set all needed uniforms here
+    //TODO:
+    //Vec2 tempVec = ;
+//    _shader->setUniformVec2("uSplatPosition", Vec2(0,0));
+    _shader->setUniformVec2("uS1", Vec2(0,0));
+    _shader->setUniformVec2("uS2", Vec2(0,0));
+    _shader->setUniformVec2("uS3", Vec2(0,0));
+    _shader->setUniformVec2("uS4", Vec2(0,0));
+    _shader->setUniformVec4("uC1", Vec4(0,0,0,0));
+    _shader->setUniformVec4("uC2", Vec4(0,0,0,0));
+    _shader->setUniformVec4("uC3", Vec4(0,0,0,0));
+    _shader->setUniformVec4("uC4", Vec4(0,0,0,0));
+    
+    _shader->setUniformVec2("uViewport", Vec2(0,0));
+    
+    
     _context = new Context();
     _context->dirty = DIRTY_ALL_VALS;
     return true;
@@ -385,6 +402,27 @@ void SpriteBatch::setShader(const std::shared_ptr<Shader>& shader) {
     _shader = shader;
     _vertbuff->attach(_shader);
     _shader->setUniformBlock("uContext", _unifbuff);
+    
+    //Initialize vals Not needed i guess?
+    //_shader->setUniformVec2("uSplatPosition", Vec2(0,0));
+}
+
+void SpriteBatch::setViewport(const Vec2 res) {
+    _shader->setUniformVec2("uViewport", res);
+}
+
+
+void SpriteBatch::setSplats(const Vec2 s1, const Vec2 s2, const Vec2 s3, const Vec2 s4, const Vec4 c1, const Vec4 c2, const Vec4 c3, const Vec4 c4){
+//    _shader->setUniformVec2("uSplatPosition", splatPosition);
+    _shader->setUniformVec2("uS1", s1);
+    _shader->setUniformVec2("uS2", s2);
+    _shader->setUniformVec2("uS3", s3);
+    _shader->setUniformVec2("uS4", s4);
+    
+    _shader->setUniformVec4("uC1", c1);
+    _shader->setUniformVec4("uC2", c2);
+    _shader->setUniformVec4("uC3", c3);
+    _shader->setUniformVec4("uC4", c4);
 }
 
 
