@@ -55,6 +55,22 @@ uniform vec4 uC3;
 uniform vec4 uC4;
 
 
+
+
+
+//Values:
+//Fractal
+const int MAGIC_BOX_ITERS = 11; //Adjust this: higher = more detail, 11
+const float MAGIC_BOX_MAGIC = .55; //This number is scary, dont mess with it, .55
+//Splatter
+float centerThreshold = 0.0; //Closer they are, further it goes?
+float edgeThreshold = 80.0;
+float splatFalloffSize = .9;
+float splatCutoffSize = .2;
+vec4 defaultColor = vec4(0,0,0,0);
+
+vec2 iResolution = vec2(500, 500); //TODO: get real resolution value
+
 // The output color
 out vec4 frag_color;
 
@@ -156,9 +172,125 @@ vec4 blursample(vec2 coord) {
     return result;
 }
 
+
+
+
+//Ben's Code Here to main
+
+//Fractal from https://www.shadertoy.com/view/4ljGDd
+float magicBox(vec3 p) {
+    // The fractal lives in a 1x1x1 box with mirrors on all sides.
+    // Take p anywhere in space and calculate the corresponding position
+    // inside the box, 0<(x,y,z)<1
+    p = 1.0 - abs(1.0 - mod(p, 2.0));
+    
+    float lastLength = length(p);
+    float tot = 0.0;
+    // This is the fractal.  More iterations gives a more detailed
+    // fractal at the expense of more computation.
+    for (int i=0; i < MAGIC_BOX_ITERS; i++) {
+      // The number subtracted here is a "magic" paremeter that
+      // produces rather different fractals for different values.
+      p = abs(p)/(lastLength*lastLength) - MAGIC_BOX_MAGIC;
+      float newLength = length(p);
+      tot += abs(newLength-lastLength);
+      lastLength = newLength;
+    }
+
+    return tot;
+}
+
+const mat3 M = mat3(0.28862355854826727, 0.6997227302779844, 0.6535170557707412,
+                    0.06997493955670424, 0.6653237235314099, -0.7432683571499161,
+                    -0.9548821651308448, 0.26025457467376617, 0.14306504491456504);
+
+
 float euclideanDistance(vec2 a, vec2 b){
     return sqrt(pow((a.x - b.x), 2.0) + pow((a.y - b.y), 2.0));
 }
+
+float lerp(float a, float b, float w)
+{
+  return a + w*(b-a);
+}
+
+bool inRange(vec2 a, vec2 b, float maxDist){
+    return (euclideanDistance(a, b)/iResolution.y) < maxDist;
+}
+
+vec4 overlayColors(vec4 first, vec4 second){
+    return first * first.w + second * (1.0 - first.w);
+}
+
+
+vec4 splatColor(vec2 splatCenter, vec4 paintColor, vec2 fragCoord, vec2 uv)
+{
+
+    //FRACTAL FUN:
+    // Rotate uv onto the random axes given by M, and scale
+    // it down a bit so we aren't looking at the entire
+    // 1x1x1 fractal volume.  Making the coefficient smaller
+    // "zooms in", which may reduce large-scale repetition
+    // but requires more fractal iterations to get the same
+    // level of detail.
+    vec3 p = 0.3*M*vec3(uv, 0.0);
+    
+    float result = magicBox(p);
+    // Scale to taste.  Also consider non-linear mappings.
+    //result *= 0.025;
+       //TODO: Scale to dist
+        //Removed this since can just scale threshold by distance
+        
+        
+    //Setup Colors (fun)
+    //vec3 paintColor = vec3(255.0, 0.0, 0.0);
+    //vec3 paintColor = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+
+    vec4 retColor;
+    
+    //Now clamp them values
+    //Set threshold to inverse distance
+    float dist = euclideanDistance(fragCoord, splatCenter); //Pixels
+    float screenDist = dist/iResolution.y; //0 to 1 scale, percent of screen
+
+    //float threshold = centerThreshold + slope * adjDist; //.25
+    float threshold = lerp(centerThreshold, edgeThreshold, screenDist/splatFalloffSize);
+    
+    //circle
+    //if(screenDist/splatCutoffSize > splatCutoffSize){retColor = black;}
+    
+    if (result > threshold){
+        retColor = paintColor;
+    }else{
+        retColor = defaultColor;
+    }
+ 
+    
+    return retColor;
+}
+
+
+
+vec4 getOneSplat(vec2 splatCenter, vec4 paintColor, vec2 fragCoord, vec2 uv){
+    if(inRange(splatCenter, fragCoord, splatCutoffSize)){
+        return splatColor(splatCenter, paintColor, fragCoord, uv);
+    }
+    return defaultColor;
+}
+
+//Return the color at a point, (0,0,0) alpha 0 by default
+
+vec4 getSplatColorAtPixel(vec2 fragCoord, vec2 uv){
+    vec4 retColor = defaultColor;
+    retColor = overlayColors(retColor, getOneSplat(uS1, uC1, fragCoord, uv));
+    retColor = overlayColors(retColor, getOneSplat(uS2, uC2, fragCoord, uv));
+    retColor = overlayColors(retColor, getOneSplat(uS3, uC3, fragCoord, uv));
+    retColor = overlayColors(retColor, getOneSplat(uS4, uC4, fragCoord, uv));
+    return retColor;
+}
+
+
+
 
 /**
  * Performs the main fragment shading.
@@ -207,34 +339,17 @@ void main(void) {
 
     
     
-    //Draw a circle
-    float radius = 69;
-    vec2 test = uS1;
-    vec4 dotColor = vec4(0);
+    //Ben's code here to end:
+    // uv are screen coordinates, uniformly scaled to go from 0..1 vertically
+    vec2 uv = outPosition.xy / iResolution.yy;
     
-    float dist1 = euclideanDistance(outPosition, uS1);
-    if(dist1 < radius){
-        dotColor = uC1;
-    }
-
-    float dist2 = euclideanDistance(outPosition, uS2);
-    if(dist2 < radius){
-        dotColor = uC2;
-    }
-
-    float dist3 = euclideanDistance(outPosition, uS3);
-    if(dist3 < radius){
-        dotColor = uC3;
-    }
-
-    float dist4 = euclideanDistance(outPosition, uS4);
-    if(dist4 < radius){
-        dotColor = uC4;
-    }
+    //Get splats
+    vec4 dotColor = getSplatColorAtPixel(outPosition,uv);
     
-    
+    //Alpha blending - Blend of Result from above and splatter
+    result = overlayColors(dotColor, result);
     //alpha combine splatter and result, assuming result wont use alpha
-    result = dotColor.w * dotColor + (1-dotColor.w)*result;
+    //result = dotColor.w * dotColor + (1-dotColor.w)*result;
     
     frag_color = result;
 }
