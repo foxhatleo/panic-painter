@@ -21,6 +21,11 @@ void GameScene::loadLevel(const char *levelName) {
     // Remove all children to reset.
     removeAllChildren();
 
+    _congratulations.reset();
+    _globalTimer.reset();
+    _palette.reset();
+    _action.reset();
+
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
 
@@ -78,6 +83,11 @@ void GameScene::loadLevel(const char *levelName) {
 }
 
 void GameScene::update(float timestep) {
+    if (_complete) {
+        _complete->update(timestep);
+        return;
+    }
+
     // So the first thing is to update the game state.
     _state.update(timestep);
 
@@ -107,16 +117,28 @@ void GameScene::update(float timestep) {
     _palette->update();
     _action->update(activeCanvases, _palette->getSelectedColor());
     _globalTimer->update(_state.getLevelTimer());
-    
+
     // Check if the level is complete
-    if (activeCanvases.size() == 0) {
-        this->_complete = true;
-        auto levelcomplete = PolygonNode::allocWithTexture(_assets->get<Texture>
-            ("levelcomplete"));
-        levelcomplete->setContentSize(Application::get()->getDisplaySize());
-        // levelcomplete->setContentSize(Application::get()->getDisplaySize()/1.3);
-        //levelcomplete->setAnchor(Vec2::ANCHOR_CENTER);
+    if (activeCanvases.empty() && !_congratulations) {
+        _complete = make_shared<Timer>(3);
+        auto levelcomplete = PolygonNode::allocWithTexture(
+            _assets->get<Texture>("levelcomplete"));
+        float lc_width = levelcomplete->getContentWidth();
+        Size ds = Application::get()->getDisplaySize();
+        float desired_width = ds.width / 1.3;
+        float desired_scale = desired_width / lc_width;
+        levelcomplete->setScale(0);
+        levelcomplete->setAnchor(Vec2::ANCHOR_CENTER);
+        levelcomplete->setPosition(
+            ds.width / 2,
+            ds.height / 2
+            );
+        Animation::alloc(levelcomplete, .2, {
+            {"scaleX", desired_scale},
+            {"scaleY", desired_scale}
+        }, STRONG_OUT);
         addChild(levelcomplete);
+        _congratulations = levelcomplete;
     }
 
     Scene2::update(timestep);

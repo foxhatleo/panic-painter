@@ -40,6 +40,8 @@ public:
 
     void update(float timestep) override;
 
+    void resetState();
+
     MenuRequest getState() const;
 };
 

@@ -105,3 +105,7 @@ void MenuScene::update(float timestep) {
 MenuRequest MenuScene::getState() const {
     return _state;
 }
+
+void MenuScene::resetState() {
+    _state = HOME;
+}
