@@ -87,9 +87,11 @@ void PanicPainterApp::update(float timestep) {
             if (_gameplay.getPauseRequest()) {
                 // TODO: Change this to pause screen when it's done.
                 _currentScene = LEVEL_SCENE;
+                _level.resetState();
             }
             else if (_gameplay.isComplete()) {
                 _currentScene = LEVEL_SCENE;
+                _level.resetState();
             }
             break;
         }
@@ -104,6 +106,7 @@ void PanicPainterApp::update(float timestep) {
                 //_menu.dispose();
                 _currentScene = LEVEL_SCENE;
                 _menu.resetState();
+                _level.resetState();
             }
             break;
         }
@@ -113,6 +116,7 @@ void PanicPainterApp::update(float timestep) {
                 //_menu.init(_assets);
                 _currentScene = MENU_SCENE;
                 _level.resetState();
+                _menu.resetState();
             }
             else if (_level.getState() == SELECTED) {
                 //_level.dispose();

@@ -26,6 +26,8 @@ void GameScene::loadLevel(const char *levelName) {
     _palette.reset();
     _action.reset();
 
+    _complete = nullptr;
+
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
 
