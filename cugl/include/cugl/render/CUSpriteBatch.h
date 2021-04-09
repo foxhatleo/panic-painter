@@ -491,6 +491,15 @@ public:
      * @param shader The active color for this sprite batch
      */
     void setShader(const std::shared_ptr<Shader>& shader);
+
+    void setViewport(const Vec2 res);
+    
+    /**
+     *Sets the splatter locations for this batch.
+     *
+     *@param 
+     */
+    void setSplats(const Vec2 s1, const Vec2 s2, const Vec2 s3, const Vec2 s4, const Vec4 c1, const Vec4 c2, const Vec4 c3, const Vec4 c4);
     
     /**
      * Returns the shader for this sprite batch

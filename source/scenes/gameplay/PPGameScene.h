@@ -9,6 +9,7 @@
 #include "PPColorPalette.h"
 #include "PPGlobalTimer.h"
 #include "controllers/PPActionController.h"
+#include "PPSplashEffect.h"
 
 /**
  * This is the scene for the actual game.
@@ -35,6 +36,8 @@ private:
 
     // Boolean indicating level is complete
     bool _complete;
+
+    ptr<SplashEffect> _splash;
 
     bool _pauseRequest;
 

@@ -48,7 +48,8 @@ void GameScene::loadLevel(const char *levelName) {
                 _state.getColors(),
                 _state.getTimer(i, i2),
                 i, j,
-                bound
+                bound,
+                _state.getColorsOfCanvas(i, i2).size()
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -70,11 +71,17 @@ void GameScene::loadLevel(const char *levelName) {
                 safeArea.size.height * (1 - TIMER_HEIGHT)
             )
         ), _state.getColors(), _assets);
-    
+
+    _splash = SplashEffect::alloc(_assets,
+                                  Application::get()->getDisplayBounds(),
+                                  1);
+
+    addChild(_splash);
     addChild(_globalTimer);
     addChild(_palette);
 
     _action = make_shared<ActionController>(_state, _canvases);
+
 }
 
 void GameScene::update(float timestep) {
@@ -105,6 +112,14 @@ void GameScene::update(float timestep) {
     }
 
     _palette->update();
+    Rect canvasArea = Application::get()->getSafeBounds();
+    canvasArea.origin.x += canvasArea.size.width * PALETTE_WIDTH;
+    canvasArea.size.height -= canvasArea.size.height * TIMER_HEIGHT;
+    bool pressing = input.isPressing() &&
+        InputController::inScene(input.currentPoint(), canvasArea);
+    _splash->update(timestep,
+                    _state.getColors()[_palette->getSelectedColor()],
+                    pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
     _globalTimer->update(_state.getLevelTimer());
     

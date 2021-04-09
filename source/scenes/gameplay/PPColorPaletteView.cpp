@@ -16,6 +16,7 @@
 #define PALETTE_WIDTH 190
 #define PALETTE_HEIGHT 260
 #define NEGATIVE_MARGIN_LEFT 0.4f /* = 40% of PALETTE_WIDTH */
+#define CURVATURE 0.15 /** Curvature constant for the palette. */
 
 ptr<ColorPaletteView> ColorPaletteView::alloc(
     const vec<Color4> &colors,
@@ -29,6 +30,10 @@ ptr<ColorPaletteView> ColorPaletteView::alloc(
     else
         return nullptr;
     return result;
+}
+
+float ColorPaletteView::_computeXPositioning(uint ind) {
+    return getContentWidth() - 35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
 }
 
 void ColorPaletteView::_setup() {
@@ -50,16 +55,14 @@ void ColorPaletteView::_setup() {
 
     addChild(bg);
 
-    float btnStartX = getContentWidth() - 35;
     float btnStartY = getContentHeight() - 90;
-    float curvature = 0.15;
         
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
         auto btn = PolygonNode::allocWithTexture(_colorTexture);
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
-            btnStartX - (PADDING + PALETTE_COLOR_SIZE / 2) * i * i * curvature,
+            this->_computeXPositioning(i),
             btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
         );
         btn->setColor(_colors[i]);
@@ -83,7 +86,6 @@ void ColorPaletteView::_setup() {
 void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     if (_buttonStates[ind] == s) return;
     _buttonStates[ind] = s;
-
     float scale = s == INACTIVE ?
         INACTIVE_SCALE :
         (s == PRESSED ? PRESSED_SCALE : 1);
@@ -91,15 +93,54 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
         _buttons[ind], .2,
         {
             {"scaleX", scale},
-            {"scaleY", scale}
+            {"scaleY", scale},
         },
         STRONG_OUT
     );
 }
 
+uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
+    float colorsHeight = (PADDING + PALETTE_COLOR_SIZE / 2) * 4 * PRESSED_SCALE;
+    int numColorsSwipedOn = diff > 0 ?
+        max((int)floor(4 * diff / colorsHeight), -3)
+        :min((int) floor(4 * diff / colorsHeight), 3);
+    
+    int indexOfOtherColor = diff > 0 ? max((int)_selectedColor - numColorsSwipedOn, 0) : min((int)_selectedColor - numColorsSwipedOn, 3);
+    
+    return indexOfOtherColor;
+}
+
 void ColorPaletteView::update() {
     auto &input = InputController::getInstance();
+    Vec2 sp = input.startingPoint();
+    bool startingPointIn = InputController::inScene(sp, getBoundingBox());
+    
+    Vec2 cp = input.currentPoint();
+    
+    float diff = cp.y - sp.y;
+    int indexOfOtherColor = -1;
+    
     if (input.isPressing() || input.justReleased()) {
+        
+        
+        if (startingPointIn && input.isPressing()) {
+            indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
+            for (uint i = 0; i < _colors.size(); i++) {
+                    Animation::alloc(
+                        _buttons[i], .3,
+                        {{ "scaleX", INACTIVE_SCALE }, { "scaleY", INACTIVE_SCALE }},
+                        STRONG_OUT
+                    );
+            }
+            
+            Animation::alloc(
+                _buttons[indexOfOtherColor], .3,
+                {{"scaleX", PRESSED_SCALE},
+                {"scaleY", PRESSED_SCALE}},
+                STRONG_OUT
+            );
+        }
+        
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
             auto &btn = _buttons[i];
 
@@ -125,6 +166,14 @@ void ColorPaletteView::update() {
     } else {
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++)
             _animateButtonState(i, _selectedColor == i ? ACTIVE : INACTIVE);
+    }
+    
+    // Enable swipe up/down on palette for color switching.
+    if (startingPointIn && input.justReleased()) {
+        indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
+        if (indexOfOtherColor != -1 && indexOfOtherColor != _selectedColor) {
+            _selectedColor = indexOfOtherColor;
+        }
     }
 }
 
