@@ -1,7 +1,7 @@
 {
   "timer": {
     "levelTime": 120,
-    "canvasBaseTime": 5,
+    "canvasBaseTime": 10,
     "canvasPerColorTime": 2
   },
   "input": {
