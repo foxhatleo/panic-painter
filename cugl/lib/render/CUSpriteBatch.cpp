@@ -405,6 +405,10 @@ void SpriteBatch::setShader(const std::shared_ptr<Shader>& shader) {
     //_shader->setUniformVec2("uSplatPosition", Vec2(0,0));
 }
 
+void SpriteBatch::setViewport(const Vec2 res) {
+    _shader->setUniformVec2("uViewport", res);
+}
+
 
 void SpriteBatch::setSplats(const Vec2 s1, const Vec2 s2, const Vec2 s3, const Vec2 s4, const Vec4 c1, const Vec4 c2, const Vec4 c3, const Vec4 c4){
 //    _shader->setUniformVec2("uSplatPosition", splatPosition);

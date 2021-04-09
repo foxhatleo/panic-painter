@@ -53,6 +53,7 @@ uniform vec4 uC1;
 uniform vec4 uC2;
 uniform vec4 uC3;
 uniform vec4 uC4;
+uniform vec2 uViewport;
 
 
 
