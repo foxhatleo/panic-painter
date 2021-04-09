@@ -36,7 +36,7 @@ void GameScene::loadLevel(const char *levelName) {
     Rect safeArea = Application::get()->getSafeBounds();
 
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
-        ("background"));
+        (levelJson->has("background") ? levelJson->getString("background") : "background"));
     background->setContentSize(Application::get()->getDisplaySize());
     addChild(background);
     // Clear canvases.
