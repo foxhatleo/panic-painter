@@ -8,17 +8,17 @@
 
 ptr<Canvas> Canvas::alloc(const asset_t &assets, const vec<Color4> &colors,
                           const ptr<Timer> &timer, uint queueInd,
-                          uint numOfQueues, const Rect &bound) {
+                          uint numOfQueues, const Rect &bound, const int numCanvasColors) {
     auto result = make_shared<Canvas>();
     if (result->initWithBounds(bound))
-        result->_setup(assets, colors, timer, queueInd, numOfQueues);
+        result->_setup(assets, colors, timer, queueInd, numOfQueues, numCanvasColors);
     else
         return nullptr;
     return result;
 }
 
 void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
-                    const ptr<Timer> &timer, uint queueInd, uint numOfQueues) {
+                    const ptr<Timer> &timer, uint queueInd, uint numOfQueues, const int numCanvasColors) {
     _timer = timer;
 
     float containerWidth = getWidth();
@@ -32,7 +32,7 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _startingY = _yForStandBy + getHeight() * .1f;
     _yAfterLeaving = _yForActive - getHeight() * .1f;
 
-    _block = CanvasBlock::alloc(assets, canvasSize, colors);
+    _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors);
     _block->setScale(MINI_SCALE, MINI_SCALE);
     _block->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
     _block->setPosition(laneX, _startingY);
@@ -64,6 +64,7 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
         }
 
         // Update block.
+        _block->setIsActive(state == ACTIVE);
         _block->update(canvasColors, _timer);
 
     // If the block is going from shown to hidden.

@@ -2,8 +2,6 @@
 #define PANICPAINTER_PPMENUSCENE_H
 
 #include "utils/PPHeader.h"
-#include "controllers/PPInputController.h"
-
 
 enum MenuRequest {
     HOME, // Had to call this "HOME" rather than "MENU" to prevent weird bug
@@ -43,6 +41,8 @@ public:
     void resetState();
 
     MenuRequest getState() const;
+
+    void resetState();
 };
 
 #endif //PANICPAINTER_PPPAUSESCENE_H

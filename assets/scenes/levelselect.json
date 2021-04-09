@@ -1,0 +1,97 @@
+{
+    "scene2s": {
+      "levelselectscene": {
+        "type": "Node",
+        "comment"   : "This is the root node of the scene for level select",
+        "format": {
+          "type": "Anchored"
+        },
+        "children": {
+            "level1": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [3.2, 0.9],
+                  "scale"    : 0.17
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "level1"
+                    }
+                  }
+                },
+                "layout": {
+                  "padding" : [0,0,0,50]
+                }
+            },
+            "level2": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [2.6, 0.35],
+                  "scale"    : 0.17
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "level2"
+                    }
+                  }
+                },
+                "layout": {
+                  "padding" : [0,0,0,50]
+                }
+            },
+            "level3": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [1.8, 0.8],
+                  "scale"    : 0.17
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "level3"
+                    }
+                  }
+                },
+                "layout": {
+                    "padding" : [0,0,0,50]
+                }
+            },
+            "menubutton": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [2.4, -1.0],
+                  "scale"    : 0.5
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "menubutton"
+                    }
+                  }
+                },
+                "layout": {
+                    "padding" : [0,0,0,50]
+                }
+            }
+        }
+    }
+  }
+}
