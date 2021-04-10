@@ -122,6 +122,9 @@
 		EBEC12022194B6F4007E708B /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEC12012194B6F4007E708B /* Metal.framework */; };
 		EE1BF6CC261F96400045482E /* PPLevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6C4261F96400045482E /* PPLevelSelectScene.cpp */; };
 		EE1BF6CD261F96400045482E /* PPMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6CB261F96400045482E /* PPMenuScene.cpp */; };
+		EE1BF6DD2620B6AB0045482E /* PPLevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6C4261F96400045482E /* PPLevelSelectScene.cpp */; };
+		EE1BF6E42620B6B40045482E /* PPMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6CB261F96400045482E /* PPMenuScene.cpp */; };
+		EE1BF6E82620B6C90045482E /* PPColorPaletteView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED6D690260CE83C004A2E6F /* PPColorPaletteView.cpp */; };
 		EED6D691260CE83C004A2E6F /* PPColorPaletteView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED6D690260CE83C004A2E6F /* PPColorPaletteView.cpp */; };
 		EEFA1A4425F68DA7004641A1 /* PPColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */; };
 		EEFA1A7125FA816D004641A1 /* PPAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */; };
@@ -625,6 +628,7 @@
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KMCB293693;
+						ProvisioningStyle = Automatic;
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -767,10 +771,13 @@
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				EB7454AF1D74D891002FBAE6 /* PPApp.cpp in Sources */,
 				C5621DB62604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
+				EE1BF6DD2620B6AB0045482E /* PPLevelSelectScene.cpp in Sources */,
 				C5621E09260BACE100875B72 /* PPActionController.cpp in Sources */,
 				C5621DD0260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */,
+				EE1BF6E82620B6C90045482E /* PPColorPaletteView.cpp in Sources */,
 				C5FB32A025F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
 				EEFA1A7225FA816D004641A1 /* PPAnimation.cpp in Sources */,
+				EE1BF6E42620B6B40045482E /* PPMenuScene.cpp in Sources */,
 				C5621DCA260B8D7200875B72 /* PPColorStrip.cpp in Sources */,
 				C5621DD6260B8E3C00875B72 /* PPPauseScene.cpp in Sources */,
 				EF24BCF5261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
@@ -864,15 +871,17 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KMCB293693;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.ios.PanicPainter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragonglass.PanicPainter1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -885,15 +894,17 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KMCB293693;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dragonglass.ios.PanicPainter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragonglass.PanicPainter1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
