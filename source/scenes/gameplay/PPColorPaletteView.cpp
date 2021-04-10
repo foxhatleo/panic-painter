@@ -63,7 +63,7 @@ void ColorPaletteView::_setup() {
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
             this->_computeXPositioning(i),
-            btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE * (4 / _colors.size())
+            btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
         );
         btn->setColor(_colors[i]);
 
@@ -100,12 +100,13 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
 }
 
 uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
-    float colorsHeight = (PADDING + PALETTE_COLOR_SIZE / 2) * 4 * PRESSED_SCALE;
+    float numColors = _colors.size();
+    float colorsHeight = (PADDING + PALETTE_COLOR_SIZE / 2) * numColors * PRESSED_SCALE;
     int numColorsSwipedOn = diff > 0 ?
-        max((int)floor(4 * diff / colorsHeight),  (int) -(_colors.size() - 1))
-        :min((int) floor(4 * diff / colorsHeight), (int) _colors.size() - 1);
+        max((int)floor(numColors * diff / colorsHeight),  (int) - (numColors - 1))
+        :min((int) floor(numColors * diff / colorsHeight), (int) numColors - 1);
     
-    int indexOfOtherColor = diff > 0 ? max((int)_selectedColor - numColorsSwipedOn, 0) : min((int)_selectedColor - numColorsSwipedOn, (int) _colors.size() - 1);
+    int indexOfOtherColor = diff > 0 ? max((int)_selectedColor - numColorsSwipedOn, 0) : min((int)_selectedColor - numColorsSwipedOn, (int) numColors - 1);
     
     return indexOfOtherColor;
 }
