@@ -120,27 +120,8 @@ void ColorPaletteView::update() {
     
     float diff = cp.y - sp.y;
     int indexOfOtherColor = -1;
-    
     if (input.isPressing() || input.justReleased()) {
         
-        
-        if (startingPointIn && input.isPressing()) {
-            indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
-            for (uint i = 0; i < _colors.size(); i++) {
-                    Animation::alloc(
-                        _buttons[i], .3,
-                        {{ "scaleX", INACTIVE_SCALE }, { "scaleY", INACTIVE_SCALE }},
-                        STRONG_OUT
-                    );
-            }
-            
-            Animation::alloc(
-                _buttons[indexOfOtherColor], .3,
-                {{"scaleX", PRESSED_SCALE},
-                {"scaleY", PRESSED_SCALE}},
-                STRONG_OUT
-            );
-        }
         
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
             auto &btn = _buttons[i];
@@ -164,6 +145,25 @@ void ColorPaletteView::update() {
                 _animateButtonState(i, PRESSED);
             }
         }
+        
+        if (startingPointIn && input.isPressing() && !input.isJustTap()) {
+            indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
+            for (uint i = 0; i < _colors.size(); i++) {
+                    Animation::alloc(
+                        _buttons[i], .3,
+                        {{ "scaleX", INACTIVE_SCALE }, { "scaleY", INACTIVE_SCALE }},
+                        STRONG_OUT
+                    );
+            }
+            
+            Animation::alloc(
+                _buttons[indexOfOtherColor], .3,
+                {{"scaleX", PRESSED_SCALE},
+                {"scaleY", PRESSED_SCALE}},
+                STRONG_OUT
+            );
+        }
+        
     } else {
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++)
             _animateButtonState(i, _selectedColor == i ? ACTIVE : INACTIVE);
