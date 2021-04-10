@@ -34,6 +34,9 @@ private:
 
     ptr<ActionController> _action;
 
+    ptr<PolygonNode> _backBtn;
+    Rect _backBtnArea;
+
     // Boolean indicating level is complete
     ptr<Timer> _complete;
 

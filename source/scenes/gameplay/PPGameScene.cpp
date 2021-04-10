@@ -26,6 +26,8 @@ void GameScene::loadLevel(const char *levelName) {
     _palette.reset();
     _action.reset();
 
+    _complete = nullptr;
+
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
 
@@ -36,7 +38,7 @@ void GameScene::loadLevel(const char *levelName) {
     Rect safeArea = Application::get()->getSafeBounds();
 
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
-        ("background"));
+        (levelJson->has("background") ? levelJson->getString("background") : "background"));
     background->setContentSize(Application::get()->getDisplaySize());
     addChild(background);
     // Clear canvases.
@@ -44,7 +46,7 @@ void GameScene::loadLevel(const char *levelName) {
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         vec<ptr<Canvas>> queue;
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
-            auto bound = Application::get()->getSafeBounds();
+            auto bound = safeArea;
             bound.origin.x += PALETTE_WIDTH * bound.size.width;
             bound.size.width *= (1 - PALETTE_WIDTH);
             bound.size.height *= (1 - TIMER_HEIGHT);
@@ -62,9 +64,33 @@ void GameScene::loadLevel(const char *levelName) {
         _canvases.push_back(queue);
     }
 
-    auto gtBound = Application::get()->getSafeBounds();
+    _backBtn = PolygonNode::allocWithTexture
+        (_assets->get<Texture>("backbutton"));
+    _backBtn->setScale(1.9f *
+        (safeArea.size.height * TIMER_HEIGHT) / _backBtn->getContentWidth());
+    _backBtn->setAnchor(Vec2::ANCHOR_TOP_RIGHT);
+    _backBtn->setPosition(safeArea.size.width, safeArea.size.height);
+    // We manually define interactive area because there is that trail of paint
+    // in the button texture that shouldn't be interactive.
+    _backBtnArea = _backBtn->getBoundingBox();
+    _backBtnArea.translate(
+        0,
+        _backBtnArea.size.height - _backBtnArea.size.height * 0.75f);
+    _backBtnArea.scale(1, 0.75f);
+#ifdef VIEW_DEBUG
+    // This draws the back button area above.
+    auto n = PolygonNode::alloc(_backBtnArea);
+    n->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    n->setPosition(_backBtnArea.origin);
+    n->setContentSize(_backBtnArea.size);
+    addChild(n);
+#endif
+
+    auto gtBound = safeArea;
     gtBound.origin.y += (1 - TIMER_HEIGHT) * gtBound.size.height;
     gtBound.size.height *= TIMER_HEIGHT;
+    gtBound.size.width -=
+        gtBound.getMaxX() - _backBtn->getBoundingBox().getMinX();
     _globalTimer = GlobalTimer::alloc(_assets, gtBound);
 
     // change position to keep it to the left of the screen.
@@ -87,6 +113,8 @@ void GameScene::loadLevel(const char *levelName) {
 
     _action = make_shared<ActionController>(_state, _canvases);
 
+    addChild(_backBtn);
+
 }
 
 void GameScene::update(float timestep) {
@@ -100,8 +128,7 @@ void GameScene::update(float timestep) {
 
     auto &input = InputController::getInstance();
     if (input.justReleased() && input.isJustTap() &&
-    Rect(0, this->getSize().height - 120, 120, 120)
-    .contains(input.currentPoint())) {
+        InputController::inScene(input.currentPoint(), _backBtnArea)) {
         _pauseRequest = true;
     }
 
