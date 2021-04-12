@@ -1,7 +1,19 @@
 {
   "textures": {
     "color-circle": {
-      "file": "textures/color_circle.png"
+      "file": "textures/shapes/color_circle.png"
+    },
+    "color-heart": {
+      "file": "textures/shapes/heart.png"
+    },
+    "color-square": {
+      "file": "textures/shapes/square.png"
+    },
+    "color-star": {
+      "file": "textures/shapes/star.png"
+    },
+    "color-triangle": {
+      "file": "textures/shapes/triangle.png"
     },
     "palette": {
       "file": "textures/palette.png"
