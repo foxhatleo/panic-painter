@@ -29,7 +29,7 @@ private:
     vec<vec<ptr<Canvas>>> _canvases;
 
     ptr<GlobalTimer> _globalTimer;
-    
+
     ptr<ColorPalette> _palette;
 
     ptr<ActionController> _action;

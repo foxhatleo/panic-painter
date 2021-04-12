@@ -23,8 +23,6 @@ private:
     /** Get input config. */
     json_t _getInputConfig();
 
-    /** Get timer */
-
     static GlobalConfigController _instance;
 
 public:

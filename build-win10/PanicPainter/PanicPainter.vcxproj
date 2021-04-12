@@ -145,6 +145,9 @@
       <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)..\source\;$(SolutionDir)..\cugl\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <DisableSpecificWarnings>4068;4018;4244;4305;4267%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -175,6 +178,9 @@
       <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)..\source\;$(SolutionDir)..\cugl\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <DisableSpecificWarnings>4068;4018;4244;4305;4267%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -207,6 +213,7 @@
     <ClCompile Include="..\..\source\scenes\pause\PPPauseScene.cpp" />
     <ClCompile Include="..\..\source\utils\PPAnimation.cpp" />
     <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
+    <ClCompile Include="..\..\source\utils\PPRandom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc" />
@@ -235,7 +242,6 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPGameScene.h" />
     <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPSplashEffect.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPSplashNode.h" />
     <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h" />
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h" />
     <ClInclude Include="..\..\source\scenes\pause\PPPauseScene.h" />
@@ -243,6 +249,7 @@
     <ClInclude Include="..\..\source\utils\PPHeader.h" />
     <ClInclude Include="..\..\source\utils\PPTimer.h" />
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
+    <ClInclude Include="..\..\source\utils\PPRandom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

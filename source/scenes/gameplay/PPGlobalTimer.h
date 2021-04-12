@@ -14,13 +14,13 @@ private:
 
     float _progressBarWidth;
 
-    const asset_t& _assets;
+    const asset_t &_assets;
 
     void _setup();
 
 public:
     explicit GlobalTimer(const asset_t &assets) :
-    _assets(assets), _progressBarWidth(0) {};
+        _assets(assets), _progressBarWidth(0) {};
 
     static ptr<GlobalTimer> alloc(
         const asset_t &assets,

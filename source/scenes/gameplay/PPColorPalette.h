@@ -16,35 +16,35 @@
 
 // change to texturedNode
 class ColorPalette : public SceneNode {
-    
+
     ptr<ColorPaletteView> _paletteView;
 
     void _setup(const Rect &bounds,
                 const vec<Color4> &colors,
-                const asset_t &assets);    
+                const asset_t &assets);
+
 public:
-    
+
     /** @deprecated Constructor. */
     explicit ColorPalette(const vec<Color4> &colors,
-                          const ptr<Texture>& colorTexture,
-                          const ptr<Texture>& paletteTexture) {};
+                          const ptr<Texture> &colorTexture,
+                          const ptr<Texture> &paletteTexture) {};
 
     static ptr<ColorPalette> alloc(const Rect &bounds,
                                    const vec<Color4> &colors,
                                    const asset_t &assets);
-    
+
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
         //_selectedColor = colorIndex;
         _paletteView->setColor(colorIndex);
     }
-    
-    
+
     /** Get the selected color. */
     uint getSelectedColor() const {
         return _paletteView->getSelectedColor();
     }
-    
+
     void update();
 };
 

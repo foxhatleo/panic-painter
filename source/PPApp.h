@@ -11,7 +11,6 @@
 #include "controllers/PPGlobalConfigController.h"
 #include "controllers/PPInputController.h"
 
-
 /** An enum for the list of scenes. */
 enum Scene {
     LOADING_SCENE,

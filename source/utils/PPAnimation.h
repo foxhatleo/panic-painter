@@ -43,7 +43,7 @@ namespace utils {
     /**
      * Visual animation engine for scene nodes.
      *
-     * To see how to start an animation, see alloc().
+     * To see how to start an animation, see to().
      *
      * This engine is inspired by Greensock Animation Platform (JavaScript). No
      * code is directly copied, but some design choices are ported.
@@ -116,7 +116,7 @@ namespace utils {
         static float ease(Easing e, float p);
 
     public:
-        /** @deprecated Constructor. Use alloc() instead. */
+        /** @deprecated Constructor. Use to() instead. */
         Animation(
             const ptr<SceneNode> &target,
             float duration,
@@ -147,14 +147,14 @@ namespace utils {
          *    to 1 would trigger a render immediately.
          * @param ease An easing function. See Easing.
          */
-        static ptr<Animation> alloc(
+        static ptr<Animation> to(
             const ptr<SceneNode> &target,
             float duration,
             const unordered_map<string, float> &vars,
             Easing ease = POWER1_OUT);
 
         /**
-         * Similar to alloc, but instead of creating an animation, simply render
+         * Similar to "to", but instead of creating an animation, simply render
          * once and be done.
          */
         static ptr<Animation> set(

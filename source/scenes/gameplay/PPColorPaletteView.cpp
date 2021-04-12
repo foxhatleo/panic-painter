@@ -33,7 +33,8 @@ ptr<ColorPaletteView> ColorPaletteView::alloc(
 }
 
 float ColorPaletteView::_computeXPositioning(uint ind) {
-    return getContentWidth() - 35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
+    return getContentWidth() - 35 -
+           (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
 }
 
 void ColorPaletteView::_setup() {
@@ -56,8 +57,8 @@ void ColorPaletteView::_setup() {
     addChild(bg);
 
     float btnStartY = getContentHeight() - 90;
-        
-    for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
+
+    for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
         auto btn = PolygonNode::allocWithTexture(_colorTexture);
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
@@ -87,9 +88,9 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     if (_buttonStates[ind] == s) return;
     _buttonStates[ind] = s;
     float scale = s == INACTIVE ?
-        INACTIVE_SCALE :
-        (s == PRESSED ? PRESSED_SCALE : 1);
-    Animation::alloc(
+                  INACTIVE_SCALE :
+                  (s == PRESSED ? PRESSED_SCALE : 1);
+    Animation::to(
         _buttons[ind], .2,
         {
             {"scaleX", scale},
@@ -101,13 +102,18 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
 
 uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
     float numColors = _colors.size();
-    float colorsHeight = (PADDING + PALETTE_COLOR_SIZE / 2) * numColors * PRESSED_SCALE;
+    float colorsHeight =
+        (PADDING + PALETTE_COLOR_SIZE / 2) * numColors * PRESSED_SCALE;
     int numColorsSwipedOn = diff > 0 ?
-        max((int)floor(numColors * diff / colorsHeight),  (int) - (numColors - 1))
-        :min((int) floor(numColors * diff / colorsHeight), (int) numColors - 1);
-    
-    int indexOfOtherColor = diff > 0 ? max((int)_selectedColor - numColorsSwipedOn, 0) : min((int)_selectedColor - numColorsSwipedOn, (int) numColors - 1);
-    
+                            max((int) floor(numColors * diff / colorsHeight),
+                                (int) -(numColors - 1))
+                                     : min(
+            (int) floor(numColors * diff / colorsHeight), (int) numColors - 1);
+
+    int indexOfOtherColor =
+        diff > 0 ? max((int) _selectedColor - numColorsSwipedOn, 0) : min(
+            (int) _selectedColor - numColorsSwipedOn, (int) numColors - 1);
+
     return indexOfOtherColor;
 }
 
@@ -115,14 +121,13 @@ void ColorPaletteView::update() {
     auto &input = InputController::getInstance();
     Vec2 sp = input.startingPoint();
     bool startingPointIn = InputController::inScene(sp, getBoundingBox());
-    
+
     Vec2 cp = input.currentPoint();
-    
+
     float diff = cp.y - sp.y;
     int indexOfOtherColor = -1;
     if (input.isPressing() || input.justReleased()) {
-        
-        
+
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
             auto &btn = _buttons[i];
 
@@ -145,30 +150,31 @@ void ColorPaletteView::update() {
                 _animateButtonState(i, PRESSED);
             }
         }
-        
+
         if (startingPointIn && input.isPressing() && !input.isJustTap()) {
             indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
             for (uint i = 0; i < _colors.size(); i++) {
-                    Animation::alloc(
-                        _buttons[i], .3,
-                        {{ "scaleX", INACTIVE_SCALE }, { "scaleY", INACTIVE_SCALE }},
-                        STRONG_OUT
-                    );
+                Animation::to(
+                    _buttons[i], .3,
+                    {{"scaleX", INACTIVE_SCALE},
+                     {"scaleY", INACTIVE_SCALE}},
+                    STRONG_OUT
+                );
             }
-            
-            Animation::alloc(
+
+            Animation::to(
                 _buttons[indexOfOtherColor], .3,
                 {{"scaleX", PRESSED_SCALE},
-                {"scaleY", PRESSED_SCALE}},
+                 {"scaleY", PRESSED_SCALE}},
                 STRONG_OUT
             );
         }
-        
+
     } else {
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++)
             _animateButtonState(i, _selectedColor == i ? ACTIVE : INACTIVE);
     }
-    
+
     // Enable swipe up/down on palette for color switching.
     if (startingPointIn && input.justReleased()) {
         indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
