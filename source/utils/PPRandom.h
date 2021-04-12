@@ -1,55 +1,58 @@
 #ifndef PANICPAINTER_PPRANDOM_H
 #define PANICPAINTER_PPRANDOM_H
 
-#include "PPTypeDefs.h"
+#include "PPHeader.h"
 
-/**
- * Random is a nifty utility that helps you get random numbers, strings, etc.
- * @author Dragonglass Studios
- */
-class Random {
-private:
-    static Random *_instance;
-
-    Random();
-
-public:
+namespace utils {
     /**
-     * Get a random integer within a specific range (inclusive of both ends).
-     * @param upperBound The upper bound.
-     * @param lowerBound The lower bound. By default, 0.
-     * @return The random integer generated.
+     * Random is a nifty utility that helps you get random numbers, strings, etc.
+     * @author Dragonglass Studios
      */
-    int getInt(int upperBound, int lowerBound = 0);
+    class Random {
+    private:
+        static inline Random *_instance;
 
-    /**
-     * Get a random boolean.
-     * @return The random boolean generated.
-     */
-     bool getBool();
+        Random();
 
-    /**
-     * Get a random float within a specific range (inclusive of both ends).
-     * @param upperBound The upper bound.
-     * @param lowerBound The lower bound. By default, 0.
-     * @return The random float generated.
-     */
-    float getFloat(float upperBound, float lowerBound = 0.0f);
+    public:
+        /**
+         * Get a random integer within a specific range (inclusive of both
+         * ends).
+         * @param upperBound The upper bound.
+         * @param lowerBound The lower bound. By default, 0.
+         * @return The random integer generated.
+         */
+        int getInt(int upperBound, int lowerBound = 0);
 
-    /**
-     * Get a random string with a specific length and predefined characters.
-     * @param len The length.
-     * @param chars The characters to build the string from. If a character is
-     * repeated, the chance of it being used increases.
-     * @return The random string generated.
-     */
-    string getStr(int len, string chars =
+        /**
+         * Get a random boolean.
+         * @return The random boolean generated.
+         */
+        bool getBool();
+
+        /**
+         * Get a random float within a specific range (inclusive of both ends).
+         * @param upperBound The upper bound.
+         * @param lowerBound The lower bound. By default, 0.
+         * @return The random float generated.
+         */
+        float getFloat(float upperBound, float lowerBound = 0.0f);
+
+        /**
+         * Get a random string with a specific length and predefined characters.
+         * @param len The length.
+         * @param chars The characters to build the string from. If a character
+         * is repeated, the chance of it being used increases.
+         * @return The random string generated.
+         */
+        string getStr(int len, string chars =
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
-    static Random *getInstance() {
-        if (!_instance) _instance = new Random;
-        return _instance;
-    }
-};
+        static Random *getInstance() {
+            if (!_instance) _instance = new Random();
+            return _instance;
+        }
+    };
+}
 
 #endif //PANICPAINTER_PPRANDOM_H

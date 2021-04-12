@@ -28,7 +28,6 @@ bool LevelSelectScene::init(const asset_t &assets) {
     // Initialize background
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("levelsbackground"));
-    srand((uint) time(0));
     menuBackground->setContentSize(screenSize);
     addChild(menuBackground);
 

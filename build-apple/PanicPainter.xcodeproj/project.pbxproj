@@ -247,7 +247,6 @@
 		EEFA1A6F25FA816D004641A1 /* PPAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAnimation.h; sourceTree = "<group>"; };
 		EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPAnimation.cpp; sourceTree = "<group>"; };
 		EF24BCEE261F8FE200B69D31 /* PPSplashEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSplashEffect.h; sourceTree = "<group>"; };
-		EF24BCF2261F8FE200B69D31 /* PPSplashNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSplashNode.h; sourceTree = "<group>"; };
 		EF24BCF3261F8FE200B69D31 /* PPSplashEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPSplashEffect.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -394,7 +393,6 @@
 			children = (
 				EF24BCF3261F8FE200B69D31 /* PPSplashEffect.cpp */,
 				EF24BCEE261F8FE200B69D31 /* PPSplashEffect.h */,
-				EF24BCF2261F8FE200B69D31 /* PPSplashNode.h */,
 				C5621DC8260B8D5800875B72 /* PPCanvasBlock.cpp */,
 				C5621DC3260B8D2700875B72 /* PPCanvasBlock.h */,
 				C5621DC4260B8D3400875B72 /* PPColorStrip.cpp */,

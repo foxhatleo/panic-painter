@@ -28,7 +28,7 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
              (float) _lastNumberOfColors * _size) / 2;
 
         bg->setPosition(
-            leftMostX + (float) ((_size * 0.3f) + _size) * (float) i,
+            leftMostX + ((_size * 0.3f) + _size) * (float) i,
             -(float) _size / 2);
         bg->setColor(_colors[canvasColors[i]]);
 

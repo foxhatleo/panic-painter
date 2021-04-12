@@ -5,6 +5,7 @@
 #include "utils/PPTimer.h"
 #include "PPColorStrip.h"
 #include "utils/PPAnimation.h"
+#include "utils/PPRandom.h"
 #include <string>
 
 #define NUM_CHARACTERS 10

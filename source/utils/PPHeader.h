@@ -7,11 +7,9 @@
 //#define VIEW_DEBUG
 
 namespace utils {};
-namespace animation {};
 
 using namespace std;
 using namespace utils;
-using namespace animation;
 using namespace cugl;
 using namespace cugl::scene2;
 

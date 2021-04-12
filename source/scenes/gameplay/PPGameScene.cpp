@@ -11,7 +11,6 @@ bool GameScene::init(const asset_t &assets) {
     Size screenSize = Application::get()->getDisplaySize();
     if (assets == nullptr || !Scene2::init(screenSize)) return false;
     _assets = assets;
-    srand((uint) time(0));
     return true;
 }
 
@@ -35,9 +34,11 @@ void GameScene::loadLevel(const char *levelName) {
     Size screenSize = Application::get()->getDisplaySize();
     Rect safeArea = Application::get()->getSafeBounds();
 
-    auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
-        (levelJson->has("background") ? levelJson->getString("background")
-                                      : "background"));
+    string backgroundName = levelJson->has("background") ?
+        levelJson->getString("background") :
+        "background";
+    auto background =
+        PolygonNode::allocWithTexture(_assets->get<Texture>(backgroundName));
     background->setContentSize(Application::get()->getDisplaySize());
     addChild(background);
     // Clear canvases.
@@ -52,10 +53,10 @@ void GameScene::loadLevel(const char *levelName) {
             auto c = Canvas::alloc(
                 _assets,
                 _state.getColors(),
-                _state.getTimer(i, i2),
+                _state.getTimer(i, (unsigned)i2),
                 i, j,
                 bound,
-                _state.getColorsOfCanvas(i, i2).size()
+                _state.getColorsOfCanvas(i, (unsigned)i2).size()
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -175,7 +176,7 @@ void GameScene::update(float timestep) {
             ds.width / 2,
             ds.height / 2
         );
-        Animation::alloc(levelcomplete, .2, {
+        Animation::to(levelcomplete, .2, {
             {"scaleX", desired_scale},
             {"scaleY", desired_scale}
         }, STRONG_OUT);

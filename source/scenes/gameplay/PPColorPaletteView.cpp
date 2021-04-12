@@ -90,7 +90,7 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     float scale = s == INACTIVE ?
                   INACTIVE_SCALE :
                   (s == PRESSED ? PRESSED_SCALE : 1);
-    Animation::alloc(
+    Animation::to(
         _buttons[ind], .2,
         {
             {"scaleX", scale},
@@ -154,7 +154,7 @@ void ColorPaletteView::update() {
         if (startingPointIn && input.isPressing() && !input.isJustTap()) {
             indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
             for (uint i = 0; i < _colors.size(); i++) {
-                Animation::alloc(
+                Animation::to(
                     _buttons[i], .3,
                     {{"scaleX", INACTIVE_SCALE},
                      {"scaleY", INACTIVE_SCALE}},
@@ -162,7 +162,7 @@ void ColorPaletteView::update() {
                 );
             }
 
-            Animation::alloc(
+            Animation::to(
                 _buttons[indexOfOtherColor], .3,
                 {{"scaleX", PRESSED_SCALE},
                  {"scaleY", PRESSED_SCALE}},

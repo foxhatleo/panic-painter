@@ -58,7 +58,7 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
 
         // Set y of block depending on state.
         if (state != _previousState) {
-            Animation::alloc(_block, DURATION, {
+            Animation::to(_block, DURATION, {
                 {"y",       state == ACTIVE ? _yForActive : _yForStandBy},
                 {"opacity", state == ACTIVE ? 1 : .75f},
                 {"scaleX",  state == ACTIVE ? 1 : MINI_SCALE},
@@ -77,7 +77,7 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
         } else {
             _block->markLost();
         }
-        Animation::alloc(_block, DURATION, {
+        Animation::to(_block, DURATION, {
             {"y",       _yAfterLeaving},
             {"opacity", 0},
         }, EASING);

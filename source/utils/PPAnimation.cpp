@@ -120,7 +120,7 @@ void Animation::_render(float timestep) {
             float b = _from.find("opacity")->second;
             float v = (entry.second - b) * progress + b;
             Color4 c = _lockedTarget->getColor();
-            c.a = v;
+            c.a = (unsigned char) v;
             _lockedTarget->setVisible(v >= 1);
             _lockedTarget->setColor(c);
 
@@ -169,9 +169,9 @@ void Animation::kill() {
     _gc = true;
 }
 
-ptr<Animation> Animation::alloc(const ptr<SceneNode> &target, float duration,
-                                const unordered_map<string, float> &vars,
-                                Easing ease) {
+ptr<Animation> Animation::to(const ptr<SceneNode> &target, float duration,
+                             const unordered_map<string, float> &vars,
+                             Easing ease) {
     ptr<Animation> n = make_shared<Animation>(target, duration, vars, ease);
     _globalList.push_back(n);
     return n;
@@ -183,7 +183,7 @@ ptr<Animation> Animation::set(const ptr<SceneNode> &target,
         vars.find("delay") == vars.end(),
         "Cannot define delay when using set()."
     );
-    return alloc(target, 0, vars);
+    return to(target, 0, vars);
 }
 
 float Animation::relative(float n) {
@@ -221,7 +221,7 @@ void Animation::updateGlobal(float timestep) {
     (p < .5 ? (float)pow((p * 2), POW) / 2 : \
     1 - (float)pow(((1 - p) * 2), POW) / 2)
 
-float Animation::ease(Easing e, float p) {
+float Animation::ease(Easing e, float p) { // NOLINT(misc-no-recursion)
     switch (e) {
         case POWER0:
         case LINEAR:
@@ -272,7 +272,7 @@ float Animation::ease(Easing e, float p) {
         case EXPO_IN_OUT:
             return easeInOutWithIn(EXPO_IN);
         case CIRC_IN:
-            return -((float) sqrt(1 - (p * p)) - 1);
+            return -(sqrt(1 - (p * p)) - 1);
         case CIRC_OUT:
             return easeOutWithIn(CIRC_IN);
         case CIRC_IN_OUT:
@@ -288,7 +288,7 @@ float Animation::ease(Easing e, float p) {
 }
 
 bool Animation::hasActiveAnimationsOf(const ptr<SceneNode> &obj) {
-    for (auto &current : _globalList) {
+    for (auto &current : _globalList) { // NOLINT(readability-use-anyofallof)
         bool locked = current->_lock();
         if (locked && current->_lockedTarget == obj) {
             return true;

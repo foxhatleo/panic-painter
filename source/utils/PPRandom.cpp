@@ -16,17 +16,17 @@ int Random::getInt(int upperBound, int lowerBound) {
 }
 
 bool Random::getBool() {
-    return (bool)(rand() % 2);
+    return (bool) (rand() % 2);
 }
 
 float Random::getFloat(float upperBound, float lowerBound) {
     return lowerBound +
-    static_cast<float>(rand()) /
-    (static_cast<float>(RAND_MAX / (upperBound - lowerBound)));
+           static_cast<float>(rand()) /
+           (RAND_MAX / (upperBound - lowerBound));
 }
 
 string Random::getStr(int len, string chars) {
-    int clen = (int)(chars.length());
+    int clen = (int) (chars.length());
     CUAssertLog(clen > 0, "Characters cannot be an empty string.");
     string result;
     while (len--) result += chars[getInt(clen - 1)];

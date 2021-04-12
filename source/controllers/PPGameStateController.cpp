@@ -133,7 +133,7 @@ vec<Color4> GameStateController::getColors() const {
 }
 
 int GameStateController::_getActiveIndexOfQueue(uint q) const {
-    for (int i = 0, j = numCanvases(q); i < j; i++) {
+    for (uint i = 0, j = numCanvases(q); i < j; i++) {
         if (getCanvasState(q, i) == ACTIVE) return i;
     }
     return -1;

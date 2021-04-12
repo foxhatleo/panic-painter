@@ -1,5 +1,4 @@
 #include "PPCanvasBlock.h"
-#include <string>
 
 ptr<CanvasBlock> CanvasBlock::alloc(
     const asset_t &assets,
@@ -16,7 +15,7 @@ ptr<CanvasBlock> CanvasBlock::alloc(
 void CanvasBlock::_setup(const asset_t &assets, const vec<Color4> &colors,
                          const int numCanvasColors) {
 #ifdef VIEW_DEBUG
-    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
+    auto n = PolygonNode::to(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
     addChild(n);
 #endif
@@ -29,7 +28,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4> &colors,
     _texture_array[2] = assets->get<Texture>("husky-emotion-2");
     _texture_array[3] = assets->get<Texture>("husky-emotion-3");
 
-    int p = rand() % NUM_CHARACTERS;
+    int p = Random::getInstance()->getInt(NUM_CHARACTERS - 1);
     _updateFrame = 0;
     _angerLevel = 0;
     float talk_height = p == 3 || p == 4 || p == 9 || p == 2 ? 1.75 : 2.0;
@@ -62,7 +61,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4> &colors,
     addChild(_colorStrip);
 
     // Timer label. Uncomment for debugging purposes
-    /*_timerText = scene2::Label::alloc("", assets->get<Font>("roboto"));
+    /*_timerText = scene2::Label::to("", assets->get<Font>("roboto"));
     _timerText->setHorizontalAlignment(scene2::Label::HAlign::CENTER);
     _timerText->setVerticalAlignment(scene2::Label::VAlign::BOTTOM);
     _timerText->setPosition(getWidth() / 2, 35);
@@ -92,7 +91,7 @@ bool CanvasBlock::isFrameComplete() {
 void CanvasBlock::update(const vec<uint> &canvasColors,
                          const ptr<Timer> &timer) {
     _updateFrame++;
-    int value = _updateFrame % ((rand() % 100) + 12);
+    int value = _updateFrame % (Random::getInstance()->getInt(99) + 12);
     if (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP) {
         //Just keep it on blink. However, if eyes are closed, open them quickly
         if (value == 0 || ((_bg->getFrame() + 1) % 3 == 0 && value < 2))
