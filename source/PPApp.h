@@ -8,6 +8,7 @@
 #include "scenes/pause/PPPauseScene.h"
 #include "scenes/menu/PPMenuScene.h"
 #include "scenes/level/PPLevelSelectScene.h"
+#include "scenes/pause/PPPauseScene.h"
 #include "controllers/PPGlobalConfigController.h"
 #include "controllers/PPInputController.h"
 
@@ -16,7 +17,8 @@ enum Scene {
     LOADING_SCENE,
     GAME_SCENE,
     MENU_SCENE,
-    LEVEL_SCENE
+    LEVEL_SCENE,
+    PAUSE_SCENE
 };
 
 /**
@@ -40,6 +42,8 @@ protected:
     MenuScene _menu;
     /** Level select scene. */
     LevelSelectScene _level;
+    /** Pause scene. */
+    PauseScene _pause;
 
 public:
     /** Constructor. */

@@ -76,6 +76,9 @@ void PanicPainterApp::update(float timestep) {
                 // Initialize level select screen
                 _level.init(_assets);
 
+                // Initialize pause screen
+                _pause.init(_assets);
+
                 // Initialize Menu_Scene and set scene to menu
                 _menu.init(_assets);
                 _currentScene = MENU_SCENE;
@@ -85,9 +88,8 @@ void PanicPainterApp::update(float timestep) {
         case GAME_SCENE: {
             _gameplay.update(timestep);
             if (_gameplay.getPauseRequest()) {
-                // TODO: Change this to pause screen when it's done.
-                _currentScene = LEVEL_SCENE;
-                _level.resetState();
+                // switch to pause screen and let pause screen know what level it is
+                _currentScene = PAUSE_SCENE;
             } else if (_gameplay.isComplete()) {
                 _currentScene = LEVEL_SCENE;
                 _level.resetState();
@@ -127,6 +129,27 @@ void PanicPainterApp::update(float timestep) {
             break;
         }
 
+        case PAUSE_SCENE: {
+            if (_pause.getState() == RESUME) {
+                // return to game scene without resetting
+                _currentScene = GAME_SCENE;
+                _pause.resetState();
+            }
+            else if (_pause.getState() == RETRY) {
+                // return to game scene after re-loading level
+                _gameplay.loadLevel(
+                    _gameplay.getLevel()); // re-fetch the current level
+                _currentScene = GAME_SCENE;
+                _pause.resetState();
+            }
+            else if (_pause.getState() == MENU) {
+                _currentScene = MENU_SCENE;
+                _pause.resetState();
+            }
+            break;
+        }
+
+
         default: {
             CUAssertLog(false,
                         "Trying to update unknown scene: %d",
@@ -155,6 +178,11 @@ void PanicPainterApp::draw() {
 
         case LEVEL_SCENE: {
             _level.render(_batch);
+            break;
+        }
+
+        case PAUSE_SCENE: {
+            _pause.render(_batch);
             break;
         }
 

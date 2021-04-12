@@ -13,6 +13,10 @@ void PauseScene::update(float timestep) {
     Scene2::update(timestep);
 }
 
+void PauseScene::resetState() {
+    _state = PAUSED;
+}
+
 PauseRequest PauseScene::getState() const {
-    return RETRY;
+    return _state;
 }

@@ -20,6 +20,9 @@ private:
 
     PauseRequest _state;
 
+    /** Name of level paused from */
+    const char* _pausedLevel;
+
 public:
     PauseScene() : Scene2() {}
 
@@ -30,6 +33,8 @@ public:
     bool init(const asset_t &assets);
 
     void update(float timestep) override;
+
+    void resetState();
 
     PauseRequest getState() const;
 };
