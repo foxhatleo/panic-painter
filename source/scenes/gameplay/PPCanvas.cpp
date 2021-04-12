@@ -8,17 +8,20 @@
 
 ptr<Canvas> Canvas::alloc(const asset_t &assets, const vec<Color4> &colors,
                           const ptr<Timer> &timer, uint queueInd,
-                          uint numOfQueues, const Rect &bound, const int numCanvasColors) {
+                          uint numOfQueues, const Rect &bound,
+                          const int numCanvasColors) {
     auto result = make_shared<Canvas>();
     if (result->initWithBounds(bound))
-        result->_setup(assets, colors, timer, queueInd, numOfQueues, numCanvasColors);
+        result->_setup(assets, colors, timer, queueInd, numOfQueues,
+                       numCanvasColors);
     else
         return nullptr;
     return result;
 }
 
 void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
-                    const ptr<Timer> &timer, uint queueInd, uint numOfQueues, const int numCanvasColors) {
+                    const ptr<Timer> &timer, uint queueInd, uint numOfQueues,
+                    const int numCanvasColors) {
     _timer = timer;
 
     float containerWidth = getWidth();
@@ -56,10 +59,10 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
         // Set y of block depending on state.
         if (state != _previousState) {
             Animation::alloc(_block, DURATION, {
-                {"y", state == ACTIVE ? _yForActive : _yForStandBy},
+                {"y",       state == ACTIVE ? _yForActive : _yForStandBy},
                 {"opacity", state == ACTIVE ? 1 : .75f},
-                {"scaleX", state == ACTIVE ? 1 : MINI_SCALE},
-                {"scaleY", state == ACTIVE ? 1 : MINI_SCALE},
+                {"scaleX",  state == ACTIVE ? 1 : MINI_SCALE},
+                {"scaleY",  state == ACTIVE ? 1 : MINI_SCALE},
             }, EASING);
         }
 
@@ -67,7 +70,7 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
         _block->setIsActive(state == ACTIVE);
         _block->update(canvasColors, _timer);
 
-    // If the block is going from shown to hidden.
+        // If the block is going from shown to hidden.
     } else if (_block->getParent() != nullptr && state != _previousState) {
         if (state == DONE) {
             _block->markDone();
@@ -75,13 +78,12 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
             _block->markLost();
         }
         Animation::alloc(_block, DURATION, {
-            {"y", _yAfterLeaving},
+            {"y",       _yAfterLeaving},
             {"opacity", 0},
         }, EASING);
     }
     _previousState = state;
 }
-
 
 void Canvas::setHover(bool value) {
     _block->setHover(value);

@@ -8,8 +8,8 @@
 
 //                             ALIASES         ORIGINAL TYPES
 // =============================================================================
-template <typename T> using    ptr           = shared_ptr<T>;
-template <typename T> using    vec           = vector<T>;
+template<typename T> using     ptr =           shared_ptr<T>;
+template<typename T> using     vec =           vector<T>;
 
 // The following are regular typedefs.
 

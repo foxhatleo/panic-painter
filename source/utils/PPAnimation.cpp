@@ -1,13 +1,17 @@
 #include "PPAnimation.h"
 
+/** This is the zero-equivalence for relative animation values. */
 #define ANIMATION_RELATIVE 10000000.0f
-#define HALF_ANIMATION_RELATIVE (ANIMATION_RELATIVE / 2)
+
+/** This macro transforms relative values to absolute ones. */
 #define processRelative() \
-    if (entry.second > HALF_ANIMATION_RELATIVE) \
+    if (entry.second > ANIMATION_RELATIVE / 2) \
         entry.second += b - ANIMATION_RELATIVE
+
+/** This macro adds an item into the from dictionary. */
 #define setFrom(NAME, FROM_GETTER) \
     float b = (FROM_GETTER); \
-    _from.insert({NAME, b}); \
+    _from.insert({(NAME), b}); \
     processRelative()
 
 vector<ptr<Animation>> Animation::_globalList;
@@ -50,7 +54,7 @@ void Animation::_init() {
         } else if (entry.first == "angle" ||
                    entry.first == "rotation") {
             float b = _lockedTarget->getAngle();
-            bool rel = entry.second > HALF_ANIMATION_RELATIVE;
+            bool rel = entry.second > ANIMATION_RELATIVE / 2;
             // If relative, get rid of the relative padding first.
             if (rel) entry.second -= ANIMATION_RELATIVE;
             // Convert to radian if necessary.
@@ -84,7 +88,7 @@ void Animation::_render(float timestep) {
         _timeSinceStart = totalDuration;
 
     float rawProgress = _duration == 0 ? 1 :
-        std::max(0.0f, _timeSinceStart - _delay) / _duration;
+                        std::max(0.0f, _timeSinceStart - _delay) / _duration;
     float progress = ease(_ease, rawProgress);
 
     for (auto &entry : _vars) {
@@ -127,7 +131,7 @@ void Animation::_render(float timestep) {
             if (entry.second - b <= M_PI) {
                 v = (entry.second - b) * progress + b;
             } else {
-                v = b - ((float)M_PI * 2 - (entry.second - b)) * progress;
+                v = b - ((float) M_PI * 2 - (entry.second - b)) * progress;
                 if (v < 0) v += M_PI * 2;
             }
             _lockedTarget->setAngle(v);
@@ -174,7 +178,7 @@ ptr<Animation> Animation::alloc(const ptr<SceneNode> &target, float duration,
 }
 
 ptr<Animation> Animation::set(const ptr<SceneNode> &target,
-                                const unordered_map<string, float> &vars) {
+                              const unordered_map<string, float> &vars) {
     CUAssertLog(
         vars.find("delay") == vars.end(),
         "Cannot define delay when using set()."
@@ -219,45 +223,62 @@ void Animation::updateGlobal(float timestep) {
 
 float Animation::ease(Easing e, float p) {
     switch (e) {
-        case POWER0: case LINEAR: return p;
-        case POWER1_IN: case QUAD_IN:
+        case POWER0:
+        case LINEAR:
+            return p;
+        case POWER1_IN:
+        case QUAD_IN:
             return powerIn(2);
-        case POWER2_IN: case CUBIC_IN:
+        case POWER2_IN:
+        case CUBIC_IN:
             return powerIn(3);
-        case POWER3_IN: case QUART_IN:
+        case POWER3_IN:
+        case QUART_IN:
             return powerIn(4);
-        case POWER4_IN: case QUINT_IN: case STRONG_IN:
+        case POWER4_IN:
+        case QUINT_IN:
+        case STRONG_IN:
             return powerIn(5);
-        case POWER1_OUT: case QUAD_OUT:
+        case POWER1_OUT:
+        case QUAD_OUT:
             return powerOut(2);
-        case POWER2_OUT: case CUBIC_OUT:
+        case POWER2_OUT:
+        case CUBIC_OUT:
             return powerOut(3);
-        case POWER3_OUT: case QUART_OUT:
+        case POWER3_OUT:
+        case QUART_OUT:
             return powerOut(4);
-        case POWER4_OUT: case QUINT_OUT: case STRONG_OUT:
+        case POWER4_OUT:
+        case QUINT_OUT:
+        case STRONG_OUT:
             return powerOut(5);
-        case POWER1_IN_OUT: case QUAD_IN_OUT:
+        case POWER1_IN_OUT:
+        case QUAD_IN_OUT:
             return powerInOut(2);
-        case POWER2_IN_OUT: case CUBIC_IN_OUT:
+        case POWER2_IN_OUT:
+        case CUBIC_IN_OUT:
             return powerInOut(3);
-        case POWER3_IN_OUT: case QUART_IN_OUT:
+        case POWER3_IN_OUT:
+        case QUART_IN_OUT:
             return powerInOut(4);
-        case POWER4_IN_OUT: case QUINT_IN_OUT: case STRONG_IN_OUT:
+        case POWER4_IN_OUT:
+        case QUINT_IN_OUT:
+        case STRONG_IN_OUT:
             return powerInOut(5);
         case EXPO_IN:
-            return p > 0 ? (float)pow(2, (10 * (p - 1))) : 0;
+            return p > 0 ? (float) pow(2, (10 * (p - 1))) : 0;
         case EXPO_OUT:
             return easeOutWithIn(EXPO_IN);
         case EXPO_IN_OUT:
             return easeInOutWithIn(EXPO_IN);
         case CIRC_IN:
-            return -((float)sqrt(1 - (p * p)) - 1);
+            return -((float) sqrt(1 - (p * p)) - 1);
         case CIRC_OUT:
             return easeOutWithIn(CIRC_IN);
         case CIRC_IN_OUT:
             return easeInOutWithIn(CIRC_IN);
         case SINE_IN:
-            return p >= 1 ? 1 : -(float)cos(p * M_PI / 2) + 1;
+            return p >= 1 ? 1 : -(float) cos(p * M_PI / 2) + 1;
         case SINE_OUT:
             return easeOutWithIn(SINE_IN);
         case SINE_IN_OUT:

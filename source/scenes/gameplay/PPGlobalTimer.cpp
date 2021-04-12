@@ -26,11 +26,13 @@ void GlobalTimer::_setup() {
 //    _levelTimerText->setPosition(getWidth() - 140, getHeight() - 50);
 
     Rect boundingRect = Rect(0, getHeight() - 30, getWidth(), 40);
-    _levelProgressBarBackground = PolygonNode::allocWithTexture(_assets->get<Texture>("level-timer-background"), boundingRect);
+    _levelProgressBarBackground = PolygonNode::allocWithTexture(
+        _assets->get<Texture>("level-timer-background"), boundingRect);
     _levelProgressBarBackground->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     _levelProgressBarBackground->setPosition(0, getHeight() - 30);
 
-    _levelProgressBar = PolygonNode::allocWithTexture(_assets->get<Texture>("level-timer-foreground"), boundingRect);
+    _levelProgressBar = PolygonNode::allocWithTexture(
+        _assets->get<Texture>("level-timer-foreground"), boundingRect);
     _levelProgressBar->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     _levelProgressBar->setPosition(0, getHeight() - 30);
 

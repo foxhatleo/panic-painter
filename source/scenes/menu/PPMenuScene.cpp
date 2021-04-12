@@ -7,9 +7,9 @@ void MenuScene::dispose() {
     Scene2::dispose();
 }
 
-bool MenuScene::init(const asset_t& assets) {
+bool MenuScene::init(const asset_t &assets) {
     _state = HOME;
-    
+
     // Initialize the scene to a locked width
     Size screenSize = Application::get()->getDisplaySize();
 
@@ -22,8 +22,7 @@ bool MenuScene::init(const asset_t& assets) {
 
     if (assets == nullptr) {
         return false;
-    }
-    else if (!Scene2::init(screenSize)) {
+    } else if (!Scene2::init(screenSize)) {
         return false;
     }
 
@@ -36,7 +35,7 @@ bool MenuScene::init(const asset_t& assets) {
     // Initialize background
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("menubackground"));
-    srand((uint)time(0));
+    srand((uint) time(0));
     menuBackground->setContentSize(screenSize);
     addChild(menuBackground);
 
@@ -53,31 +52,32 @@ bool MenuScene::init(const asset_t& assets) {
  * The elements do not actually do anything.  They just visually respond
  * to input.
  */
-void MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
-    std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(scene);
+void
+MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene) {
+    std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(
+        scene);
     if (button != nullptr) {
         //CULog("Activating button %s", button->getName().c_str());
-        if(button->getName() == "playbutton") {
-            button->addListener([=](const string& name, bool down) {
+        if (button->getName() == "playbutton") {
+            button->addListener([=](const string &name, bool down) {
                 //CULog("PLAY STATUS");
                 if (!down) this->_state = PLAY;
-                });
+            });
         }
         if (button->getName() == "levelsbutton") {
-            button->addListener([=](const string& name, bool down) {
+            button->addListener([=](const string &name, bool down) {
                 //CULog("LEVEL STATUS");
                 if (!down) this->_state = LEVELS;
-                });
+            });
         }
         if (button->getName() == "settingsbutton") {
-            button->addListener([=](const string& name, bool down) {
+            button->addListener([=](const string &name, bool down) {
                 //CULog("SETTINGS STATUS");
                 if (!down) this->_state = SETTINGS;
-                });
+            });
         }
         button->activate();
-    }
-    else {
+    } else {
         // Go deeper
         for (Uint32 ii = 0; ii < scene->getChildCount(); ii++) {
             activateUI(scene->getChild(ii));
@@ -85,12 +85,13 @@ void MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene
     }
 }
 
-void MenuScene::deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
-    std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(scene);
+void
+MenuScene::deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene) {
+    std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(
+        scene);
     if (button != nullptr) {
         button->deactivate();
-    }
-    else {
+    } else {
         // Go deeper
         for (Uint32 ii = 0; ii < scene->getChildCount(); ii++) {
             deactivateUI(scene->getChild(ii));

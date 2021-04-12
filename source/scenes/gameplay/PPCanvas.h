@@ -21,10 +21,10 @@ private:
 
     /** Block */
     ptr<CanvasBlock> _block;
-    
+
     /** Previous state. */
     CanvasState _previousState;
-    
+
     /** The timer instance. */
     ptr<Timer> _timer;
 
@@ -44,7 +44,7 @@ private:
                 const vec<Color4> &colors,
                 const ptr<Timer> &timer,
                 uint queueInd,
-                uint numOfQueues, 
+                uint numOfQueues,
                 const int numCanvasColors);
 
 public:
@@ -54,7 +54,7 @@ public:
                              const ptr<Timer> &timer,
                              uint queueInd,
                              uint numOfQueues,
-                             const Rect &bound, 
+                             const Rect &bound,
                              const int numCanvasColors);
 
     ptr<SceneNode> getInteractionNode() const;

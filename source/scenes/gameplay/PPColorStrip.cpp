@@ -1,9 +1,9 @@
 #include "PPColorStrip.h"
 
 ptr<ColorStrip> ColorStrip::alloc(
-        uint size,
-        const asset_t& assets,
-        const vec<Color4> &colors) {
+    uint size,
+    const asset_t &assets,
+    const vec<Color4> &colors) {
     auto result = make_shared<ColorStrip>(size, assets, colors);
     return (result->init() ? result : nullptr);
 }
@@ -12,7 +12,7 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
     // If the number of colors have not changed, that means no color has been
     // taken away yet.
     if (_lastNumberOfColors == canvasColors.size()) return;
-    _lastNumberOfColors = (uint)canvasColors.size();
+    _lastNumberOfColors = (uint) canvasColors.size();
 
     // Just redo the color dots. Remove them all.
     removeAllChildren();
@@ -24,12 +24,12 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
         bg->setContentSize(_size, _size);
 
         float leftMostX =
-            (-(_size * 0.3f) * ((float)_lastNumberOfColors - 1) -
-                (float)_lastNumberOfColors * _size) / 2;
+            (-(_size * 0.3f) * ((float) _lastNumberOfColors - 1) -
+             (float) _lastNumberOfColors * _size) / 2;
 
         bg->setPosition(
-            leftMostX + (float)((_size * 0.3f) + _size) * (float)i,
-            -(float)_size / 2);
+            leftMostX + (float) ((_size * 0.3f) + _size) * (float) i,
+            -(float) _size / 2);
         bg->setColor(_colors[canvasColors[i]]);
 
         addChild(bg);

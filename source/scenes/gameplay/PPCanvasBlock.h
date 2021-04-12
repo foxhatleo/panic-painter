@@ -6,6 +6,7 @@
 #include "PPColorStrip.h"
 #include "utils/PPAnimation.h"
 #include <string>
+
 #define NUM_CHARACTERS 10
 #define SWITCH_FILMSTRIP 9
 
@@ -19,7 +20,7 @@ private:
     /** Background */
     ptr<AnimationNode> _bg;
 
-    ptr<Texture> _texture_array[4]; 
+    ptr<Texture> _texture_array[4];
 
     /*The request bubble*/
     ptr<PolygonNode> _talk_bubble;
@@ -33,7 +34,7 @@ private:
     /** If hover is allowed. */
     bool _hoverAllowed;
     /*When to update the animation*/
-    int _updateFrame; 
+    int _updateFrame;
     /*How angry is the character*/
     int _angerLevel;
     /*Is the block active? If yes, do the animation, otherwise, stay at frame 0 of image 0*/
@@ -42,20 +43,24 @@ private:
     int _initialColorNumber;
 
     /** Set up this block. */
-    void _setup(const asset_t &assets, const vec<Color4> &colors, const int numCanvasColors);
-    
+    void _setup(const asset_t &assets, const vec<Color4> &colors,
+                const int numCanvasColors);
 
 public:
     /** Allocate canvas block with a particular length on the side. */
     static ptr<CanvasBlock> alloc(const asset_t &assets,
                                   float size,
-                                  const vec<Color4> &colors, const int numCanvasColors);
+                                  const vec<Color4> &colors,
+                                  const int numCanvasColors);
 
     void setHover(bool in);
 
     void markLost();
+
     void markDone();
+
     void setIsActive(bool isActive);
+
     bool isFrameComplete();
 
     /**

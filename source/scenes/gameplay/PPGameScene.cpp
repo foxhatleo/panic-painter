@@ -1,7 +1,5 @@
 #include "PPGameScene.h"
-#include <ctime>
 
-#define ANIMATION_RELATIVE 10000000
 #define PALETTE_WIDTH .1f
 #define TIMER_HEIGHT .1f
 
@@ -38,7 +36,8 @@ void GameScene::loadLevel(const char *levelName) {
     Rect safeArea = Application::get()->getSafeBounds();
 
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
-        (levelJson->has("background") ? levelJson->getString("background") : "background"));
+        (levelJson->has("background") ? levelJson->getString("background")
+                                      : "background"));
     background->setContentSize(Application::get()->getDisplaySize());
     addChild(background);
     // Clear canvases.
@@ -67,7 +66,8 @@ void GameScene::loadLevel(const char *levelName) {
     _backBtn = PolygonNode::allocWithTexture
         (_assets->get<Texture>("backbutton"));
     _backBtn->setScale(1.9f *
-        (safeArea.size.height * TIMER_HEIGHT) / _backBtn->getContentWidth());
+                       (safeArea.size.height * TIMER_HEIGHT) /
+                       _backBtn->getContentWidth());
     _backBtn->setAnchor(Vec2::ANCHOR_TOP_RIGHT);
     _backBtn->setPosition(safeArea.size.width, safeArea.size.height);
     // We manually define interactive area because there is that trail of paint
@@ -153,7 +153,7 @@ void GameScene::update(float timestep) {
     canvasArea.origin.x += canvasArea.size.width * PALETTE_WIDTH;
     canvasArea.size.height -= canvasArea.size.height * TIMER_HEIGHT;
     bool pressing = input.isPressing() &&
-        InputController::inScene(input.currentPoint(), canvasArea);
+                    InputController::inScene(input.currentPoint(), canvasArea);
     _splash->update(timestep,
                     _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
@@ -174,7 +174,7 @@ void GameScene::update(float timestep) {
         levelcomplete->setPosition(
             ds.width / 2,
             ds.height / 2
-            );
+        );
         Animation::alloc(levelcomplete, .2, {
             {"scaleX", desired_scale},
             {"scaleY", desired_scale}

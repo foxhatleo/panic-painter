@@ -5,7 +5,7 @@
 
 enum MenuRequest {
     HOME, // Had to call this "HOME" rather than "MENU" to prevent weird bug
-          // HOME just means stay on the menu (home) page
+    // HOME just means stay on the menu (home) page
     PLAY,
     LEVELS,
     SETTINGS,
@@ -23,9 +23,9 @@ private:
 
     ptr<cugl::scene2::SceneNode> _scene;
 
-    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
-    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
 public:
     MenuScene() : Scene2() {}
@@ -34,7 +34,7 @@ public:
 
     void dispose() override;
 
-    bool init(const asset_t& assets);
+    bool init(const asset_t &assets);
 
     void update(float timestep) override;
 

@@ -25,15 +25,16 @@ protected:
 
 public:
     /** @deprecated Constructor. */
-    explicit ColorStrip(uint size, const asset_t &assets, const vec<Color4> &colors) :
-            SceneNode(), _lastNumberOfColors(0),
-            _colors(colors), _assets(assets), _size(size) {};
+    explicit ColorStrip(uint size, const asset_t &assets,
+                        const vec<Color4> &colors) :
+        SceneNode(), _lastNumberOfColors(0),
+        _colors(colors), _assets(assets), _size(size) {};
 
     /** Allocate a color strip. */
     static ptr<ColorStrip> alloc(
-            uint size,
-            const asset_t &assets,
-            const vec<Color4> &colors);
+        uint size,
+        const asset_t &assets,
+        const vec<Color4> &colors);
 
     /**
      * Update the color strip.
