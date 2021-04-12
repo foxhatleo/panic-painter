@@ -1,57 +1,185 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\source\controllers\PPActionController.cpp" />
-    <ClCompile Include="..\..\source\controllers\PPGameStateController.cpp" />
-    <ClCompile Include="..\..\source\controllers\PPGlobalConfigController.cpp" />
-    <ClCompile Include="..\..\source\controllers\PPInputController.cpp" />
-    <ClCompile Include="..\..\source\main.cpp" />
-    <ClCompile Include="..\..\source\PPApp.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp" />
-    <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPSplashEffect.cpp" />
-    <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp" />
-    <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp" />
-    <ClCompile Include="..\..\source\scenes\pause\PPPauseScene.cpp" />
-    <ClCompile Include="..\..\source\utils\PPAnimation.cpp" />
-    <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
-    <ClCompile Include="..\..\source\utils\PPRandom.cpp" />
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Controllers">
+      <UniqueIdentifier>{3083c6df-fc9c-476b-9d8e-25645cebdc1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{f6637c87-62cf-4959-b55d-ac6028e0c45e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{c099cfe0-aef7-4003-9d0c-f946ff07a28d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Gameplay">
+      <UniqueIdentifier>{30416215-8dc6-438f-8f7e-d26d5f573308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Loading">
+      <UniqueIdentifier>{a03da77f-fb14-4918-88a2-240b5baa44af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{0c54b165-221a-4191-9051-54c4640ab79d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pause">
+      <UniqueIdentifier>{a1a0c970-5c51-4088-b971-4b935ff8bb6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Menu">
+      <UniqueIdentifier>{e7bf19da-561f-44a9-a829-3b13a5737fe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Level">
+      <UniqueIdentifier>{f57ef6e7-b8d0-4f77-900e-717ca32d408e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\controllers\PPActionController.h" />
-    <ClInclude Include="..\..\source\controllers\PPGameStateController.h" />
-    <ClInclude Include="..\..\source\controllers\PPGlobalConfigController.h" />
-    <ClInclude Include="..\..\source\controllers\PPInputController.h" />
-    <ClInclude Include="..\..\source\models\PPGameState.h" />
-    <ClInclude Include="..\..\source\PPApp.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPColorPalette.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPGameScene.h" />
-    <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPSplashEffect.h" />
-    <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h" />
-    <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h" />
-    <ClInclude Include="..\..\source\scenes\pause\PPPauseScene.h" />
-    <ClInclude Include="..\..\source\utils\PPAnimation.h" />
-    <ClInclude Include="..\..\source\utils\PPHeader.h" />
-    <ClInclude Include="..\..\source\utils\PPTimer.h" />
-    <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
-    <ClInclude Include="..\..\source\utils\PPRandom.h" />
+    <ClCompile Include="..\..\source\main.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PPApp.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp">
+      <Filter>Scenes\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\utils\PPAnimation.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\utils\PPRandom.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\utils\PPTimer.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPGameStateController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPGlobalConfigController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPInputController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPActionController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\pause\PPPauseScene.cpp">
+      <Filter>Scenes\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPSplashEffect.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp">
+      <Filter>Scenes\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp">
+      <Filter>Scenes\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="PanicPainter.rc" />
+    <ResourceCompile Include="PanicPainter.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico" />
+    <Image Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\PPApp.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h">
+      <Filter>Scenes\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPAnimation.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPHeader.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPTimer.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPRandom.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPTypeDefs.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorPalette.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPGameScene.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\models\PPGameState.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPActionController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPGameStateController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPGlobalConfigController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPInputController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\pause\PPPauseScene.h">
+      <Filter>Scenes\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPSplashEffect.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h">
+      <Filter>Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h">
+      <Filter>Scenes\Level</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
