@@ -49,6 +49,9 @@
     <ClCompile Include="..\..\source\utils\PPAnimation.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\utils\PPRandom.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\utils\PPTimer.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -90,6 +93,7 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPSplashEffect.cpp">
       <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp">
       <Filter>Scenes\Menu</Filter>
     </ClCompile>
@@ -121,6 +125,9 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\utils\PPTimer.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPRandom.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h">
@@ -168,8 +175,6 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPSplashEffect.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPSplashNode.h">
-      <Filter>Scenes\Gameplay</Filter>
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h">
       <Filter>Scenes\Menu</Filter>
     </ClInclude>

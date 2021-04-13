@@ -131,6 +131,12 @@
     },
     "menubutton": {
       "file": "textures/menubutton.png"
+    },
+    "bg-level1": {
+      "file": "textures/level-backgrounds/level1.png"
+    },
+    "bg-level2": {
+      "file": "textures/level-backgrounds/level2.png"
     }
   },
   "jsons": {

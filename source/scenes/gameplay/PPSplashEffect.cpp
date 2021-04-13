@@ -1,7 +1,7 @@
 #include "PPSplashEffect.h"
 
 ptr<SplashEffect>
-SplashEffect::alloc(const asset_t& assets, const Rect& bounds, float scale) {
+SplashEffect::alloc(const asset_t &assets, const Rect &bounds, float scale) {
     auto n = make_shared<SplashEffect>(assets, scale);
     if (!n->initWithBounds(bounds)) return nullptr;
     return n;
@@ -15,7 +15,8 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     }
 
     // Reset ticker if no input.
-    if (point.equals(Vec2::ZERO)) { _ticker = 0; } else {
+    if (point.equals(Vec2::ZERO)) { _ticker = 0; }
+    else {
         _ticker++;
         if (_ticker >= SAMPLE_RATE) {
             _ticker = 0;
@@ -31,7 +32,8 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     }
 }
 
-void SplashEffect::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) {
+void SplashEffect::draw(const std::shared_ptr<SpriteBatch> &batch,
+                        const Mat4 &transform, Color4 tint) {
     batch->setViewport(Vec2(Application::get()->getDisplaySize()));
     batch->setSplats(
         _queue[0].point,

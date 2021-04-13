@@ -25,7 +25,7 @@ bool LoadingScene::init(const asset_t &assets) {
     layer->doLayout(); // This rearranges the children to fit the screen
 
     _bar = dynamic_pointer_cast<scene2::ProgressBar>(
-            assets->get<scene2::SceneNode>("load_bar"));
+        assets->get<scene2::SceneNode>("load_bar"));
 
     Application::get()->setClearColor(Color4(192, 192, 192, 255));
     addChild(layer);

@@ -17,7 +17,7 @@
 
 // change to texturedNode
 class ColorPalette : public SceneNode {
-    
+
     ptr<ColorPaletteView> _paletteView;
     
     GameStateController _state;
@@ -26,8 +26,9 @@ class ColorPalette : public SceneNode {
                 const vec<Color4> &colors,
                 const asset_t &assets,
                 const GameStateController &state);
+
 public:
-    
+
     /** @deprecated Constructor. */
     explicit ColorPalette(const vec<Color4> &colors) {};
 
@@ -41,13 +42,12 @@ public:
         //_selectedColor = colorIndex;
         _paletteView->setColor(colorIndex);
     }
-    
-    
+
     /** Get the selected color. */
     uint getSelectedColor() const {
         return _paletteView->getSelectedColor();
     }
-    
+
     void update();
 };
 

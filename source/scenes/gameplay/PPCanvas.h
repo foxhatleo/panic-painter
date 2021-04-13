@@ -21,10 +21,10 @@ private:
 
     /** Block */
     ptr<CanvasBlock> _block;
-    
+
     /** Previous state. */
     CanvasState _previousState;
-    
+
     /** The timer instance. */
     ptr<Timer> _timer;
 
@@ -57,6 +57,7 @@ public:
                              uint numOfQueues,
                              const Rect &bound,
                              const GameStateController &state);
+
 
     ptr<SceneNode> getInteractionNode() const;
 

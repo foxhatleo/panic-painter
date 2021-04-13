@@ -6,7 +6,7 @@
 
 namespace utils {
     /**
-     * Timer is a useful function to do countdowns. Start by calling alloc(),
+     * Timer is a useful function to do countdowns. Start by calling to(),
      * then start the countdown by calling update() each frame.
      * @author Dragonglass Studios
      */
@@ -18,9 +18,11 @@ namespace utils {
         float _timeLeft;
 
     public:
-        /** @deprecated Constructor. Use alloc() instead. */
-        explicit Timer(uint duration) :
-                _duration(duration), _timeLeft((float) duration) {}
+        /** @deprecated Constructor. Use to() instead. */
+        explicit Timer(float duration) :
+            _duration(duration), _timeLeft(duration) {
+            CUAssertLog(duration > 0, "Duration must be positive.");
+        }
 
         /**
          * Get a new instance of a timer.
@@ -32,17 +34,17 @@ namespace utils {
             return result;
         }
 
-        /** Whether the timer has started and has 0 seconds left. */
-        bool finished() const;
+        /** Whether the timer has run out. */
+        bool finished() const { return timeLeft() <= 0; }
 
-        /** Reset the timer and stop it. */
-        void reset();
+        /** Reset the timer. */
+        void reset() { _timeLeft = _duration; }
 
         /** The duration of this timer. */
-        float getDuration() const;
+        float getDuration() const { return _duration; }
 
         /** Time that is left. */
-        float timeLeft() const;
+        float timeLeft() const { return _timeLeft < 0.01f ? 0 : _timeLeft; }
 
         /** Progress the timer. */
         void update(float timestep);

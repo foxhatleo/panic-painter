@@ -29,10 +29,13 @@ private:
     vec<vec<ptr<Canvas>>> _canvases;
 
     ptr<GlobalTimer> _globalTimer;
-    
+
     ptr<ColorPalette> _palette;
 
     ptr<ActionController> _action;
+
+    ptr<PolygonNode> _backBtn;
+    Rect _backBtnArea;
 
     // Boolean indicating level is complete
     ptr<Timer> _complete;

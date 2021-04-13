@@ -147,7 +147,6 @@ void InputController::ignoreThisTouch() {
         _currentInput->ignore();
 }
 
-
 bool InputController::isJustTap() const {
     return !_inputs.empty() && _inputs.front()->isJustTap();
 }

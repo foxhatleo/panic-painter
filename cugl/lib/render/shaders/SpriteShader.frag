@@ -69,7 +69,7 @@ float edgeThreshold = 100.0;
 float splatFalloffSize = .8;
 float splatCutoffSize = .2;
 vec4 defaultColor = vec4(0,0,0,0);
-vec2 iResolution = uViewport;
+vec2 iResolution;
 
 
 
@@ -343,6 +343,8 @@ void main(void) {
     
     
     //Ben's code here to end:
+    iResolution = uViewport;
+
     // uv are screen coordinates, uniformly scaled to go from 0..1 vertically
     vec2 uv = outPosition.xy / iResolution.yy;
     

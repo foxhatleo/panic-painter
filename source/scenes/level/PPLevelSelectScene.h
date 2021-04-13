@@ -25,12 +25,12 @@ private:
     /** -1 if no level is selected, else is selected level */
     string _levelSelected;
 
-    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
-    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
 public:
-    LevelSelectScene() : Scene2() { 
+    LevelSelectScene() : Scene2() {
         _state = LEVEL;
     }
 
@@ -38,7 +38,7 @@ public:
 
     void dispose() override;
 
-    bool init(const asset_t& assets);
+    bool init(const asset_t &assets);
 
     void update(float timestep) override;
 

@@ -44,7 +44,9 @@ set(PP_FILES
         ../source/scenes/menu/PPMenuScene.h
         ../source/scenes/menu/PPMenuScene.cpp
         ../source/scenes/level/PPLevelSelectScene.h
-        ../source/scenes/level/PPLevelSelectScene.cpp)
+        ../source/scenes/level/PPLevelSelectScene.cpp
+        ../source/utils/PPRandom.h
+        ../source/utils/PPRandom.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
@@ -716,6 +718,7 @@ target_compile_definitions(PanicPainter PRIVATE
 
 if(MSVC)
     target_compile_options(PanicPainter PRIVATE
+            /std:c++17;
             $<$<CONFIG:Debug>:
             /Od;
             /Zi;

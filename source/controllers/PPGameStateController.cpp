@@ -101,14 +101,14 @@ CanvasState GameStateController::getCanvasState(uint q, uint c) const {
 
     if (_state.wrongActions[q][c]) return LOST_DUE_TO_WRONG_ACTION;
 
-    // If the timer is done, then the canvas is lost.
+        // If the timer is done, then the canvas is lost.
     else if (_state.canvasTimers[q][c]->finished()) return LOST_DUE_TO_TIME;
 
-    // If no color is left, then it is completed.
+        // If no color is left, then it is completed.
     else if (getColorsOfCanvas(q, c).empty()) return DONE;
 
-    // If it is neither done nor lost but it is the first one, it must be
-    // active.
+        // If it is neither done nor lost but it is the first one, it must be
+        // active.
     else if (c == 0) return ACTIVE;
 
     // Now we need the state of the one in front of it.
@@ -117,8 +117,8 @@ CanvasState GameStateController::getCanvasState(uint q, uint c) const {
     // If the previous one is active, then this one is on standby.
     if (previous == ACTIVE) return STANDBY;
 
-    // If the previous one is done or lost, then this one is the frontmost.
-    // In other words, it must be active.
+        // If the previous one is done or lost, then this one is the frontmost.
+        // In other words, it must be active.
     else if (previous == DONE || previous == LOST_DUE_TO_TIME ||
              previous == LOST_DUE_TO_WRONG_ACTION)
         return ACTIVE;
@@ -136,7 +136,7 @@ vec<Color4> GameStateController::getColors() const {
 }
 
 int GameStateController::_getActiveIndexOfQueue(uint q) const {
-    for (int i = 0, j = numCanvases(q); i < j; i++) {
+    for (uint i = 0, j = numCanvases(q); i < j; i++) {
         if (getCanvasState(q, i) == ACTIVE) return i;
     }
     return -1;

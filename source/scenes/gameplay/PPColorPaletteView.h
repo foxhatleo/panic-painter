@@ -15,16 +15,16 @@
 #include "controllers/PPInputController.h"
 
 class ColorPaletteView : public SceneNode {
-    
+
     enum ColorButtonState {
         PRESSED,
         ACTIVE,
         INACTIVE,
     };
-    
+
     /** The index of the selected color in the palette. */
     uint _selectedColor;
-    
+
     /** The color list. */
     const vec<Color4> _colors;
 
@@ -37,9 +37,9 @@ class ColorPaletteView : public SceneNode {
     void _setup(const GameStateController &state);
 
     void _animateButtonState(uint ind, ColorButtonState s);
-    
+
     float _computeXPositioning(uint ind);
-    
+
     uint _computeColorIndexAfterSwipe(float diff);
     
     asset_t _assets;
@@ -54,19 +54,18 @@ public:
         const vec<Color4> &colors,
         const asset_t &assets,
         const GameStateController &state);
-    
+
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
         _selectedColor = colorIndex;
     }
-    
+
     /** Get the selected color. */
     uint getSelectedColor() const {
         return _selectedColor;
     }
-    
+
     void update();
 };
-
 
 #endif /* PP_COLOR_PALETTE_VIEW_H */

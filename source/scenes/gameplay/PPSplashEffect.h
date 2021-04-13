@@ -11,40 +11,41 @@
 #define SAMPLE_RATE 4
 #define FADE_DURATION 1
 
-class SplashEffect: public SceneNode
-{
+class SplashEffect : public SceneNode {
 protected:
-	//Likely not useful now, but may be necessary when getting actual paint textures later on
-	/*Additionally, we likely do not need InputController and can do this instead using 
-	GameState/actionController. Including it just in case we don't want to route through GameState*/
-	const asset_t &_assets;
+    //Likely not useful now, but may be necessary when getting actual paint textures later on
+    /*Additionally, we likely do not need InputController and can do this instead using
+    GameState/actionController. Including it just in case we don't want to route through GameState*/
+    const asset_t &_assets;
 
-	struct {
-	    Vec2 point;
-	    Vec4 color;
-	} _queue[QUEUE_MAX_SIZE];
+    struct {
+        Vec2 point;
+        Vec4 color;
+    } _queue[QUEUE_MAX_SIZE];
 
-	uint _ticker;
+    uint _ticker;
 
-	float _scale;
+    float _scale;
 
 public:
-    explicit SplashEffect(const asset_t& assets, float scale) :
-    _assets(assets), _scale(scale) {
+    explicit SplashEffect(const asset_t &assets, float scale) :
+        _assets(assets), _scale(scale) {
         for (auto &i : _queue) {
             i.point = Vec2::ZERO;
             i.color = Color4(0, 0, 0, 0);
         }
     }
 
-	/** Allocate canvas block with a particular length on the side. This can also be a Rect bounds if easier */
-	static ptr<SplashEffect> alloc(
-	    const asset_t& assets,
-		const Rect &bounds,
-		float scale);
-	void update(float timestep, Color4 currentColor, Vec2 point);
+    /** Allocate canvas block with a particular length on the side. This can also be a Rect bounds if easier */
+    static ptr<SplashEffect> alloc(
+        const asset_t &assets,
+        const Rect &bounds,
+        float scale);
 
-	void draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) override; 
+    void update(float timestep, Color4 currentColor, Vec2 point);
+
+    void draw(const std::shared_ptr<SpriteBatch> &batch, const Mat4 &transform,
+              Color4 tint) override;
 
 };
 
