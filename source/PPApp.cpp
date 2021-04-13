@@ -182,6 +182,7 @@ void PanicPainterApp::draw() {
         }
 
         case PAUSE_SCENE: {
+            _gameplay.render(_batch);
             _pause.render(_batch);
             break;
         }
