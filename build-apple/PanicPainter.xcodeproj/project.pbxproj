@@ -125,6 +125,8 @@
 		EE1BF6DD2620B6AB0045482E /* PPLevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6C4261F96400045482E /* PPLevelSelectScene.cpp */; };
 		EE1BF6E42620B6B40045482E /* PPMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6CB261F96400045482E /* PPMenuScene.cpp */; };
 		EE1BF6E82620B6C90045482E /* PPColorPaletteView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED6D690260CE83C004A2E6F /* PPColorPaletteView.cpp */; };
+		EE30172B262636B100E432B4 /* PPRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE30172A262636B100E432B4 /* PPRandom.cpp */; };
+		EE30172C262636B100E432B4 /* PPRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE30172A262636B100E432B4 /* PPRandom.cpp */; };
 		EED6D691260CE83C004A2E6F /* PPColorPaletteView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED6D690260CE83C004A2E6F /* PPColorPaletteView.cpp */; };
 		EEFA1A4425F68DA7004641A1 /* PPColorPalette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */; };
 		EEFA1A7125FA816D004641A1 /* PPAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEFA1A7025FA816D004641A1 /* PPAnimation.cpp */; };
@@ -240,6 +242,8 @@
 		EE1BF6C5261F96400045482E /* PPLevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLevelSelectScene.h; sourceTree = "<group>"; };
 		EE1BF6CA261F96400045482E /* PPMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMenuScene.h; sourceTree = "<group>"; };
 		EE1BF6CB261F96400045482E /* PPMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPMenuScene.cpp; sourceTree = "<group>"; };
+		EE30172A262636B100E432B4 /* PPRandom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PPRandom.cpp; sourceTree = "<group>"; };
+		EE301730262636CC00E432B4 /* PPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRandom.h; sourceTree = "<group>"; };
 		EED6D690260CE83C004A2E6F /* PPColorPaletteView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PPColorPaletteView.cpp; sourceTree = "<group>"; };
 		EED6D698260CE864004A2E6F /* PPColorPaletteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPColorPaletteView.h; sourceTree = "<group>"; };
 		EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PPColorPalette.cpp; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 				EEFA1A6F25FA816D004641A1 /* PPAnimation.h */,
 				C5FB328725F41BCA000694C3 /* PPHeader.h */,
 				C5FB328825F41BCA000694C3 /* PPTimer.h */,
+				EE301730262636CC00E432B4 /* PPRandom.h */,
+				EE30172A262636B100E432B4 /* PPRandom.cpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -770,6 +776,7 @@
 				EB7454AF1D74D891002FBAE6 /* PPApp.cpp in Sources */,
 				C5621DB62604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
 				EE1BF6DD2620B6AB0045482E /* PPLevelSelectScene.cpp in Sources */,
+				EE30172C262636B100E432B4 /* PPRandom.cpp in Sources */,
 				C5621E09260BACE100875B72 /* PPActionController.cpp in Sources */,
 				C5621DD0260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */,
 				EE1BF6E82620B6C90045482E /* PPColorPaletteView.cpp in Sources */,
@@ -797,6 +804,7 @@
 				EF24BCF4261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				C5621DB52604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
+				EE30172B262636B100E432B4 /* PPRandom.cpp in Sources */,
 				EE1BF6CC261F96400045482E /* PPLevelSelectScene.cpp in Sources */,
 				C5621E08260BACE000875B72 /* PPActionController.cpp in Sources */,
 				C5621DCF260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */,
