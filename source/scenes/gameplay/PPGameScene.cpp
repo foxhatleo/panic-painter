@@ -50,11 +50,11 @@ void GameScene::loadLevel(const char *levelName) {
             bound.size.height *= (1 - TIMER_HEIGHT);
             auto c = Canvas::alloc(
                 _assets,
-                _state.getColors(),
-                _state.getTimer(i, i2),
-                i, j,
+                i,
+                i2,
+                j,
                 bound,
-                _state.getColorsOfCanvas(i, i2).size()
+                _state
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
