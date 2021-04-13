@@ -143,7 +143,7 @@ void PanicPainterApp::update(float timestep) {
                 CULog("pause scene - retry");
                 // return to game scene after re-loading level
                 _gameplay.loadLevel(
-                    _gameplay.getLevel()); // re-fetch the current level
+                    _gameplay.getLevel().c_str()); // re-fetch the current level
                 _currentScene = GAME_SCENE;
                 _pause.resetState();
             }
