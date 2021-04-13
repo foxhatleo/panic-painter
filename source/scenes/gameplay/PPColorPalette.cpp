@@ -18,10 +18,7 @@
 ptr<ColorPalette> ColorPalette::alloc(const Rect &bounds,
                                       const vec<Color4> &colors,
                                       const asset_t &assets) {
-    auto colorTexture = assets->get<Texture>("color-circle");
-    auto paletteTexture = assets->get<Texture>("palette");
-    auto result =
-        make_shared<ColorPalette>(colors, colorTexture, paletteTexture);
+    auto result = make_shared<ColorPalette>(colors);
     // change to init with texture after changing the header file
     if (result->initWithBounds(bounds))
         result->_setup(bounds, colors, assets);

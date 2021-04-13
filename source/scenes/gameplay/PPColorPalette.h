@@ -25,9 +25,7 @@ class ColorPalette : public SceneNode {
 public:
     
     /** @deprecated Constructor. */
-    explicit ColorPalette(const vec<Color4> &colors,
-                          const ptr<Texture>& colorTexture,
-                          const ptr<Texture>& paletteTexture) {};
+    explicit ColorPalette(const vec<Color4> &colors) {};
 
     static ptr<ColorPalette> alloc(const Rect &bounds,
                                    const vec<Color4> &colors,
