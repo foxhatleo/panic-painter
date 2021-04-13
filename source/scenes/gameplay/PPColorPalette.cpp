@@ -17,11 +17,12 @@
 
 ptr<ColorPalette> ColorPalette::alloc(const Rect &bounds,
                                       const vec<Color4> &colors,
-                                      const asset_t &assets) {
+                                      const asset_t &assets,
+                                      const GameStateController &state) {
     auto result = make_shared<ColorPalette>(colors);
     // change to init with texture after changing the header file
     if (result->initWithBounds(bounds))
-        result->_setup(bounds, colors, assets);
+        result->_setup(bounds, colors, assets, state);
     else
         return nullptr;
     return result;
@@ -29,14 +30,15 @@ ptr<ColorPalette> ColorPalette::alloc(const Rect &bounds,
 
 void ColorPalette::_setup(const Rect &bounds,
                           const vec<Color4> &colors,
-                          const asset_t &assets) {
+                          const asset_t &assets,
+                          const GameStateController &state) {
 #ifdef VIEW_DEBUG
     auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 0, 1, .3));
     addChild(n);
 #endif
 
-    _paletteView = ColorPaletteView::alloc(colors, assets);
+    _paletteView = ColorPaletteView::alloc(colors, assets, state);
     float scale = getWidth() / _paletteView->getWidth();
     _paletteView->setScale(scale);
     _paletteView->setPositionY(getHeight() / 2);

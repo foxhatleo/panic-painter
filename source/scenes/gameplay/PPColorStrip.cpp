@@ -16,7 +16,6 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
 
     // Just redo the color dots. Remove them all.
     removeAllChildren();
-
     for (uint i = 0; i < _lastNumberOfColors; i++) {
         auto colorTexture = _assets->get<Texture>("color-circle");
         auto bg = PolygonNode::allocWithTexture(colorTexture);

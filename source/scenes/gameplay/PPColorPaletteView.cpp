@@ -20,24 +20,12 @@
 
 ptr<ColorPaletteView> ColorPaletteView::alloc(
     const vec<Color4> &colors,
-    const asset_t &assets) {
-    
-    auto paletteTexture = assets->get<Texture>("palette");
-    #ifdef COLORBLIND_MODE
-        vec<ptr<Texture>> colorTextures;
-        string shapes[] = {"color-circle", "heart", "square", "star", "triangle"};
-        for (uint i = 0; i < colors.size(); i++) {
-            colorTextures.push_back(assets->get<Texture>(shapes[i]));
-        }
-        auto result =
-            make_shared<ColorPaletteView>(colors, colorTextures, paletteTexture);
-    #else
-        auto colorTexture = assets->get<Texture>("color-circle");
-        auto result =
-            make_shared<ColorPaletteView>(colors, colorTexture, paletteTexture);
-    #endif
+    const asset_t &assets,
+    const GameStateController &state) {
+    auto result =
+        make_shared<ColorPaletteView>(colors, assets);
     if (result->init())
-        result->_setup();
+        result->_setup(state);
     else
         return nullptr;
     return result;
@@ -47,11 +35,11 @@ float ColorPaletteView::_computeXPositioning(uint ind) {
     return getContentWidth() - 35 - (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
 }
 
-void ColorPaletteView::_setup() {
+void ColorPaletteView::_setup(const GameStateController &state) {
     setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     setPosition(Vec2::ZERO);
 
-    auto bg = PolygonNode::allocWithTexture(_paletteTexture);
+    auto bg = PolygonNode::allocWithTexture(_assets->get<Texture>("palette"));
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bg->setContentSize(PALETTE_WIDTH, PALETTE_HEIGHT);
     bg->setPositionX(-NEGATIVE_MARGIN_LEFT * bg->getContentWidth());
@@ -70,9 +58,9 @@ void ColorPaletteView::_setup() {
         
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
         #ifdef COLORBLIND_MODE
-            auto btn = PolygonNode::allocWithTexture(_colorTextures[i]);
+            auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
         #else
-            auto btn = PolygonNode::allocWithTexture(_colorTexture);
+            auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
         #endif
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);

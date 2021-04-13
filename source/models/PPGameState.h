@@ -27,6 +27,9 @@ enum CanvasState {
 struct GameState {
     /** The list of colors for this level. */
     vec<Color4> colors;
+    
+    /** A map from the color index to the string that represents the texture that will be loaded in. Should only be used for color-blindness mode. */
+    unordered_map<uint, string> colorShapeMapping;
 
     /**
      * The representation of the queue. This is a bit tricky so let me explain.

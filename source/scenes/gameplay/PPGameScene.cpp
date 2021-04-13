@@ -75,7 +75,7 @@ void GameScene::loadLevel(const char *levelName) {
                 safeArea.size.width * PALETTE_WIDTH,
                 safeArea.size.height * (1 - TIMER_HEIGHT)
             )
-        ), _state.getColors(), _assets);
+        ), _state.getColors(), _assets, _state);
 
     _splash = SplashEffect::alloc(_assets,
                                   Application::get()->getDisplayBounds(),
