@@ -91,7 +91,6 @@ void PanicPainterApp::update(float timestep) {
                 // switch to pause screen and let pause screen know what level it is
                 _currentScene = PAUSE_SCENE;
                 _pause.resetState();
-                CULog("pause scene from game");
             } else if (_gameplay.isComplete()) {
                 _currentScene = LEVEL_SCENE;
                 _level.resetState();
@@ -132,15 +131,12 @@ void PanicPainterApp::update(float timestep) {
         }
 
         case PAUSE_SCENE: {
-            CULog("pause scene case");
             if (_pause.getState() == RESUME) {
-                CULog("pause scene - resume");
                 // return to game scene without resetting
                 _currentScene = GAME_SCENE;
                 _pause.resetState();
             }
             else if (_pause.getState() == RETRY) {
-                CULog("pause scene - retry");
                 // return to game scene after re-loading level
                 _gameplay.loadLevel(
                     _gameplay.getLevel().c_str()); // re-fetch the current level
@@ -148,7 +144,6 @@ void PanicPainterApp::update(float timestep) {
                 _pause.resetState();
             }
             else if (_pause.getState() == MENU) {
-                CULog("pause scene - menu");
                 _currentScene = MENU_SCENE;
                 _pause.resetState();
             }
