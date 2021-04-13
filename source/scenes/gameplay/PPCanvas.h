@@ -45,7 +45,8 @@ private:
                 const ptr<Timer> &timer,
                 uint queueInd,
                 uint numOfQueues, 
-                const int numCanvasColors);
+                const int numCanvasColors,
+                const GameStateController &state);
 
 public:
     /** Allocate canvas with a particular bound. See _setup() for arguments. */
