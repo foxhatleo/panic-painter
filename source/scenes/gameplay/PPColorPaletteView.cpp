@@ -21,10 +21,21 @@
 ptr<ColorPaletteView> ColorPaletteView::alloc(
     const vec<Color4> &colors,
     const asset_t &assets) {
-    auto colorTexture = assets->get<Texture>("color-circle");
+    
     auto paletteTexture = assets->get<Texture>("palette");
-    auto result =
-        make_shared<ColorPaletteView>(colors, colorTexture, paletteTexture);
+    #ifdef COLORBLIND_MODE
+        vec<ptr<Texture>> colorTextures;
+        string shapes[] = {"color-circle", "heart", "square", "star", "triangle"};
+        for (uint i = 0; i < colors.size(); i++) {
+            colorTextures.push_back(assets->get<Texture>(shapes[i]));
+        }
+        auto result =
+            make_shared<ColorPaletteView>(colors, colorTextures, paletteTexture);
+    #else
+        auto colorTexture = assets->get<Texture>("color-circle");
+        auto result =
+            make_shared<ColorPaletteView>(colors, colorTexture, paletteTexture);
+    #endif
     if (result->init())
         result->_setup();
     else
@@ -58,7 +69,11 @@ void ColorPaletteView::_setup() {
     float btnStartY = getContentHeight() - 90;
         
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
-        auto btn = PolygonNode::allocWithTexture(_colorTexture);
+        #ifdef COLORBLIND_MODE
+            auto btn = PolygonNode::allocWithTexture(_colorTextures[i]);
+        #else
+            auto btn = PolygonNode::allocWithTexture(_colorTexture);
+        #endif
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(

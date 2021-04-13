@@ -36,6 +36,9 @@ class ColorPaletteView : public SceneNode {
     /** Color circle texture */
     ptr<Texture> _colorTexture;
     
+    /** List of textures for colorblind mode. Invariant: _colorTextures.size() == _colors.size().  */
+    vec<ptr<Texture>> _colorTextures;
+    
     /** Wooden palette texture */
     ptr<Texture> _paletteTexture;
 
@@ -56,6 +59,12 @@ public:
             _colorTexture = colorTexture;
             _paletteTexture = paletteTexture;
         };
+    
+    explicit ColorPaletteView(vec<Color4> &colors,
+                              const vec<ptr<Texture>>& colorTextures,
+                              const ptr<Texture>& paletteTexture) :
+    SceneNode(), _colors(colors), _selectedColor(0),
+    _colorTextures(colorTextures), _paletteTexture(paletteTexture) {};
 
     static ptr<ColorPaletteView> alloc(
         const vec<Color4> &colors,
