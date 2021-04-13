@@ -3,8 +3,9 @@
 ptr<ColorStrip> ColorStrip::alloc(
         uint size,
         const asset_t& assets,
-        const vec<Color4> &colors) {
-    auto result = make_shared<ColorStrip>(size, assets, colors);
+        const vec<Color4> &colors,
+        const GameStateController &state) {
+    auto result = make_shared<ColorStrip>(size, assets, colors, state);
     return (result->init() ? result : nullptr);
 }
 
@@ -17,7 +18,11 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
     // Just redo the color dots. Remove them all.
     removeAllChildren();
     for (uint i = 0; i < _lastNumberOfColors; i++) {
-        auto colorTexture = _assets->get<Texture>("color-circle");
+        #ifdef COLORBLIND_MODE
+            auto colorTexture = _assets->get<Texture>(_state.getShapeForColorIndex(canvasColors[i]));
+        #else
+            auto colorTexture = _assets->get<Texture>("color-circle");
+        #endif
         auto bg = PolygonNode::allocWithTexture(colorTexture);
         bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         bg->setContentSize(_size, _size);

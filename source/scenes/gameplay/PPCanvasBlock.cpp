@@ -53,7 +53,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     addChild(_talk_bubble);
     
     // Color strip
-    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors);
+    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors, state);
     _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
     auto bubbleBox = _talk_bubble->getBoundingBox();
     _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);

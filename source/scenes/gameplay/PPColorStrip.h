@@ -2,6 +2,7 @@
 #define PANICPAINTER_PPCOLORSTRIP_H
 
 #include "utils/PPHeader.h"
+#include "controllers/PPGameStateController.h"
 
 /**
  * Color strip is the little color dots. It will automatically take the full
@@ -22,18 +23,22 @@ protected:
     const vec<Color4> _colors;
 
     const asset_t &_assets;
+    
+    const GameStateController _state;
 
 public:
     /** @deprecated Constructor. */
-    explicit ColorStrip(uint size, const asset_t &assets, const vec<Color4> &colors) :
+    explicit ColorStrip(uint size, const asset_t &assets, const vec<Color4> &colors,
+                        const GameStateController &state) :
             SceneNode(), _lastNumberOfColors(0),
-            _colors(colors), _assets(assets), _size(size) {};
+            _colors(colors), _assets(assets), _size(size), _state(state) {};
 
     /** Allocate a color strip. */
     static ptr<ColorStrip> alloc(
             uint size,
             const asset_t &assets,
-            const vec<Color4> &colors);
+            const vec<Color4> &colors,
+            const GameStateController &state);
 
     /**
      * Update the color strip.
