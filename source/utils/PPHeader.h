@@ -4,7 +4,7 @@
 #include <cugl/cugl.h>
 #include "PPTypeDefs.h"
 
-#define COLORBLIND_MODE
+// #define COLORBLIND_MODE
 
 //#define VIEW_DEBUG
 
