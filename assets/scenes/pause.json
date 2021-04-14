@@ -7,38 +7,26 @@
           "type": "Anchored"
         },
         "children": {
-          "stand": {
-            "type": "Image",
-            "data": {
-              "visible"  : true,
-              "anchor" : [1.18, 0.53],
-              "scale"    : 0.28,
-              "texture": "stand"
-            },
-            "layout": {
-              "priority" : 1
-            }
-          },
           "resume": {
             "type": "Button",
             "data": {
               "upnode": "up",
               "visible"  : true,
               "pushsize" : true,
-              "anchor" : [0.0, -0.75],
+              "anchor" : [0.5, -0.40],
               "scale"    : 0.24
             },
             "children": {
               "up": {
                 "type": "Image",
                 "data": {
-                  "texture": "playbutton"
+                  "texture": "pauseresume"
                 }
               }
             },
             "layout": {
-              "priority" : 1,
-              "padding" : [10,1,0,50]
+              "x_anchor" : "center",
+              "y_anchor" : "middle"
             }
           },
           "retry": {
@@ -47,20 +35,20 @@
               "upnode": "up",
               "visible"  : true,
               "pushsize" : true,
-              "anchor" : [0.0, 0.55],
+              "anchor" : [0.5, 0.45],
               "scale"    : 0.24
             },
             "children": {
               "up": {
                 "type": "Image",
                 "data": {
-                  "texture": "levelsbutton"
+                  "texture": "pauserestart"
                 }
               }
             },
             "layout": {
-              "priority" : 2,
-              "padding" : [0,0,0,50]
+              "x_anchor" : "center",
+              "y_anchor" : "middle"
             }
           },
           "exit": {
@@ -69,20 +57,20 @@
               "upnode": "up",
               "visible"  : true,
               "pushsize" : true,
-              "anchor" : [0.0, 1.5],
+              "anchor" : [0.5, 1.5],
               "scale"    : 0.24
             },
             "children": {
               "up": {
                 "type": "Image",
                 "data": {
-                  "texture": "settingsbutton"
+                  "texture": "pauseexit"
                 }
               }
             },
             "layout": {
-              "priority" : 3,
-              "padding" : [0,0,0,50]
+              "x_anchor" : "center",
+              "y_anchor" : "middle"
             }
           }
         }

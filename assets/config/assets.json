@@ -120,6 +120,15 @@
     "menubutton": {
       "file": "textures/menubutton.png"
     },
+    "pauseexit": {
+      "file": "textures/pause/pauseexit.png"
+    },
+    "pauserestart": {
+      "file": "textures/pause/pauserestart.png"
+    },
+    "pauseresume": {
+      "file": "textures/pause/pauseresume.png"
+    },
     "bg-level1": {
       "file": "textures/level-backgrounds/level1.png"
     },
