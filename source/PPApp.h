@@ -10,6 +10,7 @@
 #include "scenes/level/PPLevelSelectScene.h"
 #include "scenes/pause/PPPauseScene.h"
 #include "controllers/PPGlobalConfigController.h"
+#include "controllers/PPSaveController.h"
 #include "controllers/PPInputController.h"
 
 /** An enum for the list of scenes. */
