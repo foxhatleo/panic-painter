@@ -1,0 +1,80 @@
+{
+    "scene2s": {
+      "pausescene": {
+        "type": "Node",
+        "comment"   : "This is the root node of the scene for the pause screen",
+        "format": {
+          "type": "Anchored"
+        },
+        "children": {
+          "resume": {
+            "type": "Button",
+            "data": {
+              "upnode": "up",
+              "visible"  : true,
+              "pushsize" : true,
+              "anchor" : [0.5, -0.40],
+              "scale"    : 0.24
+            },
+            "children": {
+              "up": {
+                "type": "Image",
+                "data": {
+                  "texture": "pauseresume"
+                }
+              }
+            },
+            "layout": {
+              "x_anchor" : "center",
+              "y_anchor" : "middle"
+            }
+          },
+          "retry": {
+            "type": "Button",
+            "data": {
+              "upnode": "up",
+              "visible"  : true,
+              "pushsize" : true,
+              "anchor" : [0.5, 0.45],
+              "scale"    : 0.24
+            },
+            "children": {
+              "up": {
+                "type": "Image",
+                "data": {
+                  "texture": "pauserestart"
+                }
+              }
+            },
+            "layout": {
+              "x_anchor" : "center",
+              "y_anchor" : "middle"
+            }
+          },
+          "exit": {
+            "type": "Button",
+            "data": {
+              "upnode": "up",
+              "visible"  : true,
+              "pushsize" : true,
+              "anchor" : [0.5, 1.5],
+              "scale"    : 0.24
+            },
+            "children": {
+              "up": {
+                "type": "Image",
+                "data": {
+                  "texture": "pauseexit"
+                }
+              }
+            },
+            "layout": {
+              "x_anchor" : "center",
+              "y_anchor" : "middle"
+            }
+          }
+        }
+      }
+    }
+  }
+  

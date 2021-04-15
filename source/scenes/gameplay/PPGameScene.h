@@ -46,6 +46,8 @@ private:
 
     bool _pauseRequest;
 
+    string _levelName;
+
 public:
     GameScene() : Scene2(), _pauseRequest(false), _complete(nullptr) {}
 
@@ -70,6 +72,8 @@ public:
     }
 
     bool isComplete() { return _complete != nullptr && _complete->finished(); }
+
+    string getLevel() { return _levelName;  }
 };
 
 #endif //PANICPAINTER_PPGAMESCENE_H

@@ -18,7 +18,16 @@ private:
     /** Asset manager. */
     asset_t _assets;
 
+    ptr<cugl::scene2::SceneNode> _scene;
+
     PauseRequest _state;
+
+    /** Name of level paused from */
+    const char* _pausedLevel;
+
+    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+
+    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 
 public:
     PauseScene() : Scene2() {}
@@ -30,6 +39,8 @@ public:
     bool init(const asset_t &assets);
 
     void update(float timestep) override;
+
+    void resetState();
 
     PauseRequest getState() const;
 };
