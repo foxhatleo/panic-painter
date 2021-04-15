@@ -1,5 +1,0 @@
-C:/Users/bsgra/AdvGameDev/panic-painter/build-win10/out/build/x64-Debug (default)/CMakeFiles/Box2D.dir
-C:/Users/bsgra/AdvGameDev/panic-painter/build-win10/out/build/x64-Debug (default)/CMakeFiles/cugl.dir
-C:/Users/bsgra/AdvGameDev/panic-painter/build-win10/out/build/x64-Debug (default)/CMakeFiles/PanicPainter.dir
-C:/Users/bsgra/AdvGameDev/panic-painter/build-win10/out/build/x64-Debug (default)/CMakeFiles/edit_cache.dir
-C:/Users/bsgra/AdvGameDev/panic-painter/build-win10/out/build/x64-Debug (default)/CMakeFiles/rebuild_cache.dir
