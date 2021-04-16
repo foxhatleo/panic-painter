@@ -41,6 +41,7 @@ void ColorPalette::_setup(const Rect &bounds,
     float scale = getWidth() / _paletteView->getWidth();
     _paletteView->setScale(1.6*scale);
     _paletteView->setPositionY(getHeight() / 2);
+    _paletteView->setPositionX(-0.12 * _paletteView->getWidth());
     addChild(_paletteView);
 }
 
