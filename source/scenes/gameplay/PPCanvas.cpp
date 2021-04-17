@@ -6,22 +6,23 @@
 #define DURATION 0.5
 #define MINI_SCALE 0.75
 
-ptr<Canvas> Canvas::alloc(const asset_t &assets, const vec<Color4> &colors,
-                          const ptr<Timer> &timer, uint queueInd,
-                          uint numOfQueues, const Rect &bound,
-                          const int numCanvasColors) {
+ptr<Canvas> Canvas::alloc(const asset_t &assets,
+                  uint queueInd,
+                  uint canvasInd,
+                  uint numOfQueues,
+                  const Rect &bound,
+                  const GameStateController &state) {
     auto result = make_shared<Canvas>();
     if (result->initWithBounds(bound))
-        result->_setup(assets, colors, timer, queueInd, numOfQueues,
-                       numCanvasColors);
+        result->_setup(assets, state.getColors(), state.getTimer(queueInd, canvasInd), queueInd, numOfQueues, (uint) state.getColorsOfCanvas(queueInd, canvasInd).size(), state);
     else
         return nullptr;
     return result;
-}
+};
 
 void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
-                    const ptr<Timer> &timer, uint queueInd, uint numOfQueues,
-                    const int numCanvasColors) {
+                    const ptr<Timer> &timer, uint queueInd, uint numOfQueues, const int numCanvasColors,
+                    const GameStateController &state) {
     _timer = timer;
 
     float containerWidth = getWidth();
@@ -35,7 +36,7 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _startingY = _yForStandBy + getHeight() * .1f;
     _yAfterLeaving = _yForActive - getHeight() * .1f;
 
-    _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors);
+    _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors, state);
     _block->setScale(MINI_SCALE, MINI_SCALE);
     _block->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
     _block->setPosition(laneX, _startingY);

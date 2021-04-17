@@ -53,11 +53,11 @@ void GameScene::loadLevel(const char *levelName) {
             bound.size.height *= (1 - TIMER_HEIGHT);
             auto c = Canvas::alloc(
                 _assets,
-                _state.getColors(),
-                _state.getTimer(i, (unsigned)i2),
-                i, j,
+                i,
+                i2,
+                j,
                 bound,
-                _state.getColorsOfCanvas(i, (unsigned)i2).size()
+                _state
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -103,7 +103,7 @@ void GameScene::loadLevel(const char *levelName) {
                 safeArea.size.width * PALETTE_WIDTH,
                 safeArea.size.height * (1 - TIMER_HEIGHT)
             )
-        ), _state.getColors(), _assets);
+        ), _state.getColors(), _assets, _state);
 
     _splash = SplashEffect::alloc(_assets,
                                   Application::get()->getDisplayBounds(),

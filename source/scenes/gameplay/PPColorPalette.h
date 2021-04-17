@@ -12,28 +12,31 @@
 #include "utils/PPHeader.h"
 #include "utils/PPAnimation.h"
 #include "controllers/PPInputController.h"
+#include "controllers/PPGameStateController.h"
 #include "PPColorPaletteView.h"
 
 // change to texturedNode
 class ColorPalette : public SceneNode {
 
     ptr<ColorPaletteView> _paletteView;
+    
+    GameStateController _state;
 
     void _setup(const Rect &bounds,
                 const vec<Color4> &colors,
-                const asset_t &assets);
+                const asset_t &assets,
+                const GameStateController &state);
 
 public:
 
     /** @deprecated Constructor. */
-    explicit ColorPalette(const vec<Color4> &colors,
-                          const ptr<Texture> &colorTexture,
-                          const ptr<Texture> &paletteTexture) {};
+    explicit ColorPalette(const vec<Color4> &colors) {};
 
     static ptr<ColorPalette> alloc(const Rect &bounds,
                                    const vec<Color4> &colors,
-                                   const asset_t &assets);
-
+                                   const asset_t &assets,
+                                   const GameStateController &state);
+    
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {
         //_selectedColor = colorIndex;

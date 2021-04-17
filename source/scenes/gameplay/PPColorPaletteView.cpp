@@ -20,13 +20,12 @@
 
 ptr<ColorPaletteView> ColorPaletteView::alloc(
     const vec<Color4> &colors,
-    const asset_t &assets) {
-    auto colorTexture = assets->get<Texture>("color-circle");
-    auto paletteTexture = assets->get<Texture>("palette");
+    const asset_t &assets,
+    const GameStateController &state) {
     auto result =
-        make_shared<ColorPaletteView>(colors, colorTexture, paletteTexture);
+        make_shared<ColorPaletteView>(colors, assets);
     if (result->init())
-        result->_setup();
+        result->_setup(state);
     else
         return nullptr;
     return result;
@@ -37,11 +36,11 @@ float ColorPaletteView::_computeXPositioning(uint ind) {
            (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
 }
 
-void ColorPaletteView::_setup() {
+void ColorPaletteView::_setup(const GameStateController &state) {
     setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     setPosition(Vec2::ZERO);
 
-    auto bg = PolygonNode::allocWithTexture(_paletteTexture);
+    auto bg = PolygonNode::allocWithTexture(_assets->get<Texture>("palette"));
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bg->setContentSize(PALETTE_WIDTH, PALETTE_HEIGHT);
     bg->setPositionX(-NEGATIVE_MARGIN_LEFT * bg->getContentWidth());
@@ -57,9 +56,13 @@ void ColorPaletteView::_setup() {
     addChild(bg);
 
     float btnStartY = getContentHeight() - 90;
-
-    for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
-        auto btn = PolygonNode::allocWithTexture(_colorTexture);
+        
+    for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
+        #ifdef COLORBLIND_MODE
+            auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
+        #else
+            auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
+        #endif
         btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
@@ -102,18 +105,13 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
 
 uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
     float numColors = _colors.size();
-    float colorsHeight =
-        (PADDING + PALETTE_COLOR_SIZE / 2) * numColors * PRESSED_SCALE;
+    float colorsHeight = (PADDING + PALETTE_COLOR_SIZE / 2) * numColors * PRESSED_SCALE;
     int numColorsSwipedOn = diff > 0 ?
-                            max((int) floor(numColors * diff / colorsHeight),
-                                (int) -(numColors - 1))
-                                     : min(
-            (int) floor(numColors * diff / colorsHeight), (int) numColors - 1);
-
-    int indexOfOtherColor =
-        diff > 0 ? max((int) _selectedColor - numColorsSwipedOn, 0) : min(
-            (int) _selectedColor - numColorsSwipedOn, (int) numColors - 1);
-
+        max((int)floor(numColors * diff / colorsHeight),  (int) - (numColors - 1))
+        :min((int) floor(numColors * diff / colorsHeight), (int) numColors - 1);
+    
+    int indexOfOtherColor = diff > 0 ? max((int)_selectedColor - numColorsSwipedOn, 0) : min((int)_selectedColor - numColorsSwipedOn, (int) numColors - 1);
+    
     return indexOfOtherColor;
 }
 
@@ -127,7 +125,6 @@ void ColorPaletteView::update() {
     float diff = cp.y - sp.y;
     int indexOfOtherColor = -1;
     if (input.isPressing() || input.justReleased()) {
-
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
             auto &btn = _buttons[i];
 
@@ -169,7 +166,6 @@ void ColorPaletteView::update() {
                 STRONG_OUT
             );
         }
-
     } else {
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++)
             _animateButtonState(i, _selectedColor == i ? ACTIVE : INACTIVE);

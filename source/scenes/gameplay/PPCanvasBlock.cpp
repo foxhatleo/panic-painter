@@ -3,17 +3,18 @@
 ptr<CanvasBlock> CanvasBlock::alloc(
     const asset_t &assets,
     float size,
-    const vec<Color4> &colors, const int numCanvasColors) {
+    const vec<Color4>& colors, const int numCanvasColors,
+    const GameStateController &state) {
     auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
-        result->_setup(assets, colors, numCanvasColors);
+        result->_setup(assets, colors, numCanvasColors, state);
     else
         return nullptr;
     return result;
 }
 
-void CanvasBlock::_setup(const asset_t &assets, const vec<Color4> &colors,
-                         const int numCanvasColors) {
+
+void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state) {
 #ifdef VIEW_DEBUG
     auto n = PolygonNode::to(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
@@ -53,8 +54,8 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4> &colors,
     addChild(_talk_bubble);
 
     // Color strip
-    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets,
-                                    colors);
+
+    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors, state);
     _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
     auto bubbleBox = _talk_bubble->getBoundingBox();
     _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
