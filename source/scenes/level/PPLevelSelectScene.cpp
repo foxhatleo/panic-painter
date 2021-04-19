@@ -56,6 +56,9 @@ void LevelSelectScene::activateUI(
     if (button != nullptr) {
 //        CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
+            Rect safeArea = Application::get()->getSafeBounds();
+            button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+            button->setPosition(0, safeArea.size.height);
             button->addListener([=](const string &name, bool down) {
                 if (!down) {
                     _state = BACK;
@@ -70,6 +73,10 @@ void LevelSelectScene::activateUI(
             });
         }
         button->activate();
+        
+        // Fix positioning to safe area
+        //Rect safeArea = Application::get()->getSafeBounds();
+        //if(button->getPositionY  button->setPositionY
     } else {
         // Go deeper
         for (Uint32 ii = 0; ii < scene->getChildCount(); ii++) {
