@@ -207,15 +207,3 @@ uint GameStateController::getScoreMetric(string type) const {
                 "Incorrect type provided.");
     return _state.scoreTracker.find(type)->second;
 }
-
-void GameStateController::setScoreMetric(string type, uint newMetric) {
-    CUAssertLog(type == "timedOut" || type == "wrongAction" || type == "correct",
-                "Incorrect type provided.");
-    _state.scoreTracker[type] = newMetric;
-}
-
-void GameStateController::incrementScoreMetric(string type) {
-    CUAssertLog(type == "timedOut" || type == "wrongAction" || type == "correct",
-                "Incorrect type provided.");
-    _state.scoreTracker[type]++;
-}

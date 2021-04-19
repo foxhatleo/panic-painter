@@ -84,11 +84,6 @@ public:
     /** Get the number of canvases that fulfill one of the score metrics. */
     uint getScoreMetric(string type) const;
     
-    /** Update the score metrics*/
-    void setScoreMetric(string type, uint newMetric);
-    
-    /** Increment the stats for a metric. */
-    void incrementScoreMetric(string type);
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H
