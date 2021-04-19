@@ -13,7 +13,9 @@
 class GameStateController {
 private:
     GameState _state;
-
+    
+    unordered_map<string, uint> _scoreTracker;
+    
     /** Get the index of the active canvas in a queue. */
     int _getActiveIndexOfQueue(uint q) const;
 
@@ -78,6 +80,15 @@ public:
     
     /** Get the shape string for a given color index. For coloblindness mode. */
     string getShapeForColorIndex(uint i) const;
+    
+    /** Get the number of canvases that fulfill one of the score metrics. */
+    uint getScoreMetric(string type) const;
+    
+    /** Update the score metrics*/
+    void setScoreMetric(string type, uint newMetric);
+    
+    /** Increment the stats for a metric. */
+    void incrementScoreMetric(string type);
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

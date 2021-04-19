@@ -183,6 +183,9 @@ void GameScene::update(float timestep) {
         }, STRONG_OUT);
         addChild(levelcomplete);
         _congratulations = levelcomplete;
+        CULog("timed out: %d", _state.getScoreMetric("timedOut"));
+        CULog("correct: %d", _state.getScoreMetric("correct"));
+        CULog("wrong color: %d", _state.getScoreMetric("wrongAction"));
     }
 
     Scene2::update(timestep);
