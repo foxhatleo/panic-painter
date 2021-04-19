@@ -7,49 +7,49 @@
           "type": "Anchored"
         },
         "children": {
-            "level1": {
-                "type": "Button",
-                "data": {
-                  "upnode": "up",
-                  "visible"  : true,
-                  "pushsize" : true,
-                  "anchor" : [3.2, 0.9],
-                  "scale"    : 0.17
-                },
-                "children": {
-                  "up": {
-                    "type": "Image",
-                    "data": {
-                      "texture": "level1"
-                    }
+            "city": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [3.2, 0.9],
+                "scale"    : 0.17
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "worldselect-city"
                   }
-                },
-                "layout": {
-                  "padding" : [0,0,0,50]
                 }
+              },
+              "layout": {
+                "padding" : [0,0,0,50]
+              }
             },
-            "level2": {
-                "type": "Button",
-                "data": {
-                  "upnode": "up",
-                  "visible"  : true,
-                  "pushsize" : true,
-                  "anchor" : [2.6, 0.35],
-                  "scale"    : 0.17
-                },
-                "children": {
-                  "up": {
-                    "type": "Image",
-                    "data": {
-                      "texture": "level2"
-                    }
+            "eiffel": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [2.6, 0.35],
+                "scale"    : 0.17
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "worldselect-eiffel"
                   }
-                },
-                "layout": {
-                  "padding" : [0,0,0,50]
                 }
+              },
+              "layout": {
+                "padding" : [0,0,0,50]
+              }
             },
-            "level3": {
+            "house": {
                 "type": "Button",
                 "data": {
                   "upnode": "up",
@@ -62,13 +62,34 @@
                   "up": {
                     "type": "Image",
                     "data": {
-                      "texture": "level3"
+                      "texture": "worldselect-house"
                     }
                   }
                 },
                 "layout": {
                     "padding" : [0,0,0,50]
                 }
+            },
+            "island": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [1.8, 1.2],
+                "scale"    : 0.17
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "worldselect-island"
+                  }
+                }
+              },
+              "layout": {
+                  "padding" : [0,0,0,50]
+              }
             },
             "menubutton": {
                 "type": "Button",
@@ -90,6 +111,21 @@
                 "layout": {
                     "padding" : [0,0,0,50]
                 }
+            },
+            "paint": {
+              "type": "Image",
+              "data": {
+                "visible"  : true,
+                "anchor" : [0, 1],
+                "scale"    : 0.26,
+                "texture": "worldselect-paint"
+              },
+              "layout": {
+                "x_anchor": "left",
+                "y_anchor": "top",
+                "x_offset": 0.028,
+                "y_offset": -0.12
+              }
             }
         }
     }

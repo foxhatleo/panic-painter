@@ -96,9 +96,6 @@
     "levelcomplete": {
       "file": "textures/levelcomplete.png"
     },
-    "levelsbackground": {
-      "file": "textures/levelselect/levelsbackground.png"
-    },
     "levelbutton": {
       "file": "textures/levelselect/levelbutton.png"
     },
@@ -146,6 +143,24 @@
     },
     "bg-level2": {
       "file": "textures/level-backgrounds/level2.png"
+    },
+    "worldselect-city":{
+      "file": "textures/levelselect/worldselect-city.png"
+    },
+    "worldselect-eiffel":{
+      "file": "textures/levelselect/worldselect-eiffeltower.png"
+    },
+    "worldselect-house":{
+      "file": "textures/levelselect/worldselect-house.png"
+    },
+    "worldselect-island":{
+      "file": "textures/levelselect/worldselect-island.png"
+    },
+    "worldselect-paint":{
+      "file": "textures/levelselect/worldselect-paint.png"
+    },
+    "worldselect-background": {
+      "file": "textures/levelselect/worldselect-background.png"
     }
   },
   "jsons": {
