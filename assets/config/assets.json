@@ -69,6 +69,15 @@
     "husky-emotion-3": {
       "file": "textures/characters/husky_emotion_stage3.png"
     },
+    "samoyed-blink": {
+      "file": "textures/characters/samoyed_blink.png"
+    },
+    "samoyed-emotion-2": {
+      "file": "textures/characters/samoyed_emotion_stage2.png"
+    },
+    "samoyed-emotion-3": {
+      "file": "textures/characters/samoyed_emotion_stage3.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
@@ -76,7 +85,7 @@
       "file": "textures/level-progress/level-timer-background.png"
     },
     "levelsbutton": {
-      "file":   "textures/menu/levelsbutton.png"
+      "file": "textures/menu/levelsbutton.png"
     },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
