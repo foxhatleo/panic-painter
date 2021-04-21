@@ -30,6 +30,7 @@ void PanicPainterApp::onShutdown() {
     _loading.dispose();
     _gameplay.dispose();
     _menu.dispose();
+    _world.dispose();
     _level.dispose();
     _assets = nullptr;
     _batch = nullptr;
@@ -73,6 +74,9 @@ void PanicPainterApp::update(float timestep) {
                 // Initializing game scene.
                 _gameplay.init(_assets);
 
+                // Initialize world select screen
+                _world.init(_assets);
+
                 // Initialize level select screen
                 _level.init(_assets);
 
@@ -92,8 +96,8 @@ void PanicPainterApp::update(float timestep) {
                 _currentScene = PAUSE_SCENE;
                 _pause.resetState();
             } else if (_gameplay.isComplete()) {
-                _currentScene = LEVEL_SCENE;
-                _level.resetState();
+                _currentScene = WORLD_SCENE;
+                _world.resetState();
             }
             break;
         }
@@ -106,28 +110,39 @@ void PanicPainterApp::update(float timestep) {
                 _menu.resetState();
             } else if (_menu.getState() == LEVELS) {
                 //_menu.dispose();
-                _currentScene = LEVEL_SCENE;
+                _currentScene = WORLD_SCENE;
                 _menu.resetState();
-                _level.resetState();
+                _world.resetState();
             }
             break;
         }
-        case LEVEL_SCENE: {
-            if (_level.getState() == BACK) {
-                //_level.dispose();
-                //_menu.init(_assets);
+        case WORLD_SCENE: {
+            if (_world.getState() == BACK) {
                 _currentScene = MENU_SCENE;
-                _level.resetState();
+                _world.resetState();
                 _menu.resetState();
-            } else if (_level.getState() == SELECTED) {
-                //_level.dispose();
+            } else if (_world.getState() == SELECTED) {   
+                _menu.resetState();
+                _world.resetState();
+                _level.loadWorld(
+                    _world.getWorld().c_str()); // fetch the specific world
+                _currentScene = LEVEL_SCENE;
+            }
+            break;
+        }
+
+        case LEVEL_SCENE: {
+            if (_level.getState() == L_BACK) {
+                _level.resetState();
+                _world.resetState();
+                _currentScene = WORLD_SCENE;
+            }
+            else if (_level.getState() == L_SELECTED) {
+                _level.resetState();
                 _gameplay.loadLevel(
                     _level.getLevel().c_str()); // fetch the specific level
                 _currentScene = GAME_SCENE;
-                _menu.resetState();
-                _level.resetState();
             }
-            break;
         }
 
         case PAUSE_SCENE: {
@@ -177,6 +192,11 @@ void PanicPainterApp::draw() {
             break;
         }
 
+        case WORLD_SCENE: {
+            _world.render(_batch);
+            break;
+        }
+        
         case LEVEL_SCENE: {
             _level.render(_batch);
             break;

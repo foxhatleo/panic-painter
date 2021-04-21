@@ -159,6 +159,12 @@
     "worldselect-paint":{
       "file": "textures/levelselect/worldselect-paint.png"
     },
+    "worldselect-museum":{
+      "file": "textures/levelselect/worldselect-museum.png"
+    },
+    "worldselect-space":{
+      "file": "textures/levelselect/worldselect-space.png"
+    },
     "worldselect-background": {
       "file": "textures/levelselect/worldselect-background.png"
     }
@@ -167,6 +173,7 @@
     "global": "config/global.json",
     "load": "scenes/loading.json",
     "menu": "scenes/menu.json",
+    "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
     "gameplay": "levels/gameplay.json",
     "level1": "levels/level1.json",

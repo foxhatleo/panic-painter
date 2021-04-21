@@ -97,6 +97,9 @@
     <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp">
       <Filter>Scenes\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scenes\level\PPWorldSelectScene.cpp">
+      <Filter>Scenes\Level</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp">
       <Filter>Scenes\Level</Filter>
     </ClCompile>
@@ -177,6 +180,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h">
       <Filter>Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\level\PPWorldSelectScene.h">
+      <Filter>Scenes\Level</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h">
       <Filter>Scenes\Level</Filter>
