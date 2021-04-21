@@ -86,11 +86,14 @@ void LevelSelectScene::deactivateUI(
 }
 
 void LevelSelectScene::loadWorld(const char* worldName) {
+    CULog("loading world");
+
     // Ensure reset
     if (_scene != nullptr) {
         CULog("deactivating ui");
         deactivateUI(_scene);
     }
+    CULog("removing children");
     removeAllChildren();
     resetState();
 
@@ -98,10 +101,12 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     string header = "scenes/world-";
     string suffix = ".json";
     _assets->loadDirectory(header + worldName + suffix);
+    CULog("Loaded directory");
 
     // Get scene
     suffix = "selectscene";
     _scene = _assets->get<scene2::SceneNode>(worldName + suffix);
+    CULog("got scene");
     _scene->setContentSize(_screenSize);
     _scene->doLayout(); // Repositions the HUD
 
@@ -110,12 +115,14 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>(worldName + suffix));
     background->setContentSize(_screenSize);
     addChild(background);
+    CULog("intialized background");
 
     // Initialize buttons
     activateUI(_scene);
 
     // Add scene as child
     addChild(_scene);
+    CULog("finished loading world");
 }
 
 void LevelSelectScene::update(float timestep) {
