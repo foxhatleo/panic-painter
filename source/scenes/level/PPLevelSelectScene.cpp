@@ -6,13 +6,6 @@ bool LevelSelectScene::init(const asset_t &assets) {
     // Initialize the scene to a locked width
     Size screenSize = Application::get()->getDisplaySize();
 
-    // Lock the scene to a reasonable resolution
-    if (screenSize.width > screenSize.height) {
-        screenSize *= SCENE_SIZE / screenSize.width;
-    } else {
-        screenSize *= SCENE_SIZE / screenSize.height;
-    }
-
     if (assets == nullptr) {
         return false;
     } else if (!Scene2::init(screenSize)) {
