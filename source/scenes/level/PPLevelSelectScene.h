@@ -32,6 +32,8 @@ private:
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 
+    ptr<PolygonNode> _backBtn;
+
 public:
     LevelSelectScene() : Scene2() {
         _state = LEVEL;

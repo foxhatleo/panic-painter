@@ -35,6 +35,22 @@ bool WorldSelectScene::init(const asset_t &assets) {
     activateUI(_scene);
 
     addChild(_scene);
+
+    // Create back button
+    /*Rect safeArea = Application::get()->getSafeBounds();
+    _backBtn = Button::alloc();
+    (_assets->get<Texture>("backbutton"));
+    _backBtn->setScale(1.9f *
+        (safeArea.size.height * .1f) /
+        _backBtn->getContentWidth());
+    _backBtn->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+    _backBtn->setPosition(0, safeArea.size.height);
+    _backBtn->addListener([=](const string& name, bool down) {
+        if (!down) {
+            _state = BACK;
+        }
+        });
+    addChild(_backBtn); */
     return true;
 }
 

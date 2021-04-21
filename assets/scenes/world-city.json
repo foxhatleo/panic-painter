@@ -7,27 +7,16 @@
           "type": "Anchored"
         },
         "children": {
-            "level1": {
-              "type": "Button",
-              "data": {
-                "upnode": "up",
-                "visible"  : true,
-                "pushsize" : true,
-                "anchor" : [3.2, 0.9],
-                "scale"    : 0.17
-              },
-              "children": {
-                "up": {
-                  "type": "Image",
-                  "data": {
+          "level1": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "1",
                     "texture": "level-blue-1"
-                  }
                 }
-              },
-              "layout": {
-                "padding" : [0,0,0,50]
-              }
-          },
+            }
+        },
           "level2": {
               "type": "Button",
               "data": {

@@ -11,6 +11,7 @@ void PanicPainterApp::onStartup() {
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
     _assets->attach<Sound>(SoundLoader::alloc()->getHook());
     _assets->attach<SceneNode>(Scene2Loader::alloc()->getHook());
+    _assets->attach<WidgetValue>(WidgetLoader::alloc()->getHook());
     _assets->attach<JsonValue>(JsonLoader::alloc()->getHook());
 
     // Initialize the first scene: loading manager

@@ -94,13 +94,6 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     removeAllChildren();
     resetState();
 
-    /*
-    // Find world file.
-    CULog("Finding world: %s", worldName);
-    const json_t worldJson = _assets->get<JsonValue>(worldName);
-    _worldName = worldName;
-    CULog("Found world file"); */
-
     // Load directory
     string header = "scenes/world-";
     string suffix = ".json";

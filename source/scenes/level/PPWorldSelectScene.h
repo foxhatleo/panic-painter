@@ -28,6 +28,8 @@ private:
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
+    shared_ptr<scene2::Button> _backBtn;
+
 public:
     WorldSelectScene() : Scene2() {
         _state = WORLD;

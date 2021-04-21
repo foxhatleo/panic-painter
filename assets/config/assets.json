@@ -222,5 +222,8 @@
       "file": "fonts/Jua-Regular.ttf",
       "size": 40
     }
+  },
+  "widgets": {
+    "textbutton" : "widgets/textbutton.json"
   }
 }
