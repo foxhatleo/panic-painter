@@ -73,6 +73,9 @@
     <ClCompile Include="..\..\source\controllers\PPGlobalConfigController.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPSaveController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\controllers\PPInputController.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
@@ -155,6 +158,9 @@
       <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\controllers\PPInputController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPSaveController.h">
       <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
