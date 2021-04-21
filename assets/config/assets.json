@@ -96,6 +96,18 @@
     "cat1-emotion-3": {
       "file": "textures/characters/cat1_very_angry.png"
     },
+    "cat2-blink": {
+      "file": "textures/characters/cat2_blink.png"
+    },
+    "cat2-emotion-1": {
+      "file": "textures/characters/cat2_frown.png"
+    },
+    "cat2-emotion-2": {
+      "file": "textures/characters/cat2_angry.png"
+    },
+    "cat2-emotion-3": {
+      "file": "textures/characters/cat2_very_angry.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
