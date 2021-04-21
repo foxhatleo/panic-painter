@@ -11,6 +11,7 @@
 #include "scenes/pause/PPPauseScene.h"
 #include "controllers/PPGlobalConfigController.h"
 #include "controllers/PPInputController.h"
+#include "controllers/PPSoundController.h"
 
 /** An enum for the list of scenes. */
 enum Scene {

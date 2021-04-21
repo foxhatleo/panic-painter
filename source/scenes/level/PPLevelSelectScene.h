@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "controllers/PPInputController.h"
+#include "controllers/PPSoundController.h"
 
 enum LevelRequest {
     LEVEL,    // standard case, stay on level select

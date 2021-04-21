@@ -105,4 +105,5 @@ LevelRequest LevelSelectScene::getState() const {
 }
 
 void LevelSelectScene::update(float timestep) {
+    SoundController::getInstance()->useBgm("music1");
 }

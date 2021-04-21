@@ -199,6 +199,7 @@
     <ClCompile Include="..\..\source\controllers\PPGameStateController.cpp" />
     <ClCompile Include="..\..\source\controllers\PPGlobalConfigController.cpp" />
     <ClCompile Include="..\..\source\controllers\PPInputController.cpp" />
+    <ClCompile Include="..\..\source\controllers\PPSoundController.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
     <ClCompile Include="..\..\source\PPApp.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="..\..\source\controllers\PPGameStateController.h" />
     <ClInclude Include="..\..\source\controllers\PPGlobalConfigController.h" />
     <ClInclude Include="..\..\source\controllers\PPInputController.h" />
+    <ClInclude Include="..\..\source\controllers\PPSoundController.h" />
     <ClInclude Include="..\..\source\models\PPGameState.h" />
     <ClInclude Include="..\..\source\PPApp.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />

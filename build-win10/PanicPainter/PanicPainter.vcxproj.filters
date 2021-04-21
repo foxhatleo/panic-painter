@@ -100,6 +100,9 @@
     <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp">
       <Filter>Scenes\Level</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPSoundController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc">
@@ -180,6 +183,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h">
       <Filter>Scenes\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPSoundController.h">
+      <Filter>Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -46,7 +46,9 @@ set(PP_FILES
         ../source/scenes/level/PPLevelSelectScene.h
         ../source/scenes/level/PPLevelSelectScene.cpp
         ../source/utils/PPRandom.h
-        ../source/utils/PPRandom.cpp)
+        ../source/utils/PPRandom.cpp
+        ../source/controllers/PPSoundController.h
+        ../source/controllers/PPSoundController.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 

@@ -5,6 +5,7 @@ void PanicPainterApp::onStartup() {
     _batch = SpriteBatch::alloc();
 
     InputController::getInstance().init();
+    SoundController::getInstance()->init(_assets);
 
     // Initialize asset loaders.
     _assets->attach<Font>(FontLoader::alloc()->getHook());
@@ -86,7 +87,6 @@ void PanicPainterApp::update(float timestep) {
             break;
         }
         case GAME_SCENE: {
-            _gameplay.update(timestep);
             if (_gameplay.getPauseRequest()) {
                 // switch to pause screen and let pause screen know what level it is
                 _currentScene = PAUSE_SCENE;
@@ -94,6 +94,8 @@ void PanicPainterApp::update(float timestep) {
             } else if (_gameplay.isComplete()) {
                 _currentScene = LEVEL_SCENE;
                 _level.resetState();
+            } else {
+                _gameplay.update(timestep);
             }
             break;
         }
@@ -109,6 +111,8 @@ void PanicPainterApp::update(float timestep) {
                 _currentScene = LEVEL_SCENE;
                 _menu.resetState();
                 _level.resetState();
+            } else {
+                _menu.update(timestep);
             }
             break;
         }
@@ -126,6 +130,8 @@ void PanicPainterApp::update(float timestep) {
                 _currentScene = GAME_SCENE;
                 _menu.resetState();
                 _level.resetState();
+            } else {
+                _level.update(timestep);
             }
             break;
         }
@@ -139,13 +145,17 @@ void PanicPainterApp::update(float timestep) {
             else if (_pause.getState() == RETRY) {
                 // return to game scene after re-loading level
                 _gameplay.loadLevel(
-                    _gameplay.getLevel().c_str()); // re-fetch the current level
+                    _gameplay.getLevel().c_str());
+                // re-fetch the current level
                 _currentScene = GAME_SCENE;
                 _pause.resetState();
             }
             else if (_pause.getState() == MENU) {
                 _currentScene = MENU_SCENE;
                 _pause.resetState();
+            }
+            else {
+                _pause.update(timestep);
             }
             break;
         }
