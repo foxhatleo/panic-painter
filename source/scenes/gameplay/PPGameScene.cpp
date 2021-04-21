@@ -157,6 +157,7 @@ void GameScene::update(float timestep) {
     bool pressing = input.isPressing() &&
                     InputController::inScene(input.currentPoint(), canvasArea);
     _splash->update(timestep,
+                    activeCanvases.empty() ? Color4::CLEAR : 
                     _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
@@ -164,6 +165,9 @@ void GameScene::update(float timestep) {
 
     // Check if the level is complete
     if (activeCanvases.empty() && !_congratulations) {
+        //Gradually clear out the splatters
+         _splash->update(timestep,
+                    Color4::CLEAR, Vec2::ZERO);
         _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));

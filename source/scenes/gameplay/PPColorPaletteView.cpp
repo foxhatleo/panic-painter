@@ -8,15 +8,15 @@
 
 #include "PPColorPaletteView.h"
 
-#define PALETTE_COLOR_SIZE 40.0f
+#define PALETTE_COLOR_SIZE 45.0f
 /** Space between dots. */
-#define PADDING 12.0f
+#define PADDING 15.0f
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
 #define PALETTE_WIDTH 190
 #define PALETTE_HEIGHT 260
-#define NEGATIVE_MARGIN_LEFT 0.4f /* = 40% of PALETTE_WIDTH */
-#define CURVATURE 0.15 /** Curvature constant for the palette. */
+#define NEGATIVE_MARGIN_LEFT 0.5f /* = 40% of PALETTE_WIDTH */
+#define CURVATURE 2.2 /** Curvature constant for the palette. */
 
 ptr<ColorPaletteView> ColorPaletteView::alloc(
     const vec<Color4> &colors,
@@ -32,8 +32,21 @@ ptr<ColorPaletteView> ColorPaletteView::alloc(
 }
 
 float ColorPaletteView::_computeXPositioning(uint ind) {
-    return getContentWidth() - 35 -
-           (PADDING + PALETTE_COLOR_SIZE / 2) * ind * ind * CURVATURE;
+    int numColors = (int) _colors.size();
+    
+    float curvature;
+    if (numColors == 5) {
+        curvature = 2;
+    } else if (numColors == 4) {
+        curvature = 2.7;
+    } else {
+        curvature = 2.9;
+    }
+    
+    float peak = numColors % 2 == 1 ? numColors / 2 : (numColors - 1) / 2;
+    float a = curvature * ((int)ind - peak);
+    float result = getContentWidth() - 40 - (a*a);
+    return result;
 }
 
 void ColorPaletteView::_setup(const GameStateController &state) {
@@ -55,19 +68,20 @@ void ColorPaletteView::_setup(const GameStateController &state) {
 
     addChild(bg);
 
-    float btnStartY = getContentHeight() - 90;
-        
+    float btnStartY = getContentHeight() - 70 + 2*(int)_colors.size();
+    float padding = PADDING + 7 * (4 - (int)_colors.size());
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
         #ifdef COLORBLIND_MODE
             auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
         #else
             auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
         #endif
-        btn->setContentSize(PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE);
+        float pscale = (int)_colors.size() >= 5 ? 0.8 : 1;
+        btn->setContentSize(pscale * PALETTE_COLOR_SIZE, pscale * PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
             this->_computeXPositioning(i),
-            btnStartY - (PADDING + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
+            btnStartY - (padding + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
         );
         btn->setColor(_colors[i]);
 
@@ -105,7 +119,8 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
 
 uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
     float numColors = _colors.size();
-    float colorsHeight = (PADDING + PALETTE_COLOR_SIZE / 2) * numColors * PRESSED_SCALE;
+    float padding = PADDING + 5 * (4 - _colors.size());
+    float colorsHeight = (padding + PALETTE_COLOR_SIZE / 2) * numColors * PRESSED_SCALE;
     int numColorsSwipedOn = diff > 0 ?
         max((int)floor(numColors * diff / colorsHeight),  (int) - (numColors - 1))
         :min((int) floor(numColors * diff / colorsHeight), (int) numColors - 1);

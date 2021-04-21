@@ -14,8 +14,14 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
         if (i.color.w < 0) i.color.w = 0;
     }
 
+    if (currentColor == Color4::CLEAR) {
+        for (auto& i : _queue) {
+            i.point = Vec2::ZERO;
+            i.color = Vec4(currentColor);
+        }
+    }
     // Reset ticker if no input.
-    if (point.equals(Vec2::ZERO)) { _ticker = 0; }
+    else if (point.equals(Vec2::ZERO)) { _ticker = 0; }
     else {
         _ticker++;
         if (_ticker >= SAMPLE_RATE) {
