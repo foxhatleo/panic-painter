@@ -15,43 +15,54 @@
                     "text": "1",
                     "texture": "level-blue-1"
                 }
+            },
+            "layout": {
+              "x_offset": -0.37,
+              "y_offset": -0.02
             }
-        },
+          },
           "level2": {
-              "type": "Button",
-              "data": {
-                "upnode": "up",
-                "visible"  : true,
-                "pushsize" : true,
-                "anchor" : [2.6, 0.35],
-                "scale"    : 0.17
-              },
-              "children": {
-                "up": {
-                  "type": "Image",
-                  "data": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "2",
                     "texture": "level-blue-2"
-                  }
                 }
-              },
-              "layout": {
-                "padding" : [0,0,0,50]
-              }
+            },
+            "layout": {
+              "x_offset": -0.17,
+              "y_offset": -0.02
+            }
           },
           "level3": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "3",
+                    "texture": "level-blue-1"
+                }
+            },
+            "layout": {
+              "x_offset": 0.17,
+              "y_offset": -0.02
+            }
+          },
+          "menubutton": {
               "type": "Button",
               "data": {
                 "upnode": "up",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [1.8, 0.8],
-                "scale"    : 0.17
+                "anchor" : [2.4, -1.0],
+                "scale"    : 0.5
               },
               "children": {
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "level-blue-1"
+                    "texture": "backbutton"
                   }
                 }
               },

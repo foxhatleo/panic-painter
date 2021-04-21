@@ -1,17 +1,8 @@
 #include "PPWorldSelectScene.h"
 
-#define SCENE_SIZE 1024
-
 bool WorldSelectScene::init(const asset_t &assets) {
     // Initialize the scene to a locked width
     Size screenSize = Application::get()->getDisplaySize();
-
-    // Lock the scene to a reasonable resolution
-    if (screenSize.width > screenSize.height) {
-        screenSize *= SCENE_SIZE / screenSize.width;
-    } else {
-        screenSize *= SCENE_SIZE / screenSize.height;
-    }
 
     if (assets == nullptr) {
         return false;
@@ -36,21 +27,6 @@ bool WorldSelectScene::init(const asset_t &assets) {
 
     addChild(_scene);
 
-    // Create back button
-    /*Rect safeArea = Application::get()->getSafeBounds();
-    _backBtn = Button::alloc();
-    (_assets->get<Texture>("backbutton"));
-    _backBtn->setScale(1.9f *
-        (safeArea.size.height * .1f) /
-        _backBtn->getContentWidth());
-    _backBtn->setAnchor(Vec2::ANCHOR_TOP_LEFT);
-    _backBtn->setPosition(0, safeArea.size.height);
-    _backBtn->addListener([=](const string& name, bool down) {
-        if (!down) {
-            _state = BACK;
-        }
-        });
-    addChild(_backBtn); */
     return true;
 }
 
@@ -72,6 +48,9 @@ void WorldSelectScene::activateUI(
     if (button != nullptr) {
 //        CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
+            Rect safeArea = Application::get()->getSafeBounds();
+            button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+            button->setPosition(0, safeArea.size.height);
             button->addListener([=](const string &name, bool down) {
                 if (!down) {
                     _state = BACK;
