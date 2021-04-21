@@ -134,6 +134,12 @@
     },
     "bg-level2": {
       "file": "textures/level-backgrounds/level2.png"
+    },
+    "feedbackno": {
+      "file": "textures/feedbackno.png"
+    },
+    "feedbackyes": {
+      "file": "textures/feedbackyes.png"
     }
   },
   "jsons": {

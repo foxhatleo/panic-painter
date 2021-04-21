@@ -139,12 +139,16 @@ void Animation::_render(float timestep) {
         }
     }
     _unlock();
-    if (rawProgress == 1) kill();
+    if (rawProgress == 1) {
+        if (_onComplete != nullptr) _onComplete();
+        kill();
+    }
 }
 
 Animation::Animation(const ptr<SceneNode> &target, float duration,
                      const unordered_map<string, float> &vars,
-                     Easing ease) {
+                     Easing ease,
+                     function<void()> onComplete) {
     _vars = vars;
     _duration = duration;
     _delay = _getFromVars("delay", 0);
@@ -153,6 +157,7 @@ Animation::Animation(const ptr<SceneNode> &target, float duration,
     _gc = false;
     _timeSinceStart = 0;
     _ease = ease;
+    _onComplete = onComplete;
 
     if (_getFromVars("overwrite", 1) != 0) {
         killAnimationsOf(target);
@@ -171,8 +176,10 @@ void Animation::kill() {
 
 ptr<Animation> Animation::to(const ptr<SceneNode> &target, float duration,
                              const unordered_map<string, float> &vars,
-                             Easing ease) {
-    ptr<Animation> n = make_shared<Animation>(target, duration, vars, ease);
+                             Easing ease,
+                             const function<void()> &onComplete) {
+    ptr<Animation> n = make_shared<Animation>(target, duration, vars, ease,
+                                              onComplete);
     _globalList.push_back(n);
     return n;
 }

@@ -10,6 +10,7 @@
 #include "PPGlobalTimer.h"
 #include "controllers/PPActionController.h"
 #include "PPSplashEffect.h"
+#include "PPFeedback.h"
 
 /**
  * This is the scene for the actual game.
@@ -43,6 +44,8 @@ private:
     ptr<SceneNode> _congratulations;
 
     ptr<SplashEffect> _splash;
+
+    ptr<Feedback> _feedback;
 
     bool _pauseRequest;
 
