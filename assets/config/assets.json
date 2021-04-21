@@ -61,7 +61,7 @@
       "file": "textures/characters/husky_blink.png"
     },
     "husky-emotion-1": {
-      "file": "textures/characters/husky_emotion_stage1.png"
+      "file": "textures/characters/husky_no_tears.png"
     },
     "husky-emotion-2": {
       "file": "textures/characters/husky_emotion_stage2.png"
@@ -69,14 +69,32 @@
     "husky-emotion-3": {
       "file": "textures/characters/husky_emotion_stage3.png"
     },
+    "husky-walk": {
+      "file": "textures/characters/husky_walk.png"
+    },
     "samoyed-blink": {
       "file": "textures/characters/samoyed_blink.png"
+    },
+    "samoyed-emotion-1": {
+      "file": "textures/characters/samoyed_emotion_stage1.png"
     },
     "samoyed-emotion-2": {
       "file": "textures/characters/samoyed_emotion_stage2.png"
     },
     "samoyed-emotion-3": {
       "file": "textures/characters/samoyed_emotion_stage3.png"
+    },
+    "cat1-blink": {
+      "file": "textures/characters/cat1_blink.png"
+    },
+    "cat1-emotion-1": {
+      "file": "textures/characters/cat1_frown.png"
+    },
+    "cat1-emotion-2": {
+      "file": "textures/characters/cat1_angry.png"
+    },
+    "cat1-emotion-3": {
+      "file": "textures/characters/cat1_very_angry.png"
     },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"

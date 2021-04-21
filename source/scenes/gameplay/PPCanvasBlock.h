@@ -44,7 +44,8 @@ private:
     bool _isActive;
     /*How many colors did this canvas start out with? This is needed to know how many animations to loop through*/
     int _initialColorNumber;
-
+    /** Game state. */
+    GameStateController _state;
     /** Set up this block. */
     void _setup(const asset_t &assets, const vec<Color4> &colors, const int numCanvasColors, const GameStateController &state);
     
