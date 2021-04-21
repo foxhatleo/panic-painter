@@ -164,7 +164,7 @@ void GameScene::update(float timestep) {
 
     // Check if the level is complete
     if (activeCanvases.empty() && !_congratulations) {
-        _complete = make_shared<Timer>(15);
+        _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));
         float lc_width = levelcomplete->getContentWidth();
