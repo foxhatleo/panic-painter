@@ -183,7 +183,7 @@ void GameScene::update(float timestep) {
         }, STRONG_OUT);
         addChild(levelcomplete);
         _congratulations = levelcomplete;
-        auto gameStats = Label::alloc(Size(0.7 * ds.width, 0.3 * ds.height), _assets->get<Font>("jua"));
+        auto gameStats = Label::alloc(Size(0.7 * ds.width, 0.3 * ds.height), _assets->get<Font>("roboto"));
         string winString = ("Correct: " + to_string(_state.getScoreMetric("correct")) +
                             ", timed out: " + to_string(_state.getScoreMetric("timedOut")) +
                            ", wrong action: " + to_string(_state.getScoreMetric("wrongAction"))).c_str();
