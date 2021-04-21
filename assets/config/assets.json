@@ -135,9 +135,6 @@
     "levelcomplete": {
       "file": "textures/levelcomplete.png"
     },
-    "levelsbackground": {
-      "file": "textures/levelselect/levelsbackground.png"
-    },
     "levelbutton": {
       "file": "textures/levelselect/levelbutton.png"
     },
@@ -180,22 +177,95 @@
     "pauseresume": {
       "file": "textures/pause/pauseresume.png"
     },
-    "bg-level1": {
-      "file": "textures/level-backgrounds/level1.png"
+    "museum-bg": {
+      "file": "textures/level-backgrounds/museum.png"
     },
-    "bg-level2": {
-      "file": "textures/level-backgrounds/level2.png"
+    "city-bg": {
+      "file": "textures/level-backgrounds/city.png"
+    },
+    "space-bg": {
+      "file": "textures/level-backgrounds/space.png"
+    },
+    "worldselect-city":{
+      "file": "textures/levelselect/worldselect-city.png"
+    },
+    "worldselect-eiffel":{
+      "file": "textures/levelselect/worldselect-eiffeltower.png"
+    },
+    "worldselect-house":{
+      "file": "textures/levelselect/worldselect-house.png"
+    },
+    "worldselect-island":{
+      "file": "textures/levelselect/worldselect-island.png"
+    },
+    "worldselect-paint":{
+      "file": "textures/levelselect/worldselect-paint.png"
+    },
+    "worldselect-museum":{
+      "file": "textures/levelselect/worldselect-museum.png"
+    },
+    "worldselect-space":{
+      "file": "textures/levelselect/worldselect-space.png"
+    },
+    "worldselect-background": {
+      "file": "textures/levelselect/worldselect-background.png"
+    },
+    "level-blue-1": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "level-blue-2": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "level-red-1": {
+      "file": "textures/levelselect/level-red-1.png"
+    },
+    "level-red-2": {
+      "file": "textures/levelselect/level-red-1.png"
+    },
+    "level-brown-1": {
+      "file": "textures/levelselect/level-brown-1.png"
+    },
+    "level-brown-2": {
+      "file": "textures/levelselect/level-brown-1.png"
+    },
+    "level-purple-1": {
+      "file": "textures/levelselect/level-purple-1.png"
+    },
+    "level-purple-2": {
+      "file": "textures/levelselect/level-purple-1.png"
+    },
+    "level-yellow-1": {
+      "file": "textures/levelselect/level-yellow-1.png"
+    },
+    "level-yellow-2": {
+      "file": "textures/levelselect/level-yellow-1.png"
     }
   },
   "jsons": {
     "global": "config/global.json",
     "load": "scenes/loading.json",
     "menu": "scenes/menu.json",
+    "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
     "gameplay": "levels/gameplay.json",
     "level1": "levels/level1.json",
     "level2": "levels/level2.json",
-    "level3": "levels/level3.json"
+    "level3": "levels/level3.json",
+    "e1" : "levels/e1.json",
+    "e2" : "levels/e2.json",
+    "e3" : "levels/e3.json",
+    "e4" : "levels/e4.json",
+    "e5" : "levels/e5.json",
+    "m1" : "levels/m1.json",
+    "m2" : "levels/m2.json",
+    "m3" : "levels/m3.json",
+    "m4" : "levels/m4.json",
+    "m5" : "levels/m5.json",
+    "h1" : "levels/h1.json",
+    "h2" : "levels/h2.json",
+    "h3" : "levels/h3.json",
+    "h4" : "levels/h4.json",
+    "h5" : "levels/h5.json"
   },
   "fonts": {
     "roboto": {
@@ -206,5 +276,8 @@
       "file": "fonts/Jua-Regular.ttf",
       "size": 40
     }
+  },
+  "widgets": {
+    "textbutton" : "widgets/textbutton.json"
   }
 }
