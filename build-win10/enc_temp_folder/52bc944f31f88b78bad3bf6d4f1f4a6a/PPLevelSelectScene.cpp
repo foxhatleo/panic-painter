@@ -1,18 +1,8 @@
 #include "PPLevelSelectScene.h"
 
-#define SCENE_SIZE 1024
-
 bool LevelSelectScene::init(const asset_t &assets) {
     // Initialize the scene to a locked width
     _screenSize = Application::get()->getDisplaySize();
-
-    // Lock the scene to a reasonable resolution
-    if (_screenSize.width > _screenSize.height) {
-        _screenSize *= SCENE_SIZE / _screenSize.width;
-    }
-    else {
-        _screenSize *= SCENE_SIZE / _screenSize.height;
-    }
 
     if (assets == nullptr) {
         return false;
