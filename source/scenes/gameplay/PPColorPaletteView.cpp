@@ -46,7 +46,6 @@ float ColorPaletteView::_computeXPositioning(uint ind) {
     float peak = numColors % 2 == 1 ? numColors / 2 : (numColors - 1) / 2;
     float a = curvature * ((int)ind - peak);
     float result = getContentWidth() - 40 - (a*a);
-    CULog("index %d: %f", ind, result);
     return result;
 }
 
