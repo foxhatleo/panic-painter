@@ -1,13 +1,13 @@
 {
     "scene2s": {
-      "cityselectscene": {
+      "spaceselectscene": {
         "type": "Node",
         "comment"   : "This is the root node of the scene for level select",
         "format": {
           "type": "Anchored"
         },
         "children": {
-          "m1": {
+          "h1": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
@@ -21,7 +21,7 @@
               "y_offset": -0.02
             }
           },
-          "m2": {
+          "h2": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
@@ -35,7 +35,7 @@
               "y_offset": -0.02
             }
           },
-          "m3": {
+          "h3": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
@@ -49,7 +49,7 @@
               "y_offset": -0.02
             }
           },
-          "m4": {
+          "h4": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
@@ -63,7 +63,7 @@
               "y_offset": -0.02
             }
           },
-          "m5": {
+          "h5": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
