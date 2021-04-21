@@ -19,7 +19,7 @@ void GameStateController::_jsonv1_loadColors(const json_t &colors) {
 void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.queues.clear();
     _state.wrongActions.clear();
-
+    _state.recorded.clear();
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
         vec<vec<uint>> queue_s;
