@@ -1,13 +1,13 @@
 {
     "scene2s": {
-      "levelselectscene": {
+      "cityselectscene": {
         "type": "Node",
         "comment"   : "This is the root node of the scene for level select",
         "format": {
           "type": "Anchored"
         },
         "children": {
-            "city": {
+            "level1": {
               "type": "Button",
               "data": {
                 "upnode": "up",
@@ -20,15 +20,15 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "worldselect-city"
+                    "texture": "level-blue-1"
                   }
                 }
               },
               "layout": {
                 "padding" : [0,0,0,50]
               }
-            },
-            "eiffel": {
+          },
+          "level2": {
               "type": "Button",
               "data": {
                 "upnode": "up",
@@ -41,92 +41,35 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "worldselect-eiffel"
+                    "texture": "level-blue-2"
                   }
                 }
               },
               "layout": {
                 "padding" : [0,0,0,50]
               }
-            },
-            "house": {
-                "type": "Button",
-                "data": {
-                  "upnode": "up",
-                  "visible"  : true,
-                  "pushsize" : true,
-                  "anchor" : [1.8, 0.8],
-                  "scale"    : 0.17
-                },
-                "children": {
-                  "up": {
-                    "type": "Image",
-                    "data": {
-                      "texture": "worldselect-house"
-                    }
-                  }
-                },
-                "layout": {
-                    "padding" : [0,0,0,50]
-                }
-            },
-            "island": {
+          },
+          "level3": {
               "type": "Button",
               "data": {
                 "upnode": "up",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [1.8, 1.2],
+                "anchor" : [1.8, 0.8],
                 "scale"    : 0.17
               },
               "children": {
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "worldselect-island"
+                    "texture": "level-blue-1"
                   }
                 }
               },
               "layout": {
                   "padding" : [0,0,0,50]
               }
-            },
-            "menubutton": {
-                "type": "Button",
-                "data": {
-                  "upnode": "up",
-                  "visible"  : true,
-                  "pushsize" : true,
-                  "anchor" : [2.4, -1.0],
-                  "scale"    : 0.5
-                },
-                "children": {
-                  "up": {
-                    "type": "Image",
-                    "data": {
-                      "texture": "menubutton"
-                    }
-                  }
-                },
-                "layout": {
-                    "padding" : [0,0,0,50]
-                }
-            },
-            "paint": {
-              "type": "Image",
-              "data": {
-                "visible"  : true,
-                "anchor" : [0, 1],
-                "scale"    : 0.26,
-                "texture": "worldselect-paint"
-              },
-              "layout": {
-                "x_anchor": "left",
-                "y_anchor": "top",
-                "x_offset": 0.028,
-                "y_offset": -0.12
-              }
-            }
+          }
         }
     }
   }

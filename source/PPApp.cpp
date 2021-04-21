@@ -143,6 +143,7 @@ void PanicPainterApp::update(float timestep) {
                     _level.getLevel().c_str()); // fetch the specific level
                 _currentScene = GAME_SCENE;
             }
+            break;
         }
 
         case PAUSE_SCENE: {

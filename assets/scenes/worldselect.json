@@ -7,7 +7,7 @@
           "type": "Anchored"
         },
         "children": {
-            "world-city": {
+            "city": {
               "type": "Button",
               "data": {
                 "upnode": "up",
@@ -29,7 +29,7 @@
                 "y_offset": -0.5
               }
             },
-            "world-eiffel": {
+            "eiffel": {
               "type": "Button",
               "data": {
                 "upnode": "up",
@@ -51,7 +51,7 @@
                 "y_offset": -0.47
               }
             },
-            "world-house": {
+            "house": {
                 "type": "Button",
                 "data": {
                   "upnode": "up",
@@ -73,7 +73,7 @@
                   "y_offset": -0.48
                 }
             },
-            "world-museum": {
+            "museum": {
                 "type": "Button",
                 "data": {
                   "upnode": "up",
@@ -95,7 +95,7 @@
                   "y_offset": 0.02
                 }
             },
-            "world-island": {
+            "island": {
               "type": "Button",
               "data": {
                 "upnode": "up",
@@ -117,7 +117,7 @@
                 "y_offset": 0.07
               }
             },
-            "world-space": {
+            "space": {
               "type": "Button",
               "data": {
                 "upnode": "up",

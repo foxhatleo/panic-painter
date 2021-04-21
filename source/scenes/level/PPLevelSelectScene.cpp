@@ -83,30 +83,50 @@ void LevelSelectScene::deactivateUI(
 }
 
 void LevelSelectScene::loadWorld(const char* worldName) {
-    // Remove all children to reset.
-    deactivateUI(_scene);
-    removeAllChildren();
+    CULog("loading world");
 
-    // Find level select world file.
+    // Ensure reset
+    if (_scene != nullptr) {
+        CULog("deactivating ui");
+        deactivateUI(_scene);
+    }
+    CULog("removing children");
+    removeAllChildren();
+    resetState();
+
+    /*
+    // Find world file.
+    CULog("Finding world: %s", worldName);
     const json_t worldJson = _assets->get<JsonValue>(worldName);
     _worldName = worldName;
+    CULog("Found world file"); */
 
-    _assets->loadDirectory(worldJson);
-    _scene = _assets->get<scene2::SceneNode>("levelselectscene");
+    // Load directory
+    string header = "scenes/world-";
+    string suffix = ".json";
+    _assets->loadDirectory(header + worldName + suffix);
+    CULog("Loaded directory");
+
+    // Get scene
+    suffix = "selectscene";
+    _scene = _assets->get<scene2::SceneNode>(worldName + suffix);
+    CULog("got scene");
     _scene->setContentSize(_screenSize);
     _scene->doLayout(); // Repositions the HUD
 
     // Initialize background
-    auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
-        ("worldselect-background"));
-    menuBackground->setContentSize(_screenSize);
-    addChild(menuBackground);
+    suffix = "-bg";
+    auto background = PolygonNode::allocWithTexture(_assets->get<Texture>(worldName + suffix));
+    background->setContentSize(_screenSize);
+    addChild(background);
+    CULog("intialized background");
 
     // Initialize buttons
     activateUI(_scene);
 
     // Add scene as child
     addChild(_scene);
+    CULog("finished loading world");
 }
 
 void LevelSelectScene::update(float timestep) {

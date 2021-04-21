@@ -138,11 +138,14 @@
     "pauseresume": {
       "file": "textures/pause/pauseresume.png"
     },
-    "bg-level1": {
-      "file": "textures/level-backgrounds/level1.png"
+    "museum-bg": {
+      "file": "textures/level-backgrounds/museum.png"
     },
-    "bg-level2": {
-      "file": "textures/level-backgrounds/level2.png"
+    "city-bg": {
+      "file": "textures/level-backgrounds/city.png"
+    },
+    "space-bg": {
+      "file": "textures/level-backgrounds/space.png"
     },
     "worldselect-city":{
       "file": "textures/levelselect/worldselect-city.png"
@@ -167,6 +170,36 @@
     },
     "worldselect-background": {
       "file": "textures/levelselect/worldselect-background.png"
+    },
+    "level-blue-1": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "level-blue-2": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "level-red-1": {
+      "file": "textures/levelselect/level-red-1.png"
+    },
+    "level-red-2": {
+      "file": "textures/levelselect/level-red-1.png"
+    },
+    "level-brown-1": {
+      "file": "textures/levelselect/level-brown-1.png"
+    },
+    "level-brown-2": {
+      "file": "textures/levelselect/level-brown-1.png"
+    },
+    "level-purple-1": {
+      "file": "textures/levelselect/level-purple-1.png"
+    },
+    "level-purple-2": {
+      "file": "textures/levelselect/level-purple-1.png"
+    },
+    "level-yellow-1": {
+      "file": "textures/levelselect/level-yellow-1.png"
+    },
+    "level-yellow-2": {
+      "file": "textures/levelselect/level-yellow-1.png"
     }
   },
   "jsons": {
