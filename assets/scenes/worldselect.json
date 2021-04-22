@@ -1,0 +1,166 @@
+{
+    "scene2s": {
+      "worldselectscene": {
+        "type": "Node",
+        "comment"   : "This is the root node of the scene for world select",
+        "format": {
+          "type": "Anchored"
+        },
+        "children": {
+            "city": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0, 0],
+                "scale"    : 0.215
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "worldselect-city"
+                  }
+                }
+              },
+              "layout": {
+                "x_offset": -0.235,
+                "y_offset": -0.5
+              }
+            },
+            "eiffel": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0, 0],
+                "scale"    : 0.22
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "worldselect-eiffel"
+                  }
+                }
+              },
+              "layout": {
+                "x_offset": 0,
+                "y_offset": -0.47
+              }
+            },
+            "house": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [0,0],
+                  "scale"    : 0.25
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "worldselect-house"
+                    }
+                  }
+                },
+                "layout": {
+                  "x_offset": -0.5,
+                  "y_offset": -0.48
+                }
+            },
+            "museum": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [0,0],
+                  "scale"    : 0.2
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "worldselect-museum"
+                    }
+                  }
+                },
+                "layout": {
+                  "x_offset": -0.5,
+                  "y_offset": 0.02
+                }
+            },
+            "island": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0,0],
+                "scale"    : 0.2
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "worldselect-island"
+                  }
+                }
+              },
+              "layout": {
+                "x_offset": -0.22,
+                "y_offset": 0.07
+              }
+            },
+            "space": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0,0],
+                "scale"    : 0.2
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "worldselect-space"
+                  }
+                }
+              },
+              "layout": {
+                "x_offset": 0.17,
+                "y_offset": -0.02
+              }
+            },
+            "menubutton": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [2.4, -1.0],
+                  "scale"    : 0.5
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "menubutton"
+                    }
+                  }
+                },
+                "layout": {
+                    "padding" : [0,0,0,50]
+                }
+            }
+        }
+    }
+  }
+}

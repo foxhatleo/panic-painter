@@ -75,6 +75,9 @@ public:
 
     /** Get a copy of game state. */
     GameState getState() const;
+    
+    /** Get the shape string for a given color index. For coloblindness mode. */
+    string getShapeForColorIndex(uint i) const;
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

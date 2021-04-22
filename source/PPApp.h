@@ -7,9 +7,11 @@
 #include "scenes/gameplay/PPGameScene.h"
 #include "scenes/pause/PPPauseScene.h"
 #include "scenes/menu/PPMenuScene.h"
+#include "scenes/level/PPWorldSelectScene.h"
 #include "scenes/level/PPLevelSelectScene.h"
 #include "scenes/pause/PPPauseScene.h"
 #include "controllers/PPGlobalConfigController.h"
+#include "controllers/PPSaveController.h"
 #include "controllers/PPInputController.h"
 
 /** An enum for the list of scenes. */
@@ -17,6 +19,7 @@ enum Scene {
     LOADING_SCENE,
     GAME_SCENE,
     MENU_SCENE,
+    WORLD_SCENE,
     LEVEL_SCENE,
     PAUSE_SCENE
 };
@@ -40,6 +43,8 @@ protected:
     GameScene _gameplay;
     /** Menu scene. */
     MenuScene _menu;
+    /** World select scene. */
+    WorldSelectScene _world;
     /** Level select scene. */
     LevelSelectScene _level;
     /** Pause scene. */

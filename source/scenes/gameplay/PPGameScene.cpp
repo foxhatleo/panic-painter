@@ -53,11 +53,11 @@ void GameScene::loadLevel(const char *levelName) {
             bound.size.height *= (1 - TIMER_HEIGHT);
             auto c = Canvas::alloc(
                 _assets,
-                _state.getColors(),
-                _state.getTimer(i, (unsigned)i2),
-                i, j,
+                i,
+                i2,
+                j,
                 bound,
-                _state.getColorsOfCanvas(i, (unsigned)i2).size()
+                _state
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -103,7 +103,7 @@ void GameScene::loadLevel(const char *levelName) {
                 safeArea.size.width * PALETTE_WIDTH,
                 safeArea.size.height * (1 - TIMER_HEIGHT)
             )
-        ), _state.getColors(), _assets);
+        ), _state.getColors(), _assets, _state);
 
     _splash = SplashEffect::alloc(_assets,
                                   Application::get()->getDisplayBounds(),
@@ -173,6 +173,7 @@ void GameScene::update(float timestep) {
     bool pressing = input.isPressing() &&
                     InputController::inScene(input.currentPoint(), canvasArea);
     _splash->update(timestep,
+                    activeCanvases.empty() ? Color4::CLEAR : 
                     _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
@@ -180,6 +181,9 @@ void GameScene::update(float timestep) {
 
     // Check if the level is complete
     if (activeCanvases.empty() && !_congratulations) {
+        //Gradually clear out the splatters
+         _splash->update(timestep,
+                    Color4::CLEAR, Vec2::ZERO);
         _complete = make_shared<Timer>(3);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));

@@ -3,32 +3,37 @@
 ptr<CanvasBlock> CanvasBlock::alloc(
     const asset_t &assets,
     float size,
-    const vec<Color4> &colors, const int numCanvasColors) {
+    const vec<Color4>& colors, const int numCanvasColors,
+    const GameStateController &state) {
     auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
-        result->_setup(assets, colors, numCanvasColors);
+        result->_setup(assets, colors, numCanvasColors, state);
     else
         return nullptr;
     return result;
 }
 
-void CanvasBlock::_setup(const asset_t &assets, const vec<Color4> &colors,
-                         const int numCanvasColors) {
+
+void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state) {
 #ifdef VIEW_DEBUG
     auto n = PolygonNode::to(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
     addChild(n);
 #endif
+    _state = state; 
     _isActive = false;
     _initialColorNumber = numCanvasColors;
-    string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2",
-                           "dog-1", "dog-2", "dog-3", "frog", "octopus"};
-    _texture_array[0] = assets->get<Texture>("husky-blink");
-    _texture_array[1] = assets->get<Texture>("husky-emotion-1");
-    _texture_array[2] = assets->get<Texture>("husky-emotion-2");
-    _texture_array[3] = assets->get<Texture>("husky-emotion-3");
+    /*string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2",
+                           "dog-1", "dog-2", "dog-3", "frog", "octopus"};*/
+    string characters[] = { "husky", "samoyed", "cat1", "cat2"};
+    int p = Random::getInstance()->getInt(4 - 1);
+    _texture_array[0] = assets->get<Texture>(characters[p] + "-blink");
+    _texture_array[1] = assets->get<Texture>(characters[p] + "-emotion-1");
+    _texture_array[2] = assets->get<Texture>(characters[p] + "-emotion-2");
+    _texture_array[3] = assets->get<Texture>(characters[p] + "-emotion-3");
+   // _texture_array[3] = assets->get<Texture>("husky-walk");
 
-    int p = Random::getInstance()->getInt(NUM_CHARACTERS - 1);
+
     _updateFrame = 0;
     _angerLevel = 0;
     float talk_height = p == 3 || p == 4 || p == 9 || p == 2 ? 1.75 : 2.0;
@@ -53,8 +58,8 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4> &colors,
     addChild(_talk_bubble);
 
     // Color strip
-    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets,
-                                    colors);
+
+    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors, state);
     _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
     auto bubbleBox = _talk_bubble->getBoundingBox();
     _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);

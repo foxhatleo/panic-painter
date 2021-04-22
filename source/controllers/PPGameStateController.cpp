@@ -2,8 +2,11 @@
 
 void GameStateController::_jsonv1_loadColors(const json_t &colors) {
     _state.colors.clear();
-    for (const auto &n : colors->asArray()) {
-        const vec<int> c = n->asIntArray();
+    string shapes[] = {"color-circle", "color-heart", "color-square", "color-star", "color-triangle"};
+    auto colorsArray = colors->asArray();
+    for (uint i = 0; i < colorsArray.size(); i++) {
+        const vec<int> c = colorsArray[i]->asIntArray();
+        _state.colorShapeMapping[i] = shapes[i];
         CUAssertLog(c.size() == 3, "A color must have three elements.");
         _state.colors.emplace_back(c[0], c[1], c[2]);
     }
@@ -169,4 +172,11 @@ uint GameStateController::numQueues() const {
 
 GameState GameStateController::getState() const {
     return _state;
+}
+
+string GameStateController::getShapeForColorIndex(uint i) const {
+    CUAssertLog(_state.colorShapeMapping.find(i) != _state.colorShapeMapping.end(),
+                "Could not find the shape for this index.");
+    
+    return _state.colorShapeMapping.find(i)->second;
 }

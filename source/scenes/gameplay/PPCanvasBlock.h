@@ -5,7 +5,9 @@
 #include "utils/PPTimer.h"
 #include "PPColorStrip.h"
 #include "utils/PPAnimation.h"
+#include "controllers/PPGameStateController.h"
 #include "utils/PPRandom.h"
+
 #include <string>
 
 #define NUM_CHARACTERS 10
@@ -42,17 +44,18 @@ private:
     bool _isActive;
     /*How many colors did this canvas start out with? This is needed to know how many animations to loop through*/
     int _initialColorNumber;
-
+    /** Game state. */
+    GameStateController _state;
     /** Set up this block. */
-    void _setup(const asset_t &assets, const vec<Color4> &colors,
-                const int numCanvasColors);
+    void _setup(const asset_t &assets, const vec<Color4> &colors, const int numCanvasColors, const GameStateController &state);
+    
 
 public:
     /** Allocate canvas block with a particular length on the side. */
     static ptr<CanvasBlock> alloc(const asset_t &assets,
                                   float size,
-                                  const vec<Color4> &colors,
-                                  const int numCanvasColors);
+                                  const vec<Color4> &colors, const int numCanvasColors,
+                                  const GameStateController &state);
 
     void setHover(bool in);
 

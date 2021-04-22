@@ -11,6 +11,7 @@
 
 #include "utils/PPHeader.h"
 #include "utils/PPAnimation.h"
+#include "controllers/PPGameStateController.h"
 #include "controllers/PPInputController.h"
 
 class ColorPaletteView : public SceneNode {
@@ -33,33 +34,26 @@ class ColorPaletteView : public SceneNode {
     /** Button hover states. */
     vec<ColorButtonState> _buttonStates;
 
-    /** Color circle texture */
-    ptr<Texture> _colorTexture;
-
-    /** Wooden palette texture */
-    ptr<Texture> _paletteTexture;
-
-    void _setup();
+    void _setup(const GameStateController &state);
 
     void _animateButtonState(uint ind, ColorButtonState s);
 
     float _computeXPositioning(uint ind);
 
     uint _computeColorIndexAfterSwipe(float diff);
-
+    
+    asset_t _assets;
+    
 public:
     /** @deprecated Constructor. */
-    explicit ColorPaletteView(const vec<Color4> &colors,
-                              const ptr<Texture> &colorTexture,
-                              const ptr<Texture> &paletteTexture) :
-        SceneNode(), _colors(colors), _selectedColor(0) {
-        _colorTexture = colorTexture;
-        _paletteTexture = paletteTexture;
-    };
-
+    explicit ColorPaletteView(const vec<Color4> colors,
+                          const asset_t &assets) :
+        SceneNode(), _colors(colors), _selectedColor(0), _assets(assets) {};
+    
     static ptr<ColorPaletteView> alloc(
         const vec<Color4> &colors,
-        const asset_t &assets);
+        const asset_t &assets,
+        const GameStateController &state);
 
     /** Set the currently selected color to the appropriate index. */
     void setColor(uint colorIndex) {

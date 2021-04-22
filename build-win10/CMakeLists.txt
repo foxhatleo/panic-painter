@@ -30,6 +30,8 @@ set(PP_FILES
         ../source/utils/PPHeader.h
         ../source/controllers/PPInputController.h
         ../source/controllers/PPInputController.cpp
+        ../source/controllers/PPSaveController.h
+        ../source/controllers/PPSaveController.cpp
         ../source/models/PPGameState.h
         ../source/utils/PPAnimation.h
         ../source/utils/PPAnimation.cpp
