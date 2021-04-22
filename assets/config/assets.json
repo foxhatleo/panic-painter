@@ -183,9 +183,6 @@
     "city-bg": {
       "file": "textures/level-backgrounds/city.png"
     },
-    "bg-level2": {
-      "file": "textures/level-backgrounds/level2.png"
-    },
     "feedbackno": {
       "file": "textures/feedbackno.png"
     },

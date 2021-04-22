@@ -1,34 +1,37 @@
 #include "PPWorldSelectScene.h"
 
-#define SCENE_SIZE 1024
+#define SCENE_SIZE_W 1024
+#define SCENE_SIZE_H 576
 
 bool WorldSelectScene::init(const asset_t &assets) {
     // Initialize the scene to a locked width
-    Size screenSize = Application::get()->getDisplaySize();
+    Rect safe = Application::get()->getSafeBounds();
+    Size sceneSize = safe.size;
+    Vec2 offsetInSafe = Vec2::ZERO;
 
-    // Lock the scene to a reasonable resolution
-    if (screenSize.width > screenSize.height) {
-        screenSize *= SCENE_SIZE / screenSize.width;
+    if (sceneSize.width / SCENE_SIZE_W > sceneSize.height / SCENE_SIZE_H) {
+        sceneSize *= (SCENE_SIZE_H / sceneSize.height);
     } else {
-        screenSize *= SCENE_SIZE / screenSize.height;
+        sceneSize *= (SCENE_SIZE_W / sceneSize.width);
     }
 
     if (assets == nullptr) {
         return false;
-    } else if (!Scene2::init(screenSize)) {
+    } else if (!Scene2::init(sceneSize)) {
         return false;
     }
 
     _assets = assets;
     _assets->loadDirectory("scenes/worldselect.json");
     _scene = _assets->get<scene2::SceneNode>("worldselectscene");
-    _scene->setContentSize(screenSize);
+    _scene->setContentSize(sceneSize);
+    _scene->setPosition(safe.origin + offsetInSafe);
     _scene->doLayout(); // Repositions the HUD
 
     // Initialize background
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("worldselect-background"));
-    menuBackground->setContentSize(screenSize);
+    menuBackground->setContentSize(sceneSize);
     addChild(menuBackground);
 
     // Initialize buttons

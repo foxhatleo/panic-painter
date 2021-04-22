@@ -23,6 +23,8 @@ void PanicPainterApp::onStartup() {
     // Start loading assets.
     _assets->loadDirectoryAsync("config/assets.json", nullptr);
 
+//    SDL_SetHint(SDL_HINT_ANDROID_TRAP_BACK_BUTTON, "1");
+
     // Call super.
     Application::onStartup();
 }
