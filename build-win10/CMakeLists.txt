@@ -47,6 +47,8 @@ set(PP_FILES
         ../source/scenes/menu/PPMenuScene.cpp
         ../source/scenes/level/PPLevelSelectScene.h
         ../source/scenes/level/PPLevelSelectScene.cpp
+        ../source/scenes/level/PPWorldSelectScene.h
+        ../source/scenes/level/PPWorldSelectScene.cpp
         ../source/utils/PPRandom.h
         ../source/utils/PPRandom.cpp
         ../source/scenes/gameplay/PPFeedback.h
