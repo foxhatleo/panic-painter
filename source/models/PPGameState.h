@@ -30,6 +30,8 @@ struct GameState {
     
     /** A map from the color index to the string that represents the texture that will be loaded in. Should only be used for color-blindness mode. */
     unordered_map<uint, string> colorShapeMapping;
+    
+    unordered_map<string, uint> scoreTracker;
 
     /**
      * The representation of the queue. This is a bit tricky so let me explain.
@@ -50,6 +52,11 @@ struct GameState {
      * This records which canvases are lost due to wrong actions.
      */
     vec<vec<bool>> wrongActions;
+    
+    /**
+     * This records which canvases are lost due to wrong actions, are correctly finished, or are timed out.
+     */
+    vec<vec<bool>> recorded;
 
     /**
      * The canvas timers. The outer vector is the one holding queues. The inner
