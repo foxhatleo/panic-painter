@@ -183,6 +183,15 @@
     "city-bg": {
       "file": "textures/level-backgrounds/city.png"
     },
+    "bg-level2": {
+      "file": "textures/level-backgrounds/level2.png"
+    },
+    "feedbackno": {
+      "file": "textures/feedbackno.png"
+    },
+    "feedbackyes": {
+      "file": "textures/feedbackyes.png"
+    },
     "space-bg": {
       "file": "textures/level-backgrounds/space.png"
     },
@@ -238,7 +247,7 @@
       "file": "textures/levelselect/level-yellow-1.png"
     },
     "level-yellow-2": {
-      "file": "textures/levelselect/level-yellow-1.png"
+      "file": "textures/levelselect/level-yellow-1.png
     }
   },
   "jsons": {

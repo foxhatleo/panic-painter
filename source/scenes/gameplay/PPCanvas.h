@@ -18,6 +18,7 @@ private:
     float _yForStandBy;
     float _yForActive;
     float _yAfterLeaving;
+    float _normalX;
 
     /** Block */
     ptr<CanvasBlock> _block;
@@ -73,6 +74,10 @@ public:
      * this canvas. You should keep using the timer given in _setup().
      */
     void update(CanvasState state, const vec<uint> &canvasColors);
+
+    Vec2 getFeedbackStartPointInGlobalCoordinates();
+
+    CanvasState getPreviousState() { return _previousState; }
 };
 
 #endif //PANICPAINTER_PPCANVAS_H

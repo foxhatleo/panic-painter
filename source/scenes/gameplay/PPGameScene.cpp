@@ -109,9 +109,13 @@ void GameScene::loadLevel(const char *levelName) {
                                   Application::get()->getDisplayBounds(),
                                   1);
 
+    _feedback = Feedback::alloc(Application::get()->getDisplayBounds(),
+                                _assets);
+
     addChild(_splash);
     addChild(_globalTimer);
     addChild(_palette);
+    addChild(_feedback);
 
     _action = make_shared<ActionController>(_state, _canvases);
 
@@ -140,10 +144,22 @@ void GameScene::update(float timestep) {
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
             // Get the derived canvas state and pass it to the canvases.
             auto state = _state.getCanvasState(i, i2);
+            auto ps = _canvases[i][i2]->getPreviousState();
             _canvases[i][i2]->update(state, _state.getColorsOfCanvas(i, i2));
 
             if (state == ACTIVE)
                 activeCanvases.insert(pair<uint, uint>(i, i2));
+
+            if ((state == LOST_DUE_TO_TIME ||
+            state == LOST_DUE_TO_WRONG_ACTION ||
+            state == DONE) && ps == ACTIVE) {
+                Feedback::FeedbackType t = (state == DONE) ?
+                                           Feedback::FeedbackType::SUCCESS :
+                                           Feedback::FeedbackType::FAILURE;
+                _feedback->add(
+                    _canvases[i][i2]->getFeedbackStartPointInGlobalCoordinates(),
+                    t);
+            }
 
             // At the beginning of a frame, set canvas hover to false.
             _canvases[i][i2]->setHover(false);
