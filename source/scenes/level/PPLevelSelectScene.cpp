@@ -1,23 +1,13 @@
 #include "PPLevelSelectScene.h"
 
-#define SCENE_SIZE 1024
+#define SCENE_SIZE_W 1024
+#define SCENE_SIZE_H 576
 
 bool LevelSelectScene::init(const asset_t &assets) {
-    // Initialize the scene to a locked width
-    _screenSize = Application::get()->getDisplaySize();
-
-    // Lock the scene to a reasonable resolution
-    if (_screenSize.width > _screenSize.height) {
-        _screenSize *= SCENE_SIZE / _screenSize.width;
-    }
-    else {
-        _screenSize *= SCENE_SIZE / _screenSize.height;
-    }
 
     if (assets == nullptr) {
         return false;
-    }
-    else if (!Scene2::init(_screenSize)) {
+    }  else if (!Scene2::init(Application::get()->getDisplaySize())) {
         return false;
     }
     _assets = assets;
@@ -39,13 +29,10 @@ void LevelSelectScene::dispose() {
 void LevelSelectScene::activateUI(
     const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(
-        scene);
+        scene);//
     if (button != nullptr) {
-        //        CULog("Activating button %s", button->getName().c_str());
+                CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
-            Rect safeArea = Application::get()->getSafeBounds();
-            button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
-            button->setPosition(0, safeArea.size.height);
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _state = L_BACK;
@@ -55,7 +42,7 @@ void LevelSelectScene::activateUI(
         else {
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
-                    _levelSelected = button->getName();
+                    _levelSelected = name;
                     _state = L_SELECTED;
                 }
                 });
@@ -99,16 +86,33 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     string suffix = ".json";
     _assets->loadDirectory(header + worldName + suffix);
 
+    Rect safe = Application::get()->getSafeBounds();
+    float scale = 1;
+    Vec2 offsetInSafe = Vec2::ZERO;
+
+    if (safe.size.width / SCENE_SIZE_W > safe.size.height / SCENE_SIZE_H) {
+        offsetInSafe.x = (safe.size.width - SCENE_SIZE_W * safe.size.height /
+                                            SCENE_SIZE_H) / 2;
+        scale = (safe.size.height / SCENE_SIZE_H);
+    } else {
+        offsetInSafe.y = (safe.size.height - SCENE_SIZE_H * safe.size.width /
+                                             SCENE_SIZE_W) / 2;
+        scale = (safe.size.width / SCENE_SIZE_W);
+    }
+
     // Get scene
     suffix = "selectscene";
     _scene = _assets->get<scene2::SceneNode>(worldName + suffix);
-    _scene->setContentSize(_screenSize);
+    _scene->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    _scene->setScale(scale);
+    _scene->setContentSize(Size(SCENE_SIZE_W, SCENE_SIZE_H));
     _scene->doLayout(); // Repositions the HUD
+    _scene->setPosition(safe.origin + offsetInSafe);
 
     // Initialize background
     suffix = "-bg";
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>(worldName + suffix));
-    background->setContentSize(_screenSize);
+    background->setContentSize(Application::get()->getDisplaySize());
     addChild(background);
 
     // Initialize buttons

@@ -18,8 +18,6 @@ private:
     /** Asset manager. */
     asset_t _assets;
 
-    Size _screenSize;
-
     ptr<cugl::scene2::SceneNode> _scene;
 
     LevelRequest _state;

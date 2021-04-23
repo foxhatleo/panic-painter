@@ -15,6 +15,8 @@ bool GameScene::init(const asset_t &assets) {
 }
 
 void GameScene::loadLevel(const char *levelName) {
+    CULog("Loading level %s...", levelName);
+
     // Remove all children to reset.
     removeAllChildren();
 
