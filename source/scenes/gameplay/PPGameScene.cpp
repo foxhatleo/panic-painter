@@ -186,7 +186,7 @@ void GameScene::update(float timestep) {
         //Gradually clear out the splatters
          _splash->update(timestep,
                     Color4::CLEAR, Vec2::ZERO);
-        _complete = make_shared<Timer>(3);
+        _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));
         float lc_width = levelcomplete->getContentWidth();
@@ -205,6 +205,18 @@ void GameScene::update(float timestep) {
         }, STRONG_OUT);
         addChild(levelcomplete);
         _congratulations = levelcomplete;
+        auto gameStats = Label::alloc(Size(0.7 * ds.width, 0.3 * ds.height), _assets->get<Font>("roboto"));
+        string winString = ("Correct: " + to_string(_state.getScoreMetric("correct")) +
+                            ", timed out: " + to_string(_state.getScoreMetric("timedOut")) +
+                           ", wrong action: " + to_string(_state.getScoreMetric("wrongAction"))).c_str();
+        gameStats->setText(winString);
+        gameStats->setColor(Color4::WHITE);
+        gameStats->setAnchor(Vec2::ANCHOR_TOP_CENTER);
+        gameStats->setPosition(ds.width / 2, levelcomplete->getBoundingBox().getMinY() - 10);
+        addChild(gameStats);
+        CULog("timed out: %d", _state.getScoreMetric("timedOut"));
+        CULog("correct: %d", _state.getScoreMetric("correct"));
+        CULog("wrong color: %d", _state.getScoreMetric("wrongAction"));
     }
 
     Scene2::update(timestep);
