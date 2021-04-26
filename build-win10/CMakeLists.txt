@@ -47,8 +47,12 @@ set(PP_FILES
         ../source/scenes/menu/PPMenuScene.cpp
         ../source/scenes/level/PPLevelSelectScene.h
         ../source/scenes/level/PPLevelSelectScene.cpp
+        ../source/scenes/level/PPWorldSelectScene.h
+        ../source/scenes/level/PPWorldSelectScene.cpp
         ../source/utils/PPRandom.h
-        ../source/utils/PPRandom.cpp)
+        ../source/utils/PPRandom.cpp
+        ../source/scenes/gameplay/PPFeedback.h
+        ../source/scenes/gameplay/PPFeedback.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 

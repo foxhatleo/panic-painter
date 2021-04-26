@@ -205,11 +205,13 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp" />
     <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp" />
+    <ClCompile Include="..\..\source\scenes\level\PPWorldSelectScene.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPSplashEffect.cpp" />
     <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp" />
     <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp" />
@@ -240,11 +242,13 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPalette.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPGameScene.h" />
     <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h" />
+    <ClInclude Include="..\..\source\scenes\level\PPWorldSelectScene.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPSplashEffect.h" />
     <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h" />
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h" />

@@ -15,6 +15,8 @@ bool GameScene::init(const asset_t &assets) {
 }
 
 void GameScene::loadLevel(const char *levelName) {
+    CULog("Loading level %s...", levelName);
+
     // Remove all children to reset.
     removeAllChildren();
 
@@ -109,9 +111,13 @@ void GameScene::loadLevel(const char *levelName) {
                                   Application::get()->getDisplayBounds(),
                                   1);
 
+    _feedback = Feedback::alloc(Application::get()->getDisplayBounds(),
+                                _assets);
+
     addChild(_splash);
     addChild(_globalTimer);
     addChild(_palette);
+    addChild(_feedback);
 
     _action = make_shared<ActionController>(_state, _canvases);
 
@@ -140,10 +146,22 @@ void GameScene::update(float timestep) {
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
             // Get the derived canvas state and pass it to the canvases.
             auto state = _state.getCanvasState(i, i2);
+            auto ps = _canvases[i][i2]->getPreviousState();
             _canvases[i][i2]->update(state, _state.getColorsOfCanvas(i, i2));
 
             if (state == ACTIVE)
                 activeCanvases.insert(pair<uint, uint>(i, i2));
+
+            if ((state == LOST_DUE_TO_TIME ||
+            state == LOST_DUE_TO_WRONG_ACTION ||
+            state == DONE) && ps == ACTIVE) {
+                Feedback::FeedbackType t = (state == DONE) ?
+                                           Feedback::FeedbackType::SUCCESS :
+                                           Feedback::FeedbackType::FAILURE;
+                _feedback->add(
+                    _canvases[i][i2]->getFeedbackStartPointInGlobalCoordinates(),
+                    t);
+            }
 
             // At the beginning of a frame, set canvas hover to false.
             _canvases[i][i2]->setHover(false);
@@ -168,7 +186,7 @@ void GameScene::update(float timestep) {
         //Gradually clear out the splatters
          _splash->update(timestep,
                     Color4::CLEAR, Vec2::ZERO);
-        _complete = make_shared<Timer>(3);
+        _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));
         float lc_width = levelcomplete->getContentWidth();
@@ -187,6 +205,18 @@ void GameScene::update(float timestep) {
         }, STRONG_OUT);
         addChild(levelcomplete);
         _congratulations = levelcomplete;
+        auto gameStats = Label::alloc(Size(0.7 * ds.width, 0.3 * ds.height), _assets->get<Font>("roboto"));
+        string winString = ("Correct: " + to_string(_state.getScoreMetric("correct")) +
+                            ", timed out: " + to_string(_state.getScoreMetric("timedOut")) +
+                           ", wrong action: " + to_string(_state.getScoreMetric("wrongAction"))).c_str();
+        gameStats->setText(winString);
+        gameStats->setColor(Color4::WHITE);
+        gameStats->setAnchor(Vec2::ANCHOR_TOP_CENTER);
+        gameStats->setPosition(ds.width / 2, levelcomplete->getBoundingBox().getMinY() - 10);
+        addChild(gameStats);
+        CULog("timed out: %d", _state.getScoreMetric("timedOut"));
+        CULog("correct: %d", _state.getScoreMetric("correct"));
+        CULog("wrong color: %d", _state.getScoreMetric("wrongAction"));
     }
 
     Scene2::update(timestep);

@@ -10,17 +10,21 @@ void GameStateController::_jsonv1_loadColors(const json_t &colors) {
         CUAssertLog(c.size() == 3, "A color must have three elements.");
         _state.colors.emplace_back(c[0], c[1], c[2]);
     }
+    
+    _state.scoreTracker["wrongAction"] = 0;
+    _state.scoreTracker["timedOut"] = 0;
+    _state.scoreTracker["correct"] = 0;
 }
 
 void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.queues.clear();
     _state.wrongActions.clear();
-
+    _state.recorded.clear();
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
         vec<vec<uint>> queue_s;
         vec<bool> wa_queue_s;
-
+        vec<bool> r_queue_s;
         // Build canvas of each queue.
         for (const auto &canvas : queue->asArray()) {
             const auto r = canvas->asIntArray();
@@ -28,8 +32,10 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
             vec<uint> colors(r.begin(), r.end());
             queue_s.push_back(colors);
             wa_queue_s.push_back(false);
+            r_queue_s.push_back(false);
         }
         _state.wrongActions.push_back(wa_queue_s);
+        _state.recorded.push_back(r_queue_s);
         _state.queues.push_back(queue_s);
     }
 }
@@ -92,6 +98,21 @@ void GameStateController::update(float timestep) {
         // This means The queue is empty.
         if (ind < 0) continue;
         _state.canvasTimers[i][ind]->update(timestep);
+        
+        if (ind > 0) {
+            CanvasState cs = this->getCanvasState(i, ind - 1);
+            if (!_state.recorded[i][ind - 1] &&
+                (cs == LOST_DUE_TO_TIME || cs == LOST_DUE_TO_WRONG_ACTION || cs == DONE)) {
+                _state.recorded[i][ind - 1] = true;
+                if (cs == LOST_DUE_TO_TIME) {
+                    _state.scoreTracker["timedOut"]++;
+                } else if (cs == LOST_DUE_TO_WRONG_ACTION) {
+                    _state.scoreTracker["wrongAction"]++;
+                } else {
+                    _state.scoreTracker["correct"]++;
+                }
+            }
+        }
     }
 }
 
@@ -179,4 +200,10 @@ string GameStateController::getShapeForColorIndex(uint i) const {
                 "Could not find the shape for this index.");
     
     return _state.colorShapeMapping.find(i)->second;
+}
+
+uint GameStateController::getScoreMetric(string type) const {
+    CUAssertLog(type == "timedOut" || type == "wrongAction" || type == "correct",
+                "Incorrect type provided.");
+    return _state.scoreTracker.find(type)->second;
 }
