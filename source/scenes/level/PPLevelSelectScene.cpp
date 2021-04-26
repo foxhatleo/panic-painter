@@ -120,8 +120,9 @@ void LevelSelectScene::loadWorld(const char* worldName) {
 
     // Add scene as child
     addChild(_scene);
+
+    SoundController::getInstance()->useBgm("music1");
 }
 
 void LevelSelectScene::update(float timestep) {
-    SoundController::getInstance()->useBgm("music1");
 }

@@ -3,7 +3,6 @@
 #define FADE 0.5f
 
 void SoundController::init(const asset_t &assets) {
-    AudioEngine::start();
     _assets = assets;
     _bgm = AudioEngine::get()->getMusicQueue();
     // TODO: Save controller incorporate bgm and sfx here.
@@ -35,10 +34,10 @@ void SoundController::clearBgm() {
 
 void SoundController::useBgm(const string &name) {
     if (_currentBgm == name) return;
-    _bgm->clear(FADE);
+//    _bgm->clear(FADE);
     _currentBgm = name;
     if (name == "") return;
-    ptr<Sound> s = _assets->get<Sound>(name);
+    ptr<Sound> s = AudioSample::alloc("music/music1.mp3", false);
     _bgm->play(s, true);
 }
 

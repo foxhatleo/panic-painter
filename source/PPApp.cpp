@@ -5,7 +5,6 @@ void PanicPainterApp::onStartup() {
     _batch = SpriteBatch::alloc();
 
     InputController::getInstance().init();
-    SoundController::getInstance()->init(_assets);
 
     // Initialize asset loaders.
     _assets->attach<Font>(FontLoader::alloc()->getHook());
@@ -20,6 +19,7 @@ void PanicPainterApp::onStartup() {
 
     // Start audio engine.
     AudioEngine::start();
+    SoundController::getInstance()->init(_assets);
 
     // Start loading assets.
     _assets->loadDirectoryAsync("config/assets.json", nullptr);

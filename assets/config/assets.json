@@ -284,12 +284,7 @@
     }
   },
   "sounds": {
-    "music1": {
-      "file": "music/music1.wav",
-      "stream": true,
-      "type": "sample"
-    }
-  }.
+  },
   "widgets": {
     "textbutton" : "widgets/textbutton.json"
   }
