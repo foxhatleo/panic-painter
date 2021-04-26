@@ -16,7 +16,7 @@ bool LevelSelectScene::init(const asset_t &assets) {
 }
 
 void LevelSelectScene::dispose() {
-    deactivateUI(_scene);
+    if (_scene != nullptr) deactivateUI(_scene);
     Scene2::dispose();
 }
 
