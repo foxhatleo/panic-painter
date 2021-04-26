@@ -1,7 +1,19 @@
 {
   "textures": {
     "color-circle": {
-      "file": "textures/color_circle.png"
+      "file": "textures/shapes/color_circle.png"
+    },
+    "color-heart": {
+      "file": "textures/shapes/heart.png"
+    },
+    "color-square": {
+      "file": "textures/shapes/square.png"
+    },
+    "color-star": {
+      "file": "textures/shapes/star.png"
+    },
+    "color-triangle": {
+      "file": "textures/shapes/triangle.png"
     },
     "palette": {
       "file": "textures/palette.png"
@@ -49,13 +61,52 @@
       "file": "textures/characters/husky_blink.png"
     },
     "husky-emotion-1": {
-      "file": "textures/characters/husky_emotion_stage1.png"
+      "file": "textures/characters/husky_no_tears.png"
     },
     "husky-emotion-2": {
       "file": "textures/characters/husky_emotion_stage2.png"
     },
     "husky-emotion-3": {
       "file": "textures/characters/husky_emotion_stage3.png"
+    },
+    "husky-walk": {
+      "file": "textures/characters/husky_walk.png"
+    },
+    "samoyed-blink": {
+      "file": "textures/characters/samoyed_blink.png"
+    },
+    "samoyed-emotion-1": {
+      "file": "textures/characters/samoyed_emotion_stage1.png"
+    },
+    "samoyed-emotion-2": {
+      "file": "textures/characters/samoyed_emotion_stage2.png"
+    },
+    "samoyed-emotion-3": {
+      "file": "textures/characters/samoyed_emotion_stage3.png"
+    },
+    "cat1-blink": {
+      "file": "textures/characters/cat1_blink.png"
+    },
+    "cat1-emotion-1": {
+      "file": "textures/characters/cat1_frown.png"
+    },
+    "cat1-emotion-2": {
+      "file": "textures/characters/cat1_angry.png"
+    },
+    "cat1-emotion-3": {
+      "file": "textures/characters/cat1_very_angry.png"
+    },
+    "cat2-blink": {
+      "file": "textures/characters/cat2_blink.png"
+    },
+    "cat2-emotion-1": {
+      "file": "textures/characters/cat2_frown.png"
+    },
+    "cat2-emotion-2": {
+      "file": "textures/characters/cat2_angry.png"
+    },
+    "cat2-emotion-3": {
+      "file": "textures/characters/cat2_very_angry.png"
     },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
@@ -64,7 +115,7 @@
       "file": "textures/level-progress/level-timer-background.png"
     },
     "levelsbutton": {
-      "file":   "textures/menu/levelsbutton.png"
+      "file": "textures/menu/levelsbutton.png"
     },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
@@ -83,9 +134,6 @@
     },
     "levelcomplete": {
       "file": "textures/levelcomplete.png"
-    },
-    "levelsbackground": {
-      "file": "textures/levelselect/levelsbackground.png"
     },
     "levelbutton": {
       "file": "textures/levelselect/levelbutton.png"
@@ -129,22 +177,101 @@
     "pauseresume": {
       "file": "textures/pause/pauseresume.png"
     },
-    "bg-level1": {
-      "file": "textures/level-backgrounds/level1.png"
+    "museum-bg": {
+      "file": "textures/level-backgrounds/museum.png"
     },
-    "bg-level2": {
-      "file": "textures/level-backgrounds/level2.png"
+    "city-bg": {
+      "file": "textures/level-backgrounds/city.png"
+    },
+    "feedbackno": {
+      "file": "textures/feedbackno.png"
+    },
+    "feedbackyes": {
+      "file": "textures/feedbackyes.png"
+    },
+    "space-bg": {
+      "file": "textures/level-backgrounds/space.png"
+    },
+    "worldselect-city":{
+      "file": "textures/levelselect/worldselect-city.png"
+    },
+    "worldselect-eiffel":{
+      "file": "textures/levelselect/worldselect-eiffeltower.png"
+    },
+    "worldselect-house":{
+      "file": "textures/levelselect/worldselect-house.png"
+    },
+    "worldselect-island":{
+      "file": "textures/levelselect/worldselect-island.png"
+    },
+    "worldselect-paint":{
+      "file": "textures/levelselect/worldselect-paint.png"
+    },
+    "worldselect-museum":{
+      "file": "textures/levelselect/worldselect-museum.png"
+    },
+    "worldselect-space":{
+      "file": "textures/levelselect/worldselect-space.png"
+    },
+    "worldselect-background": {
+      "file": "textures/levelselect/worldselect-background.png"
+    },
+    "level-blue-1": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "level-blue-2": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "level-red-1": {
+      "file": "textures/levelselect/level-red-1.png"
+    },
+    "level-red-2": {
+      "file": "textures/levelselect/level-red-1.png"
+    },
+    "level-brown-1": {
+      "file": "textures/levelselect/level-brown-1.png"
+    },
+    "level-brown-2": {
+      "file": "textures/levelselect/level-brown-1.png"
+    },
+    "level-purple-1": {
+      "file": "textures/levelselect/level-purple-1.png"
+    },
+    "level-purple-2": {
+      "file": "textures/levelselect/level-purple-1.png"
+    },
+    "level-yellow-1": {
+      "file": "textures/levelselect/level-yellow-1.png"
+    },
+    "level-yellow-2": {
+      "file": "textures/levelselect/level-yellow-1.png"
     }
   },
   "jsons": {
     "global": "config/global.json",
     "load": "scenes/loading.json",
     "menu": "scenes/menu.json",
+    "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
     "gameplay": "levels/gameplay.json",
     "level1": "levels/level1.json",
     "level2": "levels/level2.json",
-    "level3": "levels/level3.json"
+    "level3": "levels/level3.json",
+    "e1" : "levels/e1.json",
+    "e2" : "levels/e2.json",
+    "e3" : "levels/e3.json",
+    "e4" : "levels/e4.json",
+    "e5" : "levels/e5.json",
+    "m1" : "levels/m1.json",
+    "m2" : "levels/m2.json",
+    "m3" : "levels/m3.json",
+    "m4" : "levels/m4.json",
+    "m5" : "levels/m5.json",
+    "h1" : "levels/h1.json",
+    "h2" : "levels/h2.json",
+    "h3" : "levels/h3.json",
+    "h4" : "levels/h4.json",
+    "h5" : "levels/h5.json"
   },
   "fonts": {
     "roboto": {
@@ -157,6 +284,13 @@
     }
   },
   "sounds": {
-    "music1": { "file": "music/music1.wav", "stream": true, "type": "sample" }
+    "music1": {
+      "file": "music/music1.wav",
+      "stream": true,
+      "type": "sample"
+    }
+  }.
+  "widgets": {
+    "textbutton" : "widgets/textbutton.json"
   }
 }

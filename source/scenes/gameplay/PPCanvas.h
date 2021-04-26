@@ -18,6 +18,7 @@ private:
     float _yForStandBy;
     float _yForActive;
     float _yAfterLeaving;
+    float _normalX;
 
     /** Block */
     ptr<CanvasBlock> _block;
@@ -44,18 +45,20 @@ private:
                 const vec<Color4> &colors,
                 const ptr<Timer> &timer,
                 uint queueInd,
-                uint numOfQueues,
-                const int numCanvasColors);
+                uint numOfQueues, 
+                const int numCanvasColors,
+                const GameStateController &state);
 
 public:
     /** Allocate canvas with a particular bound. See _setup() for arguments. */
+    
     static ptr<Canvas> alloc(const asset_t &assets,
-                             const vec<Color4> &colors,
-                             const ptr<Timer> &timer,
                              uint queueInd,
+                             uint canvasInd,
                              uint numOfQueues,
                              const Rect &bound,
-                             const int numCanvasColors);
+                             const GameStateController &state);
+
 
     ptr<SceneNode> getInteractionNode() const;
 
@@ -71,6 +74,10 @@ public:
      * this canvas. You should keep using the timer given in _setup().
      */
     void update(CanvasState state, const vec<uint> &canvasColors);
+
+    Vec2 getFeedbackStartPointInGlobalCoordinates();
+
+    CanvasState getPreviousState() { return _previousState; }
 };
 
 #endif //PANICPAINTER_PPCANVAS_H

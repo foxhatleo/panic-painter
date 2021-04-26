@@ -226,7 +226,7 @@ vec4 overlayColors(vec4 first, vec4 second){
 }
 
 
-vec4 splatColor(vec2 splatCenter, vec4 paintColor, vec2 fragCoord, vec2 uv)
+vec4 splatColor(vec2 splatCenter, vec4 paintColor, vec2 fragCoord, vec2 uv, float falloffMod)
 {
 
     //FRACTAL FUN:
@@ -257,7 +257,7 @@ vec4 splatColor(vec2 splatCenter, vec4 paintColor, vec2 fragCoord, vec2 uv)
     float screenDist = dist/iResolution.y; //0 to 1 scale, percent of screen
 
     //float threshold = centerThreshold + slope * adjDist; //.25
-    float threshold = lerp(centerThreshold, edgeThreshold, screenDist/splatFalloffSize);
+    float threshold = lerp(centerThreshold, edgeThreshold, screenDist/(splatFalloffSize * falloffMod + .1));
     
     //circle
     //if(screenDist/splatCutoffSize > splatCutoffSize){retColor = black;}
@@ -273,24 +273,105 @@ vec4 splatColor(vec2 splatCenter, vec4 paintColor, vec2 fragCoord, vec2 uv)
 }
 
 
+float closestTOnLine(vec2 p, vec2 a, vec2 b){
+    vec2 ap = p - a;
+    vec2 ab = b - a;
+    //Squared magnitude of ab
+    float atb2 = ab.x*ab.x + ab.y*ab.y;
+    
+    float ap_dot_ab = ap.x*ab.x + ap.y*ab.y;
+    
+    //Normalized distance from a to closest point
+    float t = ap_dot_ab / atb2;
+
+    t = min(max(t,0.0), 1.0);
+    
+    return t;
+}
+
+
+vec2 closestPointToLine(vec2 p, vec2 a, vec2 b){
+    vec2 ap = p - a;
+    vec2 ab = b - a;
+    float t = closestTOnLine(p, a, b);
+
+    return a + ab * t;
+}
+
 
 vec4 getOneSplat(vec2 splatCenter, vec4 paintColor, vec2 fragCoord, vec2 uv){
     if(inRange(splatCenter, fragCoord, splatCutoffSize)){
-        return splatColor(splatCenter, paintColor, fragCoord, uv);
+        return splatColor(splatCenter, paintColor, fragCoord, uv, 1.0);
     }
     return defaultColor;
 }
 
+
 //Return the color at a point, (0,0,0) alpha 0 by default
+
+
+//Get color based on distance from two splat centers
+//1 - get distance to the line
+vec4 getOneStreak(vec2 center1, vec2 center2, vec4 paintColor1, vec4 paintColor2, vec2 fragCoord, vec2 uv){
+
+    //T is distance from A to B  (1 to 2) from 0 to 1
+    float t = closestTOnLine(fragCoord, center1, center2);
+
+    vec2 closestPoint = closestPointToLine(fragCoord, center1, center2);
+
+    float alphaLerp = mix(paintColor1.w, paintColor2.w, t);
+    float rLerp = mix(paintColor1.x, paintColor2.x, t);
+    float gLerp = mix(paintColor1.y, paintColor2.y, t);
+    float bLerp = mix(paintColor1.z, paintColor2.z, t);
+    
+    vec4 mixColor = vec4(rLerp, gLerp, bLerp, alphaLerp);
+    
+    //Change to 1-t to reverse trail
+    float adjFalloff = (t) * alphaLerp;
+
+    if(inRange(closestPoint,fragCoord, splatCutoffSize)){
+        //return vec4(255.0, 0.0, 255.0, 1.0);
+        return splatColor(closestPoint, mixColor, fragCoord, uv, adjFalloff);
+    }
+
+    return defaultColor;
+}
+
+
 
 vec4 getSplatColorAtPixel(vec2 fragCoord, vec2 uv){
     vec4 retColor = defaultColor;
-    retColor = overlayColors(retColor, getOneSplat(uS1, uC1, fragCoord, uv));
-    retColor = overlayColors(retColor, getOneSplat(uS2, uC2, fragCoord, uv));
-    retColor = overlayColors(retColor, getOneSplat(uS3, uC3, fragCoord, uv));
-    retColor = overlayColors(retColor, getOneSplat(uS4, uC4, fragCoord, uv));
+//    retColor = overlayColors(retColor, getOneSplat(uS1, uC1, fragCoord, uv));
+//    retColor = overlayColors(retColor, getOneSplat(uS2, uC2, fragCoord, uv));
+//    retColor = overlayColors(retColor, getOneSplat(uS3, uC3, fragCoord, uv));
+//    retColor = overlayColors(retColor, getOneSplat(uS4, uC4, fragCoord, uv));
+    //retColor = overlayColors(retColor, getOneStreak(uS1, uS2, uC1, uC2, fragCoord, uv));
+    
+    float lowMargin = 20.0;
+    float highMargin = 200.0;
+    //Check distance between first two, if very close, do a tap splat just once
+    if(euclideanDistance(uS1, uS2) < lowMargin){
+        //Call a splat on the first point
+//        vec4 solidColor = vec4(uC1.x, uC1.y, uC1.z, 1.0);
+        retColor = overlayColors(retColor, getOneSplat(uS1, uC1, fragCoord, uv));
+    }
+//    else if (euclideanDistance(uS1, uS2) > highMargin){
+//            //There is a remainign point far behind
+//            retColor = overlayColors(retColor, getOneStreak(uS1, uS2, uC1, uC2, fragCoord, uv));
+//    }
+    else{
+        retColor = overlayColors(retColor, getOneStreak(uS1, uS2, uC1, uC2, fragCoord, uv));
+        retColor = overlayColors(retColor, getOneStreak(uS2, uS3, uC2, uC3, fragCoord, uv));
+        retColor = overlayColors(retColor, getOneStreak(uS3, uS4, uC3, uC4, fragCoord, uv));
+    }
+
+    
+    //if dist very large, then set c2,3,4 alpha to 0 on the
+ 
+    
     return retColor;
 }
+
 
 
 

@@ -30,6 +30,8 @@ set(PP_FILES
         ../source/utils/PPHeader.h
         ../source/controllers/PPInputController.h
         ../source/controllers/PPInputController.cpp
+        ../source/controllers/PPSaveController.h
+        ../source/controllers/PPSaveController.cpp
         ../source/models/PPGameState.h
         ../source/utils/PPAnimation.h
         ../source/utils/PPAnimation.cpp
@@ -45,10 +47,14 @@ set(PP_FILES
         ../source/scenes/menu/PPMenuScene.cpp
         ../source/scenes/level/PPLevelSelectScene.h
         ../source/scenes/level/PPLevelSelectScene.cpp
+        ../source/scenes/level/PPWorldSelectScene.h
+        ../source/scenes/level/PPWorldSelectScene.cpp
         ../source/utils/PPRandom.h
         ../source/utils/PPRandom.cpp
         ../source/controllers/PPSoundController.h
-        ../source/controllers/PPSoundController.cpp)
+        ../source/controllers/PPSoundController.cpp
+        ../source/scenes/gameplay/PPFeedback.h
+        ../source/scenes/gameplay/PPFeedback.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 

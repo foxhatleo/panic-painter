@@ -115,13 +115,16 @@ namespace utils {
         /** Implementation of all easing functions. */
         static float ease(Easing e, float p);
 
+        function<void()> _onComplete;
+
     public:
         /** @deprecated Constructor. Use to() instead. */
         Animation(
             const ptr<SceneNode> &target,
             float duration,
             const unordered_map<string, float> &vars,
-            Easing ease);
+            Easing ease,
+            function<void()> onComplete);
 
         /** Kill this animation and flag it for garbage collection. */
         void kill();
@@ -151,7 +154,8 @@ namespace utils {
             const ptr<SceneNode> &target,
             float duration,
             const unordered_map<string, float> &vars,
-            Easing ease = POWER1_OUT);
+            Easing ease = POWER1_OUT,
+            const function<void()>& onComplete = nullptr);
 
         /**
          * Similar to "to", but instead of creating an animation, simply render

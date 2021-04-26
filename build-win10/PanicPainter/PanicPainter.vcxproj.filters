@@ -73,6 +73,9 @@
     <ClCompile Include="..\..\source\controllers\PPGlobalConfigController.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\controllers\PPSaveController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\controllers\PPInputController.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
@@ -97,11 +100,17 @@
     <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp">
       <Filter>Scenes\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scenes\level\PPWorldSelectScene.cpp">
+      <Filter>Scenes\Level</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp">
       <Filter>Scenes\Level</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\controllers\PPSoundController.cpp">
       <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp">
+      <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +169,9 @@
     <ClInclude Include="..\..\source\controllers\PPInputController.h">
       <Filter>Controllers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\controllers\PPSaveController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
@@ -181,11 +193,17 @@
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h">
       <Filter>Scenes\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\scenes\level\PPWorldSelectScene.h">
+      <Filter>Scenes\Level</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h">
       <Filter>Scenes\Level</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\controllers\PPSoundController.h">
       <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h">
+      <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

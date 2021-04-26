@@ -1,0 +1,104 @@
+{
+    "scene2s": {
+      "spaceselectscene": {
+        "type": "Node",
+        "comment"   : "This is the root node of the scene for level select",
+        "format": {
+          "type": "Anchored"
+        },
+        "children": {
+          "h1": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "1",
+                    "texture": "level-blue-1"
+                }
+            },
+            "layout": {
+              "x_offset": -0.3,
+              "y_offset": -0.02
+            }
+          },
+          "h2": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "2",
+                    "texture": "level-blue-2"
+                }
+            },
+            "layout": {
+              "x_offset": -0.15,
+              "y_offset": -0.02
+            }
+          },
+          "h3": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "3",
+                    "texture": "level-blue-1"
+                }
+            },
+            "layout": {
+              "x_offset": 0.0,
+              "y_offset": -0.02
+            }
+          },
+          "h4": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "4",
+                    "texture": "level-blue-1"
+                }
+            },
+            "layout": {
+              "x_offset": 0.15,
+              "y_offset": -0.02
+            }
+          },
+          "h5": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "5",
+                    "texture": "level-blue-1"
+                }
+            },
+            "layout": {
+              "x_offset": 0.3,
+              "y_offset": -0.02
+            }
+          },
+          "menubutton": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [2.4, -1.0],
+                "scale"    : 0.5
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "backbutton"
+                  }
+                }
+              },
+              "layout": {
+                  "padding" : [0,0,0,50]
+              }
+          }
+        }
+    }
+  }
+}

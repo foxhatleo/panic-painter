@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PANICPAINTER_PPLEVELSELECTSCENE_H
 #define PANICPAINTER_PPLEVELSELECTSCENE_H
 
@@ -7,8 +8,8 @@
 
 enum LevelRequest {
     LEVEL,    // standard case, stay on level select
-    BACK,     // go back to home screen
-    SELECTED, // level selected
+    L_BACK,     // go back to world select screen
+    L_SELECTED, // level selected
 };
 
 /**
@@ -23,11 +24,15 @@ private:
 
     LevelRequest _state;
 
+    string _worldName;
+
     string _levelSelected;
 
-    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
+    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 
-    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
+    void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+
+    ptr<PolygonNode> _backBtn;
 
 public:
     LevelSelectScene() : Scene2() {
@@ -38,15 +43,23 @@ public:
 
     void dispose() override;
 
-    bool init(const asset_t &assets);
+    bool init(const asset_t& assets);
 
     void update(float timestep) override;
 
-    LevelRequest getState() const;
+    LevelRequest getState() const {
+        return _state;
+    }
 
-    string getLevel();
+    string getLevel() {
+        return _levelSelected;
+    }
 
-    void resetState();
+    void loadWorld(const char* levelName);
+
+    void resetState() {
+        _state = LEVEL;
+    }
 
 };
 

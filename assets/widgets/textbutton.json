@@ -2,7 +2,8 @@
     "variables" : {
         "text"   : ["children","patchtext","children","label","data","text"],
         "size"   : ["children","patchtext","children","label","data","size"],
-        "font"   : ["children","patchtext","children","label","data","font"]
+        "font"   : ["children","patchtext","children","label","data","font"],
+        "texture"   : ["children","patchtext","children","menubutton","data","texture"]
 
     },
     "contents": {
@@ -27,7 +28,7 @@
                         "data" : {
                             "texture" : "levelbutton",
                             "anchor" : [0.5, 0.5],
-                            "size" : [300, 75]
+                            "size" : [100, 175]
                         }
                     },
                     "label" : {
@@ -37,8 +38,9 @@
                             "text" : "Click Me",
                             "foreground" : [255, 255, 255, 255],
                             "anchor" : [0.5, 0.5],
-                            "halign" : "center",
-                            "valign" : "center"
+                            "halign" : "left",
+                            "valign" : "top",
+                            "padding": [0, -40]
                         }
                     }
                 }
