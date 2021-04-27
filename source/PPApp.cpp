@@ -35,6 +35,7 @@ void PanicPainterApp::onShutdown() {
     _menu.dispose();
     _world.dispose();
     _level.dispose();
+    _settings.dispose();
     _assets = nullptr;
     _batch = nullptr;
 
@@ -86,6 +87,9 @@ void PanicPainterApp::update(float timestep) {
                 // Initialize pause screen
                 _pause.init(_assets);
 
+                // Initialize settings screen
+                _settings.init(_assets);
+
                 // Initialize Menu_Scene and set scene to menu
                 _menu.init(_assets);
                 _currentScene = MENU_SCENE;
@@ -116,6 +120,11 @@ void PanicPainterApp::update(float timestep) {
                 _currentScene = WORLD_SCENE;
                 _menu.resetState();
                 _world.resetState();
+            }
+            else if (_menu.getState() == SETTINGS) {
+                _currentScene = SETTINGS_SCENE;
+                _menu.resetState();
+                _settings.resetState();
             }
             break;
         }
@@ -169,6 +178,14 @@ void PanicPainterApp::update(float timestep) {
             break;
         }
 
+        case SETTINGS_SCENE: {
+            if (_settings.isFinished()) {
+                _currentScene = MENU_SCENE;
+                _settings.resetState();
+            }
+            break;
+        }
+
 
         default: {
             CUAssertLog(false,
@@ -209,6 +226,12 @@ void PanicPainterApp::draw() {
         case PAUSE_SCENE: {
             _gameplay.render(_batch);
             _pause.render(_batch);
+            break;
+        }
+
+        case SETTINGS_SCENE: {
+            _settings.render(_batch);
+            _settings.render(_batch);
             break;
         }
 

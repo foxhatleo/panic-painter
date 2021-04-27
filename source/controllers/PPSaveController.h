@@ -23,6 +23,9 @@ private:
 
     bool _colorblind;
 
+    // Palette position. True means left side, false means right side
+    bool _paletteLeft;
+
     float _sfxVolume;
 
     float _bgmVolume;
@@ -54,6 +57,8 @@ public:
 
     bool getColorblind() const;
 
+    bool getPaletteLeft() const;
+
     void unlock(const string &level);
 
     void lock(const string &level);
@@ -65,6 +70,8 @@ public:
     void setBgmVolume(float value);
 
     void setColorblind(bool value);
+
+    void setPaletteLeft(bool value);
 
     void resetAll();
 
