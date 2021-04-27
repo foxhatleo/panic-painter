@@ -31,13 +31,14 @@ void LevelSelectScene::activateUI(
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(
         scene);//
     if (button != nullptr) {
-                CULog("Activating button %s", button->getName().c_str());
+        //CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _state = L_BACK;
                 }
                 });
+            button->activate();
         }
         else {
             button->addListener([=](const string& name, bool down) {
@@ -46,8 +47,14 @@ void LevelSelectScene::activateUI(
                     _state = L_SELECTED;
                 }
                 });
+            button->activate();
+            if (_assets->get<JsonValue>(button->getName().c_str()) == NULL) {
+                // Hides & deactivates buttons that don't have levels associated
+                button->setColor(Color4f(1, 1, 1, .5));
+                button->deactivate();
+                //CULog("%s button deactivated", button->getName().c_str());
+            }
         }
-        button->activate();
     }
     else {
         // Go deeper
