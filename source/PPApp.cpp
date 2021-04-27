@@ -231,7 +231,6 @@ void PanicPainterApp::draw() {
 
         case SETTINGS_SCENE: {
             _settings.render(_batch);
-            _settings.render(_batch);
             break;
         }
 

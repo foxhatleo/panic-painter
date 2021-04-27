@@ -32,7 +32,7 @@ private:
 
     static inline SaveController *_instance;
 
-    SaveController() : _colorblind(false), _sfxVolume(1), _bgmVolume(1) {
+    SaveController() : _colorblind(false), _paletteLeft(true), _sfxVolume(1), _bgmVolume(1) {
         _load();
     }
 
