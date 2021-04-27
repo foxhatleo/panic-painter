@@ -24,9 +24,9 @@ private:
 
     string _worldName;
 
-    string _levelSelected;
+    string _levelNum;
 
-    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene, const char* worldName);
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 
@@ -50,7 +50,9 @@ public:
     }
 
     string getLevel() {
-        return _levelSelected;
+        string spacer = "-";
+        CULog("world: %s, spacer: %s, num: %s, all: %s", _worldName, spacer, _levelNum, _worldName + spacer + _levelNum);
+        return _worldName + spacer + _levelNum;
     }
 
     void loadWorld(const char* levelName);

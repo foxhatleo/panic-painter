@@ -7,13 +7,13 @@
           "type": "Anchored"
         },
         "children": {
-          "button1": {
+          "1": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
                 "variables" : {
                     "text": "1",
-                    "texture": "level-blue-1"
+                    "texture": "museum-button-1"
                 }
             },
             "layout": {
@@ -21,13 +21,13 @@
               "y_offset": -0.02
             }
           },
-          "button2": {
+          "2": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
                 "variables" : {
                     "text": "2",
-                    "texture": "level-blue-2"
+                    "texture": "museum-button-2"
                 }
             },
             "layout": {
@@ -35,13 +35,13 @@
               "y_offset": -0.02
             }
           },
-          "m3": {
+          "3": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
                 "variables" : {
                     "text": "3",
-                    "texture": "level-blue-1"
+                    "texture": "museum-button-1"
                 }
             },
             "layout": {
@@ -49,13 +49,13 @@
               "y_offset": -0.02
             }
           },
-          "m4": {
+          "4": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
                 "variables" : {
                     "text": "4",
-                    "texture": "level-blue-1"
+                    "texture": "museum-button-2"
                 }
             },
             "layout": {
@@ -63,13 +63,13 @@
               "y_offset": -0.02
             }
           },
-          "m5": {
+          "5": {
             "type"   : "Widget",
             "data"   : {
                 "key" : "textbutton",
                 "variables" : {
                     "text": "5",
-                    "texture": "level-blue-1"
+                    "texture": "museum-button-1"
                 }
             },
             "layout": {
