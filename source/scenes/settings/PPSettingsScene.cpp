@@ -4,6 +4,8 @@
 #define SCENE_SIZE_H 576
 
 bool SettingsScene::init(const asset_t& assets) {
+    CULog("starting init");
+    _save = SaveController::getInstance();
     // Initialize the scene to a locked width
     Rect safe = Application::get()->getSafeBounds();
     Size sceneSize = safe.size;
@@ -32,7 +34,7 @@ bool SettingsScene::init(const asset_t& assets) {
 
     // Initialize background
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
-        ("menu-background"));
+        ("menubackground"));
     background->setContentSize(sceneSize);
     addChild(background);
 
@@ -40,6 +42,7 @@ bool SettingsScene::init(const asset_t& assets) {
     activateUI(_scene);
 
     addChild(_scene);
+    CULog("settings init successful");
 
     return true;
 }
@@ -63,24 +66,29 @@ void SettingsScene::activateUI(
         // CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "colorblind") {
             button->setToggle(true);
+            //CULog("Colorblind starts as: %b", _save->getColorblind());
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
+                //CULog("Colorblind is now: %b", _save->getColorblind());
                 });
         }
-        else if (button->getName() == "left") {
+        else if (button->getName() == "leftPalette") {
             button->setToggle(true);
             button->setDown(true);
+            //CULog("PaletteLeft starts as: %s", _save->getPaletteLeft());
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
+                //CULog("PaletteLeft is now: %b", _save->getPaletteLeft());
                 });
         }
         else if (button->getName() == "reset") {
             button->setToggle(true);
             button->addListener([=](const string& name, bool down) {
                 _save->resetAll(); // TODO: Add a confirmation?
+                CULog("Resetting");
                 });
         }
-        else if (button->getName() == "back") {
+        else if (button->getName() == "menubutton") {
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _finish = true;

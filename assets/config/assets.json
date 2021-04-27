@@ -253,6 +253,7 @@
     "menu": "scenes/menu.json",
     "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
+    "settings": "scenes/settings.json",
     "gameplay": "levels/gameplay.json",
     "level1": "levels/level1.json",
     "level2": "levels/level2.json",
