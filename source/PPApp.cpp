@@ -182,6 +182,7 @@ void PanicPainterApp::update(float timestep) {
             if (_settings.isFinished()) {
                 _currentScene = MENU_SCENE;
                 _settings.resetState();
+                _menu.resetState();
             }
             break;
         }

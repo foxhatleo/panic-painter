@@ -4,7 +4,6 @@
 #define SCENE_SIZE_H 576
 
 bool SettingsScene::init(const asset_t& assets) {
-    CULog("starting init");
     _save = SaveController::getInstance();
     // Initialize the scene to a locked width
     Rect safe = Application::get()->getSafeBounds();
@@ -42,7 +41,6 @@ bool SettingsScene::init(const asset_t& assets) {
     activateUI(_scene);
 
     addChild(_scene);
-    CULog("settings init successful");
 
     return true;
 }
@@ -66,15 +64,19 @@ void SettingsScene::activateUI(
         // CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "colorblind") {
             button->setToggle(true);
-            //CULog("Colorblind starts as: %b", _save->getColorblind());
+            button->setDown(_save->getColorblind()); // set to last saved value
+            CULog("Colorblind starts as: %d", _save->getColorblind());
+            if (_save->getColorblind()) {
+                CULog("testttttt");
+            }
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
-                //CULog("Colorblind is now: %b", _save->getColorblind());
+                CULog("Colorblind is now: %d", _save->getColorblind());
                 });
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
-            button->setDown(true);
+            button->setDown(_save->getPaletteLeft());
             //CULog("PaletteLeft starts as: %s", _save->getPaletteLeft());
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
@@ -117,6 +119,7 @@ void SettingsScene::deactivateUI(
             deactivateUI(scene->getChild(ii));
         }
     }
+    CULog("deactivated UI");
 }
 
 void SettingsScene::update(float timestep) {

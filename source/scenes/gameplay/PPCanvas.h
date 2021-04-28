@@ -73,7 +73,7 @@ public:
      * Update. This will give you the newest canvas state, index of colors on
      * this canvas. You should keep using the timer given in _setup().
      */
-    void update(CanvasState state, const vec<uint> &canvasColors);
+    void update(CanvasState state, const vec<uint> &canvasColors, bool colorblind);
 
     Vec2 getFeedbackStartPointInGlobalCoordinates();
 

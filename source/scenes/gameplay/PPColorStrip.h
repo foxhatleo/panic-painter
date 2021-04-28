@@ -44,7 +44,7 @@ public:
      * Update the color strip.
      * @param canvasColors The vector of color indexes.
      */
-    void update(const vec<uint> &canvasColors);
+    void update(const vec<uint> &canvasColors, bool colorblind);
 };
 
 #endif //PANICPAINTER_PPCOLORSTRIP_H

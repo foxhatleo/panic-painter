@@ -9,7 +9,7 @@ ptr<ColorStrip> ColorStrip::alloc(
     return (result->init() ? result : nullptr);
 }
 
-void ColorStrip::update(const vec<uint> &canvasColors) {
+void ColorStrip::update(const vec<uint> &canvasColors, bool colorblind) {
     // If the number of colors have not changed, that means no color has been
     // taken away yet.
     if (_lastNumberOfColors == canvasColors.size()) return;
@@ -18,7 +18,7 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
     // Just redo the color dots. Remove them all.
     removeAllChildren();
     for (uint i = 0; i < _lastNumberOfColors; i++) {
-        #ifdef COLORBLIND_MODE
+        #ifdef colorblind
             auto colorTexture = _assets->get<Texture>(_state.getShapeForColorIndex(canvasColors[i]));
         #else
             auto colorTexture = _assets->get<Texture>("color-circle");

@@ -71,11 +71,11 @@ void ColorPaletteView::_setup(const GameStateController &state) {
     float btnStartY = getContentHeight() - 70 + 2*(int)_colors.size();
     float padding = PADDING + 7 * (4 - (int)_colors.size());
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
-        #ifdef COLORBLIND_MODE
-            auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
-        #else
-            auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
-        #endif
+        auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
+        CULog("colorblind: %d", SaveController::getInstance()->getColorblind());
+        if (SaveController::getInstance()->getColorblind()) {
+            btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
+        }
         float pscale = (int)_colors.size() >= 5 ? 0.8 : 1;
         btn->setContentSize(pscale * PALETTE_COLOR_SIZE, pscale * PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);

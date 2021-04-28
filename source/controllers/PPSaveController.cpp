@@ -19,7 +19,7 @@ void SaveController::_load() {
     if (r == nullptr) return;
     json_t v = r->readJson();
     if (v->getInt("version", 1) == 1) {
-        _colorblind = v->getBool("colorblind", false);
+        _colorblind = v->getBool("colorblind", true);
         _paletteLeft = v->getBool("left", true);
         _sfxVolume = v->getFloat("sfxVolume", 1);
         _bgmVolume = v->getFloat("bgmVolume", 1);

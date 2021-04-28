@@ -72,7 +72,7 @@ public:
      * @param canvasColors The vector of color indexes.
      */
     void update(const vec<uint> &canvasColors,
-                const ptr<Timer> &timer);
+                const ptr<Timer> &timer, bool colorblind);
 };
 
 #endif //PANICPAINTER_PPCANVASBLOCK_H
