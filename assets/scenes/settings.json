@@ -11,44 +11,58 @@
               "type": "Button",
               "data": {
                 "upnode": "up",
+                "downnode": "down",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0, 0],
-                "scale"    : 0.215
+                "anchor" : [0.5, 0.5],
+                "scale": 0.4
               },
               "children": {
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "worldselect-city"
+                    "texture": "colorblindoff"
                   }
+                },
+                "down": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "colorblindon"
+                    }
                 }
               },
               "layout": {
-                "x_offset": -0.235,
-                "y_offset": -0.5
+                "x_offset": 0.0,
+                "y_offset": 0.3
               }
             },
             "leftPalette": {
               "type": "Button",
               "data": {
                 "upnode": "up",
+                "downnode": "down",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0, 0],
-                "scale"    : 0.22
+                "anchor" : [0.5, 0.5],
+                "scale": 0.4
               },
               "children": {
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "worldselect-eiffel"
+                    "texture": "paletteright"
                   }
+                },
+                "down": {
+                      "type": "Image",
+                      "data": {
+                        "texture": "paletteleft"
+                      }
                 }
               },
               "layout": {
-                "x_offset": 0,
-                "y_offset": -0.47
+                "x_offset": 0.0,
+                "y_offset": 0.1
               }
             },
             "reset": {
@@ -57,20 +71,20 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [0,0],
-                  "scale"    : 0.25
+                  "anchor" : [0.5, 0.5],
+                  "scale": 0.4
                 },
                 "children": {
                   "up": {
                     "type": "Image",
                     "data": {
-                      "texture": "worldselect-house"
+                      "texture": "resetbutton"
                     }
                   }
                 },
                 "layout": {
-                  "x_offset": -0.5,
-                  "y_offset": -0.48
+                  "x_offset": 0.0,
+                  "y_offset": -0.1
                 }
             },
             "menubutton": {

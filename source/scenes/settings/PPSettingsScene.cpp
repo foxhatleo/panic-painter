@@ -82,7 +82,6 @@ void SettingsScene::activateUI(
                 });
         }
         else if (button->getName() == "reset") {
-            button->setToggle(true);
             button->addListener([=](const string& name, bool down) {
                 _save->resetAll(); // TODO: Add a confirmation?
                 CULog("Resetting");

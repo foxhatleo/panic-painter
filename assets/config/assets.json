@@ -245,6 +245,21 @@
     },
     "level-yellow-2": {
       "file": "textures/levelselect/level-yellow-1.png"
+    },
+    "resetbutton": {
+      "file": "textures/settings/resetbutton.png"
+    },
+    "colorblindon": {
+      "file": "textures/settings/colorblindon.png"
+    },
+    "colorblindoff": {
+      "file": "textures/settings/colorblindoff.png"
+    },
+    "paletteleft": {
+      "file": "textures/settings/paletteleft.png"
+    },
+    "paletteright": {
+      "file": "textures/settings/paletteright.png"
     }
   },
   "jsons": {

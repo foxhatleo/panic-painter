@@ -26,7 +26,6 @@ private:
 
 public:
     SettingsScene() : Scene2() {
-        _save = SaveController::getInstance();
         _finish = false;
     }
 
