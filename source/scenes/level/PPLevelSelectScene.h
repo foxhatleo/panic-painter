@@ -49,11 +49,7 @@ public:
         return _state;
     }
 
-    string getLevel() {
-        string spacer = "-";
-        CULog("world: %s, spacer: %s, num: %s, all: %s", _worldName, spacer, _levelNum, _worldName + spacer + _levelNum);
-        return _worldName + spacer + _levelNum;
-    }
+    string getLevel();
 
     void loadWorld(const char* levelName);
 
