@@ -52,9 +52,11 @@ void LevelSelectScene::activateUI(
                 if (!down) {
                     _levelNum = name;
                     _state = L_SELECTED;
+                    CULog("%s button down!", name);
                 }
-                });
+            });
             // Set texture based on world and even/odd
+            
             int levelNum;
             stringstream s;
             s << button->getName();
@@ -62,19 +64,18 @@ void LevelSelectScene::activateUI(
             if (levelNum % 2 == 1) {
                 string suffix = "-button-1";
                 ptr<scene2::PolygonNode> menubutton = std::dynamic_pointer_cast<scene2::PolygonNode>(
-                    button->getChildByName("patchtext")->getChildByName("menubutton"));
+                    button->getChildByName("menubutton"));
                 menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
             }
             else {
                 string suffix = "-button-2";
                 ptr<scene2::PolygonNode> menubutton = std::dynamic_pointer_cast<scene2::PolygonNode>(
-                    button->getChildByName("patchtext")->getChildByName("menubutton"));
+                    button->getChildByName("menubutton"));
                 menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
             }
 
             // activate button
             button->activate();
-
             
             // deactivate button if no level associated
             string spacer = "-";
@@ -84,6 +85,7 @@ void LevelSelectScene::activateUI(
                 button->deactivate();
             }
         }
+        
     }
     else {
         // Go deeper

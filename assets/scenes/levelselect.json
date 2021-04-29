@@ -14,7 +14,8 @@
                 "variables" : {
                     "text": "1",
                     "texture": "museum-button-1"
-                }
+                },
+                "anchor" : [0.5, 0.5]
             },
             "layout": {
               "x_offset": -0.3,
@@ -28,7 +29,8 @@
                 "variables" : {
                     "text": "2",
                     "texture": "museum-button-2"
-                }
+                },
+                "anchor" : [0.5, 0.5]
             },
             "layout": {
               "x_offset": -0.15,
@@ -42,7 +44,8 @@
                 "variables" : {
                     "text": "3",
                     "texture": "museum-button-1"
-                }
+                },
+                "anchor" : [0.5, 0.5]
             },
             "layout": {
               "x_offset": 0.0,
@@ -56,7 +59,8 @@
                 "variables" : {
                     "text": "4",
                     "texture": "museum-button-2"
-                }
+                },
+                "anchor" : [0.5, 0.5]
             },
             "layout": {
               "x_offset": 0.15,
