@@ -27,7 +27,9 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
                            "dog-1", "dog-2", "dog-3", "frog", "octopus"};*/
     string characters[] = { "husky", "samoyed", "cat1", "cat2"};
     int p = Random::getInstance()->getInt(4 - 1);
-    _texture_array[0] = assets->get<Texture>(characters[p] + "-blink");
+    int pBlink = Random::getInstance()->getInt(2)+1;
+    string blinkTexture = characters[p] == "husky" ? "-blink-" + std::to_string(pBlink) : "-blink";
+    _texture_array[0] = assets->get<Texture>(characters[p] + blinkTexture);
     _texture_array[1] = assets->get<Texture>(characters[p] + "-emotion-1");
     _texture_array[2] = assets->get<Texture>(characters[p] + "-emotion-2");
     _texture_array[3] = assets->get<Texture>(characters[p] + "-emotion-3");
@@ -96,12 +98,12 @@ bool CanvasBlock::isFrameComplete() {
 void CanvasBlock::update(const vec<uint> &canvasColors,
                          const ptr<Timer> &timer) {
     _updateFrame++;
-    int value = _updateFrame % (Random::getInstance()->getInt(99) + 12);
-    if (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP) {
-        //Just keep it on blink. However, if eyes are closed, open them quickly
-        if (value == 0 || ((_bg->getFrame() + 1) % 3 == 0 && value < 2))
-            _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
-    } else if (_updateFrame % 6 == 0) {
+    bool keepBlinking = (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP); 
+    if (_updateFrame % 12 == 0 && keepBlinking) {
+        _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
+    }
+    else if (_updateFrame % 6 == 0 && !keepBlinking) {
+        
         //Do we need to switch stages of anger ie switch animations? 
         //Note: if a blink, switch the blink immediately to prevent the uniform blinking issue
         if (_bg->getFrame() == _bg->getSize() - 1 || _angerLevel == 0) {
@@ -114,6 +116,8 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
         } else {
             _bg->setFrame(_bg->getFrame() + 1);
         }
+    }
+    if (_updateFrame % 12 == 0) {
         _updateFrame = 0;
     }
     //Commenting instead of removing for debug purposes
