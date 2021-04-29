@@ -83,7 +83,7 @@
                 "upnode": "up",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [2.4, -1.0],
+                "anchor" : [0.0, 1.0],
                 "scale"    : 0.5
               },
               "children": {
@@ -93,9 +93,6 @@
                     "texture": "backbutton"
                   }
                 }
-              },
-              "layout": {
-                  "padding" : [0,0,0,50]
               }
           }
         }

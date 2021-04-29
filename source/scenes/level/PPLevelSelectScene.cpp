@@ -39,6 +39,11 @@ void LevelSelectScene::activateUI(
     if (button != nullptr) {
         //CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
+            Rect safe = Application::get()->getSafeBounds();
+            Vec2 offsetInSafe = Vec2::ZERO;
+            offsetInSafe.y = safe.size.height;
+            button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+            button->setPosition(safe.origin + offsetInSafe);
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _state = L_BACK;
