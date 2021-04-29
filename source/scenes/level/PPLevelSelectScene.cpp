@@ -15,6 +15,11 @@ bool LevelSelectScene::init(const asset_t &assets) {
     return true;
 }
 
+string LevelSelectScene::getLevel() {
+    string spacer = "-";
+    return _worldName + spacer + _levelNum;
+}
+
 void LevelSelectScene::dispose() {
     if (_scene != nullptr) deactivateUI(_scene);
     Scene2::dispose();
@@ -27,32 +32,63 @@ void LevelSelectScene::dispose() {
  * to input.
  */
 void LevelSelectScene::activateUI(
-    const std::shared_ptr<cugl::scene2::SceneNode>& scene) {
+    const std::shared_ptr<cugl::scene2::SceneNode>& scene, const char* worldName) {
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(
-        scene);//
+        scene);
+
     if (button != nullptr) {
-                CULog("Activating button %s", button->getName().c_str());
+        //CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _state = L_BACK;
                 }
                 });
+            button->activate();
         }
         else {
+            // Set listener
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
-                    _levelSelected = name;
+                    _levelNum = name;
                     _state = L_SELECTED;
                 }
                 });
+            // Set texture based on world and even/odd
+            int levelNum;
+            stringstream s;
+            s << button->getName();
+            s >> levelNum;
+            if (levelNum % 2 == 1) {
+                string suffix = "-button-1";
+                ptr<scene2::PolygonNode> menubutton = std::dynamic_pointer_cast<scene2::PolygonNode>(
+                    button->getChildByName("patchtext")->getChildByName("menubutton"));
+                menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
+            }
+            else {
+                string suffix = "-button-2";
+                ptr<scene2::PolygonNode> menubutton = std::dynamic_pointer_cast<scene2::PolygonNode>(
+                    button->getChildByName("patchtext")->getChildByName("menubutton"));
+                menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
+            }
+
+            // activate button
+            button->activate();
+
+            
+            // deactivate button if no level associated
+            string spacer = "-";
+            if (_assets->get<JsonValue>(_worldName + spacer + button->getName().c_str()) == NULL) {
+                // Hides & deactivates buttons that don't have levels associated
+                button->setVisible(false);
+                button->deactivate();
+            }
         }
-        button->activate();
     }
     else {
         // Go deeper
         for (Uint32 ii = 0; ii < scene->getChildCount(); ii++) {
-            activateUI(scene->getChild(ii));
+            activateUI(scene->getChild(ii), worldName);
         }
     }
 }
@@ -73,9 +109,11 @@ void LevelSelectScene::deactivateUI(
 }
 
 void LevelSelectScene::loadWorld(const char* worldName) {
+    _worldName = worldName;
+
     // Ensure reset
     if (_scene != nullptr) {
-        CULog("deactivating ui");
+       // CULog("deactivating ui");
         deactivateUI(_scene);
     }
     removeAllChildren();
@@ -84,7 +122,7 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     // Load directory
     string header = "scenes/world-";
     string suffix = ".json";
-    _assets->loadDirectory(header + worldName + suffix);
+    //_assets->loadDirectory(header + worldName + suffix);
 
     Rect safe = Application::get()->getSafeBounds();
     float scale = 1;
@@ -102,7 +140,9 @@ void LevelSelectScene::loadWorld(const char* worldName) {
 
     // Get scene
     suffix = "selectscene";
-    _scene = _assets->get<scene2::SceneNode>(worldName + suffix);
+    _assets->loadDirectory("scenes/worldselect.json");
+    _assets->loadDirectory("scenes/levelselect.json");
+    _scene = _assets->get<scene2::SceneNode>("levelselectscene");
     _scene->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _scene->setScale(scale);
     _scene->setContentSize(Size(SCENE_SIZE_W, SCENE_SIZE_H));
@@ -116,7 +156,7 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     addChild(background);
 
     // Initialize buttons
-    activateUI(_scene);
+    activateUI(_scene, worldName);
 
     // Add scene as child
     addChild(_scene);
