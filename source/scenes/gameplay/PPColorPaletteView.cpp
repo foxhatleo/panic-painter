@@ -72,7 +72,6 @@ void ColorPaletteView::_setup(const GameStateController &state) {
     float padding = PADDING + 7 * (4 - (int)_colors.size());
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
         auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
-        CULog("colorblind: %d", SaveController::getInstance()->getColorblind());
         if (SaveController::getInstance()->getColorblind()) {
             btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
         }
