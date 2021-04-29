@@ -65,28 +65,20 @@ void SettingsScene::activateUI(
         if (button->getName() == "colorblind") {
             button->setToggle(true);
             button->setDown(_save->getColorblind()); // set to last saved value
-            CULog("Colorblind starts as: %d", _save->getColorblind());
-            if (_save->getColorblind()) {
-                CULog("testttttt");
-            }
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
-                CULog("Colorblind is now: %d", _save->getColorblind());
                 });
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
-            //CULog("PaletteLeft starts as: %s", _save->getPaletteLeft());
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
-                //CULog("PaletteLeft is now: %b", _save->getPaletteLeft());
                 });
         }
         else if (button->getName() == "reset") {
             button->addListener([=](const string& name, bool down) {
-                _save->resetAll(); // TODO: Add a confirmation?
-                CULog("Resetting");
+                _save->resetAll(); // TODO: Implement when level progress is implemented (and likely add a confirmation pop-up)
                 });
         }
         else if (button->getName() == "menubutton") {
@@ -119,7 +111,6 @@ void SettingsScene::deactivateUI(
             deactivateUI(scene->getChild(ii));
         }
     }
-    CULog("deactivated UI");
 }
 
 void SettingsScene::update(float timestep) {

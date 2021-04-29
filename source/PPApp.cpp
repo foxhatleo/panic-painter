@@ -124,6 +124,7 @@ void PanicPainterApp::update(float timestep) {
             else if (_menu.getState() == SETTINGS) {
                 _currentScene = SETTINGS_SCENE;
                 _menu.resetState();
+                _settings.activate();
                 _settings.resetState();
             }
             break;
@@ -173,6 +174,7 @@ void PanicPainterApp::update(float timestep) {
             }
             else if (_pause.getState() == MENU) {
                 _currentScene = MENU_SCENE;
+                _menu.resetState();
                 _pause.resetState();
             }
             break;
@@ -182,6 +184,7 @@ void PanicPainterApp::update(float timestep) {
             if (_settings.isFinished()) {
                 _currentScene = MENU_SCENE;
                 _settings.resetState();
+                _settings.deactivate();
                 _menu.resetState();
             }
             break;

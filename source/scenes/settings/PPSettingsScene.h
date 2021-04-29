@@ -41,9 +41,17 @@ public:
         return _finish;
     };
 
+    void activate() {
+        activateUI(_scene);
+    }
+    
     void resetState() {
         _finish = false;
     };
+
+    void deactivate() {
+        deactivateUI(_scene);
+    }
 
 };
 
