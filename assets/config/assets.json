@@ -216,35 +216,35 @@
     "worldselect-background": {
       "file": "textures/levelselect/worldselect-background.png"
     },
-    "level-blue-1": {
+    "city-button-1": {
       "file": "textures/levelselect/level-blue-1.png"
     },
-    "level-blue-2": {
-      "file": "textures/levelselect/level-blue-1.png"
+    "city-button-2": {
+      "file": "textures/levelselect/level-blue-2.png"
     },
-    "level-red-1": {
+    "museum-button-1": {
       "file": "textures/levelselect/level-red-1.png"
     },
-    "level-red-2": {
-      "file": "textures/levelselect/level-red-1.png"
+    "museum-button-2": {
+      "file": "textures/levelselect/level-red-2.png"
     },
-    "level-brown-1": {
+    "beach-button-1": {
       "file": "textures/levelselect/level-brown-1.png"
     },
-    "level-brown-2": {
-      "file": "textures/levelselect/level-brown-1.png"
+    "beach-button-2": {
+      "file": "textures/levelselect/level-brown-2.png"
     },
-    "level-purple-1": {
+    "space-button-1": {
       "file": "textures/levelselect/level-purple-1.png"
     },
-    "level-purple-2": {
-      "file": "textures/levelselect/level-purple-1.png"
+    "space-button-2": {
+      "file": "textures/levelselect/level-purple-2.png"
     },
-    "level-yellow-1": {
+    "eiffel-button-1": {
       "file": "textures/levelselect/level-yellow-1.png"
     },
-    "level-yellow-2": {
-      "file": "textures/levelselect/level-yellow-1.png"
+    "eiffel-button-2": {
+      "file": "textures/levelselect/level-yellow-2.png"
     },
     "resetbutton": {
       "file": "textures/settings/resetbutton.png"
@@ -268,26 +268,26 @@
     "menu": "scenes/menu.json",
     "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
-    "settings": "scenes/settings.json",
     "gameplay": "levels/gameplay.json",
+    "settings": "scenes/settings.json",
     "level1": "levels/level1.json",
     "level2": "levels/level2.json",
     "level3": "levels/level3.json",
-    "e1" : "levels/e1.json",
-    "e2" : "levels/e2.json",
-    "e3" : "levels/e3.json",
-    "e4" : "levels/e4.json",
-    "e5" : "levels/e5.json",
-    "m1" : "levels/m1.json",
-    "m2" : "levels/m2.json",
-    "m3" : "levels/m3.json",
-    "m4" : "levels/m4.json",
-    "m5" : "levels/m5.json",
-    "h1" : "levels/h1.json",
-    "h2" : "levels/h2.json",
-    "h3" : "levels/h3.json",
-    "h4" : "levels/h4.json",
-    "h5" : "levels/h5.json"
+    "museum-1" : "levels/museum-1.json",
+    "museum-2" : "levels/museum-2.json",
+    "museum-3" : "levels/museum-3.json",
+    "museum-4" : "levels/museum-4.json",
+    "museum-5" : "levels/museum-5.json",
+    "city-1" : "levels/city-1.json",
+    "city-2" : "levels/city-2.json",
+    "city-3" : "levels/city-3.json",
+    "city-4" : "levels/city-4.json",
+    "city-5" : "levels/city-5.json",
+    "space-1" : "levels/space-1.json",
+    "space-2" : "levels/space-2.json",
+    "space-3" : "levels/space-3.json",
+    "space-4" : "levels/space-4.json",
+    "space-5" : "levels/space-5.json"
   },
   "fonts": {
     "roboto": {
