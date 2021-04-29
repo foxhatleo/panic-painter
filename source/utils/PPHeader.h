@@ -6,7 +6,7 @@
 
 // #define COLORBLIND_MODE
 
-// #define VIEW_DEBUG
+//#define VIEW_DEBUG
 
 namespace utils {};
 
