@@ -5,33 +5,33 @@
 
 bool WorldSelectScene::init(const asset_t &assets) {
     // Initialize the scene to a locked width
-    Rect safe = Application::get()->getSafeBounds();
-    Size sceneSize = safe.size;
-    Vec2 offsetInSafe = Vec2::ZERO;
+    _safe = Application::get()->getSafeBounds();
+    _sceneSize = _safe.size;
+    _offsetInSafe = Vec2::ZERO;
 
-    if (sceneSize.width / SCENE_SIZE_W > sceneSize.height / SCENE_SIZE_H) {
-        sceneSize *= (SCENE_SIZE_H / sceneSize.height);
+    if (_sceneSize.width / SCENE_SIZE_W > _sceneSize.height / SCENE_SIZE_H) {
+        _sceneSize *= (SCENE_SIZE_H / _sceneSize.height);
     } else {
-        sceneSize *= (SCENE_SIZE_W / sceneSize.width);
+        _sceneSize *= (SCENE_SIZE_W / _sceneSize.width);
     }
 
     if (assets == nullptr) {
         return false;
-    } else if (!Scene2::init(sceneSize)) {
+    } else if (!Scene2::init(_sceneSize)) {
         return false;
     }
 
     _assets = assets;
     _assets->loadDirectory("scenes/worldselect.json");
     _scene = _assets->get<scene2::SceneNode>("worldselectscene");
-    _scene->setContentSize(sceneSize);
-    _scene->setPosition(safe.origin + offsetInSafe);
+    _scene->setContentSize(_sceneSize);
+    _scene->setPosition(_safe.origin + _offsetInSafe);
     _scene->doLayout(); // Repositions the HUD
 
     // Initialize background
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("worldselect-background"));
-    menuBackground->setContentSize(sceneSize);
+    menuBackground->setContentSize(_sceneSize);
     addChild(menuBackground);
 
     // Initialize buttons
@@ -39,21 +39,6 @@ bool WorldSelectScene::init(const asset_t &assets) {
 
     addChild(_scene);
 
-    // Create back button
-    /*Rect safeArea = Application::get()->getSafeBounds();
-    _backBtn = Button::alloc();
-    (_assets->get<Texture>("backbutton"));
-    _backBtn->setScale(1.9f *
-        (safeArea.size.height * .1f) /
-        _backBtn->getContentWidth());
-    _backBtn->setAnchor(Vec2::ANCHOR_TOP_LEFT);
-    _backBtn->setPosition(0, safeArea.size.height);
-    _backBtn->addListener([=](const string& name, bool down) {
-        if (!down) {
-            _state = BACK;
-        }
-        });
-    addChild(_backBtn); */
     return true;
 }
 
@@ -75,6 +60,7 @@ void WorldSelectScene::activateUI(
     if (button != nullptr) {
 //        CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
+            button->setPosition(_offsetInSafe.x, _safe.size.height - _offsetInSafe.y);
             button->addListener([=](const string &name, bool down) {
                 if (!down) {
                     _state = BACK;

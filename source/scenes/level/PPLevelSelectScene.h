@@ -26,6 +26,13 @@ private:
 
     string _levelNum;
 
+    /** Safe Space */
+    Rect _safe;
+
+    float _scale;
+
+    Vec2 _offsetInSafe;
+
     void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene, const char* worldName);
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);

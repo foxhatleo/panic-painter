@@ -39,11 +39,7 @@ void LevelSelectScene::activateUI(
     if (button != nullptr) {
         //CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "menubutton") {
-            Rect safe = Application::get()->getSafeBounds();
-            Vec2 offsetInSafe = Vec2::ZERO;
-            offsetInSafe.y = safe.size.height;
-            button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
-            button->setPosition(safe.origin + offsetInSafe);
+            button->setPosition(_offsetInSafe.x, _safe.size.height-_offsetInSafe.y);
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _state = L_BACK;
@@ -129,18 +125,18 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     string suffix = ".json";
     //_assets->loadDirectory(header + worldName + suffix);
 
-    Rect safe = Application::get()->getSafeBounds();
-    float scale = 1;
-    Vec2 offsetInSafe = Vec2::ZERO;
+    _safe = Application::get()->getSafeBounds();
+    _scale = 1;
+    _offsetInSafe = Vec2::ZERO;
 
-    if (safe.size.width / SCENE_SIZE_W > safe.size.height / SCENE_SIZE_H) {
-        offsetInSafe.x = (safe.size.width - SCENE_SIZE_W * safe.size.height /
+    if (_safe.size.width / SCENE_SIZE_W > _safe.size.height / SCENE_SIZE_H) {
+        _offsetInSafe.x = (_safe.size.width - SCENE_SIZE_W * _safe.size.height /
                                             SCENE_SIZE_H) / 2;
-        scale = (safe.size.height / SCENE_SIZE_H);
+        _scale = (_safe.size.height / SCENE_SIZE_H);
     } else {
-        offsetInSafe.y = (safe.size.height - SCENE_SIZE_H * safe.size.width /
+        _offsetInSafe.y = (_safe.size.height - SCENE_SIZE_H * _safe.size.width /
                                              SCENE_SIZE_W) / 2;
-        scale = (safe.size.width / SCENE_SIZE_W);
+        _scale = (_safe.size.width / SCENE_SIZE_W);
     }
 
     // Get scene
@@ -149,10 +145,10 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     _assets->loadDirectory("scenes/levelselect.json");
     _scene = _assets->get<scene2::SceneNode>("levelselectscene");
     _scene->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _scene->setScale(scale);
+    _scene->setScale(_scale);
     _scene->setContentSize(Size(SCENE_SIZE_W, SCENE_SIZE_H));
     _scene->doLayout(); // Repositions the HUD
-    _scene->setPosition(safe.origin + offsetInSafe);
+    _scene->setPosition(_safe.origin + _offsetInSafe);
 
     // Initialize background
     suffix = "-bg";
