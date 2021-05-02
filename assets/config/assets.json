@@ -114,6 +114,18 @@
     "cat2-emotion-3": {
       "file": "textures/characters/cat2_very_angry.png"
     },
+    "chick-blink": {
+      "file": "textures/characters/chick_blink.png"
+    },
+    "chick-emotion-1": {
+      "file": "textures/characters/chick_frown.png"
+    },
+    "chick-emotion-2": {
+      "file": "textures/characters/chick_angry.png"
+    },
+    "chick-emotion-3": {
+      "file": "textures/characters/chick_very_angry.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
