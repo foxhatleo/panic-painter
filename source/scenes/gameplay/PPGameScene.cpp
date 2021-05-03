@@ -184,8 +184,6 @@ void GameScene::update(float timestep) {
     // Check if the level is complete
     if (activeCanvases.empty() && !_congratulations) {
         //Gradually clear out the splatters
-         _splash->update(timestep,
-                    Color4::CLEAR, Vec2::ZERO);
         _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));

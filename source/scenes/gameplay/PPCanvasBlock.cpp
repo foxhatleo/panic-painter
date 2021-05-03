@@ -4,22 +4,23 @@ ptr<CanvasBlock> CanvasBlock::alloc(
     const asset_t &assets,
     float size,
     const vec<Color4>& colors, const int numCanvasColors,
-    const GameStateController &state) {
+    const GameStateController &state, bool isObstacle) {
     auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
-        result->_setup(assets, colors, numCanvasColors, state);
+        result->_setup(assets, colors, numCanvasColors, state, isObstacle);
     else
         return nullptr;
     return result;
 }
 
 
-void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state) {
+void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state, bool isObstacle) {
 #ifdef VIEW_DEBUG
     auto n = PolygonNode::to(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
     addChild(n);
 #endif
+    _isObstacle = isObstacle; 
     _state = state; 
     _isActive = false;
     _initialColorNumber = numCanvasColors;
