@@ -187,24 +187,65 @@ void GameScene::update(float timestep) {
          _splash->update(timestep,
                     Color4::CLEAR, Vec2::ZERO);
         _complete = make_shared<Timer>(5);
+        
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));
+        
+        // IMPORTANT TODO: Change this to actually set the score limit of levels.
+        float MAX_SCORE = 1200;
+        float percent = _state.getScoreMetric("aggregateScore") / MAX_SCORE;
+        
+        ptr<PolygonNode> stars;
+        if (percent < 0.50f) {
+            stars = PolygonNode::allocWithTexture(_assets->get<Texture>("0star"));
+        } else if (percent < 0.70f) {
+            stars = PolygonNode::allocWithTexture(_assets->get<Texture>("1star"));
+        } else if (percent < 0.85f) {
+            stars = PolygonNode::allocWithTexture(_assets->get<Texture>("2star"));
+        } else {
+            stars = PolygonNode::allocWithTexture(_assets->get<Texture>("3star"));
+        }
+        
         float lc_width = levelcomplete->getContentWidth();
+        float stars_width = stars->getContentWidth();
         Size ds = Application::get()->getDisplaySize();
+        
         float desired_width = ds.width / 1.3;
         float desired_scale = desired_width / lc_width;
+        
+        float desired_stars_width = 0.4 * ds.width;
+        float desired_stars_scale = desired_stars_width / stars_width;
+        
         levelcomplete->setScale(0);
         levelcomplete->setAnchor(Vec2::ANCHOR_CENTER);
         levelcomplete->setPosition(
             ds.width / 2,
             ds.height / 2
         );
-        Animation::to(levelcomplete, .2, {
+        
+        CULog("Origin: (%f, %f)", stars->getBoundingBox().origin.x, stars->getBoundingBox().origin.y);
+        CULog("Height: %f", stars->getBoundingBox().size.height);
+        CULog("Width: %f", stars->getBoundingBox().size.width);
+        stars->setScale(0);
+        stars->setAnchor(Vec2::ANCHOR_CENTER);
+        stars->setPosition(
+            ds.width / 2,
+            ds.height * 1.2
+        );
+        
+        Animation::to(levelcomplete, .5, {
             {"scaleX", desired_scale},
             {"scaleY", desired_scale}
         }, STRONG_OUT);
+        
+        Animation::to(stars, .5, {
+            {"scaleX", desired_stars_scale},
+            {"scaleY", desired_stars_scale}
+        }, STRONG_OUT);
+        
         addChild(levelcomplete);
-        _congratulations = levelcomplete;
+        addChild(stars);
+        //_congratulations = levelcomplete;
         
         string metrics[] = {"correct", "timedOut", "wrongAction"};
         #ifdef CU_TOUCH_SCREEN
@@ -215,7 +256,7 @@ void GameScene::update(float timestep) {
         
         for (int i = 0; i < 3; i++) {
             auto label = Label::alloc(Size(0.1 * ds.width, 0.05 * ds.height), labelFont);
-            label->setPosition(0.57 * ds.width, (0.63 - 0.1 * i) * ds.height);
+            label->setPosition(0.57 * ds.width, (0.68 - 0.1 * i) * ds.height);
             label->setBackground(Color4(250, 0, 0, 0.5));
             label->setText(to_string(_state.getScoreMetric(metrics[i])));
             label->setHorizontalAlignment(Label::HAlign::HARDRIGHT);

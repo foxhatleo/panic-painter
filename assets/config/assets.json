@@ -245,6 +245,18 @@
     },
     "eiffel-button-2": {
       "file": "textures/levelselect/level-yellow-2.png"
+    },
+    "0star": {
+      "file": "textures/stars/0star.png"
+    },
+    "1star": {
+      "file": "textures/stars/1star.png"
+    },
+    "2star": {
+      "file": "textures/stars/2star.png"
+    },
+    "3star": {
+      "file": "textures/stars/3star.png"
     }
   },
   "jsons": {
@@ -280,7 +292,7 @@
     },
     "roboto-mobile": {
       "file": "fonts/Roboto-Regular.ttf",
-      "size": 40
+      "size": 80
     },
     "jua": {
       "file": "fonts/Jua-Regular.ttf",
