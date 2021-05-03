@@ -84,6 +84,8 @@ public:
     /** Get the number of canvases that fulfill one of the score metrics. */
     uint getScoreMetric(string type) const;
     
+    void incrementScoreForSwipe(float multiplier);
+    
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

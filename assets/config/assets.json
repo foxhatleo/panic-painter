@@ -278,6 +278,10 @@
       "file": "fonts/Roboto-Regular.ttf",
       "size": 40
     },
+    "roboto-mobile": {
+      "file": "fonts/Roboto-Regular.ttf",
+      "size": 40
+    },
     "jua": {
       "file": "fonts/Jua-Regular.ttf",
       "size": 40
