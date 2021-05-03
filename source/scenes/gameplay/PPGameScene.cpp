@@ -209,10 +209,29 @@ void GameScene::update(float timestep) {
         string winString = ("Correct: " + to_string(_state.getScoreMetric("correct")) +
                             ", timed out: " + to_string(_state.getScoreMetric("timedOut")) +
                            ", wrong action: " + to_string(_state.getScoreMetric("wrongAction"))).c_str();
+        
+        auto bb = levelcomplete->getBoundingBox();
+        string metrics[] = {"correct", "timedOut", "wrongAction"};
+        auto labelFont = _assets->get<Font>("roboto");
+        for (int i = 0; i < 3; i++) {
+            auto label = Label::alloc(Size(0.1 * ds.width, 0.05 * ds.height), labelFont);
+            label->setPosition(bb.getMaxX() - 20, (0.63 - 0.1 * i) * ds.height);
+            label->setText(to_string(_state.getScoreMetric(metrics[i])));
+            label->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
+            addChild(label);
+        }
+        
+        auto totalScoreLabel = Label::alloc(Size(0.1 * ds.width, 0.05 * ds.height), labelFont);
+        totalScoreLabel->setPosition(bb.getMaxX() - 20, 0.48 * ds.height);
+        totalScoreLabel->setText(to_string(_state.getScoreMetric("aggregateScore")));
+        totalScoreLabel->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
+        addChild(totalScoreLabel);
+        
+        
         gameStats->setText(winString);
         gameStats->setColor(Color4::WHITE);
         gameStats->setAnchor(Vec2::ANCHOR_TOP_CENTER);
-        gameStats->setPosition(ds.width / 2, levelcomplete->getBoundingBox().getMinY() - 10);
+        gameStats->setPosition(ds.width / 2, bb.getMinY() - 10);
         addChild(gameStats);
         CULog("timed out: %d", _state.getScoreMetric("timedOut"));
         CULog("correct: %d", _state.getScoreMetric("correct"));
