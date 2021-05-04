@@ -1,48 +1,36 @@
 {
     "variables" : {
-        "text"   : ["children","patchtext","children","label","data","text"],
-        "size"   : ["children","patchtext","children","label","data","size"],
-        "font"   : ["children","patchtext","children","label","data","font"],
-        "texture"   : ["children","patchtext","children","menubutton","data","texture"]
+        "text"   : ["children","label","data","text"],
+        "size"   : ["children","label","data","size"],
+        "font"   : ["children","label","data","font"],
+        "texture"   : ["children","menubutton","data","texture"]
 
     },
     "contents": {
         "type": "Button",
         "data" : {
-            "upnode" : "patchtext",
-            "anchor" : [0.0, 0.0]
-        },
-        "layout" : {
-            "x_anchor" : "center",
-            "y_anchor" : "middle"
+            "upnode" : "menubutton",
+            "anchor" : [0.5, 0.5]
         },
         "children" : {
-            "patchtext" : {
-                "type" : "Node",
-                "format" : {
-                    "type" : "Anchored"
-                },
-                "children" : {
-                    "menubutton" : {
-                        "type" : "Image",
-                        "data" : {
-                            "texture" : "levelbutton",
-                            "anchor" : [0.5, 0.5],
-                            "size" : [100, 175]
-                        }
-                    },
-                    "label" : {
-                        "type" : "Label",
-                        "data" : {
-                            "font" : "roboto",
-                            "text" : "Click Me",
-                            "foreground" : [255, 255, 255, 255],
-                            "anchor" : [0.5, 0.5],
-                            "halign" : "left",
-                            "valign" : "top",
-                            "padding": [0, -40]
-                        }
-                    }
+            "menubutton" : {
+                "type" : "Image",
+                "data" : {
+                    "texture" : "levelbutton",
+                    "anchor" : [0.5, 0.5],
+                    "scale" : 0.25
+                }
+            },
+            "label" : {
+                "type" : "Label",
+                "data" : {
+                    "font" : "roboto",
+                    "text" : "Click Me",
+                    "foreground" : [255, 255, 255, 255],
+                    "anchor" : [0.5, 0.5],
+                    "halign" : "left",
+                    "valign" : "top",
+                    "padding": [70, -200]
                 }
             }
         }

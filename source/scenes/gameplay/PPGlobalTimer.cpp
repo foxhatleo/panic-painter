@@ -13,7 +13,7 @@ ptr<GlobalTimer> GlobalTimer::alloc(
 
 void GlobalTimer::_setup() {
 #ifdef VIEW_DEBUG
-    auto n = PolygonNode::to(Rect(Vec2::ZERO, getContentSize()));
+    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 1, .3));
     addChild(n);
 #endif

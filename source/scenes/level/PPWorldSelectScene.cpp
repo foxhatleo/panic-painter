@@ -82,9 +82,7 @@ void WorldSelectScene::activateUI(
             });
         } else {
             // TODO: REMOVE CONTENT BELOW WHEN ALL WORLDS ARE DONE.
-            if (button->getName() != "museum" &&
-                button->getName() != "city" &&
-                button->getName() != "space") {
+            if (button->getName() == "eiffel") {
                 button->setColor(Color4f(1,1,1,.5));
                 return;
             }
