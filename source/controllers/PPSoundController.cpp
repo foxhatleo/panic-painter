@@ -37,7 +37,7 @@ void SoundController::useBgm(const string &name) {
 //    _bgm->clear(FADE);
     _currentBgm = name;
     if (name == "") return;
-    ptr<Sound> s = AudioSample::alloc("music/music1.mp3", false);
+    ptr<Sound> s = AudioSample::alloc("music/test.mp3", false);
     _bgm->play(s, true);
 }
 
