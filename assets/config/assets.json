@@ -30,33 +30,6 @@
     "talk-bubble": {
       "file": "textures/talk_bubble.png"
     },
-    "cat-1": {
-      "file": "textures/characters/cat-1.png"
-    },
-    "cat-2": {
-      "file": "textures/characters/cat-2.png"
-    },
-    "bird-1": {
-      "file": "textures/characters/bird-1.png"
-    },
-    "bird-2": {
-      "file": "textures/characters/bird-2.png"
-    },
-    "dog-1": {
-      "file": "textures/characters/dog-1.png"
-    },
-    "dog-2": {
-      "file": "textures/characters/dog-2.png"
-    },
-    "dog-3": {
-      "file": "textures/characters/dog-3.png"
-    },
-    "frog": {
-      "file": "textures/characters/frog.png"
-    },
-    "octopus": {
-      "file": "textures/characters/octopus.png"
-    },
     "husky-blink-1": {
       "file": "textures/characters/husky_blink.png"
     },
