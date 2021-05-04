@@ -51,8 +51,11 @@ private:
 
     string _levelName;
 
+    uint _slowMode;
+
 public:
-    GameScene() : Scene2(), _pauseRequest(false), _complete(nullptr) {}
+    GameScene() : Scene2(), _pauseRequest(false), _complete(nullptr),
+                  _slowMode(0) {}
 
     ~GameScene() { dispose(); }
 

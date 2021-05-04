@@ -2,6 +2,8 @@
 
 #define PALETTE_WIDTH .1f
 #define TIMER_HEIGHT .1f
+#define SLOWMODE_THRESHOLD 10
+#define SLOWMODE_FPS (1.0f/24.0f)
 
 void GameScene::dispose() {
     Scene2::dispose();
@@ -131,6 +133,9 @@ void GameScene::update(float timestep) {
         return;
     }
 
+    if (timestep > SLOWMODE_FPS && _slowMode < SLOWMODE_THRESHOLD)
+        _slowMode++;
+
     // So the first thing is to update the game state.
     _state.update(timestep);
 
@@ -174,10 +179,15 @@ void GameScene::update(float timestep) {
     canvasArea.size.height -= canvasArea.size.height * TIMER_HEIGHT;
     bool pressing = input.isPressing() &&
                     InputController::inScene(input.currentPoint(), canvasArea);
-    _splash->update(timestep,
-                    activeCanvases.empty() ? Color4::CLEAR : 
-                    _state.getColors()[_palette->getSelectedColor()],
-                    pressing ? input.currentPoint() : Vec2::ZERO);
+    if (_slowMode == SLOWMODE_THRESHOLD) {
+        _slowMode = 9999;
+        // TODO: Add kill switch here. This will only be run once.
+    } else {
+        _splash->update(timestep,
+                        activeCanvases.empty() ? Color4::CLEAR :
+                        _state.getColors()[_palette->getSelectedColor()],
+                        pressing ? input.currentPoint() : Vec2::ZERO);
+    }
     _action->update(activeCanvases, _palette->getSelectedColor());
     _globalTimer->update(_state.getLevelTimer());
 
