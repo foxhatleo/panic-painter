@@ -84,9 +84,6 @@ public:
     
     /** Get the number of canvases that fulfill one of the score metrics. */
     uint getScoreMetric(string type) const;
-
-    /** Determine if colorblind mode is on */
-    bool isColorblind() const;
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

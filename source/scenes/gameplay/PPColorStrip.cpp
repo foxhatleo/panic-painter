@@ -9,7 +9,7 @@ ptr<ColorStrip> ColorStrip::alloc(
     return (result->init() ? result : nullptr);
 }
 
-void ColorStrip::update(const vec<uint> &canvasColors, bool colorblind) {
+void ColorStrip::update(const vec<uint> &canvasColors) {
     // If the number of colors have not changed, that means no color has been
     // taken away yet.
     if (_lastNumberOfColors == canvasColors.size()) return;
@@ -19,7 +19,7 @@ void ColorStrip::update(const vec<uint> &canvasColors, bool colorblind) {
     removeAllChildren();
     for (uint i = 0; i < _lastNumberOfColors; i++) {
         auto colorTexture = _assets->get<Texture>("color-circle");
-        if(colorblind)
+        if(SaveController::getInstance()->getColorblind())
             colorTexture = _assets->get<Texture>(_state.getShapeForColorIndex(canvasColors[i]));
         auto bg = PolygonNode::allocWithTexture(colorTexture);
         bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);

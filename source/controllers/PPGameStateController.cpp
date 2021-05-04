@@ -207,8 +207,3 @@ uint GameStateController::getScoreMetric(string type) const {
                 "Incorrect type provided.");
     return _state.scoreTracker.find(type)->second;
 }
-
-bool GameStateController::isColorblind() const {
-    SaveController* save = SaveController::getInstance();
-    return save->getColorblind();
-}

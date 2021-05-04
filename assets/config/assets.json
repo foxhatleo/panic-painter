@@ -260,6 +260,9 @@
     },
     "paletteright": {
       "file": "textures/settings/paletteright.png"
+    },
+    "settings-bg": {
+      "file": "textures/settings/settings-bg.png"
     }
   },
   "jsons": {

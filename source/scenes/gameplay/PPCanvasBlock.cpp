@@ -94,7 +94,7 @@ bool CanvasBlock::isFrameComplete() {
 }
 
 void CanvasBlock::update(const vec<uint> &canvasColors,
-                         const ptr<Timer> &timer, bool colorblind) {
+                         const ptr<Timer> &timer) {
     _updateFrame++;
     int value = _updateFrame % (Random::getInstance()->getInt(99) + 12);
     if (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP) {
@@ -118,7 +118,7 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
     }
     //Commenting instead of removing for debug purposes
     //  _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
-    _colorStrip->update(canvasColors, colorblind);
+    _colorStrip->update(canvasColors);
 }
 
 void CanvasBlock::setHover(bool in) {

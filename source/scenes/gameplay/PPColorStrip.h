@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "controllers/PPGameStateController.h"
+#include "controllers/PPSaveController.h"
 
 /**
  * Color strip is the little color dots. It will automatically take the full
@@ -44,7 +45,7 @@ public:
      * Update the color strip.
      * @param canvasColors The vector of color indexes.
      */
-    void update(const vec<uint> &canvasColors, bool colorblind);
+    void update(const vec<uint> &canvasColors);
 };
 
 #endif //PANICPAINTER_PPCOLORSTRIP_H

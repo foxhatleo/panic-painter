@@ -33,7 +33,7 @@ bool SettingsScene::init(const asset_t& assets) {
 
     // Initialize background
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
-        ("menubackground"));
+        ("settings-bg"));
     background->setContentSize(sceneSize);
     addChild(background);
 
