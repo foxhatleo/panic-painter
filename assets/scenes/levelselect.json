@@ -82,8 +82,7 @@
               "data": {
                 "upnode": "up",
                 "visible"  : true,
-                "pushsize" : true,
-                "scale"    : 0.5
+                "pushsize" : true
               },
               "children": {
                 "up": {

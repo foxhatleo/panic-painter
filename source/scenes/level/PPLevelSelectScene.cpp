@@ -2,6 +2,8 @@
 
 #define SCENE_SIZE_W 1024
 #define SCENE_SIZE_H 576
+#define BASE_SCALE 0.5
+#define BASE_LEVEL_SCALE 1
 
 bool LevelSelectScene::init(const asset_t &assets) {
 
@@ -45,12 +47,12 @@ void LevelSelectScene::activateUI(
         else {
             scale *= (SCENE_SIZE_W / _sceneSize.width);
         }
-        button->setScale(button->getScale() *
-            _safe.size.height / SCENE_SIZE_H);
 
         if (button->getName() == "menubutton") {
             button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
+            button->setScale(BASE_SCALE *
+                _safe.size.height / SCENE_SIZE_H);
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _state = L_BACK;
@@ -59,6 +61,8 @@ void LevelSelectScene::activateUI(
             button->activate();
         }
         else {
+            button->setScale(BASE_LEVEL_SCALE *
+                _safe.size.height / SCENE_SIZE_H);
             // Set listener
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
