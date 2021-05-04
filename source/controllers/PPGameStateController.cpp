@@ -20,6 +20,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.queues.clear();
     _state.wrongActions.clear();
     _state.recorded.clear();
+    _state.obstacles.clear(); 
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
         vec<vec<uint>> queue_s;
@@ -120,6 +121,17 @@ void GameStateController::update(float timestep) {
                 } else {
                     _state.scoreTracker["correct"]++;
                 }
+                if (_state.obstacles[i][ind - 1] && 
+                    (cs == LOST_DUE_TO_TIME || cs == LOST_DUE_TO_WRONG_ACTION)) {
+                    for (int x = 0; x < _state.queues.size(); x++) {
+                        int ind2 = _getActiveIndexOfQueue(x);
+
+                        if (x != i && ind2 > 0) {
+                            _state.wrongActions[x][ind2] = true;
+                        }
+                    }
+                    
+                }
             }
         }
     }
@@ -181,6 +193,9 @@ ptr<Timer> GameStateController::getLevelTimer() const {
     return _state.levelTimer;
 }
 
+bool GameStateController::getIsObstacle(uint q, uint c) const {
+    return _state.obstacles[q][c];
+}
 void GameStateController::clearColor(uint q, uint c, uint colorInd) {
     vec<uint> &colors = _state.queues[q][c];
     auto it = begin(colors);

@@ -72,6 +72,9 @@ public:
     /** Get the level timer. */
     ptr<Timer> getLevelTimer() const;
 
+    /** Get if the shape is an obstacle or not*/
+    bool getIsObstacle(uint q, uint c) const;
+
     /** Clear a color on a canvas. */
     void clearColor(uint q, uint c, uint colorInd);
 
