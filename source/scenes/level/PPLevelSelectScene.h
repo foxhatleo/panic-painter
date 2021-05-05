@@ -24,9 +24,14 @@ private:
 
     string _worldName;
 
-    string _levelSelected;
+    string _levelNum;
 
-    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
+    /** Safe Space */
+    Rect _safe;
+    Size _sceneSize;
+    Vec2 _offsetInSafe;
+
+    void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene, const char* worldName);
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 
@@ -49,9 +54,7 @@ public:
         return _state;
     }
 
-    string getLevel() {
-        return _levelSelected;
-    }
+    string getLevel();
 
     void loadWorld(const char* levelName);
 

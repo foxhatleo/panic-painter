@@ -16,7 +16,7 @@ ptr<CanvasBlock> CanvasBlock::alloc(
 
 void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state) {
 #ifdef VIEW_DEBUG
-    auto n = PolygonNode::to(Rect(Vec2::ZERO, getContentSize()));
+    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
     addChild(n);
 #endif

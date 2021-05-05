@@ -1,0 +1,103 @@
+{
+    "scene2s": {
+      "levelselectscene": {
+        "type": "Node",
+        "comment"   : "This is the root node of the scene for level select",
+        "format": {
+          "type": "Anchored"
+        },
+        "children": {
+          "1": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "1",
+                    "texture": "museum-button-1"
+                },
+                "anchor" : [0.5, 0.5]
+            },
+            "layout": {
+              "x_offset": -0.3,
+              "y_offset": -0.02
+            }
+          },
+          "2": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "2",
+                    "texture": "museum-button-2"
+                },
+                "anchor" : [0.5, 0.5]
+            },
+            "layout": {
+              "x_offset": -0.15,
+              "y_offset": -0.02
+            }
+          },
+          "3": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "3",
+                    "texture": "museum-button-1"
+                },
+                "anchor" : [0.5, 0.5]
+            },
+            "layout": {
+              "x_offset": 0.0,
+              "y_offset": -0.02
+            }
+          },
+          "4": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "4",
+                    "texture": "museum-button-2"
+                },
+                "anchor" : [0.5, 0.5]
+            },
+            "layout": {
+              "x_offset": 0.15,
+              "y_offset": -0.02
+            }
+          },
+          "5": {
+            "type"   : "Widget",
+            "data"   : {
+                "key" : "textbutton",
+                "variables" : {
+                    "text": "5",
+                    "texture": "museum-button-1"
+                }
+            },
+            "layout": {
+              "x_offset": 0.3,
+              "y_offset": -0.02
+            }
+          },
+          "menubutton": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "backbutton"
+                  }
+                }
+              }
+          }
+        }
+    }
+  }
+}

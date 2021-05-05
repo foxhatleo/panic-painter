@@ -183,6 +183,12 @@
     "city-bg": {
       "file": "textures/level-backgrounds/city.png"
     },
+    "house-bg": {
+      "file": "textures/level-backgrounds/home.png"
+    },
+    "island-bg": {
+      "file": "textures/level-backgrounds/island.png"
+    },
     "feedbackno": {
       "file": "textures/feedbackno.png"
     },
