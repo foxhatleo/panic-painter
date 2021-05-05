@@ -77,9 +77,6 @@ void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
 
         _state.canvasTimers.push_back(queueTimers);
     }
-
-    // Finally, set the level timer too.
-    _state.levelTimer = Timer::alloc(levelTime);
 }
 
 void GameStateController::_jsonv1_load(const json_t &json) {
@@ -100,7 +97,6 @@ void GameStateController::loadJson(const json_t &json) {
 }
 
 void GameStateController::update(float timestep) {
-    _state.levelTimer->update(timestep);
     for (uint i = 0, j = _state.queues.size(); i < j; i++) {
         // For each queue, update the timer of the active canvas only.
         int ind = _getActiveIndexOfQueue(i);
@@ -189,13 +185,10 @@ ptr<Timer> GameStateController::getTimer(uint q, uint c) const {
     return _state.canvasTimers[q][c];
 }
 
-ptr<Timer> GameStateController::getLevelTimer() const {
-    return _state.levelTimer;
-}
-
 bool GameStateController::getIsObstacle(uint q, uint c) const {
     return _state.obstacles[q][c];
 }
+
 void GameStateController::clearColor(uint q, uint c, uint colorInd) {
     vec<uint> &colors = _state.queues[q][c];
     auto it = begin(colors);
