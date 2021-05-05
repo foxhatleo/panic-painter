@@ -138,15 +138,11 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     removeAllChildren();
     resetState();
 
-    // Load directory
-    string header = "scenes/world-";
-    string suffix = ".json";
-
     _safe = Application::get()->getSafeBounds();
     _sceneSize = Application::get()->getDisplaySize();
 
     // Get scene
-    suffix = "selectscene";
+    string suffix = "selectscene";
     _assets->loadDirectory("scenes/levelselect.json");
     _scene = _assets->get<scene2::SceneNode>("levelselectscene");
     _scene->setContentSize(_sceneSize);

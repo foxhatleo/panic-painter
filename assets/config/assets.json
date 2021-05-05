@@ -267,11 +267,17 @@
     "museum-button-2": {
       "file": "textures/levelselect/level-red-2.png"
     },
-    "beach-button-1": {
+    "island-button-1": {
       "file": "textures/levelselect/level-brown-1.png"
     },
-    "beach-button-2": {
+    "island-button-2": {
       "file": "textures/levelselect/level-brown-2.png"
+    },
+    "house-button-1": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "house-button-2": {
+      "file": "textures/levelselect/level-blue-2.png"
     },
     "space-button-1": {
       "file": "textures/levelselect/level-purple-1.png"
@@ -329,7 +335,17 @@
     "space-2" : "levels/space-2.json",
     "space-3" : "levels/space-3.json",
     "space-4" : "levels/space-4.json",
-    "space-5" : "levels/space-5.json"
+    "space-5" : "levels/space-5.json",
+    "island-1" : "levels/island-1.json",
+    "island-2" : "levels/island-2.json",
+    "island-3" : "levels/island-3.json",
+    "island-4" : "levels/island-4.json",
+    "island-5" : "levels/island-5.json",
+    "house-1" : "levels/house-1.json",
+    "house-2" : "levels/house-2.json",
+    "house-3" : "levels/house-3.json",
+    "house-4" : "levels/house-4.json",
+    "house-5" : "levels/house-5.json"
   },
   "fonts": {
     "roboto": {
