@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "utils/PPTimer.h"
+#include "utils/PPAnimation.h"
 
 class DangerBar : public SceneNode {
 private:
@@ -12,7 +13,7 @@ private:
 
     ptr<PolygonNode> _levelProgressBarBackground;
 
-    float _progressBarWidth;
+    float _progress;
 
     const asset_t &_assets;
 
@@ -20,11 +21,13 @@ private:
 
 public:
     explicit DangerBar(const asset_t &assets) :
-        _assets(assets), _progressBarWidth(0) {};
+        _assets(assets), _progress(0) {};
 
     static ptr<DangerBar> alloc(
         const asset_t &assets,
         const Rect &bounds);
+
+    Vec2 getDangerBarPoint();
 
     void update(float progress);
 };

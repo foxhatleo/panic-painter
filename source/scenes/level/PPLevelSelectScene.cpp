@@ -71,7 +71,7 @@ void LevelSelectScene::activateUI(
                 }
             });
             // Set texture based on world and even/odd
-            
+
             int levelNum;
             stringstream s;
             s << button->getName();
@@ -91,16 +91,18 @@ void LevelSelectScene::activateUI(
 
             // activate button
             button->activate();
-            
+
             // deactivate button if no level associated
             string spacer = "-";
             if (_assets->get<JsonValue>(_worldName + spacer + button->getName().c_str()) == NULL) {
                 // Hides & deactivates buttons that don't have levels associated
                 button->setVisible(false);
                 button->deactivate();
+            } else {
+                button->setVisible(true);
             }
         }
-        
+
     }
     else {
         // Go deeper

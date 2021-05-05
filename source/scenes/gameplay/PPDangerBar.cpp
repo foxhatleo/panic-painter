@@ -28,8 +28,8 @@ void DangerBar::_setup() {
         _assets->get<Texture>("level-timer-foreground"), boundingRect);
     _levelProgressBar->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     _levelProgressBar->setPosition(0, getHeight() - 30);
-
-    _progressBarWidth = getWidth();
+    _levelProgressBar->setContentSize(getWidth(), 40);
+    _levelProgressBar->setScale(0, 1);
 
     addChild(_levelProgressBarBackground);
     addChild(_levelProgressBar);
@@ -37,7 +37,16 @@ void DangerBar::_setup() {
 }
 
 void DangerBar::update(float progress) {
-    _levelProgressBar->setContentSize(progress * _progressBarWidth, 40);
+    _progress = progress;
+    Animation::to(_levelProgressBar, .2f, {
+        {"scaleX", progress}
+    });
+}
+
+Vec2 DangerBar::getDangerBarPoint() {
+    return _levelProgressBar->getNodeToWorldTransform().transform(
+        Vec2(getWidth() * _progress, 0)
+        );
 }
 
 
