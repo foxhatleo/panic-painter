@@ -2,6 +2,8 @@
 
 #define SCENE_SIZE_W 1024
 #define SCENE_SIZE_H 576
+#define BASE_SCALE 0.5
+#define BASE_LEVEL_SCALE 1
 
 bool LevelSelectScene::init(const asset_t &assets) {
 
@@ -37,8 +39,20 @@ void LevelSelectScene::activateUI(
         scene);
 
     if (button != nullptr) {
-        //CULog("Activating button %s", button->getName().c_str());
+        // Set button sizing
+        Size scale = _safe.size;
+        if (_sceneSize.width / SCENE_SIZE_W > _sceneSize.height / SCENE_SIZE_H) {
+            scale *= (SCENE_SIZE_H / _sceneSize.height);
+        }
+        else {
+            scale *= (SCENE_SIZE_W / _sceneSize.width);
+        }
+
         if (button->getName() == "menubutton") {
+            button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+            button->setPosition(0, _offsetInSafe.y + _safe.size.height);
+            button->setScale(BASE_SCALE *
+                _safe.size.height / SCENE_SIZE_H);
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _state = L_BACK;
@@ -47,14 +61,17 @@ void LevelSelectScene::activateUI(
             button->activate();
         }
         else {
+            button->setScale(BASE_LEVEL_SCALE *
+                _safe.size.height / SCENE_SIZE_H);
             // Set listener
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _levelNum = name;
                     _state = L_SELECTED;
                 }
-                });
+            });
             // Set texture based on world and even/odd
+            
             int levelNum;
             stringstream s;
             s << button->getName();
@@ -62,19 +79,18 @@ void LevelSelectScene::activateUI(
             if (levelNum % 2 == 1) {
                 string suffix = "-button-1";
                 ptr<scene2::PolygonNode> menubutton = std::dynamic_pointer_cast<scene2::PolygonNode>(
-                    button->getChildByName("patchtext")->getChildByName("menubutton"));
+                    button->getChildByName("menubutton"));
                 menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
             }
             else {
                 string suffix = "-button-2";
                 ptr<scene2::PolygonNode> menubutton = std::dynamic_pointer_cast<scene2::PolygonNode>(
-                    button->getChildByName("patchtext")->getChildByName("menubutton"));
+                    button->getChildByName("menubutton"));
                 menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
             }
 
             // activate button
             button->activate();
-
             
             // deactivate button if no level associated
             string spacer = "-";
@@ -84,6 +100,7 @@ void LevelSelectScene::activateUI(
                 button->deactivate();
             }
         }
+        
     }
     else {
         // Go deeper
@@ -122,37 +139,22 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     // Load directory
     string header = "scenes/world-";
     string suffix = ".json";
-    //_assets->loadDirectory(header + worldName + suffix);
 
-    Rect safe = Application::get()->getSafeBounds();
-    float scale = 1;
-    Vec2 offsetInSafe = Vec2::ZERO;
-
-    if (safe.size.width / SCENE_SIZE_W > safe.size.height / SCENE_SIZE_H) {
-        offsetInSafe.x = (safe.size.width - SCENE_SIZE_W * safe.size.height /
-                                            SCENE_SIZE_H) / 2;
-        scale = (safe.size.height / SCENE_SIZE_H);
-    } else {
-        offsetInSafe.y = (safe.size.height - SCENE_SIZE_H * safe.size.width /
-                                             SCENE_SIZE_W) / 2;
-        scale = (safe.size.width / SCENE_SIZE_W);
-    }
+    _safe = Application::get()->getSafeBounds();
+    _sceneSize = Application::get()->getDisplaySize();
 
     // Get scene
     suffix = "selectscene";
-    _assets->loadDirectory("scenes/worldselect.json");
     _assets->loadDirectory("scenes/levelselect.json");
     _scene = _assets->get<scene2::SceneNode>("levelselectscene");
-    _scene->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _scene->setScale(scale);
-    _scene->setContentSize(Size(SCENE_SIZE_W, SCENE_SIZE_H));
+    _scene->setContentSize(_sceneSize);
+    _scene->setPosition(_safe.origin);
     _scene->doLayout(); // Repositions the HUD
-    _scene->setPosition(safe.origin + offsetInSafe);
 
     // Initialize background
     suffix = "-bg";
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>(worldName + suffix));
-    background->setContentSize(Application::get()->getDisplaySize());
+    background->setContentSize(_sceneSize);
     addChild(background);
 
     // Initialize buttons

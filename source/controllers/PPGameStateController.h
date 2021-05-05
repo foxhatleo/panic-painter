@@ -5,6 +5,7 @@
 #include "utils/PPTimer.h"
 #include "models/PPGameState.h"
 #include "controllers/PPGlobalConfigController.h"
+#include "controllers/PPSaveController.h"
 
 /**
  * GameStateController initializes and modifies game state.
@@ -86,7 +87,6 @@ public:
     
     /** Get the number of canvases that fulfill one of the score metrics. */
     uint getScoreMetric(string type) const;
-    
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

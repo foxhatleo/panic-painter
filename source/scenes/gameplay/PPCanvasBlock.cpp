@@ -16,7 +16,7 @@ ptr<CanvasBlock> CanvasBlock::alloc(
 
 void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state, bool isObstacle) {
 #ifdef VIEW_DEBUG
-    auto n = PolygonNode::to(Rect(Vec2::ZERO, getContentSize()));
+    auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
     addChild(n);
 #endif
@@ -26,9 +26,9 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _initialColorNumber = numCanvasColors;
     /*string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2",
                            "dog-1", "dog-2", "dog-3", "frog", "octopus"};*/
-    string characters[] = { "husky", "samoyed", "cat1", "cat2"};
-    //Temporary fix until animation is complete
-    int p = Random::getInstance()->getInt(4 - 1);
+
+    string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", "octo"};
+    int p = Random::getInstance()->getInt(6 - 1);
     if (isObstacle) {
         _texture_array[0] = assets->get<Texture>("obstacle-inactive");
         _texture_array[1] = assets->get<Texture>("obstacle-active");
