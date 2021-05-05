@@ -32,6 +32,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     if (isObstacle) {
         _texture_array[0] = assets->get<Texture>("obstacle-inactive");
         _texture_array[1] = assets->get<Texture>("obstacle-active");
+        _texture_array[2] = assets->get<Texture>("obstacle-explode");
     }
     else {
         _texture_array[0] = assets->get<Texture>(characters[p] + "-blink");
@@ -105,8 +106,13 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
     _updateFrame++;
     int value = _updateFrame % (Random::getInstance()->getInt(99) + 12);
     if (_updateFrame % 6 == 0 &&_isObstacle) {
-        if (_isActive && _bg->getFrame() == _bg->getSize() - 1 && _angerLevel == 0) {
-            _angerLevel = 1; 
+        if (_isActive  && _bg->getFrame() == _bg->getSize() - 1) {
+            if (_angerLevel == 0 && timer->timeLeft() < 9) {
+                _angerLevel = 1;
+            }
+            else if (timer->timeLeft() < 4.70) {
+                _angerLevel = 2;
+            }
             _bg->setTexture(_texture_array[_angerLevel]);
             _bg->setFrame(0);
         }

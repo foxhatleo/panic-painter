@@ -109,10 +109,13 @@
       "file": "textures/characters/cat2_very_angry.png"
     },
     "obstacle-inactive": {
-      "file": "textures/characters/octo_blink.png"
+      "file": "textures/characters/flower_inactive.png"
     },
     "obstacle-active": {
-      "file": "textures/characters/octo_very_angry.png"
+      "file": "textures/characters/flower_active.png"
+    },
+    "obstacle-explode": {
+      "file": "textures/characters/flower_explode.png"
     },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
