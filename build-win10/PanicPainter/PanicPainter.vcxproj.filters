@@ -208,5 +208,6 @@
     <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h">
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
 </Project>

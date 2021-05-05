@@ -350,11 +350,11 @@
   "fonts": {
     "roboto": {
       "file": "fonts/Roboto-Regular.ttf",
-      "size": 40
+      "size": 30
     },
     "jua": {
       "file": "fonts/Jua-Regular.ttf",
-      "size": 40
+      "size": 120
     }
   },
   "widgets": {

@@ -260,6 +260,7 @@
     <ClInclude Include="..\..\source\utils\PPTimer.h" />
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
     <ClInclude Include="..\..\source\utils\PPRandom.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
