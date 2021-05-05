@@ -14,26 +14,25 @@
                 "downnode": "down",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0.5, 0.5],
-                "scale": 0.4
+                "anchor" : [0.5, 0.5]
               },
               "children": {
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "colorblindoff"
+                    "texture": "offbutton"
                   }
                 },
                 "down": {
                     "type": "Image",
                     "data": {
-                      "texture": "colorblindon"
+                      "texture": "onbutton"
                     }
                 }
               },
               "layout": {
-                "x_offset": 0.0,
-                "y_offset": 0.3
+                "x_offset": 0.12,
+                "y_offset": 0.25
               }
             },
             "leftPalette": {
@@ -43,8 +42,7 @@
                 "downnode": "down",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0.5, 0.5],
-                "scale": 0.4
+                "anchor" : [0.5, 0.5]
               },
               "children": {
                 "up": {
@@ -54,15 +52,43 @@
                   }
                 },
                 "down": {
-                      "type": "Image",
-                      "data": {
-                        "texture": "paletteleft"
-                      }
+                  "type": "Image",
+                  "data": {
+                    "texture": "paletteleft"
+                  }
                 }
               },
               "layout": {
-                "x_offset": 0.0,
-                "y_offset": 0.1
+                "x_offset": 0.125,
+                "y_offset": 0.075
+              }
+            },
+            "music": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "downnode": "down",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0.5, 0.5]
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "offbutton"
+                  }
+                },
+                "down": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "onbutton"
+                    }
+                }
+              },
+              "layout": {
+                "x_offset": 0.12,
+                "y_offset": -0.1
               }
             },
             "reset": {
@@ -71,8 +97,7 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [0.5, 0.5],
-                  "scale": 0.4
+                  "anchor" : [0.5, 0.5]
                 },
                 "children": {
                   "up": {
@@ -83,8 +108,8 @@
                   }
                 },
                 "layout": {
-                  "x_offset": 0.0,
-                  "y_offset": -0.1
+                  "x_offset": -0.1,
+                  "y_offset": -0.3
                 }
             },
             "menubutton": {
@@ -93,9 +118,7 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [2.4, -1.0],
-                  "scale"    : 0.5
-                },
+                  "anchor" : [2.4, -1.0]                },
                 "children": {
                   "up": {
                     "type": "Image",

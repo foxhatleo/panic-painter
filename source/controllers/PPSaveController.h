@@ -26,6 +26,9 @@ private:
     // Palette position. True means left side, false means right side
     bool _paletteLeft;
 
+    // True means music is on, false means off
+    bool _music;
+
     float _sfxVolume;
 
     float _bgmVolume;
@@ -68,6 +71,8 @@ public:
     void setSfxVolume(float value);
 
     void setBgmVolume(float value);
+
+    void setMusic(bool on);
 
     void setColorblind(bool value);
 

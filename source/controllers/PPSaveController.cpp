@@ -114,6 +114,11 @@ void SaveController::setPaletteLeft(bool value) {
     _flush();
 }
 
+void SaveController::setMusic(bool on) {
+    _music = on;
+    _flush();
+}
+
 void SaveController::resetAll() {
     _levels.clear();
     _flush();

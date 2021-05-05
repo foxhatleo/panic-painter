@@ -18,6 +18,10 @@ private:
 
     ptr<cugl::scene2::SceneNode> _scene;
 
+    Rect _safe;
+    Size _sceneSize;
+    Vec2 _offsetInSafe;
+
     void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);

@@ -249,11 +249,11 @@
     "resetbutton": {
       "file": "textures/settings/resetbutton.png"
     },
-    "colorblindon": {
-      "file": "textures/settings/colorblindon.png"
+    "offbutton": {
+      "file": "textures/settings/offbutton.png"
     },
-    "colorblindoff": {
-      "file": "textures/settings/colorblindoff.png"
+    "onbutton": {
+      "file": "textures/settings/onbutton.png"
     },
     "paletteleft": {
       "file": "textures/settings/paletteleft.png"
@@ -261,8 +261,8 @@
     "paletteright": {
       "file": "textures/settings/paletteright.png"
     },
-    "settings-bg": {
-      "file": "textures/settings/settings-bg.png"
+    "settings-tray": {
+      "file": "textures/settings/settings-tray.png"
     }
   },
   "jsons": {
