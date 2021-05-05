@@ -20,16 +20,25 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.queues.clear();
     _state.wrongActions.clear();
     _state.recorded.clear();
+    _state.obstacles.clear(); 
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
         vec<vec<uint>> queue_s;
         vec<bool> wa_queue_s;
         vec<bool> r_queue_s;
+        vec<bool> obs_queue_s;
         // Build canvas of each queue.
         for (const auto &canvas : queue->asArray()) {
             const auto r = canvas->asIntArray();
             // This is to cast vec<int> to vec<uint>.
             vec<uint> colors(r.begin(), r.end());
+            if (colors[colors.size() - 1] == ((uint)10)) {
+                obs_queue_s.push_back(true);
+                colors.pop_back();
+            }
+            else {
+                obs_queue_s.push_back(false);
+            }
             queue_s.push_back(colors);
             wa_queue_s.push_back(false);
             r_queue_s.push_back(false);
@@ -37,6 +46,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
         _state.wrongActions.push_back(wa_queue_s);
         _state.recorded.push_back(r_queue_s);
         _state.queues.push_back(queue_s);
+        _state.obstacles.push_back(obs_queue_s);
     }
 }
 
@@ -111,6 +121,17 @@ void GameStateController::update(float timestep) {
                 } else {
                     _state.scoreTracker["correct"]++;
                 }
+                if (_state.obstacles[i][ind - 1] && 
+                    (cs == LOST_DUE_TO_TIME || cs == LOST_DUE_TO_WRONG_ACTION)) {
+                    for (int x = 0; x < _state.queues.size(); x++) {
+                        int ind2 = _getActiveIndexOfQueue(x);
+
+                        if (x != i && ind2 > 0) {
+                            _state.wrongActions[x][ind2] = true;
+                        }
+                    }
+                    
+                }
             }
         }
     }
@@ -123,7 +144,8 @@ CanvasState GameStateController::getCanvasState(uint q, uint c) const {
     if (_state.wrongActions[q][c]) return LOST_DUE_TO_WRONG_ACTION;
 
         // If the timer is done, then the canvas is lost.
-    else if (_state.canvasTimers[q][c]->finished()) return LOST_DUE_TO_TIME;
+    else if (_state.canvasTimers[q][c]->finished() || (_state.obstacles[q][c] == true &&
+        _state.canvasTimers[q][c]->timeLeft() < 2.0)) return LOST_DUE_TO_TIME;
 
         // If no color is left, then it is completed.
     else if (getColorsOfCanvas(q, c).empty()) return DONE;
@@ -171,6 +193,9 @@ ptr<Timer> GameStateController::getLevelTimer() const {
     return _state.levelTimer;
 }
 
+bool GameStateController::getIsObstacle(uint q, uint c) const {
+    return _state.obstacles[q][c];
+}
 void GameStateController::clearColor(uint q, uint c, uint colorInd) {
     vec<uint> &colors = _state.queues[q][c];
     auto it = begin(colors);
