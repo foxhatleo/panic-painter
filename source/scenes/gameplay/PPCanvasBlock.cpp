@@ -110,7 +110,7 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
             if (_angerLevel == 0 && timer->timeLeft() < 9) {
                 _angerLevel = 1;
             }
-            else if (timer->timeLeft() < 4.70) {
+            else if (timer->timeLeft() < 5) {
                 _angerLevel = 2;
             }
             _bg->setTexture(_texture_array[_angerLevel]);
