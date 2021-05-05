@@ -143,6 +143,8 @@ void GameScene::update(float timestep) {
         _pauseRequest = true;
     }
 
+    _dangerBar->update((float)_state.getScoreMetric("wrongAction") / MISTAKE_ALLLOWED);
+
     set<pair<uint, uint>> activeCanvases;
 
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
@@ -158,11 +160,12 @@ void GameScene::update(float timestep) {
             if ((state == LOST_DUE_TO_TIME ||
             state == LOST_DUE_TO_WRONG_ACTION ||
             state == DONE) && ps == ACTIVE) {
-                Feedback::FeedbackType t = (state == DONE) ?
-                                           Feedback::FeedbackType::SUCCESS :
-                                           Feedback::FeedbackType::FAILURE;
+                FeedbackType t = (state == DONE) ?
+                                           FeedbackType::SUCCESS :
+                                           FeedbackType::FAILURE;
                 _feedback->add(
                     _canvases[i][i2]->getFeedbackStartPointInGlobalCoordinates(),
+                    _dangerBar->getDangerBarPoint(),
                     t);
             }
 
@@ -171,6 +174,7 @@ void GameScene::update(float timestep) {
         }
     }
 
+    _feedback->update(timestep);
     _palette->update();
     Rect canvasArea = Application::get()->getSafeBounds();
     canvasArea.origin.x += canvasArea.size.width * PALETTE_WIDTH;
@@ -182,7 +186,6 @@ void GameScene::update(float timestep) {
                     _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
-    _dangerBar->update((float)_state.getScoreMetric("wrongAction") / MISTAKE_ALLLOWED);
 
     // Check if the level is complete
     if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") == MISTAKE_ALLLOWED) &&
