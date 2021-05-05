@@ -51,6 +51,7 @@ void GameScene::loadLevel(const char *levelName) {
         vec<ptr<Canvas>> queue;
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
             auto bound = safeArea;
+            bool isObstacle = _state.getIsObstacle(i, i2);
             bound.origin.x += PALETTE_WIDTH * bound.size.width;
             bound.size.width *= (1 - PALETTE_WIDTH);
             bound.size.height *= (1 - TIMER_HEIGHT);
@@ -60,7 +61,8 @@ void GameScene::loadLevel(const char *levelName) {
                 i2,
                 j,
                 bound,
-                _state
+                _state, 
+                isObstacle
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -186,8 +188,6 @@ void GameScene::update(float timestep) {
     if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") == MISTAKE_ALLLOWED) &&
     !_congratulations) {
         //Gradually clear out the splatters
-         _splash->update(timestep,
-                    Color4::CLEAR, Vec2::ZERO);
         _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));

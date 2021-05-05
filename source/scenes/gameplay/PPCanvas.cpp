@@ -12,10 +12,11 @@ ptr<Canvas> Canvas::alloc(const asset_t &assets,
                   uint canvasInd,
                   uint numOfQueues,
                   const Rect &bound,
-                  const GameStateController &state) {
+                  const GameStateController &state, 
+                  bool isObstacle) {
     auto result = make_shared<Canvas>();
     if (result->initWithBounds(bound))
-        result->_setup(assets, state.getColors(), state.getTimer(queueInd, canvasInd), queueInd, numOfQueues, (uint) state.getColorsOfCanvas(queueInd, canvasInd).size(), state);
+        result->_setup(assets, state.getColors(), state.getTimer(queueInd, canvasInd), queueInd, numOfQueues, (uint) state.getColorsOfCanvas(queueInd, canvasInd).size(), state, isObstacle);
     else
         return nullptr;
     return result;
@@ -23,7 +24,7 @@ ptr<Canvas> Canvas::alloc(const asset_t &assets,
 
 void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
                     const ptr<Timer> &timer, uint queueInd, uint numOfQueues, const int numCanvasColors,
-                    const GameStateController &state) {
+                    const GameStateController &state, bool isObstacle) {
     _timer = timer;
 
     float containerWidth = getWidth();
@@ -39,7 +40,7 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _startingY = _yForStandBy + getHeight() * .1f;
     _yAfterLeaving = _yForActive - getHeight() * .1f;
 
-    _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors, state);
+    _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors, state, isObstacle);
     _block->setScale(MINI_SCALE, MINI_SCALE);
     _block->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
     _block->setPosition(laneX, _startingY);
