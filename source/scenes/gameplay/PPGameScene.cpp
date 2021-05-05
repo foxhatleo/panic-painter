@@ -140,10 +140,12 @@ void GameScene::update(float timestep) {
     auto &input = InputController::getInstance();
     if (input.justReleased() && input.isJustTap() &&
         InputController::inScene(input.currentPoint(), _backBtnArea)) {
+        _splash->clear();
         _pauseRequest = true;
     }
 
-    _dangerBar->update((float)_state.getScoreMetric("wrongAction") / MISTAKE_ALLLOWED);
+    _dangerBar->update(min(1.0f, (float)_state.getScoreMetric("wrongAction") /
+    MISTAKE_ALLLOWED));
 
     set<pair<uint, uint>> activeCanvases;
 
@@ -188,8 +190,10 @@ void GameScene::update(float timestep) {
     _action->update(activeCanvases, _palette->getSelectedColor());
 
     // Check if the level is complete
-    if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") == MISTAKE_ALLLOWED) &&
+    if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") >
+    MISTAKE_ALLLOWED) &&
     !_congratulations) {
+        _splash->clear();
         //Gradually clear out the splatters
         _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(

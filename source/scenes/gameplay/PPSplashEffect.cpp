@@ -38,6 +38,14 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     }
 }
 
+void SplashEffect::clear() {
+    _ticker = 0;
+    for (auto &i : _queue) {
+        i.point = Vec2::ZERO;
+        i.color = Color4(0, 0, 0, 0);
+    }
+}
+
 void SplashEffect::draw(const std::shared_ptr<SpriteBatch> &batch,
                         const Mat4 &transform, Color4 tint) {
     batch->setViewport(Vec2(Application::get()->getDisplaySize()));
