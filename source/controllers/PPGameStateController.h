@@ -69,9 +69,6 @@ public:
     /** Get the timer of a canvas. */
     ptr<Timer> getTimer(uint q, uint c) const;
 
-    /** Get the level timer. */
-    ptr<Timer> getLevelTimer() const;
-
     /** Clear a color on a canvas. */
     void clearColor(uint q, uint c, uint colorInd);
 

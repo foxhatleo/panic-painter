@@ -66,9 +66,6 @@ struct GameState {
      * as smart pointers so the timer itself can be updated freely.
      */
     vec<vec<ptr<Timer>>> canvasTimers;
-
-    /** Timer of the level. */
-    ptr<Timer> levelTimer;
 };
 
 #endif //PANICPAINTER_PPGAMESTATE_H

@@ -2,6 +2,7 @@
 
 #define PALETTE_WIDTH .1f
 #define TIMER_HEIGHT .1f
+#define MISTAKE_ALLLOWED 10
 
 void GameScene::dispose() {
     Scene2::dispose();
@@ -21,7 +22,7 @@ void GameScene::loadLevel(const char *levelName) {
     removeAllChildren();
 
     _congratulations.reset();
-    _globalTimer.reset();
+    _dangerBar.reset();
     _palette.reset();
     _action.reset();
 
@@ -95,7 +96,7 @@ void GameScene::loadLevel(const char *levelName) {
     gtBound.size.height *= TIMER_HEIGHT;
     gtBound.size.width -=
         gtBound.getMaxX() - _backBtn->getBoundingBox().getMinX();
-    _globalTimer = GlobalTimer::alloc(_assets, gtBound);
+    _dangerBar = DangerBar::alloc(_assets, gtBound);
 
     // change position to keep it to the left of the screen.
     _palette =
@@ -115,7 +116,7 @@ void GameScene::loadLevel(const char *levelName) {
                                 _assets);
 
     addChild(_splash);
-    addChild(_globalTimer);
+    addChild(_dangerBar);
     addChild(_palette);
     addChild(_feedback);
 
@@ -179,10 +180,11 @@ void GameScene::update(float timestep) {
                     _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
-    _globalTimer->update(_state.getLevelTimer());
+    _dangerBar->update((float)_state.getScoreMetric("wrongAction") / MISTAKE_ALLLOWED);
 
     // Check if the level is complete
-    if (activeCanvases.empty() && !_congratulations) {
+    if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") == MISTAKE_ALLLOWED) &&
+    !_congratulations) {
         //Gradually clear out the splatters
          _splash->update(timestep,
                     Color4::CLEAR, Vec2::ZERO);

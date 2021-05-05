@@ -1,10 +1,10 @@
-#ifndef PANICPAINTER_PPGLOBALTIMER_H
-#define PANICPAINTER_PPGLOBALTIMER_H
+#ifndef PANICPAINTER_PPDANGERBAR_H
+#define PANICPAINTER_PPDANGERBAR_H
 
 #include "utils/PPHeader.h"
 #include "utils/PPTimer.h"
 
-class GlobalTimer : public SceneNode {
+class DangerBar : public SceneNode {
 private:
     ptr<Label> _levelTimerText;
 
@@ -19,14 +19,14 @@ private:
     void _setup();
 
 public:
-    explicit GlobalTimer(const asset_t &assets) :
+    explicit DangerBar(const asset_t &assets) :
         _assets(assets), _progressBarWidth(0) {};
 
-    static ptr<GlobalTimer> alloc(
+    static ptr<DangerBar> alloc(
         const asset_t &assets,
         const Rect &bounds);
 
-    void update(const ptr<Timer> &levelTimer);
+    void update(float progress);
 };
 
-#endif //PANICPAINTER_PPGLOBALTIMER_H
+#endif //PANICPAINTER_PPDANGERBAR_H

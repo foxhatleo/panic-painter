@@ -58,9 +58,6 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
@@ -107,6 +104,9 @@
       <Filter>Scenes\Level</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPDangerBar.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
@@ -172,9 +172,6 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
@@ -197,6 +194,9 @@
       <Filter>Scenes\Level</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPDangerBar.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
