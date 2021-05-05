@@ -20,6 +20,7 @@ void SaveController::_load() {
     json_t v = r->readJson();
     if (v->getInt("version", 1) == 1) {
         _colorblind = v->getBool("colorblind", false);
+        _paletteLeft = v->getBool("left", true);
         _sfxVolume = v->getFloat("sfxVolume", 1);
         _bgmVolume = v->getFloat("bgmVolume", 1);
         auto l = v->get("levels");
@@ -37,6 +38,7 @@ void SaveController::_load() {
 void SaveController::_flush() {
     json_t v = JsonValue::alloc(JsonValue::Type::ObjectType);
     v->appendValue("colorblind", _colorblind);
+    v->appendValue("paletteLeft", _paletteLeft);
     v->appendValue("sfxVolume", _sfxVolume);
     v->appendValue("bgmVolume", _bgmVolume);
     json_t l = JsonValue::alloc(JsonValue::Type::ObjectType);
@@ -73,6 +75,10 @@ bool SaveController::getColorblind() const {
     return _colorblind;
 }
 
+bool SaveController::getPaletteLeft() const {
+    return _paletteLeft;
+}
+
 void SaveController::unlock(const string &level) {
     _ensureLevel(level).locked = false;
     _flush();
@@ -100,6 +106,16 @@ void SaveController::setBgmVolume(float value) {
 
 void SaveController::setColorblind(bool value) {
     _colorblind = value;
+    _flush();
+}
+
+void SaveController::setPaletteLeft(bool value) {
+    _paletteLeft = value;
+    _flush();
+}
+
+void SaveController::setMusic(bool on) {
+    _music = on;
     _flush();
 }
 

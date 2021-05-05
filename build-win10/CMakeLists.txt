@@ -45,6 +45,8 @@ set(PP_FILES
         ../source/scenes/gameplay/PPSplashEffect.cpp
         ../source/scenes/menu/PPMenuScene.h
         ../source/scenes/menu/PPMenuScene.cpp
+        ../source/scenes/settings/PPSettingsScene.h
+        ../source/scenes/settings/PPSettingsScene.cpp
         ../source/scenes/level/PPLevelSelectScene.h
         ../source/scenes/level/PPLevelSelectScene.cpp
         ../source/scenes/level/PPWorldSelectScene.h

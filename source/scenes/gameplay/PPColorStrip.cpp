@@ -18,11 +18,9 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
     // Just redo the color dots. Remove them all.
     removeAllChildren();
     for (uint i = 0; i < _lastNumberOfColors; i++) {
-        #ifdef COLORBLIND_MODE
-            auto colorTexture = _assets->get<Texture>(_state.getShapeForColorIndex(canvasColors[i]));
-        #else
-            auto colorTexture = _assets->get<Texture>("color-circle");
-        #endif
+        auto colorTexture = _assets->get<Texture>("color-circle");
+        if(SaveController::getInstance()->getColorblind())
+            colorTexture = _assets->get<Texture>(_state.getShapeForColorIndex(canvasColors[i]));
         auto bg = PolygonNode::allocWithTexture(colorTexture);
         bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         bg->setContentSize(_size, _size);

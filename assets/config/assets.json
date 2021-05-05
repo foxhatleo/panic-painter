@@ -281,6 +281,24 @@
     },
     "eiffel-button-2": {
       "file": "textures/levelselect/level-yellow-2.png"
+    },
+    "resetbutton": {
+      "file": "textures/settings/resetbutton.png"
+    },
+    "offbutton": {
+      "file": "textures/settings/offbutton.png"
+    },
+    "onbutton": {
+      "file": "textures/settings/onbutton.png"
+    },
+    "paletteleft": {
+      "file": "textures/settings/paletteleft.png"
+    },
+    "paletteright": {
+      "file": "textures/settings/paletteright.png"
+    },
+    "settings-tray": {
+      "file": "textures/settings/settings-tray.png"
     }
   },
   "jsons": {
@@ -290,6 +308,7 @@
     "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
     "gameplay": "levels/gameplay.json",
+    "settings": "scenes/settings.json",
     "level1": "levels/level1.json",
     "level2": "levels/level2.json",
     "level3": "levels/level3.json",
