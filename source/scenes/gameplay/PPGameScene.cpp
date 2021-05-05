@@ -132,6 +132,9 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
+    if (_slowMode >= 9999) {
+        removeChild(_splash);
+    }
 
     if (timestep > SLOWMODE_FPS && _slowMode < SLOWMODE_THRESHOLD)
         _slowMode++;
@@ -181,12 +184,13 @@ void GameScene::update(float timestep) {
                     InputController::inScene(input.currentPoint(), canvasArea);
     if (_slowMode == SLOWMODE_THRESHOLD) {
         _slowMode = 9999;
+        _splash->update(timestep, Color4::CLEAR, Vec2::ZERO, true);
         // TODO: Add kill switch here. This will only be run once.
     } else {
         _splash->update(timestep,
                         activeCanvases.empty() ? Color4::CLEAR :
                         _state.getColors()[_palette->getSelectedColor()],
-                        pressing ? input.currentPoint() : Vec2::ZERO);
+                        pressing ? input.currentPoint() : Vec2::ZERO, false);
     }
     _action->update(activeCanvases, _palette->getSelectedColor());
     _globalTimer->update(_state.getLevelTimer());
@@ -195,7 +199,7 @@ void GameScene::update(float timestep) {
     if (activeCanvases.empty() && !_congratulations) {
         //Gradually clear out the splatters
          _splash->update(timestep,
-                    Color4::CLEAR, Vec2::ZERO);
+                    Color4::CLEAR, Vec2::ZERO, false);
         _complete = make_shared<Timer>(5);
         auto levelcomplete = PolygonNode::allocWithTexture(
             _assets->get<Texture>("levelcomplete"));

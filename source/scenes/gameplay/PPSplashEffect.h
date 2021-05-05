@@ -26,9 +26,10 @@ protected:
     uint _ticker;
 
     float _scale;
+    bool _slowMode; 
 
 public:
-    explicit SplashEffect(const asset_t &assets, float scale) :
+    explicit SplashEffect(const asset_t& assets, float scale) :
         _assets(assets), _scale(scale) {
         for (auto &i : _queue) {
             i.point = Vec2::ZERO;
@@ -42,7 +43,7 @@ public:
         const Rect &bounds,
         float scale);
 
-    void update(float timestep, Color4 currentColor, Vec2 point);
+    void update(float timestep, Color4 currentColor, Vec2 point, bool isSlowMode);
 
     void draw(const std::shared_ptr<SpriteBatch> &batch, const Mat4 &transform,
               Color4 tint) override;
