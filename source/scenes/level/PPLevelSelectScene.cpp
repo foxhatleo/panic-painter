@@ -68,7 +68,6 @@ void LevelSelectScene::activateUI(
                 if (!down) {
                     _levelNum = name;
                     _state = L_SELECTED;
-                    CULog("%s button down!", name);
                 }
             });
             // Set texture based on world and even/odd

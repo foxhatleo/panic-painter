@@ -108,6 +108,30 @@
     "cat2-emotion-3": {
       "file": "textures/characters/cat2_very_angry.png"
     },
+    "chick-blink": {
+      "file": "textures/characters/chick_blink.png"
+    },
+    "chick-emotion-1": {
+      "file": "textures/characters/chick_frown.png"
+    },
+    "chick-emotion-2": {
+      "file": "textures/characters/chick_angry.png"
+    },
+    "chick-emotion-3": {
+      "file": "textures/characters/chick_very_angry.png"
+    },
+    "octo-blink": {
+      "file": "textures/characters/octo_blink.png"
+    },
+    "octo-emotion-1": {
+      "file": "textures/characters/octo_frown.png"
+    },
+    "octo-emotion-2": {
+      "file": "textures/characters/octo_angry.png"
+    },
+    "octo-emotion-3": {
+      "file": "textures/characters/octo_very_angry.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
@@ -198,25 +222,25 @@
     "space-bg": {
       "file": "textures/level-backgrounds/space.png"
     },
-    "worldselect-city":{
+    "worldselect-city": {
       "file": "textures/levelselect/worldselect-city.png"
     },
-    "worldselect-eiffel":{
+    "worldselect-eiffel": {
       "file": "textures/levelselect/worldselect-eiffeltower.png"
     },
-    "worldselect-house":{
+    "worldselect-house": {
       "file": "textures/levelselect/worldselect-house.png"
     },
-    "worldselect-island":{
+    "worldselect-island": {
       "file": "textures/levelselect/worldselect-island.png"
     },
-    "worldselect-paint":{
+    "worldselect-paint": {
       "file": "textures/levelselect/worldselect-paint.png"
     },
-    "worldselect-museum":{
+    "worldselect-museum": {
       "file": "textures/levelselect/worldselect-museum.png"
     },
-    "worldselect-space":{
+    "worldselect-space": {
       "file": "textures/levelselect/worldselect-space.png"
     },
     "worldselect-background": {
