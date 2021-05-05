@@ -7,6 +7,8 @@
 class Feedback : public SceneNode {
     asset_t _assets;
     Rect _screen;
+    uint _combo;
+    float _timeSinceCombo;
 
     void _setup(const Rect &screen, const asset_t &assets);
 
@@ -19,7 +21,7 @@ public:
 
     void add(Vec2 at, FeedbackType type);
 
-    void update();
+    void update(float timestep);
 };
 
 #endif //PANICPAINTER_PPFEEDBACK_H

@@ -170,6 +170,7 @@ void GameScene::update(float timestep) {
         }
     }
 
+    _feedback->update(timestep);
     _palette->update();
     Rect canvasArea = Application::get()->getSafeBounds();
     canvasArea.origin.x += canvasArea.size.width * PALETTE_WIDTH;

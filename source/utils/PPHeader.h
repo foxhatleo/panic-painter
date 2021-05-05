@@ -3,6 +3,7 @@
 
 #include <cugl/cugl.h>
 #include "PPTypeDefs.h"
+#include "PPRandom.h"
 
 //#define VIEW_DEBUG
 
