@@ -10,6 +10,7 @@ SplashEffect::alloc(const asset_t &assets, const Rect &bounds, float scale) {
 void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point, bool isSlowMode) {
     // Decrease opacity of all points by a bit.
    _slowMode = isSlowMode; 
+   _noDrawCount = _slowMode ? _noDrawCount > 1 ? _noDrawCount : _noDrawCount++ : _noDrawCount;
     for (auto &i : _queue) {
         i.color.w -= (timestep / FADE_DURATION);
         if (i.color.w < 0) i.color.w = 0;
@@ -41,29 +42,35 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point, bool 
 
 void SplashEffect::draw(const std::shared_ptr<SpriteBatch> &batch,
                         const Mat4 &transform, Color4 tint) {
-    batch->setViewport(Vec2(Application::get()->getDisplaySize()));
-    if (_slowMode) {
-        batch->setSplats(
-            _queue[0].point,
-            _queue[1].point,
-            _queue[2].point,
-            _queue[3].point,
-            _queue[0].color,
-            _queue[0].color,
-            _queue[0].color,
-            _queue[0].color
-        );
-    }
-    else {
-        batch->setSplats(
-            _queue[0].point,
-            _queue[1].point,
-            _queue[2].point,
-            _queue[3].point,
-            _queue[0].color,
-            _queue[1].color,
-            _queue[2].color,
-            _queue[3].color
-        );
+    CULog("here 4 splash");
+    if (_noDrawCount < 2) {
+        CULog("here 1 splash");
+        batch->setViewport(Vec2(Application::get()->getDisplaySize()));
+        if (_slowMode) {
+            CULog("here 2 splash");
+            batch->setSplats(
+                _queue[0].point,
+                _queue[1].point,
+                _queue[2].point,
+                _queue[3].point,
+                Vec4(Color4::CLEAR),
+                Vec4(Color4::CLEAR),
+                Vec4(Color4::CLEAR),
+                Vec4(Color4::CLEAR)
+            );
+        }
+        else {
+            CULog("here 3 splash");
+            batch->setSplats(
+                _queue[0].point,
+                _queue[1].point,
+                _queue[2].point,
+                _queue[3].point,
+                _queue[0].color,
+                _queue[1].color,
+                _queue[2].color,
+                _queue[3].color
+            );
+        }
     }
 }

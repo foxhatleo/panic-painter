@@ -27,6 +27,7 @@ protected:
 
     float _scale;
     bool _slowMode; 
+    int _noDrawCount; 
 
 public:
     explicit SplashEffect(const asset_t& assets, float scale) :
