@@ -11,6 +11,7 @@
 #include "controllers/PPActionController.h"
 #include "PPSplashEffect.h"
 #include "PPFeedback.h"
+#include "PPLevelComplete.h"
 
 /**
  * This is the scene for the actual game.
