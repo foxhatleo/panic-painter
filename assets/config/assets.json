@@ -108,6 +108,39 @@
     "cat2-emotion-3": {
       "file": "textures/characters/cat2_very_angry.png"
     },
+    "obstacle-inactive": {
+      "file": "textures/characters/flower_inactive.png"
+    },
+    "obstacle-active": {
+      "file": "textures/characters/flower_active.png"
+    },
+    "obstacle-explode": {
+      "file": "textures/characters/flower_explode.png"
+    },
+    "chick-blink": {
+      "file": "textures/characters/chick_blink.png"
+    },
+    "chick-emotion-1": {
+      "file": "textures/characters/chick_frown.png"
+    },
+    "chick-emotion-2": {
+      "file": "textures/characters/chick_angry.png"
+    },
+    "chick-emotion-3": {
+      "file": "textures/characters/chick_very_angry.png"
+    },
+    "octo-blink": {
+      "file": "textures/characters/octo_blink.png"
+    },
+    "octo-emotion-1": {
+      "file": "textures/characters/octo_frown.png"
+    },
+    "octo-emotion-2": {
+      "file": "textures/characters/octo_angry.png"
+    },
+    "octo-emotion-3": {
+      "file": "textures/characters/octo_very_angry.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
@@ -183,6 +216,12 @@
     "city-bg": {
       "file": "textures/level-backgrounds/city.png"
     },
+    "house-bg": {
+      "file": "textures/level-backgrounds/home.png"
+    },
+    "island-bg": {
+      "file": "textures/level-backgrounds/island.png"
+    },
     "feedbackno": {
       "file": "textures/feedbackno.png"
     },
@@ -192,25 +231,25 @@
     "space-bg": {
       "file": "textures/level-backgrounds/space.png"
     },
-    "worldselect-city":{
+    "worldselect-city": {
       "file": "textures/levelselect/worldselect-city.png"
     },
-    "worldselect-eiffel":{
+    "worldselect-eiffel": {
       "file": "textures/levelselect/worldselect-eiffeltower.png"
     },
-    "worldselect-house":{
+    "worldselect-house": {
       "file": "textures/levelselect/worldselect-house.png"
     },
-    "worldselect-island":{
+    "worldselect-island": {
       "file": "textures/levelselect/worldselect-island.png"
     },
-    "worldselect-paint":{
+    "worldselect-paint": {
       "file": "textures/levelselect/worldselect-paint.png"
     },
-    "worldselect-museum":{
+    "worldselect-museum": {
       "file": "textures/levelselect/worldselect-museum.png"
     },
-    "worldselect-space":{
+    "worldselect-space": {
       "file": "textures/levelselect/worldselect-space.png"
     },
     "worldselect-background": {
@@ -228,11 +267,17 @@
     "museum-button-2": {
       "file": "textures/levelselect/level-red-2.png"
     },
-    "beach-button-1": {
+    "island-button-1": {
       "file": "textures/levelselect/level-brown-1.png"
     },
-    "beach-button-2": {
+    "island-button-2": {
       "file": "textures/levelselect/level-brown-2.png"
+    },
+    "house-button-1": {
+      "file": "textures/levelselect/level-blue-1.png"
+    },
+    "house-button-2": {
+      "file": "textures/levelselect/level-blue-2.png"
     },
     "space-button-1": {
       "file": "textures/levelselect/level-purple-1.png"
@@ -257,6 +302,23 @@
     },
     "3star": {
       "file": "textures/stars/3star.png"
+    "resetbutton": {
+      "file": "textures/settings/resetbutton.png"
+    },
+    "offbutton": {
+      "file": "textures/settings/offbutton.png"
+    },
+    "onbutton": {
+      "file": "textures/settings/onbutton.png"
+    },
+    "paletteleft": {
+      "file": "textures/settings/paletteleft.png"
+    },
+    "paletteright": {
+      "file": "textures/settings/paletteright.png"
+    },
+    "settings-tray": {
+      "file": "textures/settings/settings-tray.png"
     }
   },
   "jsons": {
@@ -266,6 +328,7 @@
     "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
     "gameplay": "levels/gameplay.json",
+    "settings": "scenes/settings.json",
     "level1": "levels/level1.json",
     "level2": "levels/level2.json",
     "level3": "levels/level3.json",
@@ -283,12 +346,22 @@
     "space-2" : "levels/space-2.json",
     "space-3" : "levels/space-3.json",
     "space-4" : "levels/space-4.json",
-    "space-5" : "levels/space-5.json"
+    "space-5" : "levels/space-5.json",
+    "island-1" : "levels/island-1.json",
+    "island-2" : "levels/island-2.json",
+    "island-3" : "levels/island-3.json",
+    "island-4" : "levels/island-4.json",
+    "island-5" : "levels/island-5.json",
+    "house-1" : "levels/house-1.json",
+    "house-2" : "levels/house-2.json",
+    "house-3" : "levels/house-3.json",
+    "house-4" : "levels/house-4.json",
+    "house-5" : "levels/house-5.json"
   },
   "fonts": {
     "roboto": {
       "file": "fonts/Roboto-Regular.ttf",
-      "size": 40
+      "size": 30
     },
     "roboto-mobile": {
       "file": "fonts/Roboto-Regular.ttf",
@@ -296,7 +369,7 @@
     },
     "jua": {
       "file": "fonts/Jua-Regular.ttf",
-      "size": 40
+      "size": 120
     }
   },
   "widgets": {

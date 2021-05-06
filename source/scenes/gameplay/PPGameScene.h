@@ -7,7 +7,7 @@
 #include "utils/PPAnimation.h"
 #include "PPCanvas.h"
 #include "PPColorPalette.h"
-#include "PPGlobalTimer.h"
+#include "PPDangerBar.h"
 #include "controllers/PPActionController.h"
 #include "PPSplashEffect.h"
 #include "PPFeedback.h"
@@ -30,7 +30,7 @@ private:
      */
     vec<vec<ptr<Canvas>>> _canvases;
 
-    ptr<GlobalTimer> _globalTimer;
+    ptr<DangerBar> _dangerBar;
 
     ptr<ColorPalette> _palette;
 

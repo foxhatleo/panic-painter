@@ -2,6 +2,7 @@
 
 #define PALETTE_WIDTH .1f
 #define TIMER_HEIGHT .1f
+#define MISTAKE_ALLLOWED 10
 
 void GameScene::dispose() {
     Scene2::dispose();
@@ -21,7 +22,7 @@ void GameScene::loadLevel(const char *levelName) {
     removeAllChildren();
 
     _congratulations.reset();
-    _globalTimer.reset();
+    _dangerBar.reset();
     _palette.reset();
     _action.reset();
 
@@ -50,6 +51,7 @@ void GameScene::loadLevel(const char *levelName) {
         vec<ptr<Canvas>> queue;
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
             auto bound = safeArea;
+            bool isObstacle = _state.getIsObstacle(i, i2);
             bound.origin.x += PALETTE_WIDTH * bound.size.width;
             bound.size.width *= (1 - PALETTE_WIDTH);
             bound.size.height *= (1 - TIMER_HEIGHT);
@@ -59,7 +61,8 @@ void GameScene::loadLevel(const char *levelName) {
                 i2,
                 j,
                 bound,
-                _state
+                _state, 
+                isObstacle
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -95,7 +98,7 @@ void GameScene::loadLevel(const char *levelName) {
     gtBound.size.height *= TIMER_HEIGHT;
     gtBound.size.width -=
         gtBound.getMaxX() - _backBtn->getBoundingBox().getMinX();
-    _globalTimer = GlobalTimer::alloc(_assets, gtBound);
+    _dangerBar = DangerBar::alloc(_assets, gtBound);
 
     // change position to keep it to the left of the screen.
     _palette =
@@ -115,7 +118,7 @@ void GameScene::loadLevel(const char *levelName) {
                                 _assets);
 
     addChild(_splash);
-    addChild(_globalTimer);
+    addChild(_dangerBar);
     addChild(_palette);
     addChild(_feedback);
 
@@ -137,8 +140,12 @@ void GameScene::update(float timestep) {
     auto &input = InputController::getInstance();
     if (input.justReleased() && input.isJustTap() &&
         InputController::inScene(input.currentPoint(), _backBtnArea)) {
+        _splash->clear();
         _pauseRequest = true;
     }
+
+    _dangerBar->update(min(1.0f, (float)_state.getScoreMetric("wrongAction") /
+    MISTAKE_ALLLOWED));
 
     set<pair<uint, uint>> activeCanvases;
 
@@ -155,11 +162,12 @@ void GameScene::update(float timestep) {
             if ((state == LOST_DUE_TO_TIME ||
             state == LOST_DUE_TO_WRONG_ACTION ||
             state == DONE) && ps == ACTIVE) {
-                Feedback::FeedbackType t = (state == DONE) ?
-                                           Feedback::FeedbackType::SUCCESS :
-                                           Feedback::FeedbackType::FAILURE;
+                FeedbackType t = (state == DONE) ?
+                                           FeedbackType::SUCCESS :
+                                           FeedbackType::FAILURE;
                 _feedback->add(
                     _canvases[i][i2]->getFeedbackStartPointInGlobalCoordinates(),
+                    _dangerBar->getDangerBarPoint(),
                     t);
             }
 
@@ -168,6 +176,7 @@ void GameScene::update(float timestep) {
         }
     }
 
+    _feedback->update(timestep);
     _palette->update();
     Rect canvasArea = Application::get()->getSafeBounds();
     canvasArea.origin.x += canvasArea.size.width * PALETTE_WIDTH;
@@ -179,13 +188,13 @@ void GameScene::update(float timestep) {
                     _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
-    _globalTimer->update(_state.getLevelTimer());
 
     // Check if the level is complete
-    if (activeCanvases.empty() && !_congratulations) {
+    if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") >
+    MISTAKE_ALLLOWED) &&
+    !_congratulations) {
+        _splash->clear();
         //Gradually clear out the splatters
-         _splash->update(timestep,
-                    Color4::CLEAR, Vec2::ZERO);
         _complete = make_shared<Timer>(5);
         
         auto lc = LevelComplete::alloc(_state, _assets);

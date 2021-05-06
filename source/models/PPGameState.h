@@ -48,6 +48,9 @@ struct GameState {
      */
     vec<vec<vec<uint>>> queues;
 
+    /*This records which canvases are obstacles. This will be found in canvasBlock as well but this 
+    makes it easier to cause the "blow up" action to occur. */
+    vec<vec<bool>> obstacles; 
     /**
      * This records which canvases are lost due to wrong actions.
      */
@@ -66,9 +69,6 @@ struct GameState {
      * as smart pointers so the timer itself can be updated freely.
      */
     vec<vec<ptr<Timer>>> canvasTimers;
-
-    /** Timer of the level. */
-    ptr<Timer> levelTimer;
 };
 
 #endif //PANICPAINTER_PPGAMESTATE_H

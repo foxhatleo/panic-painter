@@ -13,6 +13,7 @@
 #include "utils/PPAnimation.h"
 #include "controllers/PPGameStateController.h"
 #include "controllers/PPInputController.h"
+#include "controllers/PPSaveController.h"
 
 class ColorPaletteView : public SceneNode {
 

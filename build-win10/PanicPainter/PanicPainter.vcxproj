@@ -205,8 +205,8 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPDangerBar.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp" />
-    <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorStrip.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPGameScene.cpp" />
@@ -216,6 +216,7 @@
     <ClCompile Include="..\..\source\scenes\loading\PPLoadingScene.cpp" />
     <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp" />
     <ClCompile Include="..\..\source\scenes\pause\PPPauseScene.cpp" />
+    <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp" />
     <ClCompile Include="..\..\source\utils\PPAnimation.cpp" />
     <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
     <ClCompile Include="..\..\source\utils\PPRandom.cpp" />
@@ -242,8 +243,8 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPDangerBar.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h" />
-    <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPalette.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPGameScene.h" />
@@ -253,11 +254,13 @@
     <ClInclude Include="..\..\source\scenes\loading\PPLoadingScene.h" />
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h" />
     <ClInclude Include="..\..\source\scenes\pause\PPPauseScene.h" />
+    <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h" />
     <ClInclude Include="..\..\source\utils\PPAnimation.h" />
     <ClInclude Include="..\..\source\utils\PPHeader.h" />
     <ClInclude Include="..\..\source\utils\PPTimer.h" />
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
     <ClInclude Include="..\..\source\utils\PPRandom.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

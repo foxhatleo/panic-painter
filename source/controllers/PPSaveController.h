@@ -23,13 +23,19 @@ private:
 
     bool _colorblind;
 
+    // Palette position. True means left side, false means right side
+    bool _paletteLeft;
+
+    // True means music is on, false means off
+    bool _music;
+
     float _sfxVolume;
 
     float _bgmVolume;
 
     static inline SaveController *_instance;
 
-    SaveController() : _colorblind(false), _sfxVolume(1), _bgmVolume(1) {
+    SaveController() : _colorblind(false), _paletteLeft(true), _sfxVolume(1), _bgmVolume(1) {
         _load();
     }
 
@@ -54,6 +60,8 @@ public:
 
     bool getColorblind() const;
 
+    bool getPaletteLeft() const;
+
     void unlock(const string &level);
 
     void lock(const string &level);
@@ -64,7 +72,11 @@ public:
 
     void setBgmVolume(float value);
 
+    void setMusic(bool on);
+
     void setColorblind(bool value);
+
+    void setPaletteLeft(bool value);
 
     void resetAll();
 
