@@ -61,7 +61,7 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     stars->setScale(0);
     stars->setAnchor(Vec2::ANCHOR_CENTER);
     stars->setPosition(
-        ds.width / 2,
+        0.95*ds.width / 2,
         ds.height * 1.2 - 35
     );
     
@@ -95,5 +95,5 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     totalScoreLabel->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
     addChild(totalScoreLabel);
     
-    setContentSize(lc_width, levelcomplete->getContentHeight() + stars->getContentHeight() + 50);
+    setContentSize(desired_width, (desired_scale*levelcomplete->getContentHeight() + desired_stars_scale*stars->getContentHeight()) / 2.1);
 }

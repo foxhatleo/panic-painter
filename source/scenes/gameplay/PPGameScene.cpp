@@ -189,10 +189,10 @@ void GameScene::update(float timestep) {
         _complete = make_shared<Timer>(5);
         
         auto lc = LevelComplete::alloc(_state, _assets);
-        CULog("LC Height %f", lc->getHeight());
         auto ds = Application::get()->getDisplaySize();
-        lc->setScale(Application::get()->getDisplayHeight() / lc->getContentHeight());
-        lc->setPosition(ds.width/2, ds.height/2);
+        lc->setScale(ds.height / lc->getHeight());
+        lc->setAnchor(Vec2::ANCHOR_CENTER);
+        lc->setPosition(0.85*ds.width/2, ds.height/2);
         addChild(lc);
     
         CULog("timed out: %d", _state.getScoreMetric("timedOut"));
