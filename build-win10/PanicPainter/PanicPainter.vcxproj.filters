@@ -35,6 +35,9 @@
     <Filter Include="Scenes\Level">
       <UniqueIdentifier>{f57ef6e7-b8d0-4f77-900e-717ca32d408e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Settings">
+      <UniqueIdentifier>{9698242b-e130-47a1-a906-ee9adf5f9837}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\main.cpp">
@@ -56,9 +59,6 @@
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scenes\gameplay\PPGlobalTimer.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPalette.cpp">
@@ -111,6 +111,12 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp">
       <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPDangerBar.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp">
+      <Filter>Scenes\Settings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,9 +181,6 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPGlobalTimer.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorStrip.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
@@ -205,5 +208,12 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPDangerBar.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h">
+      <Filter>Scenes\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
 </Project>

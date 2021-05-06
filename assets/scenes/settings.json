@@ -1,0 +1,137 @@
+{
+    "scene2s": {
+      "settingsscene": {
+        "type": "Node",
+        "comment"   : "This is the root node of the scene for settings",
+        "format": {
+          "type": "Anchored"
+        },
+        "children": {
+            "colorblind": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "downnode": "down",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0.5, 0.5]
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "offbutton"
+                  }
+                },
+                "down": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "onbutton"
+                    }
+                }
+              },
+              "layout": {
+                "x_offset": 0.12,
+                "y_offset": 0.25
+              }
+            },
+            "leftPalette": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "downnode": "down",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0.5, 0.5]
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "paletteright"
+                  }
+                },
+                "down": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "paletteleft"
+                  }
+                }
+              },
+              "layout": {
+                "x_offset": 0.125,
+                "y_offset": 0.075
+              }
+            },
+            "music": {
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "downnode": "down",
+                "visible"  : true,
+                "pushsize" : true,
+                "anchor" : [0.5, 0.5]
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "offbutton"
+                  }
+                },
+                "down": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "onbutton"
+                    }
+                }
+              },
+              "layout": {
+                "x_offset": 0.12,
+                "y_offset": -0.1
+              }
+            },
+            "reset": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [0.5, 0.5]
+                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "resetbutton"
+                    }
+                  }
+                },
+                "layout": {
+                  "x_offset": -0.1,
+                  "y_offset": -0.3
+                }
+            },
+            "menubutton": {
+                "type": "Button",
+                "data": {
+                  "upnode": "up",
+                  "visible"  : true,
+                  "pushsize" : true,
+                  "anchor" : [2.4, -1.0]                },
+                "children": {
+                  "up": {
+                    "type": "Image",
+                    "data": {
+                      "texture": "menubutton"
+                    }
+                  }
+                },
+                "layout": {
+                    "padding" : [0,0,0,50]
+                }
+            }
+        }
+    }
+  }
+}

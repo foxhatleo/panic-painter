@@ -44,6 +44,8 @@ public:
 
     void update(float timestep, Color4 currentColor, Vec2 point);
 
+    void clear();
+
     void draw(const std::shared_ptr<SpriteBatch> &batch, const Mat4 &transform,
               Color4 tint) override;
 

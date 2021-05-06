@@ -1,9 +1,9 @@
-#include "PPGlobalTimer.h"
+#include "PPDangerBar.h"
 
-ptr<GlobalTimer> GlobalTimer::alloc(
+ptr<DangerBar> DangerBar::alloc(
     const asset_t &assets,
     const Rect &bounds) {
-    auto result = make_shared<GlobalTimer>(assets);
+    auto result = make_shared<DangerBar>(assets);
     if (result->initWithBounds(bounds))
         result->_setup();
     else
@@ -11,19 +11,12 @@ ptr<GlobalTimer> GlobalTimer::alloc(
     return result;
 }
 
-void GlobalTimer::_setup() {
+void DangerBar::_setup() {
 #ifdef VIEW_DEBUG
     auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 1, .3));
     addChild(n);
 #endif
-
-    // Level timer label.
-//    auto font = _assets->get<Font>("jua");
-//    _levelTimerText = Label::to("1", font);
-//    _levelTimerText->setHorizontalAlignment(Label::HAlign::LEFT);
-//    _levelTimerText->setVerticalAlignment(Label::VAlign::TOP);
-//    _levelTimerText->setPosition(getWidth() - 140, getHeight() - 50);
 
     Rect boundingRect = Rect(0, getHeight() - 30, getWidth(), 40);
     _levelProgressBarBackground = PolygonNode::allocWithTexture(
@@ -35,18 +28,25 @@ void GlobalTimer::_setup() {
         _assets->get<Texture>("level-timer-foreground"), boundingRect);
     _levelProgressBar->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     _levelProgressBar->setPosition(0, getHeight() - 30);
-
-    _progressBarWidth = getWidth();
+    _levelProgressBar->setContentSize(getWidth(), 40);
+    _levelProgressBar->setScale(0, 1);
 
     addChild(_levelProgressBarBackground);
     addChild(_levelProgressBar);
 //    addChild(_levelTimerText);
 }
 
-void GlobalTimer::update(const ptr<Timer> &levelTimer) {
-//    _levelTimerText->setText(levelTimer->formatTime());
-    float progress = levelTimer->timeLeft() / levelTimer->getDuration();
-    _levelProgressBar->setContentSize(progress * _progressBarWidth, 40);
+void DangerBar::update(float progress) {
+    _progress = progress;
+    Animation::to(_levelProgressBar, .2f, {
+        {"scaleX", progress}
+    });
+}
+
+Vec2 DangerBar::getDangerBarPoint() {
+    return _levelProgressBar->getNodeToWorldTransform().transform(
+        Vec2(getWidth() * _progress, 0)
+        );
 }
 
 

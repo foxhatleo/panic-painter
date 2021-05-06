@@ -3,8 +3,7 @@
 
 #include <cugl/cugl.h>
 #include "PPTypeDefs.h"
-
-// #define COLORBLIND_MODE
+#include "PPRandom.h"
 
 //#define VIEW_DEBUG
 
