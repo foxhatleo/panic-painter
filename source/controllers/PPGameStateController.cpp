@@ -122,7 +122,7 @@ void GameStateController::update(float timestep) {
                     for (int x = 0; x < _state.queues.size(); x++) {
                         int ind2 = _getActiveIndexOfQueue(x);
 
-                        if (x != i && ind2 > 0) {
+                        if (x != i && ind2 >= 0) {
                             _state.wrongActions[x][ind2] = true;
                         }
                     }
