@@ -95,4 +95,5 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     totalScoreLabel->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
     addChild(totalScoreLabel);
     
+    setContentSize(lc_width, levelcomplete->getContentHeight() + stars->getContentHeight() + 50);
 }
