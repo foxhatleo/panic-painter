@@ -302,6 +302,7 @@
     },
     "3star": {
       "file": "textures/stars/3star.png"
+    },
     "resetbutton": {
       "file": "textures/settings/resetbutton.png"
     },
