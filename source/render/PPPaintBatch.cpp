@@ -1,5 +1,5 @@
 #include "PPPaintBatch.h"
-#include <cugl/render/CUVertexBuffer.h>
+
 /**
  * Default fragment shader
  *
@@ -8,7 +8,7 @@
  * However, to work properly, the #include statement below MUST be on its
  * own separate line.
  */
-const std::string oglShaderFrag =
+const std::string splatShaderFrag =
 #include "SplatShader.frag"
 ;
 
@@ -20,7 +20,7 @@ const std::string oglShaderFrag =
  * However, to work properly, the #include statement below MUST be on its
  * own separate line.
  */
-const std::string oglShaderVert =
+const std::string splatShaderVert =
 #include "SplatShader.vert"
 ;
 
@@ -29,6 +29,7 @@ PaintBatch::PaintBatch() :
     _active(false),
     _vertData(nullptr),
     _indxData(nullptr),
+    _perspectiveChanged(false),
     _vertMax(0),
     _vertSize(0),
     _indxMax(0),
@@ -38,6 +39,7 @@ PaintBatch::PaintBatch() :
     _shader = nullptr;
     _vertbuff = nullptr;
     _unifbuff = nullptr;
+
 
 }
 
@@ -85,17 +87,18 @@ bool PaintBatch::init() {
         CUAssertLog(false, "PaintBatch is already initialized");
         return false; // If asserts are turned off.
     }
+    ptr<Shader> storeShader = Shader::alloc(SHADER(splatShaderVert), SHADER(splatShaderFrag));
+    _shader = storeShader;
 
-    _shader = Shader::alloc(SHADER(oglShaderVert), SHADER(oglShaderFrag));
 
     _vertbuff = VertexBuffer::alloc(sizeof(PaintVertex));
-    _vertbuff->setupAttribute("aPosition", 3, GL_FLOAT, GL_FALSE, 0);
+    _vertbuff->setupAttribute("aPosition", 2, GL_FLOAT, GL_FALSE, 0);
     _vertbuff->attach(_shader);
 
     // Set up data arrays;
-    _vertMax = 1;
+    _vertMax = 12;
     _vertData = new PaintVertex[_vertMax];
-    _indxMax = DEFAULT_CAPACITY * 3;
+    _indxMax = _vertMax*3;
     _indxData = new GLuint[_indxMax];
 
     // Create uniform buffer (this has its own backing array)
@@ -131,8 +134,15 @@ void PaintBatch::setSplats(const Vec2 s1, const Vec2 s2, const Vec2 s3, const Ve
     _unifbuff->setUniformVec4(0, "uC4", c4);
 
 }
+void PaintBatch::setPerspective(const Mat4& perspective) {
+        auto matrix = std::make_shared<Mat4>(perspective);
+        _perspective = matrix;
+        _perspectiveChanged = true; 
+}
 
-void PaintBatch::begin() {
+
+void PaintBatch::begin(const Mat4& perspective) {
+    setPerspective(perspective);
     glDisable(GL_CULL_FACE);
     glDepthMask(true);
     glEnable(GL_BLEND);
@@ -154,15 +164,56 @@ void PaintBatch::end() {
     _active = false;
 }
 void PaintBatch::flush() {
+    if (_indxSize == 0 || _vertSize == 0) {
+        return;
+    }
     _vertbuff->loadVertexData(_vertData, _vertSize);
     _vertbuff->loadIndexData(_indxData, _indxSize);
     _unifbuff->activate();
     _unifbuff->flush();
 
+    if (_perspectiveChanged) {
+        _shader->setUniformMat4("uPerspective", *_perspective);
+        _perspectiveChanged = false; 
+    }
     _unifbuff->deactivate();
 
     // Increment the counters
     _vertTotal += _indxSize;
 
     _vertSize = _indxSize = 0;
+}
+
+void PaintBatch::prepare(Vec2 tl, Vec2 tr, Vec2 bl, Vec2 br) {
+    _vertData[_vertSize].position = tl;
+    GLuint indTl = _vertSize;
+    _vertSize++;
+
+    _vertData[_vertSize].position = tr;
+    GLuint indTr = _vertSize;
+    _vertSize++;
+
+    _vertData[_vertSize].position = bl;
+    GLuint indBl = _vertSize;
+    _vertSize++;
+
+    _vertData[_vertSize].position = br;
+    GLuint indBr = _vertSize;
+    _vertSize++;
+    // Add indices counterclockwise
+        // Top left triangle
+        _indxData[_indxSize] = indTr;
+    _indxSize++;
+    _indxData[_indxSize] = indTl;
+    _indxSize++;
+    _indxData[_indxSize] = indBl;
+    _indxSize++;
+
+    // Bottom right triangle
+    _indxData[_indxSize] = indTr;
+    _indxSize++;
+    _indxData[_indxSize] = indBl;
+    _indxSize++;
+    _indxData[_indxSize] = indBr;
+    _indxSize++;
 }

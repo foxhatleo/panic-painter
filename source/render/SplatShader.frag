@@ -1,12 +1,14 @@
 R"(////////// SHADER BEGIN /////////
-
+// SplatShader.vert
 #ifdef CUGLES
 // This one line is all the difference
 precision highp float;  // highp required for gradient precision
 #endif
 
 // The texture for sampling
-uniform sampler2D uTexture;
+//uniform sampler2D uTexture;
+// The inputs from the vertex shader
+in vec2 outPosition;
 
 //TODO: Custom Uniforms
 
@@ -19,7 +21,7 @@ layout (std140) uniform uContext
     vec4 uC1;     
     vec4 uC2;     
     vec4 uC3;     
-    vec$ uC4;     
+    vec4 uC4;     
 };
 uniform vec2 uViewport;
 
@@ -39,11 +41,6 @@ vec2 iResolution;
 
 // The output color
 out vec4 frag_color;
-
-// The inputs from the vertex shader
-//in vec2 outPosition;
-//in vec4 outColor;
-//in vec2 outTexCoord;
 
 
 
@@ -255,18 +252,18 @@ void main(void) {
     iResolution = uViewport;
 
     // uv are screen coordinates, uniformly scaled to go from 0..1 vertically
-    vec2 uv = gl_FragCoord.xy / iResolution.yy;
+    vec2 uv = outPosition.xy / iResolution.yy;
     
     vec2 uvOffset = vec2(-200,100);
     //Get splats
-    vec4 dotColor = getSplatColorAtPixel(gl_FragCoord.xy,(uv)*1.5+uvOffset);
+    vec4 dotColor = getSplatColorAtPixel(outPosition,(uv)*1.5+uvOffset);
     
     //Alpha blending - Blend of Result from above and splatter
 //    result = overlayColors(dotColor, result);
     //alpha combine splatter and result, assuming result wont use alpha
     //result = dotColor.w * dotColor + (1-dotColor.w)*result;
     
-    frag_color = dotColor;
+    frag_color = result;
 }
 /////////// SHADER END //////////)"
 

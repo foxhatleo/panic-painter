@@ -3,6 +3,8 @@
 
 #include "utils/PPHeader.h"
 #include "PPPaintVertex.h"
+#include <cugl/render/CUVertexBuffer.h>
+#include <cugl/render/CUShader.h>
 #include <SDL/SDL.h>
 #include <vector>
 
@@ -31,6 +33,9 @@
         unsigned int _indxMax;
         /** The number of indices in the current mesh */
         unsigned int _indxSize;
+        /** The stored perspective matrix */
+        ptr<Mat4> _perspective;
+        bool _perspectiveChanged; 
 
         // Monitoring values
 /** The number of vertices drawn in this pass (so far) */
@@ -140,6 +145,27 @@
          */
         void setSplats(const Vec2 s1, const Vec2 s2, const Vec2 s3, const Vec2 s4, const Vec4 c1, const Vec4 c2, const Vec4 c3, const Vec4 c4);
 
+        /**
+     * Sets the active perspective matrix of this sprite batch
+     *
+     * The perspective matrix is the combined modelview-projection from the
+     * camera. By default, this is the identity matrix.
+     *
+     * @param perspective   The active perspective matrix for this sprite batch
+     */
+        void setPerspective(const Mat4& perspective);
+
+        /**
+         * Returns the active perspective matrix of this sprite batch
+         *
+         * The perspective matrix is the combined modelview-projection from the
+         * camera.  By default, this is the identity matrix.
+         *
+         * @return the active perspective matrix of this sprite batch
+         */
+        const Mat4& getPerspective() const {
+            return *(_perspective);
+        }
 #pragma mark -
 #pragma mark Rendering
         /**
@@ -151,7 +177,7 @@
     *
     * Calling this method will reset the vertex and OpenGL call counters to 0.
     */
-        void begin();
+        void begin(const Mat4& perspective);
         /**
      * Completes the drawing pass for this sprite batch, flushing the buffer.
      *
@@ -168,5 +194,6 @@
          * previuosly drawn shapes.
          */
         void flush();
+        void prepare(Vec2 tl, Vec2 tr, Vec2 bl, Vec2 br);
 };
 #endif //PANICPAINTER_PPPAINTBRUSH_H

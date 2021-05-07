@@ -27,6 +27,10 @@ protected:
     uint _ticker;
 
     float _scale;
+    Vec2 _tl; 
+    Vec2 _tr; 
+    Vec2 _bl; 
+    Vec2 _br; 
     ptr<PaintBatch> _paintBatch;
 
 public:

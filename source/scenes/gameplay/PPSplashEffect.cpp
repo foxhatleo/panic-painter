@@ -12,6 +12,12 @@ SplashEffect::alloc(const asset_t &assets, const Rect &bounds, float scale) {
 
 void SplashEffect::setup() {
     _paintBatch = PaintBatch::alloc(); 
+    Mat4 toWorld = getNodeToWorldTransform();
+    Rect bounds = getBoundingBox();
+    _tl = Vec2(bounds.getMinX(), bounds.getMaxY()) * toWorld; 
+    _tr = Vec2(bounds.getMaxX(), bounds.getMaxY()) * toWorld;
+    _bl = Vec2(bounds.getMinX(), bounds.getMinY()) * toWorld;
+    _br = Vec2(bounds.getMaxX(), bounds.getMinY()) * toWorld;
 }
 void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     // Decrease opacity of all points by a bit.
@@ -55,7 +61,7 @@ void SplashEffect::clear() {
 void SplashEffect::draw(const std::shared_ptr<SpriteBatch> &batch,
                         const Mat4 &transform, Color4 tint) {
     batch->end(); 
-    _paintBatch->begin(); 
+    _paintBatch->begin(batch->getPerspective());
     _paintBatch->setViewport(Vec2(Application::get()->getDisplaySize()));
     _paintBatch->setSplats(
         _queue[0].point,
@@ -67,6 +73,7 @@ void SplashEffect::draw(const std::shared_ptr<SpriteBatch> &batch,
         _queue[2].color,
         _queue[3].color
     );
+    _paintBatch->prepare(_tl, _tr, _bl, _br);
     _paintBatch->end(); 
     batch->begin(); 
 }
