@@ -93,7 +93,7 @@ void SettingsScene::activateUI(
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
                 });
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .67);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .57);
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
