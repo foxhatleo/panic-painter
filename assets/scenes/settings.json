@@ -118,7 +118,8 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [2.4, -1.0]                },
+                  "anchor" : [2.4, -1.0]                
+                },
                 "children": {
                   "up": {
                     "type": "Image",

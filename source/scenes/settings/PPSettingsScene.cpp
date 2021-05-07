@@ -27,12 +27,13 @@ bool SettingsScene::init(const asset_t& assets) {
 
     // Initialize background
     auto background = PolygonNode::allocWithTexture(_assets->get<Texture>
-        ("menubackground"));
+        ("settings-bg"));
     // blur it
-    background->setColor(Color4f(1, 1, 1, .5));
+    //background->setColor(Color4f(1, 1, 1, .5));
     background->setContentSize(_sceneSize);
     addChild(background);
 
+    /*
     // Initialize tray
     auto tray = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("settings-tray"));
@@ -40,7 +41,7 @@ bool SettingsScene::init(const asset_t& assets) {
     tray->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     tray->setPosition(_safe.size.width * ((1 - TRAY_FRACTION) / 2),
         _safe.size.height * ((1 - TRAY_FRACTION) / 2));
-    addChild(tray);
+    addChild(tray); */
 
     // Initialize buttons
     activateUI(_scene);

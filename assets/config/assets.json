@@ -308,6 +308,9 @@
     },
     "settings-tray": {
       "file": "textures/settings/settings-tray.png"
+    },
+    "settings-bg": {
+      "file": "textures/settings/testbackground.png"
     }
   },
   "jsons": {
