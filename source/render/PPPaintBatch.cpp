@@ -84,7 +84,7 @@ void PaintBatch::dispose() {
  *
  * @return true if initialization was successful.
  */
-bool SpriteBatch::init() {
+bool PaintBatch::init() {
     if (_initialized) {
         CUAssertLog(false, "PaintBatch is already initialized");
         return false; // If asserts are turned off.
@@ -126,14 +126,6 @@ bool SpriteBatch::init() {
     //TODO:
     //Vec2 tempVec = ;
 //    _shader->setUniformVec2("uSplatPosition", Vec2(0,0));
-    _shader->setUniformVec2("uS1", Vec2(0, 0));
-    _shader->setUniformVec2("uS2", Vec2(0, 0));
-    _shader->setUniformVec2("uS3", Vec2(0, 0));
-    _shader->setUniformVec2("uS4", Vec2(0, 0));
-    _shader->setUniformVec4("uC1", Vec4(0, 0, 0, 0));
-    _shader->setUniformVec4("uC2", Vec4(0, 0, 0, 0));
-    _shader->setUniformVec4("uC3", Vec4(0, 0, 0, 0));
-    _shader->setUniformVec4("uC4", Vec4(0, 0, 0, 0));
 
     _shader->setUniformVec2("uViewport", Vec2(0, 0));
 }

@@ -1,7 +1,7 @@
 #ifndef PANICPAINTER_PPPAINTBRUSH_H
 #define PANICPAINTER_PPPAINTBRUSH_H
 
-#include "PPHeader.h"
+#include "utils/PPHeader.h"
 #include <SDL/SDL.h>
 #include <vector>
 

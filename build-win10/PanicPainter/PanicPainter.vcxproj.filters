@@ -38,6 +38,9 @@
     <Filter Include="Scenes\Settings">
       <UniqueIdentifier>{9698242b-e130-47a1-a906-ee9adf5f9837}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{8e52b298-11b7-49fe-bd98-4266425b795e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\main.cpp">
@@ -114,6 +117,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp">
       <Filter>Scenes\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\render\PPPaintBatch.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +214,16 @@
     <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h">
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\source\render\PPPaintBatch.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\source\render\SplatShader.frag">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\..\source\render\SplatShader.vert">
+      <Filter>Render</Filter>
+    </None>
   </ItemGroup>
 </Project>
