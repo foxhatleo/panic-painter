@@ -25,6 +25,7 @@ void GameScene::loadLevel(const char *levelName) {
     _dangerBar.reset();
     _palette.reset();
     _action.reset();
+    _splash.reset(); 
 
     _complete = nullptr;
 
