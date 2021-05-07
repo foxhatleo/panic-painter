@@ -115,6 +115,9 @@
     <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp">
       <Filter>Scenes\Settings</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\utils\PPPaintBatch.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc">
@@ -208,5 +211,16 @@
     <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h">
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\utils\PPPaintBatch.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\source\utils\SplatShader.vert">
+      <Filter>Utilities</Filter>
+    </None>
+    <None Include="..\..\source\utils\SplatShader.frag">
+      <Filter>Utilities</Filter>
+    </None>
   </ItemGroup>
 </Project>
