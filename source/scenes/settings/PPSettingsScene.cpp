@@ -4,6 +4,13 @@
 #define SCENE_SIZE_H 576
 #define TRAY_FRACTION .75
 #define BASE_SCALE 0.5
+#define BUTTON_X_FRAC 0.575
+#define COLORBLIND_X 0.12
+#define COLORBLIND_Y 0.25
+#define LEFTPALETTE_X 0.125
+#define LEFTPALETTE_Y 0.075
+#define MUSIC_X 0.12
+#define MUSIC_Y -0.1
 
 bool SettingsScene::init(const asset_t& assets) {
     _save = SaveController::getInstance();
@@ -34,13 +41,13 @@ bool SettingsScene::init(const asset_t& assets) {
     addChild(background);
 
     // Initialize tray
-    auto tray = PolygonNode::allocWithTexture(_assets->get<Texture>
+    _tray = PolygonNode::allocWithTexture(_assets->get<Texture>
         ("settings-tray"));
-    tray->setContentSize(_sceneSize * TRAY_FRACTION);
-    tray->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    tray->setPosition(_safe.size.width * ((1 - TRAY_FRACTION) / 2),
+    _tray->setContentSize(_sceneSize * TRAY_FRACTION);
+    _tray->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    _tray->setPosition(_safe.size.width * ((1 - TRAY_FRACTION) / 2),
         _safe.size.height * ((1 - TRAY_FRACTION) / 2));
-    addChild(tray);
+    addChild(_tray);
 
     // Initialize buttons
     activateUI(_scene);
@@ -76,18 +83,23 @@ void SettingsScene::activateUI(
         }
         button->setScale(BASE_SCALE *
             _safe.size.height / SCENE_SIZE_H);
+        // Set button X
+        button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+        button->setPositionX(_tray->getPositionX() + _tray->getWidth() * BUTTON_X_FRAC);
 
-        // CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "colorblind") {
             button->setToggle(true);
             button->setDown(_save->getColorblind()); // set to last saved value
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
                 });
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .67);
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .53);
+            //button->setPositionX(_tray->getPositionX() + _tray->getWidth() * (BUTTON_X_FRAC+0.025));
 
             // TODO: Remove following once both side palettes are supported
             button->setColor(Color4f(1, 1, 1, .5));
@@ -101,8 +113,9 @@ void SettingsScene::activateUI(
         else if (button->getName() == "music") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .2);
 
-            // TODO: Remove following once both side palettes are supported
+            // TODO: Remove following once music toggle is supported
             button->setColor(Color4f(1, 1, 1, .5));
             return;
             // END TODO
@@ -112,7 +125,7 @@ void SettingsScene::activateUI(
                 });
         }
         else if (button->getName() == "reset") {
-            // TODO: Remove following once both side palettes are supported
+            // TODO: Remove following once reset is supported
             button->setVisible(false);
             return;
             // END TODO
