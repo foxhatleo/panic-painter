@@ -242,6 +242,7 @@
     <ClInclude Include="..\..\source\models\PPGameState.h" />
     <ClInclude Include="..\..\source\PPApp.h" />
     <ClInclude Include="..\..\source\render\PPPaintBatch.h" />
+    <ClInclude Include="..\..\source\render\PPPaintVertex.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h" />

@@ -9,15 +9,18 @@ precision highp float;  // highp required for gradient precision
 uniform sampler2D uTexture;
 
 //TODO: Custom Uniforms
-//uniform vec2 uSplatPosition;
-uniform vec2 uS1;
-uniform vec2 uS2;
-uniform vec2 uS3;
-uniform vec2 uS4;
-uniform vec4 uC1;
-uniform vec4 uC2;
-uniform vec4 uC3;
-uniform vec4 uC4;
+
+layout (std140) uniform uContext
+{
+    vec2 uS1;      
+    vec2 uS2;     
+    vec2 uS3;     
+    vec2 uS4;     
+    vec4 uC1;     
+    vec4 uC2;     
+    vec4 uC3;     
+    vec$ uC4;     
+};
 uniform vec2 uViewport;
 
 
@@ -41,20 +44,6 @@ out vec4 frag_color;
 //in vec2 outPosition;
 //in vec4 outColor;
 //in vec2 outTexCoord;
-
-// The stroke+gradient uniform block
-//layout (std140) uniform uContext
-//{
-//    mat3 scMatrix;      // 48
-//    vec2 scExtent;      //  8
-//    vec2 scScale;       //  8
-//    mat3 gdMatrix;      // 48
-//    vec4 gdInner;       // 16
-//    vec4 gdOuter;       // 16
-//    vec2 gdExtent;      //  8
-//    float gdRadius;     //  4
-//    float gdFeathr;     //  4
-//};
 
 
 

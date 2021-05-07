@@ -217,6 +217,9 @@
     <ClInclude Include="..\..\source\render\PPPaintBatch.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\render\PPPaintVertex.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\render\SplatShader.frag">

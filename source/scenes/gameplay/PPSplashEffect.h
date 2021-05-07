@@ -6,6 +6,7 @@
 #include "controllers/PPInputController.h"
 #include "controllers/PPGameStateController.h"
 #include "PPCanvas.h"
+#include "render/PPPaintBatch.h"
 
 #define QUEUE_MAX_SIZE 4
 #define SAMPLE_RATE 4
@@ -26,6 +27,7 @@ protected:
     uint _ticker;
 
     float _scale;
+    ptr<PaintBatch> _paintBatch;
 
 public:
     explicit SplashEffect(const asset_t &assets, float scale) :
@@ -42,6 +44,7 @@ public:
         const Rect &bounds,
         float scale);
 
+    void setup(); 
     void update(float timestep, Color4 currentColor, Vec2 point);
 
     void clear();

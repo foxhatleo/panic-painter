@@ -2,12 +2,11 @@
 #define PANICPAINTER_PPPAINTBRUSH_H
 
 #include "utils/PPHeader.h"
+#include "PPPaintVertex.h"
 #include <SDL/SDL.h>
 #include <vector>
 
-// Default memory sizes
-#define DEFAULT_CAPACITY  1024
-namespace utils {
+
 	class PaintBatch {
 	private:
         /** Whether this sprite batch has been initialized yet */
@@ -21,12 +20,11 @@ namespace utils {
 		/** The vertex buffer for this sprite batch */
 		std::shared_ptr<UniformBuffer> _unifbuff;
         /** The sprite batch vertex mesh */
-        SpriteVertex3* _vertData;
+        PaintVertex* _vertData;
         /** The vertex capacity of the mesh */
         unsigned int _vertMax;
         /** The number of vertices in the current mesh */
         unsigned int _vertSize;
-        std::shared_ptr<Mat4> _perspective;
         /** The indices for the vertex mesh */
         GLuint* _indxData;
         /** The index capacity of the mesh */
@@ -142,27 +140,6 @@ namespace utils {
          */
         void setSplats(const Vec2 s1, const Vec2 s2, const Vec2 s3, const Vec2 s4, const Vec4 c1, const Vec4 c2, const Vec4 c3, const Vec4 c4);
 
-        /**
-         * Sets the active perspective matrix of this sprite batch
-         *
-         * The perspective matrix is the combined modelview-projection from the
-         * camera. By default, this is the identity matrix.
-         *
-         * @param perspective   The active perspective matrix for this sprite batch
-         */
-        void setPerspective(const Mat4& perspective);
-
-        /**
-         * Returns the active perspective matrix of this sprite batch
-         *
-         * The perspective matrix is the combined modelview-projection from the
-         * camera.  By default, this is the identity matrix.
-         *
-         * @return the active perspective matrix of this sprite batch
-         */
-        const Mat4& getPerspective() const {
-            return *_perspective;
-        }
 #pragma mark -
 #pragma mark Rendering
         /**
@@ -191,6 +168,5 @@ namespace utils {
          * previuosly drawn shapes.
          */
         void flush();
-    };
-}
+};
 #endif //PANICPAINTER_PPPAINTBRUSH_H

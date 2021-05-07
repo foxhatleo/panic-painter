@@ -4,9 +4,15 @@ ptr<SplashEffect>
 SplashEffect::alloc(const asset_t &assets, const Rect &bounds, float scale) {
     auto n = make_shared<SplashEffect>(assets, scale);
     if (!n->initWithBounds(bounds)) return nullptr;
-    return n;
+    else {
+        n->setup(); 
+    }
+    return n; 
 }
 
+void SplashEffect::setup() {
+    _paintBatch = PaintBatch::alloc(); 
+}
 void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
     // Decrease opacity of all points by a bit.
     for (auto &i : _queue) {
@@ -48,8 +54,10 @@ void SplashEffect::clear() {
 
 void SplashEffect::draw(const std::shared_ptr<SpriteBatch> &batch,
                         const Mat4 &transform, Color4 tint) {
-    batch->setViewport(Vec2(Application::get()->getDisplaySize()));
-    batch->setSplats(
+    batch->end(); 
+    _paintBatch->begin(); 
+    _paintBatch->setViewport(Vec2(Application::get()->getDisplaySize()));
+    _paintBatch->setSplats(
         _queue[0].point,
         _queue[1].point,
         _queue[2].point,
@@ -59,4 +67,6 @@ void SplashEffect::draw(const std::shared_ptr<SpriteBatch> &batch,
         _queue[2].color,
         _queue[3].color
     );
+    _paintBatch->end(); 
+    batch->begin(); 
 }
