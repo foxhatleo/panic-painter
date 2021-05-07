@@ -156,4 +156,5 @@ void SettingsScene::deactivateUI(
 }
 
 void SettingsScene::update(float timestep) {
+    SoundController::getInstance()->useBgm("menu");
 }

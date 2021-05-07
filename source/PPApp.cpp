@@ -17,6 +17,9 @@ void PanicPainterApp::onStartup() {
     // Initialize the first scene: loading manager
     _loading.init(_assets);
 
+    // Call save controller to load.
+    SaveController::getInstance();
+
     // Start audio engine.
     AudioEngine::start();
     SoundController::getInstance()->init(_assets);
@@ -123,14 +126,13 @@ void PanicPainterApp::update(float timestep) {
                 _menu.resetState();
                 _level.resetState();
                 _world.resetState();
-            } else {
-                _menu.update(timestep);
-            }
-            else if (_menu.getState() == SETTINGS) {
+            } else if (_menu.getState() == SETTINGS) {
                 _currentScene = SETTINGS_SCENE;
                 _menu.resetState();
                 _settings.activate();
                 _settings.resetState();
+            } else {
+                _menu.update(timestep);
             }
             break;
         }
@@ -158,7 +160,7 @@ void PanicPainterApp::update(float timestep) {
             else if (_level.getState() == L_SELECTED) {
                 _level.resetState();
                 _gameplay.loadLevel(
-                    _level.getLevel().c_str()); // fetch the specific level
+                    _level.getLevel()); // fetch the specific level
                 _currentScene = GAME_SCENE;
                 _menu.resetState();
                 _level.resetState();
@@ -177,7 +179,7 @@ void PanicPainterApp::update(float timestep) {
             else if (_pause.getState() == RETRY) {
                 // return to game scene after re-loading level
                 _gameplay.loadLevel(
-                    _gameplay.getLevel().c_str());
+                    _gameplay.getLevel());
                 // re-fetch the current level
                 _currentScene = GAME_SCENE;
                 _pause.resetState();

@@ -5,8 +5,10 @@
 void SoundController::init(const asset_t &assets) {
     _assets = assets;
     _bgm = AudioEngine::get()->getMusicQueue();
-    // TODO: Save controller incorporate bgm and sfx here.
-    _sfxVolume = 1;
+    _bgmVolume = SaveController::getInstance()->getBgmVolume();
+    _sfxVolume = SaveController::getInstance()->getSfxVolume();
+    CULog("Volume setting from save: [bgm]%.2f, [sfx]%.2f",
+          _bgmVolume, _sfxVolume);
     _currentBgm = "";
 }
 
@@ -19,26 +21,40 @@ float SoundController::getSfxVolume() const {
 }
 
 void SoundController::setBgmVolume(float value) {
-    _bgm->setVolume(value);
-    // TODO: Save controller
+    _bgmVolume = value;
+    SaveController::getInstance()->setBgmVolume(value);
 }
 
 void SoundController::setSfxVolume(float value) {
     _sfxVolume = value;
-    // TODO: Save controller
+    SaveController::getInstance()->setSfxVolume(value);
 }
 
 void SoundController::clearBgm() {
     useBgm("");
 }
 
+void SoundController::pauseBgm() {
+    _bgm->pause(FADE);
+}
+
 void SoundController::useBgm(const string &name) {
+    _bgm->resume();
     if (_currentBgm == name) return;
-//    _bgm->clear(FADE);
+    _bgm->clear(FADE);
     _currentBgm = name;
-    if (name == "") return;
-    ptr<Sound> s = AudioSample::alloc("music/test.mp3", false);
-    _bgm->play(s, true);
+    if (name.empty()) {
+        CULog("Clearing background music.");
+        return;
+    }
+    CULog("Switching to background music \"%s\".", name.c_str());
+    ptr<Sound> s = _assets->get<Sound>(name);
+    if (s == nullptr) {
+        CUWarn("Cannot find music \"%s\". Playing nothing as fallback.", name
+        .c_str());
+        return;
+    }
+    _bgm->enqueue(s, true, _bgmVolume);
 }
 
 void SoundController::clearSfx() {

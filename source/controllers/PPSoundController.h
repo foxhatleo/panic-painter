@@ -2,12 +2,14 @@
 #define PANICPAINTER_PPSOUNDCONTROLLER_H
 
 #include "utils/PPHeader.h"
+#include "PPSaveController.h"
 
 class SoundController {
 private:
     asset_t _assets;
     static inline SoundController *_instance = nullptr;
     ptr<AudioQueue> _bgm;
+    float _bgmVolume;
     float _sfxVolume;
     string _currentBgm;
 
@@ -22,6 +24,7 @@ public:
 
     void clearBgm();
     void useBgm(const string &name);
+    void pauseBgm();
 
     void clearSfx();
     void playSfx(const string &name);
