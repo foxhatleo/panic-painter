@@ -20,7 +20,7 @@
     class PaintVertex {
     public:
         /** The vertex position */
-        cugl::Vec3 position;
+        cugl::Vec2 position;
     };
 
 
