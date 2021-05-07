@@ -19,9 +19,6 @@
 		C5621DC9260B8D7200875B72 /* PPColorStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC4260B8D3400875B72 /* PPColorStrip.cpp */; };
 		C5621DCA260B8D7200875B72 /* PPColorStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC4260B8D3400875B72 /* PPColorStrip.cpp */; };
 		C5621DCB260B8D7300875B72 /* PPColorStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC4260B8D3400875B72 /* PPColorStrip.cpp */; };
-		C5621DCC260B8D7300875B72 /* PPGlobalTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC7260B8D4D00875B72 /* PPGlobalTimer.cpp */; };
-		C5621DCD260B8D7300875B72 /* PPGlobalTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC7260B8D4D00875B72 /* PPGlobalTimer.cpp */; };
-		C5621DCE260B8D7400875B72 /* PPGlobalTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC7260B8D4D00875B72 /* PPGlobalTimer.cpp */; };
 		C5621DCF260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC8260B8D5800875B72 /* PPCanvasBlock.cpp */; };
 		C5621DD0260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC8260B8D5800875B72 /* PPCanvasBlock.cpp */; };
 		C5621DD1260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DC8260B8D5800875B72 /* PPCanvasBlock.cpp */; };
@@ -120,6 +117,10 @@
 		EBDD16D525C35D3400154533 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C625C35D3400154533 /* CoreMotion.framework */; };
 		EBDD16D625C35D3400154533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDD16C725C35D3400154533 /* CoreGraphics.framework */; };
 		EBEC12022194B6F4007E708B /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEC12012194B6F4007E708B /* Metal.framework */; };
+		EE14AA90264596FB0005E122 /* PPSettingsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE14AA8B264596FB0005E122 /* PPSettingsScene.cpp */; };
+		EE14AA91264596FB0005E122 /* PPSettingsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE14AA8B264596FB0005E122 /* PPSettingsScene.cpp */; };
+		EE14AA9A264597720005E122 /* PPDangerBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE14AA98264597710005E122 /* PPDangerBar.cpp */; };
+		EE14AA9B264597720005E122 /* PPDangerBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE14AA98264597710005E122 /* PPDangerBar.cpp */; };
 		EE1BF6CC261F96400045482E /* PPLevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6C4261F96400045482E /* PPLevelSelectScene.cpp */; };
 		EE1BF6CD261F96400045482E /* PPMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6CB261F96400045482E /* PPMenuScene.cpp */; };
 		EE1BF6DD2620B6AB0045482E /* PPLevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1BF6C4261F96400045482E /* PPLevelSelectScene.cpp */; };
@@ -182,8 +183,6 @@
 		C5621DC3260B8D2700875B72 /* PPCanvasBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPCanvasBlock.h; sourceTree = "<group>"; };
 		C5621DC4260B8D3400875B72 /* PPColorStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPColorStrip.cpp; sourceTree = "<group>"; };
 		C5621DC5260B8D3700875B72 /* PPColorStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPColorStrip.h; sourceTree = "<group>"; };
-		C5621DC6260B8D3E00875B72 /* PPGlobalTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGlobalTimer.h; sourceTree = "<group>"; };
-		C5621DC7260B8D4D00875B72 /* PPGlobalTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPGlobalTimer.cpp; sourceTree = "<group>"; };
 		C5621DC8260B8D5800875B72 /* PPCanvasBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPCanvasBlock.cpp; sourceTree = "<group>"; };
 		C5621DD3260B8E3B00875B72 /* PPPauseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPPauseScene.cpp; sourceTree = "<group>"; };
 		C5621DD4260B8E3B00875B72 /* PPPauseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPauseScene.h; sourceTree = "<group>"; };
@@ -246,6 +245,10 @@
 		EBDD16C625C35D3400154533 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		EBDD16C725C35D3400154533 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		EBEC12012194B6F4007E708B /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		EE14AA8B264596FB0005E122 /* PPSettingsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPSettingsScene.cpp; sourceTree = "<group>"; };
+		EE14AA8C264596FB0005E122 /* PPSettingsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSettingsScene.h; sourceTree = "<group>"; };
+		EE14AA98264597710005E122 /* PPDangerBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPDangerBar.cpp; sourceTree = "<group>"; };
+		EE14AA99264597710005E122 /* PPDangerBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPDangerBar.h; sourceTree = "<group>"; };
 		EE1BF6C4261F96400045482E /* PPLevelSelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPLevelSelectScene.cpp; sourceTree = "<group>"; };
 		EE1BF6C5261F96400045482E /* PPLevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLevelSelectScene.h; sourceTree = "<group>"; };
 		EE1BF6CA261F96400045482E /* PPMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMenuScene.h; sourceTree = "<group>"; };
@@ -393,6 +396,7 @@
 		C5FB328925F41BCB000694C3 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				EE14AA8A264596FB0005E122 /* settings */,
 				EE1BF6C3261F96400045482E /* level */,
 				EE1BF6C9261F96400045482E /* menu */,
 				C5621DD2260B8E3A00875B72 /* pause */,
@@ -422,11 +426,11 @@
 				EEBC47692638DEEB00748B81 /* PPFeedback.cpp */,
 				EEBC47682638DEEB00748B81 /* PPFeedback.h */,
 				C5621DC5260B8D3700875B72 /* PPColorStrip.h */,
-				C5621DC7260B8D4D00875B72 /* PPGlobalTimer.cpp */,
-				C5621DC6260B8D3E00875B72 /* PPGlobalTimer.h */,
 				C5FB329025F41BCC000694C3 /* PPCanvas.h */,
 				C5FB329125F41BCC000694C3 /* PPGameScene.cpp */,
 				C5FB329225F41BCC000694C3 /* PPGameScene.h */,
+				EE14AA98264597710005E122 /* PPDangerBar.cpp */,
+				EE14AA99264597710005E122 /* PPDangerBar.h */,
 				EEFA1A4225F68DA7004641A1 /* PPColorPalette.cpp */,
 				EEFA1A4325F68DA7004641A1 /* PPColorPalette.h */,
 				C5FB328E25F41BCC000694C3 /* PPCanvas.cpp */,
@@ -561,6 +565,15 @@
 			);
 			name = Source;
 			path = ../source;
+			sourceTree = "<group>";
+		};
+		EE14AA8A264596FB0005E122 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				EE14AA8B264596FB0005E122 /* PPSettingsScene.cpp */,
+				EE14AA8C264596FB0005E122 /* PPSettingsScene.h */,
+			);
+			path = settings;
 			sourceTree = "<group>";
 		};
 		EE1BF6C3261F96400045482E /* level */ = {
@@ -777,7 +790,6 @@
 				C5621DD1260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */,
 				C5621DB72604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
 				C5621DB42604F10300875B72 /* PPGameStateController.cpp in Sources */,
-				C5621DCE260B8D7400875B72 /* PPGlobalTimer.cpp in Sources */,
 				EF24BCF6261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				C5FB32A125F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
 				EEFA1A7325FA816D004641A1 /* PPAnimation.cpp in Sources */,
@@ -791,7 +803,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5621DB02604F10300875B72 /* PPInputController.cpp in Sources */,
-				C5621DCD260B8D7300875B72 /* PPGlobalTimer.cpp in Sources */,
 				C5FB329D25F41BD1000694C3 /* PPTimer.cpp in Sources */,
 				C5FB32A325F41BD2000694C3 /* PPCanvas.cpp in Sources */,
 				C5FB32A625F41BD2000694C3 /* PPGameScene.cpp in Sources */,
@@ -806,11 +817,13 @@
 				EEBC47722638DF0D00748B81 /* PPWorldSelectScene.cpp in Sources */,
 				C5621DD0260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */,
 				EE1BF6E82620B6C90045482E /* PPColorPaletteView.cpp in Sources */,
+				EE14AA91264596FB0005E122 /* PPSettingsScene.cpp in Sources */,
 				EEBC47642638DEA200748B81 /* PPSaveController.cpp in Sources */,
 				C5FB32A025F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
 				EEFA1A7225FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				EE1BF6E42620B6B40045482E /* PPMenuScene.cpp in Sources */,
 				C5621DCA260B8D7200875B72 /* PPColorStrip.cpp in Sources */,
+				EE14AA9B264597720005E122 /* PPDangerBar.cpp in Sources */,
 				C5621DD6260B8E3C00875B72 /* PPPauseScene.cpp in Sources */,
 				EF24BCF5261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				EEFA1A9025FBFF3A004641A1 /* PPColorPalette.cpp in Sources */,
@@ -822,7 +835,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5621DAF2604F10300875B72 /* PPInputController.cpp in Sources */,
-				C5621DCC260B8D7300875B72 /* PPGlobalTimer.cpp in Sources */,
 				C5FB329C25F41BD1000694C3 /* PPTimer.cpp in Sources */,
 				EEFA1A4425F68DA7004641A1 /* PPColorPalette.cpp in Sources */,
 				C5FB32A225F41BD1000694C3 /* PPCanvas.cpp in Sources */,
@@ -837,11 +849,13 @@
 				EEBC47712638DF0D00748B81 /* PPWorldSelectScene.cpp in Sources */,
 				C5621E08260BACE000875B72 /* PPActionController.cpp in Sources */,
 				C5621DCF260B8D7400875B72 /* PPCanvasBlock.cpp in Sources */,
+				EE14AA90264596FB0005E122 /* PPSettingsScene.cpp in Sources */,
 				EEBC47632638DEA200748B81 /* PPSaveController.cpp in Sources */,
 				EB2BE9B51D74952A002FE78B /* PPApp.cpp in Sources */,
 				C5FB329F25F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
 				EE1BF6CD261F96400045482E /* PPMenuScene.cpp in Sources */,
 				EED6D691260CE83C004A2E6F /* PPColorPaletteView.cpp in Sources */,
+				EE14AA9A264597720005E122 /* PPDangerBar.cpp in Sources */,
 				C5621DC9260B8D7200875B72 /* PPColorStrip.cpp in Sources */,
 				C5621DD5260B8E3C00875B72 /* PPPauseScene.cpp in Sources */,
 				EEFA1A7125FA816D004641A1 /* PPAnimation.cpp in Sources */,
