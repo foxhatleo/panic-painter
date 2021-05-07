@@ -183,6 +183,15 @@
 		EFCEF9742644E64C0038F9BE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFCEF92B2644E64C0038F9BE /* main.cpp */; };
 		EFCEF9752644E64C0038F9BE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFCEF92B2644E64C0038F9BE /* main.cpp */; };
 		EFCEF9762644E64C0038F9BE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFCEF92B2644E64C0038F9BE /* main.cpp */; };
+		EFF01AF92644F51F008C9591 /* SplatShader.frag in Resources */ = {isa = PBXBuildFile; fileRef = EFF01AF52644F51F008C9591 /* SplatShader.frag */; };
+		EFF01AFA2644F51F008C9591 /* SplatShader.frag in Resources */ = {isa = PBXBuildFile; fileRef = EFF01AF52644F51F008C9591 /* SplatShader.frag */; };
+		EFF01AFB2644F51F008C9591 /* SplatShader.frag in Resources */ = {isa = PBXBuildFile; fileRef = EFF01AF52644F51F008C9591 /* SplatShader.frag */; };
+		EFF01AFC2644F51F008C9591 /* SplatShader.vert in Resources */ = {isa = PBXBuildFile; fileRef = EFF01AF72644F51F008C9591 /* SplatShader.vert */; };
+		EFF01AFD2644F51F008C9591 /* SplatShader.vert in Resources */ = {isa = PBXBuildFile; fileRef = EFF01AF72644F51F008C9591 /* SplatShader.vert */; };
+		EFF01AFE2644F51F008C9591 /* SplatShader.vert in Resources */ = {isa = PBXBuildFile; fileRef = EFF01AF72644F51F008C9591 /* SplatShader.vert */; };
+		EFF01AFF2644F51F008C9591 /* PPPaintBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFF01AF82644F51F008C9591 /* PPPaintBatch.cpp */; };
+		EFF01B002644F51F008C9591 /* PPPaintBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFF01AF82644F51F008C9591 /* PPPaintBatch.cpp */; };
+		EFF01B012644F51F008C9591 /* PPPaintBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFF01AF82644F51F008C9591 /* PPPaintBatch.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -330,6 +339,11 @@
 		EFCEF9292644E64C0038F9BE /* PPInputController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPInputController.cpp; sourceTree = "<group>"; };
 		EFCEF92A2644E64C0038F9BE /* PPApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPApp.cpp; sourceTree = "<group>"; };
 		EFCEF92B2644E64C0038F9BE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		EFF01AED2644F442008C9591 /* PPDangerBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPDangerBar.h; sourceTree = "<group>"; };
+		EFF01AF52644F51F008C9591 /* SplatShader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SplatShader.frag; sourceTree = "<group>"; };
+		EFF01AF62644F51F008C9591 /* PPPaintBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPaintBatch.h; sourceTree = "<group>"; };
+		EFF01AF72644F51F008C9591 /* SplatShader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SplatShader.vert; sourceTree = "<group>"; };
+		EFF01AF82644F51F008C9591 /* PPPaintBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPPaintBatch.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -559,6 +573,7 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				EFF01AF42644F51F008C9591 /* render */,
 				EFCEF8ED2644E64B0038F9BE /* source */,
 				C5621DB82604F13600875B72 /* models */,
 				C5FB328225F41BCA000694C3 /* utils */,
@@ -628,6 +643,7 @@
 		EFCEF8F82644E64B0038F9BE /* gameplay */ = {
 			isa = PBXGroup;
 			children = (
+				EFF01AED2644F442008C9591 /* PPDangerBar.h */,
 				EFCEF8F92644E64B0038F9BE /* PPColorPalette.h */,
 				EFCEF8FA2644E64B0038F9BE /* PPSplashEffect.cpp */,
 				EFCEF8FB2644E64B0038F9BE /* PPCanvas.cpp */,
@@ -708,6 +724,17 @@
 				EFCEF9292644E64C0038F9BE /* PPInputController.cpp */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		EFF01AF42644F51F008C9591 /* render */ = {
+			isa = PBXGroup;
+			children = (
+				EFF01AF52644F51F008C9591 /* SplatShader.frag */,
+				EFF01AF62644F51F008C9591 /* PPPaintBatch.h */,
+				EFF01AF72644F51F008C9591 /* SplatShader.vert */,
+				EFF01AF82644F51F008C9591 /* PPPaintBatch.cpp */,
+			);
+			path = render;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -844,6 +871,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF01AFE2644F51F008C9591 /* SplatShader.vert in Resources */,
 				EB22BF9B25D0EA5C002ACE41 /* DeviceMargins.plist in Resources */,
 				EB22BF9725D0EA51002ACE41 /* textures in Resources */,
 				EB22BF9025D0EA49002ACE41 /* iOS.xcassets in Resources */,
@@ -851,6 +879,7 @@
 				C5FB321F25F4147D000694C3 /* config in Resources */,
 				EB22BF9125D0EA49002ACE41 /* Landscape.storyboard in Resources */,
 				EB22BF9225D0EA49002ACE41 /* Portrait.storyboard in Resources */,
+				EFF01AFB2644F51F008C9591 /* SplatShader.frag in Resources */,
 				C5FB321625F4147D000694C3 /* levels in Resources */,
 				C5FB321C25F4147D000694C3 /* fonts in Resources */,
 			);
@@ -862,10 +891,12 @@
 			files = (
 				EB7454D01D750623002FBAE6 /* textures in Resources */,
 				EB7454AB1D74D846002FBAE6 /* iOS.xcassets in Resources */,
+				EFF01AFD2644F51F008C9591 /* SplatShader.vert in Resources */,
 				EB7454AC1D74D846002FBAE6 /* Landscape.storyboard in Resources */,
 				C5FB321825F4147D000694C3 /* scenes in Resources */,
 				EEBC479F2638E3B700748B81 /* widgets in Resources */,
 				C5FB321E25F4147D000694C3 /* config in Resources */,
+				EFF01AFA2644F51F008C9591 /* SplatShader.frag in Resources */,
 				EB7454AD1D74D846002FBAE6 /* Portrait.storyboard in Resources */,
 				EB07CFB621EFF3F8000CB3A3 /* DeviceMargins.plist in Resources */,
 				C5FB321525F4147D000694C3 /* levels in Resources */,
@@ -878,9 +909,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB2BE9BB1D7498D2002FE78B /* textures in Resources */,
+				EFF01AF92644F51F008C9591 /* SplatShader.frag in Resources */,
 				C5FB321A25F4147D000694C3 /* fonts in Resources */,
 				EBBF189B1D74904A008E2001 /* Mac.xcassets in Resources */,
 				C5FB321425F4147D000694C3 /* levels in Resources */,
+				EFF01AFC2644F51F008C9591 /* SplatShader.vert in Resources */,
 				EEBC479E2638E3B700748B81 /* widgets in Resources */,
 				C5FB321D25F4147D000694C3 /* config in Resources */,
 				C5FB321725F4147D000694C3 /* scenes in Resources */,
@@ -921,6 +954,7 @@
 				C5621DB42604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				EFCEF94F2644E64C0038F9BE /* PPFeedback.cpp in Sources */,
 				EFCEF9762644E64C0038F9BE /* main.cpp in Sources */,
+				EFF01B012644F51F008C9591 /* PPPaintBatch.cpp in Sources */,
 				EEFA1A7325FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				EFCEF9732644E64C0038F9BE /* PPApp.cpp in Sources */,
 				C5621E0A260BACE100875B72 /* PPActionController.cpp in Sources */,
@@ -937,6 +971,7 @@
 				EFCEF93C2644E64C0038F9BE /* PPColorPaletteView.cpp in Sources */,
 				C5621DB02604F10300875B72 /* PPInputController.cpp in Sources */,
 				C5FB329D25F41BD1000694C3 /* PPTimer.cpp in Sources */,
+				EFF01B002644F51F008C9591 /* PPPaintBatch.cpp in Sources */,
 				C5621DB32604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				EFCEF9662644E64C0038F9BE /* PPSaveController.cpp in Sources */,
 				EFCEF9512644E64C0038F9BE /* PPMenuScene.cpp in Sources */,
@@ -979,6 +1014,7 @@
 				EFCEF93B2644E64C0038F9BE /* PPColorPaletteView.cpp in Sources */,
 				C5621DAF2604F10300875B72 /* PPInputController.cpp in Sources */,
 				C5FB329C25F41BD1000694C3 /* PPTimer.cpp in Sources */,
+				EFF01AFF2644F51F008C9591 /* PPPaintBatch.cpp in Sources */,
 				C5621DB22604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				EFCEF9652644E64C0038F9BE /* PPSaveController.cpp in Sources */,
 				EFCEF9502644E64C0038F9BE /* PPMenuScene.cpp in Sources */,
