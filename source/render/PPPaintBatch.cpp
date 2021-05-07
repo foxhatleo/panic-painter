@@ -71,13 +71,9 @@ void PaintBatch::dispose() {
 /**
  * Initializes a sprite batch with the default vertex capacity.
  *
- * The default vertex capacity is 1024 vertices and 1024*3 = 3072 indices.
- * If the mesh exceeds these values, the sprite batch will flush before
- * before continuing to draw. Similarly uniform buffer is initialized with
- * 512 buffer positions. This means that the uniform buffer is comparable
- * in memory size to the vertices, but only allows 512 gradient or scissor
- * mask context switches before the sprite batch must flush. If you wish to
- * increase (or decrease) the capacity, use the alternate initializer.
+ * The default vertex capacity is 1 vertices and 1*3 = 3 indices.
+ * If the mesh exceeds these values, the paint batch will flush before
+ * before continuing to draw. 
  *
  * The sprite batch begins with the default blank texture, and color white.
  * The perspective matrix is the identity.
