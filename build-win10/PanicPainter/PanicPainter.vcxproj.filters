@@ -115,6 +115,9 @@
     <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp">
       <Filter>Scenes\Settings</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPLevelComplete.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc">
@@ -209,5 +212,8 @@
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPLevelComplete.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

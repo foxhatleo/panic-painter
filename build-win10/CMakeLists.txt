@@ -42,6 +42,8 @@ set(PP_FILES
         ../source/scenes/gameplay/PPDangerBar.h
         ../source/scenes/gameplay/PPDangerBar.cpp
         ../source/scenes/gameplay/PPSplashEffect.h
+        ../source/scenes/gameplay/PPLevelComplete.cpp
+        ../source/scenes/gameplay/PPLevelComplete.h
         ../source/scenes/gameplay/PPSplashEffect.cpp
         ../source/scenes/menu/PPMenuScene.h
         ../source/scenes/menu/PPMenuScene.cpp
