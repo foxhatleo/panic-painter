@@ -93,13 +93,14 @@ void SettingsScene::activateUI(
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
                 });
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .57);
+            button->setPositionY(_sceneSize.getIHeight() * 0.63);
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .53);
+            //button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .53);
             //button->setPositionX(_tray->getPositionX() + _tray->getWidth() * (BUTTON_X_FRAC+0.025));
+            button->setPositionY(_sceneSize.getIHeight() * 0.525);
 
             // TODO: Remove following once both side palettes are supported
             button->setColor(Color4f(1, 1, 1, .5));
