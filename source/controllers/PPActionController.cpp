@@ -11,7 +11,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
     // First passthrough of the canvas.
     for (uint i = 0, j = _state.numQueues(); i < j; i++) {
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
-
+            int prevColors = (int) _state.getColorsOfCanvas(i, i2).size();
             // At the beginning of a frame, set canvas hover to false.
 //            _canvases[i][i2]->setHover(false);
 
@@ -31,6 +31,10 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 if (input.didDoubleTap() && input.justReleased() &&
                     startingPointIn && currentPointIn) {
                     _state.clearColor(i, i2, selectedColor);
+                    int newColors = (int) _state.getColorsOfCanvas(i, i2).size();
+                    if (newColors < prevColors) {
+                        _state.incrementScoreForSwipe(1);
+                    }
                     input.clearPreviousTaps();
                 }
 
@@ -91,9 +95,14 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
         // If there is only one, that means the user started dragging but went back to the original canvas.
         // This suggests that he/she/they gave up on dragging.
         if (input.justReleased() && toClear.size() > 1) {
+            int numCorrect = 0;
             for (auto &p : toClear) {
+                int prevColors = (int) _state.getColorsOfCanvas(p.first, p.second).size();
                 _state.clearColor(p.first, p.second, selectedColor);
+                int newColors = (int) _state.getColorsOfCanvas(p.first, p.second).size();
+                if (newColors < prevColors) numCorrect += 1;
             }
+            _state.incrementScoreForSwipe(1 + numCorrect * 1.5);
         }
     }
 }

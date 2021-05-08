@@ -14,6 +14,7 @@ void GameStateController::_jsonv1_loadColors(const json_t &colors) {
     _state.scoreTracker["wrongAction"] = 0;
     _state.scoreTracker["timedOut"] = 0;
     _state.scoreTracker["correct"] = 0;
+    _state.scoreTracker["aggregateScore"] = 0;
 }
 
 void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
@@ -112,11 +113,14 @@ void GameStateController::update(float timestep) {
                 _state.recorded[i][ind - 1] = true;
                 if (cs == LOST_DUE_TO_TIME) {
                     _state.scoreTracker["timedOut"]++;
+                    _state.scoreTracker["aggregateScore"] -= 5;
                 } else if (cs == LOST_DUE_TO_WRONG_ACTION) {
                     _state.scoreTracker["wrongAction"]++;
+                    _state.scoreTracker["aggregateScore"] -= 10;
                 } else {
                     _state.scoreTracker["correct"]++;
                 }
+                _state.scoreTracker["aggregateScore"] = max(0, (int) _state.scoreTracker["aggregateScore"]);
                 if (_state.obstacles[i][ind - 1] && 
                     (cs == LOST_DUE_TO_TIME || cs == LOST_DUE_TO_WRONG_ACTION)) {
                     for (int x = 0; x < _state.queues.size(); x++) {
@@ -221,7 +225,11 @@ string GameStateController::getShapeForColorIndex(uint i) const {
 }
 
 uint GameStateController::getScoreMetric(string type) const {
-    CUAssertLog(type == "timedOut" || type == "wrongAction" || type == "correct",
+    CUAssertLog(type == "timedOut" || type == "wrongAction" || type == "correct" || type == "aggregateScore",
                 "Incorrect type provided.");
     return _state.scoreTracker.find(type)->second;
 }
+
+void GameStateController::incrementScoreForSwipe(float multiplier) {
+     _state.scoreTracker["aggregateScore"] += multiplier * 10;
+ }
