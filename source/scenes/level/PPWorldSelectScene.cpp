@@ -119,4 +119,5 @@ WorldRequest WorldSelectScene::getState() const {
 }
 
 void WorldSelectScene::update(float timestep) {
+    SoundController::getInstance()->useBgm("menu");
 }

@@ -99,6 +99,7 @@ void PauseScene::dispose() {
 
 void PauseScene::update(float timestep) {
     Scene2::update(timestep);
+    SoundController::getInstance()->pauseBgm();
 }
 
 void PauseScene::resetState() {

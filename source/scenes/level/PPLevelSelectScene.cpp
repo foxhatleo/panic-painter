@@ -163,4 +163,5 @@ void LevelSelectScene::loadWorld(const char* worldName) {
 }
 
 void LevelSelectScene::update(float timestep) {
+    SoundController::getInstance()->useBgm("menu");
 }
