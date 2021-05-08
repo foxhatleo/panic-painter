@@ -131,13 +131,7 @@ uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
 
 void ColorPaletteView::update() {
     auto &input = InputController::getInstance();
-    Vec2 sp = input.startingPoint();
-    bool startingPointIn = InputController::inScene(sp, getBoundingBox());
 
-    Vec2 cp = input.currentPoint();
-
-    float diff = cp.y - sp.y;
-    int indexOfOtherColor = -1;
     if (input.isPressing() || input.justReleased()) {
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++) {
             auto &btn = _buttons[i];
@@ -162,36 +156,9 @@ void ColorPaletteView::update() {
                 _animateButtonState(i, PRESSED);
             }
         }
-
-        if (startingPointIn && input.isPressing() && !input.isJustTap()) {
-            indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
-            for (uint i = 0; i < _colors.size(); i++) {
-                Animation::to(
-                    _buttons[i], .3,
-                    {{"scaleX", INACTIVE_SCALE},
-                     {"scaleY", INACTIVE_SCALE}},
-                    STRONG_OUT
-                );
-            }
-
-            Animation::to(
-                _buttons[indexOfOtherColor], .3,
-                {{"scaleX", PRESSED_SCALE},
-                 {"scaleY", PRESSED_SCALE}},
-                STRONG_OUT
-            );
-        }
     } else {
         for (uint i = 0, j = (uint) _colors.size(); i < j; i++)
             _animateButtonState(i, _selectedColor == i ? ACTIVE : INACTIVE);
-    }
-
-    // Enable swipe up/down on palette for color switching.
-    if (startingPointIn && input.justReleased()) {
-        indexOfOtherColor = this->_computeColorIndexAfterSwipe(diff);
-        if (indexOfOtherColor != -1 && indexOfOtherColor != _selectedColor) {
-            _selectedColor = indexOfOtherColor;
-        }
     }
 }
 

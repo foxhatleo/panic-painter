@@ -205,33 +205,14 @@ void GameScene::update(float timestep) {
         _splash->clear();
         //Gradually clear out the splatters
         _complete = make_shared<Timer>(5);
-        auto levelcomplete = PolygonNode::allocWithTexture(
-            _assets->get<Texture>("levelcomplete"));
-        float lc_width = levelcomplete->getContentWidth();
-        Size ds = Application::get()->getDisplaySize();
-        float desired_width = ds.width / 1.3;
-        float desired_scale = desired_width / lc_width;
-        levelcomplete->setScale(0);
-        levelcomplete->setAnchor(Vec2::ANCHOR_CENTER);
-        levelcomplete->setPosition(
-            ds.width / 2,
-            ds.height / 2
-        );
-        Animation::to(levelcomplete, .2, {
-            {"scaleX", desired_scale},
-            {"scaleY", desired_scale}
-        }, STRONG_OUT);
-        addChild(levelcomplete);
-        _congratulations = levelcomplete;
-        auto gameStats = Label::alloc(Size(0.7 * ds.width, 0.3 * ds.height), _assets->get<Font>("roboto"));
-        string winString = ("Correct: " + to_string(_state.getScoreMetric("correct")) +
-                            ", timed out: " + to_string(_state.getScoreMetric("timedOut")) +
-                           ", wrong action: " + to_string(_state.getScoreMetric("wrongAction"))).c_str();
-        gameStats->setText(winString);
-        gameStats->setColor(Color4::WHITE);
-        gameStats->setAnchor(Vec2::ANCHOR_TOP_CENTER);
-        gameStats->setPosition(ds.width / 2, levelcomplete->getBoundingBox().getMinY() - 10);
-        addChild(gameStats);
+        
+        auto lc = LevelComplete::alloc(_state, _assets);
+        auto ds = Application::get()->getDisplaySize();
+        lc->setScale(ds.height / lc->getHeight());
+        lc->setAnchor(Vec2::ANCHOR_CENTER);
+        lc->setPosition(0.85*ds.width/2, ds.height/2);
+        addChild(lc);
+    
         CULog("timed out: %d", _state.getScoreMetric("timedOut"));
         CULog("correct: %d", _state.getScoreMetric("correct"));
         CULog("wrong color: %d", _state.getScoreMetric("wrongAction"));
