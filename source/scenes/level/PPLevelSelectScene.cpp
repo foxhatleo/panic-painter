@@ -1,7 +1,7 @@
 #include "PPLevelSelectScene.h"
 
-#define SCENE_SIZE_W 1024
-#define SCENE_SIZE_H 576
+#define SCENE_SIZE_W (1024/4)
+#define SCENE_SIZE_H (576/4)
 #define BASE_SCALE 0.5
 #define BASE_LEVEL_SCALE 1
 
@@ -163,4 +163,5 @@ void LevelSelectScene::loadWorld(const char* worldName) {
 }
 
 void LevelSelectScene::update(float timestep) {
+    SoundController::getInstance()->useBgm("menu");
 }

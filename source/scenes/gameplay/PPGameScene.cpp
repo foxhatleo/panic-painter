@@ -15,8 +15,8 @@ bool GameScene::init(const asset_t &assets) {
     return true;
 }
 
-void GameScene::loadLevel(const char *levelName) {
-    CULog("Loading level %s...", levelName);
+void GameScene::loadLevel(const string &levelName) {
+    CULog("Loading level %s...", levelName.c_str());
 
     // Remove all children to reset.
     removeAllChildren();
@@ -31,6 +31,13 @@ void GameScene::loadLevel(const char *levelName) {
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
     _levelName = levelName;
+
+    auto i = levelName.find('-');
+    if (i != string::npos) {
+        _musicName = levelName.substr(0, i);
+    } else {
+        _musicName = "";
+    }
 
     // Ask state to load it.
     _state.loadJson(levelJson);
@@ -62,7 +69,8 @@ void GameScene::loadLevel(const char *levelName) {
                 j,
                 bound,
                 _state, 
-                isObstacle
+                isObstacle,
+                i2
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -134,6 +142,8 @@ void GameScene::update(float timestep) {
         return;
     }
 
+    SoundController::getInstance()->useBgm(_musicName);
+
     // So the first thing is to update the game state.
     _state.update(timestep);
 
@@ -172,7 +182,7 @@ void GameScene::update(float timestep) {
             }
 
             // At the beginning of a frame, set canvas hover to false.
-            _canvases[i][i2]->setHover(false);
+//            _canvases[i][i2]->setHover(false);
         }
     }
 

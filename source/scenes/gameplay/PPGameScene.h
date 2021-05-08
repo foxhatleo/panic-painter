@@ -9,6 +9,7 @@
 #include "PPColorPalette.h"
 #include "PPDangerBar.h"
 #include "controllers/PPActionController.h"
+#include "controllers/PPSoundController.h"
 #include "PPSplashEffect.h"
 #include "PPFeedback.h"
 #include "PPLevelComplete.h"
@@ -52,6 +53,8 @@ private:
 
     string _levelName;
 
+    string _musicName;
+
 public:
     GameScene() : Scene2(), _pauseRequest(false), _complete(nullptr) {}
 
@@ -67,7 +70,7 @@ public:
      * Load a level and reset the game scene.
      * @param levelName The name of the level, must be defined in assets JSON.
      */
-    void loadLevel(const char *levelName);
+    void loadLevel(const string &levelName);
 
     bool getPauseRequest() {
         bool r = _pauseRequest;

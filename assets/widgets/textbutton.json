@@ -30,7 +30,8 @@
                     "anchor" : [0.5, 0.5],
                     "halign" : "left",
                     "valign" : "top",
-                    "padding": [70, -200]
+                    "padding": [60, -170],
+                    "scale": 0.3
                 }
             }
         }

@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "controllers/PPSaveController.h"
+#include "controllers/PPSoundController.h"
 
 /**
  * Menu scene.

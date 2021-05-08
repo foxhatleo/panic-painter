@@ -27,8 +27,8 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     /*string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2",
                            "dog-1", "dog-2", "dog-3", "frog", "octopus"};*/
 
-    string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", "octo"};
-    int p = Random::getInstance()->getInt(6 - 1);
+    string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick"};//,"octo"};
+    int p = Random::getInstance()->getInt(5 - 1);
     if (isObstacle) {
         _texture_array[0] = assets->get<Texture>("obstacle-inactive");
         _texture_array[1] = assets->get<Texture>("obstacle-active");
@@ -39,6 +39,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
         _texture_array[1] = assets->get<Texture>(characters[p] + "-emotion-1");
         _texture_array[2] = assets->get<Texture>(characters[p] + "-emotion-2");
         _texture_array[3] = assets->get<Texture>(characters[p] + "-emotion-3");
+        _texture_array[4] = assets->get<Texture>(characters[p] + "-walk");
     }
    // _texture_array[3] = assets->get<Texture>("husky-walk");
 
@@ -47,6 +48,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _angerLevel = 0;
     // Load in the panda texture from scene and attach to a new polygon node
 
+    _texture = _texture_array[0];
     _bg = scene2::AnimationNode::alloc(_texture_array[0], 1, 19);
     _bg->setColor(Color4::WHITE);
     float horizontalScale = getWidth() / (_bg->getWidth());
@@ -79,18 +81,6 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _timerText->setVerticalAlignment(scene2::Label::VAlign::BOTTOM);
     _timerText->setPosition(getWidth() / 2, 35);
     addChild(_timerText);*/
-
-    _hoverAllowed = true;
-}
-
-void CanvasBlock::markLost() {
-    _hoverAllowed = false;
-    _bg->setColor(Color4(170, 46, 37));
-}
-
-void CanvasBlock::markDone() {
-    _hoverAllowed = false;
-    _bg->setColor(Color4(82, 178, 2));
 }
 
 void CanvasBlock::setIsActive(bool isActive) {
@@ -104,6 +94,14 @@ bool CanvasBlock::isFrameComplete() {
 void CanvasBlock::update(const vec<uint> &canvasColors,
                          const ptr<Timer> &timer) {
     _updateFrame++;
+    if (_walking && !_isObstacle) {
+        _bg->setTexture(_texture_array[4]);
+        if (_updateFrame % 6 == 0)
+            _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
+        return;
+    } else {
+        _bg->setTexture(_texture);
+    }
     int value = _updateFrame % (Random::getInstance()->getInt(99) + 12);
     if (_updateFrame % 6 == 0 &&_isObstacle) {
         if (_isActive  && _bg->getFrame() == _bg->getSize() - 1) {
@@ -113,7 +111,7 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
             else if (timer->timeLeft() < 5) {
                 _angerLevel = 2;
             }
-            _bg->setTexture(_texture_array[_angerLevel]);
+            _bg_setTexture(_texture_array[_angerLevel]);
             _bg->setFrame(0);
         }
         else {
@@ -132,7 +130,7 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
                 _angerLevel =
                     _angerLevel == 3 ? _angerLevel : (_angerLevel + 1);
             }
-            _bg->setTexture(_texture_array[_angerLevel]);
+            _bg_setTexture(_texture_array[_angerLevel]);
             _bg->setFrame(0);
         } else {
             _bg->setFrame(_bg->getFrame() + 1);
@@ -144,8 +142,6 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
     _colorStrip->update(canvasColors);
 }
 
-void CanvasBlock::setHover(bool in) {
-    if (!_hoverAllowed) return;
-    Color4 full = Color4(220, 220, 220);
-    _bg->setColor(in ? full : Color4::WHITE);
+void CanvasBlock::setWalking(bool value) {
+    _walking = value;
 }

@@ -1,6 +1,6 @@
 #include "PPMenuScene.h"
 
-#define SCENE_SIZE 1024
+#define SCENE_SIZE (1024/4)
 
 void MenuScene::dispose() {
     deactivateUI(_scene);
@@ -103,6 +103,7 @@ void MenuScene::resetState() {
 }
 
 void MenuScene::update(float timestep) {
+    SoundController::getInstance()->useBgm("menu");
 }
 
 MenuRequest MenuScene::getState() const {

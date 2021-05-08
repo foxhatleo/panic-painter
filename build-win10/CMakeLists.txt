@@ -55,6 +55,8 @@ set(PP_FILES
         ../source/scenes/level/PPWorldSelectScene.cpp
         ../source/utils/PPRandom.h
         ../source/utils/PPRandom.cpp
+        ../source/controllers/PPSoundController.h
+        ../source/controllers/PPSoundController.cpp
         ../source/scenes/gameplay/PPFeedback.h
         ../source/scenes/gameplay/PPFeedback.cpp)
 
