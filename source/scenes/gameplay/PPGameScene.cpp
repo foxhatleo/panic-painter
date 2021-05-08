@@ -69,8 +69,7 @@ void GameScene::loadLevel(const string &levelName) {
                 j,
                 bound,
                 _state, 
-                isObstacle,
-                i2
+                isObstacle
             );
             addChild(c);
             queue.insert(queue.begin(), 1, c);
@@ -182,7 +181,7 @@ void GameScene::update(float timestep) {
             }
 
             // At the beginning of a frame, set canvas hover to false.
-//            _canvases[i][i2]->setHover(false);
+            _canvases[i][i2]->setHover(false);
         }
     }
 

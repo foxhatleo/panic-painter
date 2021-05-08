@@ -13,7 +13,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
         for (uint i2 = 0, j2 = _state.numCanvases(i); i2 < j2; i2++) {
             int prevColors = (int) _state.getColorsOfCanvas(i, i2).size();
             // At the beginning of a frame, set canvas hover to false.
-//            _canvases[i][i2]->setHover(false);
+            _canvases[i][i2]->setHover(false);
 
             // This whole block is for processing inputs.
             // Only process input on active canvases.
@@ -39,7 +39,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 }
 
                 if (input.isPressing() && startingPointIn && currentPointIn) {
-//                    _canvases[i][i2]->setHover(true);
+                    _canvases[i][i2]->setHover(true);
                 }
 
                 // DRAGGING
@@ -85,7 +85,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                      input.currentPoint().x <= in_end_box.getMaxX() :
                      input.currentPoint().x >= in_end_box.getMinX())
                     ) {
-//                    _canvases[i][i2]->setHover(input.isPressing());
+                    _canvases[i][i2]->setHover(input.isPressing());
                     toClear.push_back({i, i2});
                 }
             }
