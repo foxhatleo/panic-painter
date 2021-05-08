@@ -1,6 +1,13 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include "resource.h"
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        101
+#define _APS_NEXT_COMMAND_VALUE         40001
+#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif
 #include <windows.h>
 /////////////////////////////////////////////////////////////////////////////
 // English (United States) resources
@@ -15,8 +22,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,5,5,0
- PRODUCTVERSION 0,5,5,0
+ FILEVERSION 0,5,9,0
+ PRODUCTVERSION 0,5,9,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -33,12 +40,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Dragonglass Studios"
             VALUE "FileDescription", "Panic Painter"
-            VALUE "FileVersion", "0.5.5.0"
+            VALUE "FileVersion", "0.5.9.0"
             VALUE "InternalName", "PanicPainter.exe"
             VALUE "LegalCopyright", "Copyright (C) 2021 Dragonglass Studios"
             VALUE "OriginalFilename", "PanicPainter.exe"
             VALUE "ProductName", "Panic Painter"
-            VALUE "ProductVersion", "0.5.5.0"
+            VALUE "ProductVersion", "0.5.9.0"
         END
     END
     BLOCK "VarFileInfo"

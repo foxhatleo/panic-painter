@@ -217,7 +217,6 @@
     <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h">
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPLevelComplete.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
