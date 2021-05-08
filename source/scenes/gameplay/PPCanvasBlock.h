@@ -23,7 +23,7 @@ private:
     /** Background */
     ptr<AnimationNode> _bg;
 
-    ptr<Texture> _texture_array[4];
+    ptr<Texture> _texture_array[5];
 
     /*The request bubble*/
     ptr<PolygonNode> _talk_bubble;
@@ -34,8 +34,6 @@ private:
     /** The timer text. */
     ptr<Label> _timerText;
 
-    /** If hover is allowed. */
-    bool _hoverAllowed;
     /*When to update the animation*/
     int _updateFrame;
     /*How angry is the character*/
@@ -45,9 +43,14 @@ private:
     /*How many colors did this canvas start out with? This is needed to know how many animations to loop through*/
     int _initialColorNumber;
     /*Is this canvas an obstacle?*/
-    bool _isObstacle; 
+    bool _isObstacle;
+    bool _walking;
     /** Game state. */
     GameStateController _state;
+    ptr<Texture> _texture;
+    void _bg_setTexture(ptr<Texture> t) {
+        _texture = t;
+    }
     /** Set up this block. */
     void _setup(const asset_t &assets, const vec<Color4> &colors, const int numCanvasColors, const GameStateController &state, bool isObstacle);
     
@@ -59,15 +62,11 @@ public:
                                   const vec<Color4> &colors, const int numCanvasColors,
                                   const GameStateController &state, bool isObstacle);
 
-    void setHover(bool in);
-
-    void markLost();
-
-    void markDone();
-
     void setIsActive(bool isActive);
 
     bool isFrameComplete();
+
+    void setWalking(bool value);
 
     /**
      * Update the canvas block.

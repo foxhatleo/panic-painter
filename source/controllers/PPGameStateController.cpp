@@ -71,7 +71,7 @@ void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
         vec<ptr<Timer>> queueTimers;
 
         for (const auto &i2 : queueRef) {
-            float d = i2.size() * canvasPerColorTime + canvasBaseTime;
+            float d = i2.size() * canvasPerColorTime + canvasBaseTime + 2;
             ptr<Timer> t = Timer::alloc(d);
             queueTimers.push_back(t);
         }
