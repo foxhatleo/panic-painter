@@ -157,6 +157,7 @@ void ColorPaletteView::update() {
             if (input.justReleased()) {
                 _selectedColor = i;
                 _animateButtonState(i, ACTIVE);
+                input.clearPreviousTaps(); 
             } else {
                 _animateButtonState(i, PRESSED);
             }

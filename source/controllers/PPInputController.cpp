@@ -167,7 +167,4 @@ bool InputController::didTripleTap() const {
 
 void InputController::clearPreviousTaps() {
     _inputs.clear();
-    if (_currentInput != nullptr) {
-        _inputs.push_front(_currentInput);
-    }
 }
