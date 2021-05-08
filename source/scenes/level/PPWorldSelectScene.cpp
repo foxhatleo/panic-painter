@@ -1,7 +1,7 @@
 #include "PPWorldSelectScene.h"
 
-#define SCENE_SIZE_W 1024
-#define SCENE_SIZE_H 576
+#define SCENE_SIZE_W (1024/4)
+#define SCENE_SIZE_H (576/4)
 
 bool WorldSelectScene::init(const asset_t &assets) {
     _safe = Application::get()->getSafeBounds();
