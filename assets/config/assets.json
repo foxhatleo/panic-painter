@@ -16,16 +16,16 @@
       "file": "textures/shapes/triangle.png"
     },
     "palette": {
-      "file": "textures/palette.png"
+      "file": "textures/temp.png"
     },
     "panda": {
       "file": "textures/characters/panda.png"
     },
     "background": {
-      "file": "textures/background.png"
+      "file": "textures/temp.png"
     },
     "menubackground": {
-      "file": "textures/menubackground.png"
+      "file": "textures/temp.png"
     },
     "talk-bubble": {
       "file": "textures/talk_bubble.png"
@@ -160,13 +160,13 @@
       "file": "textures/menu/stand.png"
     },
     "greensplatter": {
-      "file": "textures/menu/greensplatter.png"
+      "file": "textures/temp.png"
     },
     "redsplatter": {
-      "file": "textures/menu/redsplatter.png"
+      "file": "textures/temp.png"
     },
     "levelcomplete": {
-      "file": "textures/levelcomplete.png"
+      "file": "textures/temp.png"
     },
     "levelbutton": {
       "file": "textures/levelselect/levelbutton.png"
@@ -211,16 +211,16 @@
       "file": "textures/pause/pauseresume.png"
     },
     "museum-bg": {
-      "file": "textures/level-backgrounds/museum.png"
+      "file": "textures/temp.png"
     },
     "city-bg": {
-      "file": "textures/level-backgrounds/city.png"
+      "file": "textures/temp.png"
     },
     "house-bg": {
-      "file": "textures/level-backgrounds/home.png"
+      "file": "textures/temp.png"
     },
     "island-bg": {
-      "file": "textures/level-backgrounds/island.png"
+      "file": "textures/temp.png"
     },
     "feedbackno": {
       "file": "textures/feedbackno.png"
@@ -229,7 +229,7 @@
       "file": "textures/feedbackyes.png"
     },
     "space-bg": {
-      "file": "textures/level-backgrounds/space.png"
+      "file": "textures/temp.png"
     },
     "worldselect-city": {
       "file": "textures/levelselect/worldselect-city.png"
@@ -253,7 +253,7 @@
       "file": "textures/levelselect/worldselect-space.png"
     },
     "worldselect-background": {
-      "file": "textures/levelselect/worldselect-background.png"
+      "file": "textures/temp.png"
     },
     "city-button-1": {
       "file": "textures/levelselect/level-blue-1.png"
