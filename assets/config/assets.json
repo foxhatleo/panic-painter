@@ -54,9 +54,6 @@
     "samoyed-emotion-3": {
       "file": "textures/characters/samoyed_emotion_stage3.png"
     },
-    "samoyed-walk": {
-      "file": "textures/characters/samoyed_walk.png"
-    },
     "cat1-blink": {
       "file": "textures/characters/cat1_blink.png"
     },
@@ -69,9 +66,6 @@
     "cat1-emotion-3": {
       "file": "textures/characters/cat1_very_angry.png"
     },
-    "cat1-walk": {
-      "file": "textures/characters/cat1_walk.png"
-    },
     "cat2-blink": {
       "file": "textures/characters/cat2_blink.png"
     },
@@ -83,9 +77,6 @@
     },
     "cat2-emotion-3": {
       "file": "textures/characters/cat2_very_angry.png"
-    },
-    "cat2-walk": {
-      "file": "textures/characters/cat2_walk.png"
     },
     "obstacle-inactive": {
       "file": "textures/characters/flower_inactive.png"
@@ -107,9 +98,6 @@
     },
     "chick-emotion-3": {
       "file": "textures/characters/chick_very_angry.png"
-    },
-    "chick-walk": {
-      "file": "textures/characters/chick_walk.png"
     },
     "octo-blink": {
       "file": "textures/characters/octo_blink.png"

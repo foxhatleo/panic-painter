@@ -48,7 +48,7 @@ private:
                 uint numOfQueues, 
                 const int numCanvasColors,
                 const GameStateController &state, 
-                bool isObstacle, uint rowNum);
+                bool isObstacle);
 
 public:
     /** Allocate canvas with a particular bound. See _setup() for arguments. */
@@ -59,10 +59,17 @@ public:
                              uint numOfQueues,
                              const Rect &bound,
                              const GameStateController &state, 
-                             bool isObstacle, uint rowNum);
+                             bool isObstacle);
 
 
     ptr<SceneNode> getInteractionNode() const;
+
+    /**
+     * This is true if the user has their finger on this canvas or it's being
+     * covered during a drag session.
+     * @param value
+     */
+    void setHover(bool value);
 
     /**
      * Update. This will give you the newest canvas state, index of colors on

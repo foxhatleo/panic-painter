@@ -2,8 +2,8 @@
 
 #define PADDING 0
 #define MAX_QUEUE 6
-#define EASING SINE_IN_OUT
-#define DURATION 2
+#define EASING STRONG_OUT
+#define DURATION 0.5
 #define MINI_SCALE 0.75
 #define VANISHING_POINT_EFFECT 0.05f
 
@@ -13,13 +13,10 @@ ptr<Canvas> Canvas::alloc(const asset_t &assets,
                   uint numOfQueues,
                   const Rect &bound,
                   const GameStateController &state, 
-                  bool isObstacle, uint rowNum) {
+                  bool isObstacle) {
     auto result = make_shared<Canvas>();
     if (result->initWithBounds(bound))
-        result->_setup(assets, state.getColors(), state.getTimer(queueInd,
-                                                                 canvasInd),
-                       queueInd, numOfQueues, (uint) state.getColorsOfCanvas
-                       (queueInd, canvasInd).size(), state, isObstacle, rowNum);
+        result->_setup(assets, state.getColors(), state.getTimer(queueInd, canvasInd), queueInd, numOfQueues, (uint) state.getColorsOfCanvas(queueInd, canvasInd).size(), state, isObstacle);
     else
         return nullptr;
     return result;
@@ -27,7 +24,7 @@ ptr<Canvas> Canvas::alloc(const asset_t &assets,
 
 void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
                     const ptr<Timer> &timer, uint queueInd, uint numOfQueues, const int numCanvasColors,
-                    const GameStateController &state, bool isObstacle, uint rowNum) {
+                    const GameStateController &state, bool isObstacle) {
     _timer = timer;
 
     float containerWidth = getWidth();
@@ -41,23 +38,13 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _yForActive = getHeight() * .05f;
     _yForStandBy = _yForActive + getHeight() * .45f;
     _startingY = _yForStandBy + getHeight() * .1f;
+    _yAfterLeaving = _yForActive - getHeight() * .1f;
 
     _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors, state, isObstacle);
     _block->setScale(MINI_SCALE, MINI_SCALE);
     _block->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
     _block->setPosition(laneX, _startingY);
     _block->setColor(Color4(255, 255, 255, 0));
-    Animation::set(_block, {
-        {"y",       rowNum == 0 ? _yForActive : (rowNum == 1 ? _yForStandBy :
-        _startingY)},
-        {"opacity", rowNum == 0 ? 1 : (rowNum == 1 ? .75f : 0)},
-        {"scaleX",  rowNum == 0 ? 1 : MINI_SCALE},
-        {"scaleY",  rowNum == 0 ? 1 : MINI_SCALE},
-        {"x", rowNum == 0 ? _normalX : Animation::relative(0)}
-    });
-
-    _yAfterLeaving = -_block->getHeight() * 2;
-
     addChild(_block);
     _previousState = HIDDEN;
 }
@@ -82,16 +69,13 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
 
         // Set y of block depending on state.
         if (state != _previousState) {
-            _block->setWalking(true);
             Animation::to(_block, DURATION, {
                 {"y",       state == ACTIVE ? _yForActive : _yForStandBy},
                 {"opacity", state == ACTIVE ? 1 : .75f},
                 {"scaleX",  state == ACTIVE ? 1 : MINI_SCALE},
                 {"scaleY",  state == ACTIVE ? 1 : MINI_SCALE},
                 {"x", state == ACTIVE ? _normalX : Animation::relative(0)}
-            }, EASING, [=]() {
-                _block->setWalking(false);
-            });
+            }, EASING);
         }
 
         // Update block.
@@ -100,10 +84,19 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
 
         // If the block is going from shown to hidden.
     } else if (_block->getParent() != nullptr && state != _previousState) {
-        _block->setWalking(true);
+        if (state == DONE) {
+            _block->markDone();
+        } else {
+            _block->markLost();
+        }
         Animation::to(_block, DURATION, {
             {"y",       _yAfterLeaving},
+            {"opacity", 0},
         }, EASING);
     }
     _previousState = state;
+}
+
+void Canvas::setHover(bool value) {
+    _block->setHover(value);
 }
