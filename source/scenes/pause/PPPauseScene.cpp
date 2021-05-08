@@ -1,5 +1,5 @@
 #include "PPPauseScene.h"
-#define SCENE_SIZE 1024
+#define SCENE_SIZE (1024/4)
 
 bool PauseScene::init(const asset_t &assets) {
     _state = PAUSED;

@@ -18,9 +18,6 @@
     "palette": {
       "file": "textures/palette.png"
     },
-    "panda": {
-      "file": "textures/characters/panda.png"
-    },
     "background": {
       "file": "textures/background.png"
     },
@@ -29,33 +26,6 @@
     },
     "talk-bubble": {
       "file": "textures/talk_bubble.png"
-    },
-    "cat-1": {
-      "file": "textures/characters/cat-1.png"
-    },
-    "cat-2": {
-      "file": "textures/characters/cat-2.png"
-    },
-    "bird-1": {
-      "file": "textures/characters/bird-1.png"
-    },
-    "bird-2": {
-      "file": "textures/characters/bird-2.png"
-    },
-    "dog-1": {
-      "file": "textures/characters/dog-1.png"
-    },
-    "dog-2": {
-      "file": "textures/characters/dog-2.png"
-    },
-    "dog-3": {
-      "file": "textures/characters/dog-3.png"
-    },
-    "frog": {
-      "file": "textures/characters/frog.png"
-    },
-    "octopus": {
-      "file": "textures/characters/octopus.png"
     },
     "husky-blink": {
       "file": "textures/characters/husky_blink.png"
@@ -350,11 +320,11 @@
   "fonts": {
     "roboto": {
       "file": "fonts/Roboto-Regular.ttf",
-      "size": 30
+      "size": 40
     },
     "jua": {
       "file": "fonts/Jua-Regular.ttf",
-      "size": 120
+      "size": 40
     }
   },
   "sounds": {

@@ -1,6 +1,6 @@
 #include "PPMenuScene.h"
 
-#define SCENE_SIZE 1024
+#define SCENE_SIZE (1024/4)
 
 void MenuScene::dispose() {
     deactivateUI(_scene);
