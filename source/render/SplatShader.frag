@@ -252,18 +252,18 @@ void main(void) {
     iResolution = uViewport;
 
     // uv are screen coordinates, uniformly scaled to go from 0..1 vertically
-    vec2 uv = outPosition.xy / iResolution.yy;
+    vec2 uv = gl_FragCoord.xy / iResolution.yy;
     
     vec2 uvOffset = vec2(-200,100);
     //Get splats
-    vec4 dotColor = getSplatColorAtPixel(outPosition,(uv)*1.5+uvOffset);
+    vec4 dotColor = getSplatColorAtPixel(gl_FragCoord.xy,(uv)*1.5+uvOffset);
     
     //Alpha blending - Blend of Result from above and splatter
 //    result = overlayColors(dotColor, result);
     //alpha combine splatter and result, assuming result wont use alpha
     //result = dotColor.w * dotColor + (1-dotColor.w)*result;
     
-    frag_color = result;
+    frag_color = dotColor;
 }
 /////////// SHADER END //////////)"
 

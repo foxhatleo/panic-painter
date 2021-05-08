@@ -92,7 +92,7 @@ bool PaintBatch::init() {
 
 
     _vertbuff = VertexBuffer::alloc(sizeof(PaintVertex));
-    _vertbuff->setupAttribute("aPosition", 2, GL_FLOAT, GL_FALSE, 0);
+    _vertbuff->setupAttribute("worldPos", 2, GL_FLOAT, GL_FALSE, 0);
     _vertbuff->attach(_shader);
 
     // Set up data arrays;
@@ -176,6 +176,7 @@ void PaintBatch::flush() {
         _shader->setUniformMat4("uPerspective", *_perspective);
         _perspectiveChanged = false; 
     }
+    _vertbuff->draw(GL_TRIANGLES, 6, 0);
     _unifbuff->deactivate();
 
     // Increment the counters
