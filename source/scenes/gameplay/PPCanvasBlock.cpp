@@ -93,6 +93,7 @@ bool CanvasBlock::isFrameComplete() {
 
 void CanvasBlock::update(const vec<uint> &canvasColors,
                          const ptr<Timer> &timer) {
+    _colorStrip->update(canvasColors);
     _updateFrame++;
     if (_walking && !_isObstacle) {
         _bg->setTexture(_texture_array[4]);
@@ -139,7 +140,6 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
     }
     //Commenting instead of removing for debug purposes
     //  _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
-    _colorStrip->update(canvasColors);
 }
 
 void CanvasBlock::setWalking(bool value) {
