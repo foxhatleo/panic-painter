@@ -2,6 +2,7 @@
 #define PANICPAINTER_PPLOADINGSCENE_H
 
 #include "utils/PPHeader.h"
+#include "controllers/PPSoundController.h"
 
 /**
  * Loading scene.

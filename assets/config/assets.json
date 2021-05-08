@@ -357,6 +357,43 @@
       "size": 120
     }
   },
+  "sounds": {
+    "menu": {
+      "file": "music/menu.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "city": {
+      "file": "music/city.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "house": {
+      "file": "music/house.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "museum": {
+      "file": "music/museum.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "eiffel": {
+      "file": "music/eiffel.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "island": {
+      "file": "music/island.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "space": {
+      "file": "music/space.ogg",
+      "type": "sample",
+      "volume": 1
+    }
+  },
   "widgets": {
     "textbutton" : "widgets/textbutton.json"
   }

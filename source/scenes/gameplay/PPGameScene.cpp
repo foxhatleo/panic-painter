@@ -15,8 +15,8 @@ bool GameScene::init(const asset_t &assets) {
     return true;
 }
 
-void GameScene::loadLevel(const char *levelName) {
-    CULog("Loading level %s...", levelName);
+void GameScene::loadLevel(const string &levelName) {
+    CULog("Loading level %s...", levelName.c_str());
 
     // Remove all children to reset.
     removeAllChildren();
@@ -31,6 +31,13 @@ void GameScene::loadLevel(const char *levelName) {
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
     _levelName = levelName;
+
+    auto i = levelName.find('-');
+    if (i != string::npos) {
+        _musicName = levelName.substr(0, i);
+    } else {
+        _musicName = "";
+    }
 
     // Ask state to load it.
     _state.loadJson(levelJson);
@@ -133,6 +140,8 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
+
+    SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
     _state.update(timestep);

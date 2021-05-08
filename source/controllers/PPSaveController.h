@@ -54,8 +54,10 @@ public:
 
     uint getScore(const string &level) const;
 
+    /** @deprecated Use SoundController instead. */
     float getSfxVolume() const;
 
+    /** @deprecated Use SoundController instead. */
     float getBgmVolume() const;
 
     bool getColorblind() const;
@@ -68,8 +70,10 @@ public:
 
     void setScore(const string &level, uint score);
 
+    /** @deprecated Use SoundController instead. */
     void setSfxVolume(float value);
 
+    /** @deprecated Use SoundController instead. */
     void setBgmVolume(float value);
 
     void setMusic(bool on);

@@ -103,6 +103,7 @@ void MenuScene::resetState() {
 }
 
 void MenuScene::update(float timestep) {
+    SoundController::getInstance()->useBgm("menu");
 }
 
 MenuRequest MenuScene::getState() const {

@@ -2,6 +2,7 @@
 #define PANICPAINTER_PPPAUSESCENE_H
 
 #include "utils/PPHeader.h"
+#include "controllers/PPSoundController.h"
 
 enum PauseRequest {
     PAUSED,

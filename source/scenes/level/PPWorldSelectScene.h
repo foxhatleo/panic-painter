@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "controllers/PPInputController.h"
+#include "controllers/PPSoundController.h"
 
 enum WorldRequest {
     WORLD,    // standard case, stay on world select

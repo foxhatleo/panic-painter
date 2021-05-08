@@ -53,6 +53,7 @@ void SaveController::_flush() {
     w->writeJson(v, true);
     w->flush();
     w->close();
+    CULog("Finished flushing settings and save data.");
 }
 
 bool SaveController::isLocked(const string &level) const {

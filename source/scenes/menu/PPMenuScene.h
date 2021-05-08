@@ -2,6 +2,7 @@
 #define PANICPAINTER_PPMENUSCENE_H
 
 #include "utils/PPHeader.h"
+#include "controllers/PPSoundController.h"
 
 enum MenuRequest {
     HOME, // Had to call this "HOME" rather than "MENU" to prevent weird bug
