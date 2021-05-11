@@ -150,6 +150,9 @@
     "levelcomplete": {
       "file": "textures/levelcomplete.png"
     },
+    "levelfailed": {
+      "file": "textures/levelfailed.png"
+    },
     "levelbutton": {
       "file": "textures/levelselect/levelbutton.png"
     },

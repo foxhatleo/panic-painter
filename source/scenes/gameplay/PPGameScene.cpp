@@ -206,17 +206,29 @@ void GameScene::update(float timestep) {
         _splash->clear();
         //Gradually clear out the splatters
         _complete = make_shared<Timer>(5);
-        
-        auto lc = LevelComplete::alloc(_state, _assets);
         auto ds = Application::get()->getDisplaySize();
-        lc->setScale(ds.height / lc->getHeight());
-        lc->setAnchor(Vec2::ANCHOR_CENTER);
-        lc->setPosition(0.85*ds.width/2, ds.height/2);
-        addChild(lc);
-    
-        CULog("timed out: %d", _state.getScoreMetric("timedOut"));
-        CULog("correct: %d", _state.getScoreMetric("correct"));
-        CULog("wrong color: %d", _state.getScoreMetric("wrongAction"));
+        
+        // IMPORTANT TODO: Change this to actually set the score limit of levels.
+        float MAX_SCORE = 1200;
+        float percent = _state.getScoreMetric("aggregateScore") / MAX_SCORE;
+        
+        if (_state.getScoreMetric("wrongAction") > MISTAKE_ALLLOWED || percent < 0.50f) {
+            auto lf = PolygonNode::allocWithTexture(_assets->get<Texture>("levelfailed"));
+            lf->setScale(ds.height / lf->getHeight());
+            lf->setAnchor(Vec2::ANCHOR_CENTER);
+            lf->setPosition(0.5*ds.width, 0.5*ds.height);
+            addChild(lf);
+        } else {
+            auto lc = LevelComplete::alloc(_state, _assets, percent);
+            lc->setScale(ds.height / lc->getHeight());
+            lc->setAnchor(Vec2::ANCHOR_CENTER);
+            lc->setPosition(0.85*ds.width/2, ds.height/2);
+            addChild(lc);
+        
+            CULog("timed out: %d", _state.getScoreMetric("timedOut"));
+            CULog("correct: %d", _state.getScoreMetric("correct"));
+            CULog("wrong color: %d", _state.getScoreMetric("wrongAction"));
+        }
     }
 
     Scene2::update(timestep);

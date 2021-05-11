@@ -10,10 +10,11 @@
 
 ptr<LevelComplete> LevelComplete::alloc(
         const GameStateController &state,
-        const asset_t& assets) {
+        const asset_t& assets,
+        float percent) {
     auto result = make_shared<LevelComplete>(state, assets);
     if (result->init()) {
-        result->_setup(state, assets);
+        result->_setup(state, assets, percent);
     }
     else {
         return nullptr;
@@ -22,13 +23,9 @@ ptr<LevelComplete> LevelComplete::alloc(
     return result;
 }
 
-void LevelComplete::_setup(const GameStateController &state, const asset_t &assets) {
+void LevelComplete::_setup(const GameStateController &state, const asset_t &assets, float percent) {
     auto levelcomplete = PolygonNode::allocWithTexture(
         assets->get<Texture>("levelcomplete"));
-    
-    // IMPORTANT TODO: Change this to actually set the score limit of levels.
-    float MAX_SCORE = 1200;
-    float percent = state.getScoreMetric("aggregateScore") / MAX_SCORE;
     
     ptr<PolygonNode> stars;
     if (percent < 0.50f) {
