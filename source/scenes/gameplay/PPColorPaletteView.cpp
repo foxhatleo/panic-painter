@@ -86,6 +86,15 @@ void ColorPaletteView::_setup(const GameStateController &state) {
     }
     
     float btnStartY = getContentHeight() - btnStartOffset;
+    float padding;
+    if (numColors == 3) {
+        padding = 77;
+    } else if (numColors == 4) {
+        padding = 73;
+    } else {
+        padding = 68;
+    }
+    
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
         auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
         if (SaveController::getInstance()->getColorblind()) {
@@ -96,7 +105,7 @@ void ColorPaletteView::_setup(const GameStateController &state) {
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
             getContentWidth() / 2,
-            btnStartY - PADDING * i
+            btnStartY - padding * i
         );
         btn->setColor(_colors[i]);
 
@@ -132,6 +141,7 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     );
 }
 
+/** Not used anymore, Legacy code from curved palette. Kept in case we revert. */
 uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
     float numColors = _colors.size();
     float padding = PADDING + 5 * (4 - _colors.size());

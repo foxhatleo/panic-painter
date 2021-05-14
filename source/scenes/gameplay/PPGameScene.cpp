@@ -119,7 +119,6 @@ void GameScene::loadLevel(const string &levelName) {
                 safeArea.size.height * (1 - TIMER_HEIGHT)
             )
         ), _state.getColors(), _assets, _state);
-    
     if (!SaveController::getInstance()->getPaletteLeft()) {
         float transform[] = {
             -1, 0, 0, 0,
@@ -130,7 +129,7 @@ void GameScene::loadLevel(const string &levelName) {
         auto mat = Mat4(transform);
         _palette->chooseAlternateTransform(true);
         _palette->setAlternateTransform(mat);
-        _palette->setPosition(gtBound.size.width * 1.1, gtBound.size.height * 0.5);
+        _palette->setPosition(safeArea.size.width * 1.1, gtBound.size.height);
     }
     
     _splash = SplashEffect::alloc(_assets,
