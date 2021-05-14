@@ -113,7 +113,7 @@ void GameScene::loadLevel(const string &levelName) {
     // change position to keep it to the left of the screen.
     _palette =
         ColorPalette::alloc(Rect(
-            safeArea.origin,
+            safeArea.origin + Vec2(10, safeArea.size.height * TIMER_HEIGHT / 2),
             Size(
                 safeArea.size.width * PALETTE_WIDTH,
                 safeArea.size.height * (1 - TIMER_HEIGHT)
@@ -129,7 +129,11 @@ void GameScene::loadLevel(const string &levelName) {
         auto mat = Mat4(transform);
         _palette->chooseAlternateTransform(true);
         _palette->setAlternateTransform(mat);
-        _palette->setPosition(safeArea.size.width * 1.1, gtBound.size.height);
+        #ifdef CU_TOUCH_SCREEN
+            _palette->setPosition(safeArea.size.width * 1.1, gtBound.size.height);
+        #else
+            _palette->setPosition(gtBound.size.width * 1.1, gtBound.size.height * 0.3);
+        #endif
     }
     
     _splash = SplashEffect::alloc(_assets,
