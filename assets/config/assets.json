@@ -15,8 +15,14 @@
     "color-triangle": {
       "file": "textures/shapes/triangle.png"
     },
-    "palette": {
-      "file": "textures/palette.png"
+    "palette-3": {
+      "file": "textures/palette/palette-3.png"
+    },
+    "palette-4": {
+      "file": "textures/palette/palette-4.png"
+    },
+    "palette-5": {
+      "file": "textures/palette/palette-5.png"
     },
     "background": {
       "file": "textures/background.png"

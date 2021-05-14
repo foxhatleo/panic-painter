@@ -59,7 +59,9 @@ void GameScene::loadLevel(const string &levelName) {
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
             auto bound = safeArea;
             bool isObstacle = _state.getIsObstacle(i, i2);
-            bound.origin.x += PALETTE_WIDTH * bound.size.width;
+            if (SaveController::getInstance()->getPaletteLeft()) {
+                bound.origin.x += PALETTE_WIDTH * bound.size.width;
+            }
             bound.size.width *= (1 - PALETTE_WIDTH);
             bound.size.height *= (1 - TIMER_HEIGHT);
             auto c = Canvas::alloc(
@@ -117,7 +119,20 @@ void GameScene::loadLevel(const string &levelName) {
                 safeArea.size.height * (1 - TIMER_HEIGHT)
             )
         ), _state.getColors(), _assets, _state);
-
+    
+    if (!SaveController::getInstance()->getPaletteLeft()) {
+        float transform[] = {
+            -1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        };
+        auto mat = Mat4(transform);
+        _palette->chooseAlternateTransform(true);
+        _palette->setAlternateTransform(mat);
+        _palette->setPosition(gtBound.size.width * 1.1, gtBound.size.height * 0.5);
+    }
+    
     _splash = SplashEffect::alloc(_assets,
                                   Application::get()->getDisplayBounds(),
                                   1);
