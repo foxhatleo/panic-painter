@@ -95,19 +95,28 @@ void ColorPaletteView::_setup(const GameStateController &state) {
         padding = 68;
     }
     
+    float pscale = numColors >= 5 ? 0.8 : 1;
+    
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
-        auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
+        
+        auto btn = ColorCircle::alloc(_assets->get<Texture>("color-circle"),
+                                              _assets->get<Texture>("color-circle-border"),
+                                              _colors[i],
+                                      pscale * PALETTE_COLOR_SIZE);
         if (SaveController::getInstance()->getColorblind()) {
-            btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
+            btn = ColorCircle::alloc(_assets->get<Texture>(state.getShapeForColorIndex(i)),
+                                                  _assets->get<Texture>(state.getShapeForColorIndex(i) + "-border"),
+                                                  _colors[i],
+                                     pscale * PALETTE_COLOR_SIZE
+                                     );
         }
-        float pscale = (int)_colors.size() >= 5 ? 0.8 : 1;
+        
         btn->setContentSize(pscale * PALETTE_COLOR_SIZE, pscale * PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
             getContentWidth() / 2,
             btnStartY - padding * i
         );
-        btn->setColor(_colors[i]);
 
         if (i != _selectedColor) {
             Animation::set(

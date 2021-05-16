@@ -14,6 +14,7 @@
 #include "controllers/PPGameStateController.h"
 #include "controllers/PPInputController.h"
 #include "controllers/PPSaveController.h"
+#include "PPColorCircle.h"
 
 class ColorPaletteView : public SceneNode {
 
@@ -30,7 +31,7 @@ class ColorPaletteView : public SceneNode {
     const vec<Color4> _colors;
 
     /** Buttons. */
-    vec<ptr<PolygonNode>> _buttons;
+    vec<ptr<ColorCircle>> _buttons;
 
     /** Button hover states. */
     vec<ColorButtonState> _buttonStates;

@@ -3,17 +3,29 @@
     "color-circle": {
       "file": "textures/shapes/color_circle.png"
     },
+    "color-circle-border": {
+      "file": "textures/shapes/circle-border.png"
+    },
     "color-heart": {
       "file": "textures/shapes/heart.png"
     },
+    "color-heart-border": {
+      "file": "textures/shapes/heart-border.png"
+    },
     "color-square": {
       "file": "textures/shapes/square.png"
+    },
+    "color-square-border": {
+      "file": "textures/shapes/square-border.png"
     },
     "color-star": {
       "file": "textures/shapes/star.png"
     },
     "color-triangle": {
       "file": "textures/shapes/triangle.png"
+    },
+    "color-triangle-border": {
+      "file": "textures/shapes/triangle-border.png"
     },
     "palette-3": {
       "file": "textures/palette/palette-3.png"
