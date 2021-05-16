@@ -14,14 +14,16 @@ class ColorCircle : public SceneNode {
     void _setup(const ptr<Texture> &color_texture,
                 const ptr<Texture> &overlay_texture,
                 const Color4 &color,
-                float size);
+                float size,
+                float overlayIncrease);
     
 public:
     
     static ptr<ColorCircle> alloc(const ptr<Texture> &color_texture,
                                   const ptr<Texture> &overlay_texture,
                                   const Color4 &color,
-                                  float size);
+                                  float size,
+                                  float overlayIncrease = 5.0);
     
     /** @deprecated Constructor. */
     explicit ColorCircle() {};

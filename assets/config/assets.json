@@ -27,6 +27,12 @@
     "color-triangle-border": {
       "file": "textures/shapes/triangle-border.png"
     },
+    "color-diamond": {
+      "file": "textures/shapes/diamond.png"
+    },
+    "color-diamond-border": {
+      "file": "textures/shapes/diamond-border.png"
+    },
     "palette-3": {
       "file": "textures/palette/palette-3.png"
     },
