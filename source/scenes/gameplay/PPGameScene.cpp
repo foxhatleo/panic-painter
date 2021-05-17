@@ -119,6 +119,9 @@ void GameScene::loadLevel(const string &levelName) {
                 safeArea.size.height * (1 - TIMER_HEIGHT)
             )
         ), _state.getColors(), _assets, _state);
+    if (_state.getColors().size() == 5) {
+        _palette->setScale(0.9);
+    }
     if (!SaveController::getInstance()->getPaletteLeft()) {
         float transform[] = {
             -1, 0, 0, 0,
@@ -209,8 +212,11 @@ void GameScene::update(float timestep) {
     Rect canvasArea = Application::get()->getSafeBounds();
     canvasArea.origin.x += canvasArea.size.width * PALETTE_WIDTH;
     canvasArea.size.height -= canvasArea.size.height * TIMER_HEIGHT;
+    if (!SaveController::getInstance()->getPaletteLeft()) {
+        canvasArea = _palette->getBoundingBox();
+    }
     bool pressing = input.isPressing() &&
-                    InputController::inScene(input.currentPoint(), canvasArea);
+                    !InputController::inScene(input.currentPoint(), canvasArea);
     _splash->update(timestep,
                     activeCanvases.empty() ? Color4::CLEAR : 
                     _state.getColors()[_palette->getSelectedColor()],
