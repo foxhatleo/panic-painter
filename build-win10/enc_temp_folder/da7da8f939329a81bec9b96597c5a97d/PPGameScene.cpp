@@ -130,7 +130,7 @@ void GameScene::loadLevel(const string &levelName) {
         _palette->chooseAlternateTransform(true);
         _palette->setAlternateTransform(mat);
         #ifdef CU_TOUCH_SCREEN
-            _palette->setPosition(safeArea.size.width * 1, gtBound.size.height);
+            _palette->setPosition(safeArea.size.width * 1, gtBound.size.height * .8);
         #else
             _palette->setPosition(gtBound.size.width * 1.1, gtBound.size.height * 0.3);
         #endif
