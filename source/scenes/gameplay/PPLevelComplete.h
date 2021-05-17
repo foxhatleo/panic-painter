@@ -17,14 +17,15 @@
 class LevelComplete : public SceneNode {
     
     void _setup(const GameStateController &state,
-                const asset_t &assets);
+                const asset_t &assets,
+                float percent);
     
 public:
     
     explicit LevelComplete(const GameStateController &state,
                            const asset_t &assets) {};
     
-    static ptr<LevelComplete> alloc(const GameStateController &state, const asset_t &assets);
+    static ptr<LevelComplete> alloc(const GameStateController &state, const asset_t &assets, float percent);
     
 };
 
