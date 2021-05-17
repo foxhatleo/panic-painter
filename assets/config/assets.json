@@ -123,6 +123,51 @@
     "octo-emotion-3": {
       "file": "textures/characters/octo_very_angry.png"
     },
+    "bird-blink": {
+      "file": "textures/characters/bird_blink.png"
+    },
+    "bird-emotion-1": {
+      "file": "textures/characters/bird_frown.png"
+    },
+    "bird-emotion-2": {
+      "file": "textures/characters/bird_angry.png"
+    },
+    "bird-emotion-3": {
+      "file": "textures/characters/bird_very_angry.png"
+    },
+    "bird-walk": {
+      "file": "textures/characters/bird_walk.png"
+    },
+    "llama-blink": {
+      "file": "textures/characters/llama_blink.png"
+    },
+    "llama-emotion-1": {
+      "file": "textures/characters/llama_frown.png"
+    },
+    "llama-emotion-2": {
+      "file": "textures/characters/llama_angry.png"
+    },
+    "llama-emotion-3": {
+      "file": "textures/characters/llama_very_angry.png"
+    },
+    "llama-walk": {
+      "file": "textures/characters/llama_walk.png"
+    },
+    "panda-blink": {
+      "file": "textures/characters/panda_blink.png"
+    },
+    "panda-emotion-1": {
+      "file": "textures/characters/panda_frown.png"
+    },
+    "panda-emotion-2": {
+      "file": "textures/characters/panda_angry.png"
+    },
+    "panda-emotion-3": {
+      "file": "textures/characters/panda_very_angry.png"
+    },
+    "panda-walk": {
+      "file": "textures/characters/panda_walk.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
