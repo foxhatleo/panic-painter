@@ -42,9 +42,6 @@ bool SettingsScene::init(const asset_t& assets) {
         _safe.size.height * ((1 - TRAY_FRACTION) / 2));
     addChild(tray);
 
-    // Initialize buttons
-    activateUI(_scene);
-
     addChild(_scene);
 
     return true;
@@ -81,6 +78,7 @@ void SettingsScene::activateUI(
         if (button->getName() == "colorblind") {
             button->setToggle(true);
             button->setDown(_save->getColorblind()); // set to last saved value
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
                 });
@@ -93,7 +91,7 @@ void SettingsScene::activateUI(
             button->setColor(Color4f(1, 1, 1, .5));
             return;
             // END TODO
-
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
                 });
@@ -106,7 +104,7 @@ void SettingsScene::activateUI(
             button->setColor(Color4f(1, 1, 1, .5));
             return;
             // END TODO
-
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
                 });
@@ -116,7 +114,7 @@ void SettingsScene::activateUI(
             button->setVisible(false);
             return;
             // END TODO
-
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->resetAll(); // TODO: Implement when level progress is implemented (and likely add a confirmation pop-up)
                 });
@@ -124,6 +122,7 @@ void SettingsScene::activateUI(
         else if (button->getName() == "menubutton") {
             button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _finish = true;

@@ -390,6 +390,36 @@
       "file": "music/space.ogg",
       "type": "sample",
       "volume": 1
+    },
+    "button": {
+      "file": "sfx/button.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "scribble": {
+      "file": "sfx/scribble.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "drag": {
+      "file": "sfx/drag.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "correct1": {
+      "file": "sfx/correct1.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "correct2": {
+      "file": "sfx/correct2.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "incorrect": {
+      "file": "sfx/incorrect.ogg",
+      "type": "sample",
+      "volume": 1
     }
   },
   "widgets": {

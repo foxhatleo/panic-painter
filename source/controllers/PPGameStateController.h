@@ -4,8 +4,9 @@
 #include "utils/PPHeader.h"
 #include "utils/PPTimer.h"
 #include "models/PPGameState.h"
-#include "controllers/PPGlobalConfigController.h"
-#include "controllers/PPSaveController.h"
+#include "PPGlobalConfigController.h"
+#include "PPSaveController.h"
+#include "PPSoundController.h"
 
 /**
  * GameStateController initializes and modifies game state.
@@ -13,6 +14,7 @@
  */
 class GameStateController {
 private:
+
     GameState _state;
     
     unordered_map<string, uint> _scoreTracker;
@@ -33,6 +35,12 @@ private:
     void _jsonv1_load(const json_t &json);
 
 public:
+    enum ClearResult {
+        ALL_CLEAR,
+        CLEAR,
+        NO_MATCH
+    };
+
     /**
      * Load a level file. This resets the game state.
      * @param json The JSON object of the level file.
@@ -74,7 +82,7 @@ public:
     bool getIsObstacle(uint q, uint c) const;
 
     /** Clear a color on a canvas. */
-    void clearColor(uint q, uint c, uint colorInd);
+    ClearResult clearColor(uint q, uint c, uint colorInd);
 
     /** Get a copy of game state. */
     GameState getState() const;
