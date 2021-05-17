@@ -205,6 +205,7 @@
     <ClCompile Include="..\..\source\PPApp.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvas.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPCanvasBlock.cpp" />
+    <ClCompile Include="..\..\source\scenes\gameplay\PPColorCircle.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorPaletteView.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPDangerBar.cpp" />
     <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="..\..\source\PPApp.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvas.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPCanvasBlock.h" />
+    <ClInclude Include="..\..\source\scenes\gameplay\PPColorCircle.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorPaletteView.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPDangerBar.h" />
     <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h" />

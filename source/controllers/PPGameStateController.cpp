@@ -2,7 +2,7 @@
 
 void GameStateController::_jsonv1_loadColors(const json_t &colors) {
     _state.colors.clear();
-    string shapes[] = {"color-circle", "color-heart", "color-square", "color-star", "color-triangle"};
+    string shapes[] = {"color-circle", "color-heart", "color-square", "color-diamond", "color-triangle"};
     auto colorsArray = colors->asArray();
     for (uint i = 0; i < colorsArray.size(); i++) {
         const vec<int> c = colorsArray[i]->asIntArray();
