@@ -3,7 +3,9 @@
 #define SCENE_SIZE_W (1024/4)
 #define SCENE_SIZE_H (576/4)
 #define TRAY_FRACTION .85
-#define BASE_SCALE 0.3
+#define BASE_SCALE 0.35
+#define RECT_SCALE 0.4
+#define BUTTON_X_FRAC 0.575
 
 bool SettingsScene::init(const asset_t& assets) {
     _save = SaveController::getInstance();
@@ -86,14 +88,16 @@ void SettingsScene::activateUI(
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
                 });
-            button->setPositionY(_sceneSize.getIHeight() * 0.63);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .78);
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
-            //button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .53);
+            button->setScale(RECT_SCALE *
+                _safe.size.height / SCENE_SIZE_H);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .68);
             //button->setPositionX(_tray->getPositionX() + _tray->getWidth() * (BUTTON_X_FRAC+0.025));
-            button->setPositionY(_sceneSize.getIHeight() * 0.525);
+            //button->setPositionY(_sceneSize.getIHeight() * 0.525);
 
             // TODO: Remove following once both side palettes are supported
             button->setColor(Color4f(1, 1, 1, .5));
@@ -107,6 +111,7 @@ void SettingsScene::activateUI(
         else if (button->getName() == "visualeffect") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .5);
 
             // TODO: Remove following once both side palettes are supported
             button->setColor(Color4f(1, 1, 1, .5));
@@ -120,7 +125,7 @@ void SettingsScene::activateUI(
         else if (button->getName() == "music") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .2);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .32);
 
             // TODO: Remove following once music toggle is supported
             button->setColor(Color4f(1, 1, 1, .5));
@@ -134,6 +139,7 @@ void SettingsScene::activateUI(
         else if (button->getName() == "sfx") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .15);
 
             // TODO: Remove following once both side palettes are supported
             button->setColor(Color4f(1, 1, 1, .5));
