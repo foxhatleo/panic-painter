@@ -86,7 +86,12 @@ void GameScene::loadLevel(const string &levelName) {
                        (safeArea.size.height * TIMER_HEIGHT) /
                        _backBtn->getContentWidth());
     _backBtn->setAnchor(Vec2::ANCHOR_TOP_RIGHT);
-    _backBtn->setPosition(safeArea.size.width, safeArea.size.height);
+    if (SaveController::getInstance()->getPaletteLeft()) {
+        _backBtn->setPosition(safeArea.size.width, safeArea.size.height);
+    } else {
+        _backBtn->setPosition(safeArea.origin.x + _backBtn->getWidth(), safeArea.size.height);
+    }
+    
     // We manually define interactive area because there is that trail of paint
     // in the button texture that shouldn't be interactive.
     _backBtnArea = _backBtn->getBoundingBox();
@@ -106,8 +111,13 @@ void GameScene::loadLevel(const string &levelName) {
     auto gtBound = safeArea;
     gtBound.origin.y += (1 - TIMER_HEIGHT) * gtBound.size.height;
     gtBound.size.height *= TIMER_HEIGHT;
-    gtBound.size.width -=
-        gtBound.getMaxX() - _backBtn->getBoundingBox().getMinX();
+    if (SaveController::getInstance()->getPaletteLeft()) {
+        gtBound.size.width -=
+            gtBound.getMaxX() - _backBtn->getBoundingBox().getMinX();
+    } else {
+        gtBound.size.width -= _backBtn->getBoundingBox().getMaxX();
+        gtBound.origin.x += _backBtn->getWidth();
+    }
     _dangerBar = DangerBar::alloc(_assets, gtBound);
 
     // change position to keep it to the left of the screen.
