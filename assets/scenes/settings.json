@@ -14,7 +14,7 @@
                 "downnode": "down",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0.5, 0.5]
+                "anchor" : [0, 0]
               },
               "children": {
                 "up": {
@@ -42,7 +42,7 @@
                 "downnode": "down",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0.5, 0.5]
+                "anchor" : [0, 0]
               },
               "children": {
                 "up": {
@@ -98,7 +98,7 @@
                 "downnode": "down",
                 "visible"  : true,
                 "pushsize" : true,
-                "anchor" : [0.5, 0.5]
+                "anchor" : [0, 0]
               },
               "children": {
                 "up": {
@@ -113,10 +113,6 @@
                       "texture": "onbutton"
                     }
                 }
-              },
-              "layout": {
-                "x_offset": 0.12,
-                "y_offset": -0.1
               }
             },
             "sfx": {
@@ -153,7 +149,7 @@
                   "upnode": "up",
                   "visible"  : true,
                   "pushsize" : true,
-                  "anchor" : [0.5, 0.5]
+                  "anchor" : [0, 0]
                 },
                 "children": {
                   "up": {
@@ -162,10 +158,6 @@
                       "texture": "resetbutton"
                     }
                   }
-                },
-                "layout": {
-                  "x_offset": -0.1,
-                  "y_offset": -0.3
                 }
             },
             "menubutton": {
