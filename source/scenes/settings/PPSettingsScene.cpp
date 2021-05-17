@@ -2,8 +2,8 @@
 
 #define SCENE_SIZE_W (1024/4)
 #define SCENE_SIZE_H (576/4)
-#define TRAY_FRACTION .75
-#define BASE_SCALE 0.5
+#define TRAY_FRACTION .85
+#define BASE_SCALE 0.3
 
 bool SettingsScene::init(const asset_t& assets) {
     _save = SaveController::getInstance();
@@ -98,7 +98,33 @@ void SettingsScene::activateUI(
                 _save->setPaletteLeft(down);
                 });
         }
+        else if (button->getName() == "visualeffect") {
+            button->setToggle(true);
+            button->setDown(_save->getPaletteLeft());
+
+            // TODO: Remove following once both side palettes are supported
+            button->setColor(Color4f(1, 1, 1, .5));
+            return;
+            // END TODO
+
+            button->addListener([=](const string& name, bool down) {
+                _save->setPaletteLeft(down);
+                });
+        }
         else if (button->getName() == "music") {
+            button->setToggle(true);
+            button->setDown(_save->getPaletteLeft());
+
+            // TODO: Remove following once both side palettes are supported
+            button->setColor(Color4f(1, 1, 1, .5));
+            return;
+            // END TODO
+
+            button->addListener([=](const string& name, bool down) {
+                _save->setPaletteLeft(down);
+                });
+        }
+        else if (button->getName() == "sfx") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
 
@@ -124,6 +150,7 @@ void SettingsScene::activateUI(
         else if (button->getName() == "menubutton") {
             button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
+            //button->setScale(button->getScale() * .8);
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _finish = true;

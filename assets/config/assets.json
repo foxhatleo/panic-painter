@@ -302,6 +302,15 @@
     },
     "settings-tray": {
       "file": "textures/settings/settings-tray.png"
+    },
+    "graphicsoff": {
+      "file": "textures/settings/graphicsoff.png"
+    },
+    "graphicshigh": {
+      "file": "textures/settings/graphicshigh.png"
+    },
+    "graphicslow": {
+      "file": "textures/settings/graphicslow.png"
     }
   },
   "jsons": {
