@@ -70,12 +70,6 @@ void WorldSelectScene::activateUI(
                 }
             });
         } else {
-            // TODO: REMOVE CONTENT BELOW WHEN ALL WORLDS ARE DONE.
-            if (button->getName() == "eiffel") {
-                button->setColor(Color4f(1,1,1,.5));
-                return;
-            }
-            // TODO: REMOVE CONTENT ABOVE WHEN ALL WORLDS ARE DONE.
             button->addListener([=](const string &name, bool down) {
                 if (!down) {
                     _worldSelected = button->getName();
