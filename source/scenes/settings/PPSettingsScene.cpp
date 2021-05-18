@@ -86,11 +86,6 @@ void SettingsScene::activateUI(
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
-
-            // TODO: Remove following once both side palettes are supported
-            button->setColor(Color4f(1, 1, 1, .5));
-            return;
-            // END TODO
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
