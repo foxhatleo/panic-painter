@@ -27,7 +27,8 @@ public:
     void pauseBgm();
 
     void clearSfx();
-    void playSfx(const string &name);
+    void playSfx(const string &name, bool loop = false);
+    void stopSfx(const string &name);
 
     static SoundController *getInstance() {
         if (_instance == nullptr) _instance = new SoundController;

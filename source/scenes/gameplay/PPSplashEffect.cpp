@@ -19,10 +19,15 @@ void SplashEffect::update(float timestep, Color4 currentColor, Vec2 point) {
             i.point = Vec2::ZERO;
             i.color = Vec4(currentColor);
         }
+        SoundController::getInstance()->stopSfx("drag");
     }
     // Reset ticker if no input.
-    else if (point.equals(Vec2::ZERO)) { _ticker = 0; }
+    else if (point.equals(Vec2::ZERO)) {
+        _ticker = 0;
+        SoundController::getInstance()->stopSfx("drag");
+    }
     else {
+        SoundController::getInstance()->playSfx("drag", true);
         _ticker++;
         if (_ticker >= SAMPLE_RATE) {
             _ticker = 0;

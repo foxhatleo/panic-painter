@@ -38,9 +38,6 @@ bool MenuScene::init(const asset_t &assets) {
     menuBackground->setContentSize(screenSize);
     addChild(menuBackground);
 
-    // Initialize buttons
-    activateUI(_scene);
-
     addChild(_scene);
     return true;
 }
@@ -58,21 +55,33 @@ MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene) {
     if (button != nullptr) {
         //CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "playbutton") {
+            if (!button->hasListener())
             button->addListener([=](const string &name, bool down) {
                 //CULog("PLAY STATUS");
-                if (!down) this->_state = PLAY;
+                if (!down) {
+                    SoundController::getInstance()->playSfx("button");
+                    this->_state = PLAY;
+                }
             });
         }
         if (button->getName() == "levelsbutton") {
+            if (!button->hasListener())
             button->addListener([=](const string &name, bool down) {
                 //CULog("LEVEL STATUS");
-                if (!down) this->_state = LEVELS;
+                if (!down) {
+                    SoundController::getInstance()->playSfx("button");
+                    this->_state = LEVELS;
+                }
             });
         }
         if (button->getName() == "settingsbutton") {
+            if (!button->hasListener())
             button->addListener([=](const string &name, bool down) {
                 //CULog("SETTINGS STATUS");
-                if (!down) this->_state = SETTINGS;
+                if (!down) {
+                    SoundController::getInstance()->playSfx("button");
+                    this->_state = SETTINGS;
+                }
             });
         }
         button->activate();
