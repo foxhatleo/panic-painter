@@ -113,7 +113,6 @@ void SettingsScene::activateUI(
         else if (button->getName() == "visualeffect") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
-            button->setScale(.2);
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .5);
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .5);
