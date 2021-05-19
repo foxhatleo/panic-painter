@@ -48,23 +48,140 @@
     "husky-walk": {
       "file": "textures/characters/husky_walk.png"
     },
-    "samoyed-blink": {
+    "bird-blink-1": {
+      "file": "textures/characters/bird_blink.png"
+    },
+    "bird-blink-2": {
+      "file": "textures/characters/bird_blink2.png"
+    },
+    "bird-blink-3": {
+      "file": "textures/characters/bird_blink3.png"
+    },
+    "bird-emotion-1": {
+      "file": "textures/characters/bird_frown.png"
+    },
+    "bird-emotion-2": {
+      "file": "textures/characters/bird_angry.png"
+    },
+    "bird-emotion-3": {
+      "file": "textures/characters/bird_very_angry.png"
+    },
+    "bird-walk": {
+      "file": "textures/characters/bird_walk.png"
+    },
+    "octo-blink-1": {
+      "file": "textures/characters/octo_blink.png"
+    },
+    "octo-blink-2": {
+      "file": "textures/characters/octo_blink2.png"
+    },
+    "octo-blink-3": {
+      "file": "textures/characters/octo_blink3.png"
+    },
+    "octo-emotion-1": {
+      "file": "textures/characters/octo_frown.png"
+    },
+    "octo-emotion-2": {
+      "file": "textures/characters/octo_angry.png"
+    },
+    "octo-emotion-3": {
+      "file": "textures/characters/octo_very_angry.png"
+    },
+    "octo-walk": {
+      "file": "textures/characters/octo_walk.png"
+    },
+    "panda-blink-1": {
+      "file": "textures/characters/panda_blink.png"
+    },
+    "panda-blink-2": {
+      "file": "textures/characters/panda_blink2.png"
+    },
+    "panda-blink-3": {
+      "file": "textures/characters/panda_blink3.png"
+    },
+    "panda-emotion-1": {
+      "file": "textures/characters/panda_frown.png"
+    },
+    "panda-emotion-2": {
+      "file": "textures/characters/panda_angry.png"
+    },
+    "panda-emotion-3": {
+      "file": "textures/characters/panda_very_angry.png"
+    },
+    "panda-walk": {
+      "file": "textures/characters/panda_walk.png"
+    },
+    "llama-blink-1": {
+      "file": "textures/characters/llama_blink.png"
+    },
+    "llama-blink-2": {
+      "file": "textures/characters/llama_blink2.png"
+    },
+    "llama-blink-3": {
+      "file": "textures/characters/llama_blink3.png"
+    },
+    "llama-emotion-1": {
+      "file": "textures/characters/llama_frown.png"
+    },
+    "llama-emotion-2": {
+      "file": "textures/characters/llama_angry.png"
+    },
+    "llama-emotion-3": {
+      "file": "textures/characters/llama_very_angry.png"
+    },
+    "llama-walk": {
+      "file": "textures/characters/llama_walk.png"
+    },
+    "frog-blink-1": {
+      "file": "textures/characters/frog_blink.png"
+    },
+    "frog-blink-2": {
+      "file": "textures/characters/frog_blink2.png"
+    },
+    "frog-blink-3": {
+      "file": "textures/characters/frog_blink3.png"
+    },
+    "frog-emotion-1": {
+      "file": "textures/characters/frog_frown.png"
+    },
+    "frog-emotion-2": {
+      "file": "textures/characters/frog_angry.png"
+    },
+    "frog-emotion-3": {
+      "file": "textures/characters/frog_very_angry.png"
+    },
+    "frog-walk": {
+      "file": "textures/characters/frog_walk.png"
+    },
+    "samoyed-blink-1": {
       "file": "textures/characters/samoyed_blink.png"
     },
+    "samoyed-blink-2": {
+      "file": "textures/characters/samoyed_blink2.png"
+    },
+    "samoyed-blink-3": {
+      "file": "textures/characters/samoyed_blink3.png"
+    },
     "samoyed-emotion-1": {
-      "file": "textures/characters/samoyed_emotion_stage1.png"
+      "file": "textures/characters/samoyed_frown.png"
     },
     "samoyed-emotion-2": {
-      "file": "textures/characters/samoyed_emotion_stage2.png"
+      "file": "textures/characters/black_angry.png"
     },
     "samoyed-emotion-3": {
-      "file": "textures/characters/samoyed_emotion_stage3.png"
+      "file": "textures/characters/black_very_angry.png"
     },
     "samoyed-walk": {
       "file": "textures/characters/samoyed_walk.png"
     },
-    "cat1-blink": {
+    "cat1-blink-1": {
       "file": "textures/characters/cat1_blink.png"
+    },
+    "cat1-blink-2": {
+      "file": "textures/characters/cat1_blink2.png"
+    },
+    "cat1-blink-3": {
+      "file": "textures/characters/cat1_blink3.png"
     },
     "cat1-emotion-1": {
       "file": "textures/characters/cat1_frown.png"
@@ -78,8 +195,14 @@
     "cat1-walk": {
       "file": "textures/characters/cat1_walk.png"
     },
-    "cat2-blink": {
+    "cat2-blink-1": {
       "file": "textures/characters/cat2_blink.png"
+    },
+    "cat2-blink-2": {
+      "file": "textures/characters/cat2_blink2.png"
+    },
+    "cat2-blink-3": {
+      "file": "textures/characters/cat2_blink3.png"
     },
     "cat2-emotion-1": {
       "file": "textures/characters/cat2_frown.png"
@@ -102,8 +225,14 @@
     "obstacle-explode": {
       "file": "textures/characters/flower_explode.png"
     },
-    "chick-blink": {
+    "chick-blink-1": {
       "file": "textures/characters/chick_blink.png"
+    },
+    "chick-blink-2": {
+      "file": "textures/characters/chick_blink2.png"
+    },
+    "chick-blink-3": {
+      "file": "textures/characters/chick_blink3.png"
     },
     "chick-emotion-1": {
       "file": "textures/characters/chick_frown.png"
@@ -117,81 +246,7 @@
     "chick-walk": {
       "file": "textures/characters/chick_walk.png"
     },
-    "octo-blink": {
-      "file": "textures/characters/octo_blink.png"
-    },
-    "octo-emotion-1": {
-      "file": "textures/characters/octo_frown.png"
-    },
-    "octo-emotion-2": {
-      "file": "textures/characters/octo_angry.png"
-    },
-    "octo-emotion-3": {
-      "file": "textures/characters/octo_very_angry.png"
-    },
-    "octo-walk": {
-      "file": "textures/characters/octo_walk.png"
-    },
-    "bird-blink": {
-      "file": "textures/characters/bird_blink.png"
-    },
-    "bird-emotion-1": {
-      "file": "textures/characters/bird_frown.png"
-    },
-    "bird-emotion-2": {
-      "file": "textures/characters/bird_angry.png"
-    },
-    "bird-emotion-3": {
-      "file": "textures/characters/bird_very_angry.png"
-    },
-    "bird-walk": {
-      "file": "textures/characters/bird_walk.png"
-    },
-    "frog-blink": {
-      "file": "textures/characters/frog_blink.png"
-    },
-    "frog-emotion-1": {
-      "file": "textures/characters/frog_frown.png"
-    },
-    "frog-emotion-2": {
-      "file": "textures/characters/frog_angry.png"
-    },
-    "frog-emotion-3": {
-      "file": "textures/characters/frog_very_angry.png"
-    },
-    "frog-walk": {
-      "file": "textures/characters/frog_walk.png"
-    },
-    "llama-blink": {
-      "file": "textures/characters/llama_blink.png"
-    },
-    "llama-emotion-1": {
-      "file": "textures/characters/llama_frown.png"
-    },
-    "llama-emotion-2": {
-      "file": "textures/characters/llama_angry.png"
-    },
-    "llama-emotion-3": {
-      "file": "textures/characters/llama_very_angry.png"
-    },
-    "llama-walk": {
-      "file": "textures/characters/llama_walk.png"
-    },
-    "panda-blink": {
-      "file": "textures/characters/panda_blink.png"
-    },
-    "panda-emotion-1": {
-      "file": "textures/characters/panda_frown.png"
-    },
-    "panda-emotion-2": {
-      "file": "textures/characters/panda_angry.png"
-    },
-    "panda-emotion-3": {
-      "file": "textures/characters/panda_very_angry.png"
-    },
-    "panda-walk": {
-      "file": "textures/characters/panda_walk.png"
-    },
+
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },

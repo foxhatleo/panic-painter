@@ -26,7 +26,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _initialColorNumber = numCanvasColors;
 
     string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", 
-        "bird", "llama", "panda", "octo", "frog"};
+        "bird", "llama", "octo", "frog", "panda"};
     int p = Random::getInstance()->getInt(10 - 1);
 
     if (isObstacle) {
@@ -36,7 +36,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     }
     else {
         int pBlink = Random::getInstance()->getInt(2) + 1;
-        string blinkTexture = characters[p] == "husky" ? "-blink-" + std::to_string(pBlink) : "-blink";
+        string blinkTexture = "-blink-" + std::to_string(pBlink);
         _texture_array[0] = assets->get<Texture>(characters[p] + blinkTexture);
         _texture_array[1] = assets->get<Texture>(characters[p] + "-emotion-1");
         _texture_array[2] = assets->get<Texture>(characters[p] + "-emotion-2");
