@@ -255,6 +255,7 @@ void GameScene::update(float timestep) {
             lc->setAnchor(Vec2::ANCHOR_CENTER);
             lc->setPosition(0.85*ds.width/2, ds.height/2);
             addChild(lc);
+            SaveController::getInstance()->unlock(_levelName);
         
             CULog("timed out: %d", _state.getScoreMetric("timedOut"));
             CULog("correct: %d", _state.getScoreMetric("correct"));

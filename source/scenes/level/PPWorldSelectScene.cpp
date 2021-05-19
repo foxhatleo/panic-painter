@@ -72,6 +72,19 @@ void WorldSelectScene::activateUI(
                 }
             });
         } else {
+            string worlds[] = {"house", "museum", "city", "island", "eiffel",
+                               "space"};
+            uint worldsLen = 6;
+            for (uint i = 1; i < worldsLen; i++) {
+                if (button->getName() != worlds[i]) continue;
+                if (SaveController::getInstance()->isUnlocked(
+                    worlds[i - 1] + "-5")) {
+                    button->setColor(Color4::WHITE);
+                } else {
+                    button->setColor(Color4f(1,1,1,.5));
+                    return;
+                }
+            }
             if (!button->hasListener())
             button->addListener([=](const string &name, bool down) {
                 if (!down) {

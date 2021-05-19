@@ -119,8 +119,8 @@ void PanicPainterApp::update(float timestep) {
         case MENU_SCENE: {
             if (_menu.getState() == PLAY) {
                 //_menu.dispose();
-                _gameplay.loadLevel(
-                    "level1"); //TODO: once have save system, should play latest level
+                _gameplay.loadLevel(_menu.level); //TODO: once have save
+                // system, should play latest level
                 _currentScene = GAME_SCENE;
                 _menu.resetState();
                 _menu.deactivate();
