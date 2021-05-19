@@ -163,7 +163,6 @@ void SettingsScene::activateUI(
             button->setPositionX(_tray->getPositionX() + (_tray->getWidth()*.5 - button->getWidth()/2));
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC);
-                button->setPositionY(_tray->getPositionX() * IOS_FRAC);
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
