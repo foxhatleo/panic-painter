@@ -33,7 +33,7 @@ bool MenuScene::init(const asset_t &assets) {
     _scene->setContentSize(screenSize);
     _scene->doLayout(); // Repositions the HUD
 
-    _hackTimer = make_shared<Timer>(3);
+    _hackTimer = make_shared<Timer>(2);
 
     // Initialize background
     auto menuBackground = PolygonNode::allocWithTexture(_assets->get<Texture>
