@@ -88,7 +88,8 @@ void SettingsScene::activateUI(
         if (button->getName() == "colorblind") {
             button->setToggle(true);
             button->setDown(_save->getColorblind()); // set to last saved value
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .79);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() *
+            .81);
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .79);
             #endif
@@ -102,7 +103,8 @@ void SettingsScene::activateUI(
             button->setDown(_save->getPaletteLeft());
             button->setScale(RECT_SCALE *
                 _safe.size.height / SCENE_SIZE_H);
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .68);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() *
+            .7);
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .68);
             #endif
@@ -115,7 +117,8 @@ void SettingsScene::activateUI(
             button->setToggle(true);
             button->setScale(button->getScale() * GRAPHICS_FRAC);
             button->setDown(_save->getPaletteLeft());
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .5);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() *
+            .52);
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .5);
             #endif
@@ -131,7 +134,8 @@ void SettingsScene::activateUI(
         else if (button->getName() == "music") {
             button->setToggle(true);
             button->setDown(_save->getBgm());
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .32);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() *
+            .34);
             #if defined(__IPHONEOS__)
             button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .32);
             #endif
@@ -143,7 +147,8 @@ void SettingsScene::activateUI(
         else if (button->getName() == "sfx") {
             button->setToggle(true);
             button->setDown(_save->getSfx());
-            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .16);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() *
+            .18);
             #if defined(__IPHONEOS__)
             button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .16);
             #endif
