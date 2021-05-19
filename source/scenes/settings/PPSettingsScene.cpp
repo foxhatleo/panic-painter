@@ -6,7 +6,7 @@
 #define BASE_SCALE 0.35
 #define RECT_SCALE 0.4
 #define BUTTON_X_FRAC 0.575
-#define IOS_FRAC 0
+#define IOS_FRAC 0.1
 #define RESET_FRAC 0.33
 
 bool SettingsScene::init(const asset_t& assets) {
@@ -156,8 +156,8 @@ void SettingsScene::activateUI(
             button->setPositionY(_tray->getPositionY());
             button->setPositionX(_tray->getPositionX() + (_tray->getWidth()*.5 - button->getWidth()/2));
             #if defined(__IPHONEOS__)
-                button->setPositionY(_tray->getPositionY() * IOS_FRAC);
-                button->setPositionY(_tray->getPositionX() * IOS_FRAC);
+                button->setPositionY(_tray->getPositionY() * IOS_FRAC + (_tray->getWidth() * .5 - button->getWidth() / 2));
+                button->setPositionY(_tray->getPositionX() * IOS_FRAC + (_tray->getWidth() * .5 - button->getWidth() / 2));
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
