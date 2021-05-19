@@ -10,10 +10,11 @@
 
 ptr<LevelComplete> LevelComplete::alloc(
         const GameStateController &state,
-        const asset_t& assets) {
+        const asset_t& assets,
+        float percent) {
     auto result = make_shared<LevelComplete>(state, assets);
     if (result->init()) {
-        result->_setup(state, assets);
+        result->_setup(state, assets, percent);
     }
     else {
         return nullptr;
@@ -22,13 +23,9 @@ ptr<LevelComplete> LevelComplete::alloc(
     return result;
 }
 
-void LevelComplete::_setup(const GameStateController &state, const asset_t &assets) {
+void LevelComplete::_setup(const GameStateController &state, const asset_t &assets, float percent) {
     auto levelcomplete = PolygonNode::allocWithTexture(
         assets->get<Texture>("levelcomplete"));
-    
-    // IMPORTANT TODO: Change this to actually set the score limit of levels.
-    float MAX_SCORE = 1200;
-    float percent = state.getScoreMetric("aggregateScore") / MAX_SCORE;
     
     ptr<PolygonNode> stars;
     if (percent < 0.50f) {
@@ -55,14 +52,14 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     levelcomplete->setAnchor(Vec2::ANCHOR_CENTER);
     levelcomplete->setPosition(
         ds.width / 2,
-        ds.height / 2 - 75
+        ds.height / 2 - 55
     );
     
     stars->setScale(0);
     stars->setAnchor(Vec2::ANCHOR_CENTER);
     stars->setPosition(
         0.95*ds.width / 2,
-        ds.height * 1.2 - 35
+        ds.height * 1.2 - 15
     );
     
     Animation::to(levelcomplete, .5, {
@@ -83,14 +80,14 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     
     for (int i = 0; i < 3; i++) {
         auto label = Label::alloc(Size(0.1 * ds.width, 0.05 * ds.height), labelFont);
-        label->setPosition(0.57 * ds.width, (0.51 - 0.1 * i) * ds.height);
+        label->setPosition(0.57 * ds.width, (0.53 - 0.1 * i) * ds.height);
         label->setText(to_string(state.getScoreMetric(metrics[i])));
         label->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
         addChild(label);
     }
     
     auto totalScoreLabel = Label::alloc(Size(0.1 * ds.width, 0.05 * ds.height), labelFont);
-    totalScoreLabel->setPosition(0.57 * ds.width, 0.16 * ds.height);
+    totalScoreLabel->setPosition(0.57 * ds.width, 0.19 * ds.height);
     totalScoreLabel->setText(to_string(state.getScoreMetric("aggregateScore")));
     totalScoreLabel->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
     addChild(totalScoreLabel);

@@ -3,11 +3,20 @@
     "color-circle": {
       "file": "textures/shapes/color_circle.png"
     },
+    "color-circle-border": {
+      "file": "textures/shapes/circle-border.png"
+    },
     "color-heart": {
       "file": "textures/shapes/heart.png"
     },
+    "color-heart-border": {
+      "file": "textures/shapes/heart-border.png"
+    },
     "color-square": {
       "file": "textures/shapes/square.png"
+    },
+    "color-square-border": {
+      "file": "textures/shapes/square-border.png"
     },
     "color-star": {
       "file": "textures/shapes/star.png"
@@ -15,8 +24,23 @@
     "color-triangle": {
       "file": "textures/shapes/triangle.png"
     },
-    "palette": {
-      "file": "textures/palette.png"
+    "color-triangle-border": {
+      "file": "textures/shapes/triangle-border.png"
+    },
+    "color-diamond": {
+      "file": "textures/shapes/diamond.png"
+    },
+    "color-diamond-border": {
+      "file": "textures/shapes/diamond-border.png"
+    },
+    "palette-3": {
+      "file": "textures/palette/palette-3.png"
+    },
+    "palette-4": {
+      "file": "textures/palette/palette-4.png"
+    },
+    "palette-5": {
+      "file": "textures/palette/palette-5.png"
     },
     "background": {
       "file": "textures/background.png"
@@ -274,6 +298,9 @@
     "levelcomplete": {
       "file": "textures/levelcomplete.png"
     },
+    "levelfailed": {
+      "file": "textures/levelfailed.png"
+    },
     "levelbutton": {
       "file": "textures/levelselect/levelbutton.png"
     },
@@ -512,6 +539,36 @@
     },
     "space": {
       "file": "music/space.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "button": {
+      "file": "sfx/button.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "scribble": {
+      "file": "sfx/scribble.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "drag": {
+      "file": "sfx/drag.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "correct1": {
+      "file": "sfx/correct1.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "correct2": {
+      "file": "sfx/correct2.ogg",
+      "type": "sample",
+      "volume": 1
+    },
+    "incorrect": {
+      "file": "sfx/incorrect.ogg",
       "type": "sample",
       "volume": 1
     }

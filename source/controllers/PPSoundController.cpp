@@ -61,7 +61,15 @@ void SoundController::clearSfx() {
     AudioEngine::get()->clearEffects();
 }
 
-void SoundController::playSfx(const string &name) {
+void SoundController::playSfx(const string &name, bool loop) {
+    if (loop && AudioEngine::get()->isActive(name)) return;
+    CULog("Playing sfx \"%s\".", name.c_str());
     AudioEngine::get()->
-    play(name, _assets->get<Sound>(name), false, _sfxVolume);
+    play(name, _assets->get<Sound>(name), loop, _sfxVolume, !loop);
+}
+
+void SoundController::stopSfx(const string &name) {
+    if (!AudioEngine::get()->isActive(name)) return;
+    CULog("Stopping sfx \"%s\".", name.c_str());
+    AudioEngine::get()->clear(name);
 }

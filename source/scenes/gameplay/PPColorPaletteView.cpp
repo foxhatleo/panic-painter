@@ -10,10 +10,10 @@
 
 #define PALETTE_COLOR_SIZE 45.0f
 /** Space between dots. */
-#define PADDING 15.0f
+#define PADDING 77.0
 #define INACTIVE_SCALE 0.75f
 #define PRESSED_SCALE 1.2f
-#define PALETTE_WIDTH 190
+#define PALETTE_WIDTH 80
 #define PALETTE_HEIGHT 260
 #define NEGATIVE_MARGIN_LEFT 0.5f /* = 40% of PALETTE_WIDTH */
 #define CURVATURE 2.2 /** Curvature constant for the palette. */
@@ -52,12 +52,21 @@ float ColorPaletteView::_computeXPositioning(uint ind) {
 void ColorPaletteView::_setup(const GameStateController &state) {
     setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     setPosition(Vec2::ZERO);
+    int numColors = (int)_colors.size();
 
-    auto bg = PolygonNode::allocWithTexture(_assets->get<Texture>("palette"));
+    auto bg = PolygonNode::allocWithTexture(_assets->get<Texture>("palette-" + to_string(numColors)));
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    bg->setContentSize(PALETTE_WIDTH, PALETTE_HEIGHT);
-    bg->setPositionX(-NEGATIVE_MARGIN_LEFT * bg->getContentWidth());
-    setContentSize(bg->getContentWidth() * (1 - NEGATIVE_MARGIN_LEFT),
+    float heightScaler;
+    if (numColors == 3) {
+        heightScaler = 1;
+    } else if (numColors == 4) {
+        heightScaler = 1.2;
+    } else {
+        heightScaler = 1.4;
+    }
+    
+    bg->setContentSize(PALETTE_WIDTH, PALETTE_HEIGHT * heightScaler);
+    setContentSize(bg->getContentWidth(),
                    bg->getContentHeight());
 
 #ifdef VIEW_DEBUG
@@ -67,22 +76,47 @@ void ColorPaletteView::_setup(const GameStateController &state) {
 #endif
 
     addChild(bg);
-
-    float btnStartY = getContentHeight() - 70 + 2*(int)_colors.size();
-    float padding = PADDING + 7 * (4 - (int)_colors.size());
+    
+    float btnStartOffset;
+    
+    if (numColors == 3) {
+        btnStartOffset = 54;
+    } else {
+        btnStartOffset = 47;
+    }
+    
+    float btnStartY = getContentHeight() - btnStartOffset;
+    float padding;
+    if (numColors == 3) {
+        padding = 77;
+    } else if (numColors == 4) {
+        padding = 73;
+    } else {
+        padding = 68;
+    }
+    
+    float pscale = numColors >= 5 ? 0.8 : 1;
+    
     for (uint i = 0, j = (uint)_colors.size(); i < j; i++) {
-        auto btn = PolygonNode::allocWithTexture(_assets->get<Texture>("color-circle"));
+        
+        auto btn = ColorCircle::alloc(_assets->get<Texture>("color-circle"),
+                                              _assets->get<Texture>("color-circle-border"),
+                                              _colors[i],
+                                      pscale * PALETTE_COLOR_SIZE);
         if (SaveController::getInstance()->getColorblind()) {
-            btn = PolygonNode::allocWithTexture(_assets->get<Texture>(state.getShapeForColorIndex(i)));
+            btn = ColorCircle::alloc(_assets->get<Texture>(state.getShapeForColorIndex(i)),
+                                                  _assets->get<Texture>(state.getShapeForColorIndex(i) + "-border"),
+                                                  _colors[i],
+                                     pscale * PALETTE_COLOR_SIZE
+                                     );
         }
-        float pscale = (int)_colors.size() >= 5 ? 0.8 : 1;
+        
         btn->setContentSize(pscale * PALETTE_COLOR_SIZE, pscale * PALETTE_COLOR_SIZE);
         btn->setAnchor(Vec2::ANCHOR_CENTER);
         btn->setPosition(
-            this->_computeXPositioning(i),
-            btnStartY - (padding + PALETTE_COLOR_SIZE / 2) * i * PRESSED_SCALE
+            getContentWidth() / 2,
+            btnStartY - padding * i
         );
-        btn->setColor(_colors[i]);
 
         if (i != _selectedColor) {
             Animation::set(
@@ -116,6 +150,7 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     );
 }
 
+/** Not used anymore, Legacy code from curved palette. Kept in case we revert. */
 uint ColorPaletteView::_computeColorIndexAfterSwipe(float diff) {
     float numColors = _colors.size();
     float padding = PADDING + 5 * (4 - _colors.size());

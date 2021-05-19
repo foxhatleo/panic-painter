@@ -26,9 +26,6 @@ bool WorldSelectScene::init(const asset_t &assets) {
     menuBackground->setContentSize(_sceneSize);
     addChild(menuBackground);
 
-    // Initialize buttons
-    activateUI(_scene);
-
     addChild(_scene);
 
     return true;
@@ -50,22 +47,27 @@ void WorldSelectScene::activateUI(
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(
         scene);
     if (button != nullptr) {
-        // Set button sizing
-        Size scale = _safe.size;
-        if (_sceneSize.width / SCENE_SIZE_W > _sceneSize.height / SCENE_SIZE_H) {
-            scale *= (SCENE_SIZE_H / _sceneSize.height);
+        if (button->getTag() != 99) {
+            // Set button sizing
+            Size scale = _safe.size;
+            if (_sceneSize.width / SCENE_SIZE_W >
+                _sceneSize.height / SCENE_SIZE_H) {
+                scale *= (SCENE_SIZE_H / _sceneSize.height);
+            } else {
+                scale *= (SCENE_SIZE_W / _sceneSize.width);
+            }
+            button->setTag(99);
+            button->setScale(button->getScale() *
+                             _safe.size.height / SCENE_SIZE_H);
         }
-        else {
-            scale *= (SCENE_SIZE_W / _sceneSize.width);
-        }
-        button->setScale(button->getScale() *
-            _safe.size.height / SCENE_SIZE_H);
 
         if (button->getName() == "menubutton") {
             button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
+            if (!button->hasListener())
             button->addListener([=](const string &name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _state = BACK;
                 }
             });
@@ -76,9 +78,11 @@ void WorldSelectScene::activateUI(
                 return;
             }
             // TODO: REMOVE CONTENT ABOVE WHEN ALL WORLDS ARE DONE.
+            if (!button->hasListener())
             button->addListener([=](const string &name, bool down) {
                 if (!down) {
                     _worldSelected = button->getName();
+                    SoundController::getInstance()->playSfx("button");
                     _state = SELECTED;
                 }
             });

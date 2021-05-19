@@ -19,9 +19,12 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
     removeAllChildren();
     for (uint i = 0; i < _lastNumberOfColors; i++) {
         auto colorTexture = _assets->get<Texture>("color-circle");
-        if(SaveController::getInstance()->getColorblind())
+        auto overlayTexture = _assets->get<Texture>("color-circle-border");
+        if(SaveController::getInstance()->getColorblind()) {
             colorTexture = _assets->get<Texture>(_state.getShapeForColorIndex(canvasColors[i]));
-        auto bg = PolygonNode::allocWithTexture(colorTexture);
+            overlayTexture = _assets->get<Texture>(_state.getShapeForColorIndex(canvasColors[i]) + "-border");
+        }
+        auto bg = ColorCircle::alloc(colorTexture, overlayTexture, _colors[canvasColors[i]], _size, 3);
         bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         bg->setContentSize(_size, _size);
 
@@ -32,7 +35,7 @@ void ColorStrip::update(const vec<uint> &canvasColors) {
         bg->setPosition(
             leftMostX + ((_size * 0.3f) + _size) * (float) i,
             -(float) _size / 2);
-        bg->setColor(_colors[canvasColors[i]]);
+        //bg->setColor(_colors[canvasColors[i]]);
 
         addChild(bg);
     }
