@@ -24,11 +24,10 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _state = state; 
     _isActive = false;
     _initialColorNumber = numCanvasColors;
-    /*string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2",
-                           "dog-1", "dog-2", "dog-3", "frog", "octopus"};*/
 
-    string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", "bird", "llama", "panda"};//,"octo"};
-    int p = Random::getInstance()->getInt(8 - 1);
+    string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", 
+        "bird", "llama", "panda", "octo", "frog"};
+    int p = Random::getInstance()->getInt(10 - 1);
     if (isObstacle) {
         _texture_array[0] = assets->get<Texture>("obstacle-inactive");
         _texture_array[1] = assets->get<Texture>("obstacle-active");

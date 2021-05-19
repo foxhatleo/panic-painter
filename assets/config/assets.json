@@ -123,6 +123,9 @@
     "octo-emotion-3": {
       "file": "textures/characters/octo_very_angry.png"
     },
+    "octo-walk": {
+      "file": "textures/characters/octo_walk.png"
+    },
     "bird-blink": {
       "file": "textures/characters/bird_blink.png"
     },
@@ -137,6 +140,21 @@
     },
     "bird-walk": {
       "file": "textures/characters/bird_walk.png"
+    },
+    "frog-blink": {
+      "file": "textures/characters/frog_blink.png"
+    },
+    "frog-emotion-1": {
+      "file": "textures/characters/frog_frown.png"
+    },
+    "frog-emotion-2": {
+      "file": "textures/characters/frog_angry.png"
+    },
+    "frog-emotion-3": {
+      "file": "textures/characters/frog_very_angry.png"
+    },
+    "frog-walk": {
+      "file": "textures/characters/frog_walk.png"
     },
     "llama-blink": {
       "file": "textures/characters/llama_blink.png"
