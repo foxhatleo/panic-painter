@@ -2,6 +2,16 @@
 
 #define SCENE_SIZE (1024/4)
 
+string levels[] = {
+    "house-1", "house-2", "house-3", "house-4", "house-5",
+    "museum-1", "museum-2", "museum-3", "museum-4", "museum-5",
+    "city-1", "city-2", "city-3", "city-4", "city-5",
+    "island-1", "island-2", "island-3", "island-4", "island-5",
+    "eiffel-1", "eiffel-2", "eiffel-3", "eiffel-4", "eiffel-5",
+    "space-1", "space-2", "space-3", "space-4", "space-5",
+};
+uint levelsLen = 5 * 6;
+
 void MenuScene::dispose() {
     deactivateUI(_scene);
     Scene2::dispose();
@@ -64,6 +74,13 @@ MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene) {
                 if (!down) {
                     SoundController::getInstance()->playSfx("button");
                     this->_state = PLAY;
+                    uint lInd = 0;
+                    for (; lInd < levelsLen - 1;) {
+                        if (SaveController::getInstance()->isUnlocked
+                        (levels[lInd])) lInd++;
+                        else break;
+                    }
+                    this->level = levels[lInd];
                 }
             });
         }
@@ -125,15 +142,6 @@ void MenuScene::update(float timestep) {
     }
     if (_hackTimer->finished()) {
         CULog("Hacked!");
-        string levels[] = {
-            "city-1", "city-2", "city-3", "city-4", "city-5",
-            "eiffel-1", "eiffel-2", "eiffel-3", "eiffel-4", "eiffel-5",
-            "house-1", "house-2", "house-3", "house-4", "house-5",
-            "island-1", "island-2", "island-3", "island-4", "island-5",
-            "museum-1", "museum-2", "museum-3", "museum-4", "museum-5",
-            "space-1", "space-2", "space-3", "space-4", "space-5",
-        };
-        uint levelsLen = 5 * 6;
         for (uint i = 0; i < levelsLen; i++) {
             SaveController::getInstance()->unlock(levels[i]);
         }

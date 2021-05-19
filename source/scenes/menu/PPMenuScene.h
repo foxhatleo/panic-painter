@@ -35,6 +35,8 @@ private:
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
 public:
+    string level;
+
     MenuScene() : Scene2() {}
 
     ~MenuScene() { dispose(); }
