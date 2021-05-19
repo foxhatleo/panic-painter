@@ -87,9 +87,9 @@ void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
             canvasInd < canvasLen;
             canvasInd++) {
             vec<uint>& canvasColors = currentQueue[canvasInd];
-            bool isHealthPotion = _state.healthPotions[queueInd][canvasInd];
-            float d = isHealthPotion ? canvasBaseTime/2 : 
-                canvasColors.size() * canvasPerColorTime + canvasBaseTime + 2;
+            //bool isHealthPotion = _state.healthPotions[queueInd][canvasInd];
+            //isHealthPotion ? canvasBaseTime/2 : 
+            float d = canvasColors.size() * canvasPerColorTime + canvasBaseTime + 2;
             ptr<Timer> t = Timer::alloc(d);
             queueTimers.push_back(t);
         }
