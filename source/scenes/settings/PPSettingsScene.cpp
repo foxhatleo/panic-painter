@@ -7,7 +7,7 @@
 #define RECT_SCALE 0.4
 #define BUTTON_X_FRAC 0.575
 #define IOS_FRAC 0.5
-#define RESET_FRAC 0.37
+#define RESET_FRAC 0.33
 
 bool SettingsScene::init(const asset_t& assets) {
     _save = SaveController::getInstance();
