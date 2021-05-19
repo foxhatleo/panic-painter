@@ -41,6 +41,10 @@ public:
 
     void resetState();
 
+    void activate() {
+        activateUI(_scene); }
+    void deactivate() { deactivateUI(_scene); }
+
     MenuRequest getState() const;
 };
 
