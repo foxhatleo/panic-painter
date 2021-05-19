@@ -355,6 +355,9 @@
     "island-bg": {
       "file": "textures/level-backgrounds/island.png"
     },
+    "eiffel-bg": {
+      "file": "textures/level-backgrounds/eiffel.png"
+    },
     "feedbackno": {
       "file": "textures/feedbackno.png"
     },
@@ -490,7 +493,12 @@
     "house-2" : "levels/house-2.json",
     "house-3" : "levels/house-3.json",
     "house-4" : "levels/house-4.json",
-    "house-5" : "levels/house-5.json"
+    "house-5" : "levels/house-5.json",
+    "eiffel-1" : "levels/eiffel-1.json",
+    "eiffel-2" : "levels/eiffel-2.json",
+    "eiffel-3" : "levels/eiffel-3.json",
+    "eiffel-4" : "levels/eiffel-4.json",
+    "eiffel-5" : "levels/eiffel-5.json"
   },
   "fonts": {
     "roboto": {
