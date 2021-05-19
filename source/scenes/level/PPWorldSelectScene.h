@@ -29,6 +29,8 @@ private:
     Size _sceneSize;
     Vec2 _offsetInSafe;
 
+    bool _activated = false;
+
     void activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
@@ -49,6 +51,9 @@ public:
     void update(float timestep) override;
 
     WorldRequest getState() const;
+
+    void activate() { activateUI(_scene); }
+    void deactivate() { deactivateUI(_scene); }
 
     string getWorld();
 

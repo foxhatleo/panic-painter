@@ -30,7 +30,15 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 // SCRIBBLING
                 if (input.didDoubleTap() && input.justReleased() &&
                     startingPointIn && currentPointIn) {
-                    _state.clearColor(i, i2, selectedColor);
+                    auto n = _state.clearColor(i, i2, selectedColor);
+                    if (n == GameStateController::ALL_CLEAR) {
+                        SoundController::getInstance()->playSfx(
+//                            Random::getInstance()->getBool() ? "correct1" :
+                            "correct2");
+                    } else if (n == GameStateController::NO_MATCH) {
+                        SoundController::getInstance()->playSfx("incorrect");
+                    }
+                    SoundController::getInstance()->playSfx("scribble");
                     int newColors = (int) _state.getColorsOfCanvas(i, i2).size();
                     if (newColors < prevColors) {
                         _state.incrementScoreForSwipe(1);
@@ -96,11 +104,23 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
         // This suggests that he/she/they gave up on dragging.
         if (input.justReleased() && toClear.size() > 1) {
             int numCorrect = 0;
+            uint z = 0; // 0 is no canvas cleared or lost, 1 is at least
+            // one canvas cleared and no lost, 2 is at least one canvas lost
+            // (clear doesn't matter)
             for (auto &p : toClear) {
                 int prevColors = (int) _state.getColorsOfCanvas(p.first, p.second).size();
-                _state.clearColor(p.first, p.second, selectedColor);
+                auto i = _state.clearColor(p.first, p.second, selectedColor);
+                if (i == GameStateController::ALL_CLEAR && i == 0) z = 1;
+                else if (i == GameStateController::NO_MATCH) z = 2;
                 int newColors = (int) _state.getColorsOfCanvas(p.first, p.second).size();
                 if (newColors < prevColors) numCorrect += 1;
+            }
+            if (z == 1) {
+                SoundController::getInstance()->playSfx(
+//                    Random::getInstance()->getBool() ? "correct1" :
+                    "correct2");
+            } else if (z == 2) {
+                SoundController::getInstance()->playSfx("incorrect");
             }
             _state.incrementScoreForSwipe(1 + numCorrect * 1.5);
         }

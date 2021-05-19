@@ -4,6 +4,7 @@
 
 #include "utils/PPHeader.h"
 #include "controllers/PPInputController.h"
+#include "controllers/PPSoundController.h"
 #include "controllers/PPGameStateController.h"
 #include "PPCanvas.h"
 
