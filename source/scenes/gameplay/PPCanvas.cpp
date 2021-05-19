@@ -59,7 +59,7 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _yAfterLeaving = -_block->getHeight() * 2;
 
     addChild(_block);
-    _previousState = HIDDEN;
+    _previousState = rowNum == 0 ? ACTIVE : rowNum == 1 ? STANDBY : HIDDEN;
 }
 
 ptr<SceneNode> Canvas::getInteractionNode() const {
