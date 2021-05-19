@@ -28,17 +28,28 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
         vec<bool> wa_queue_s;
         vec<bool> r_queue_s;
         vec<bool> obs_queue_s;
+        vec<bool> hlth_queue_s;
         // Build canvas of each queue.
         for (const auto &canvas : queue->asArray()) {
             const auto r = canvas->asIntArray();
             // This is to cast vec<int> to vec<uint>.
             vec<uint> colors(r.begin(), r.end());
+            //Bomb obstacle
             if (colors[colors.size() - 1] == ((uint)10)) {
                 obs_queue_s.push_back(true);
+                hlth_queue_s.push_back(false);
                 colors.pop_back();
+            }
+            //Health Potion
+            else if (colors[colors.size() - 1] == ((uint)11)) {
+                hlth_queue_s.push_back(true);
+                colors.pop_back();
+                obs_queue_s.push_back(false);
+                
             }
             else {
                 obs_queue_s.push_back(false);
+                hlth_queue_s.push_back(false);
             }
             queue_s.push_back(colors);
             wa_queue_s.push_back(false);
@@ -67,15 +78,21 @@ void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
                              timer->getFloat("canvasPerColorTime",
                                              gc.getCanvasPerColorTime());
 
-    for (const auto &queueRef : _state.queues) {
+    for (uint queueInd = 0, queueLen = _state.queues.size();
+        queueInd < queueLen;
+        queueInd++) {
         vec<ptr<Timer>> queueTimers;
-
-        for (const auto &i2 : queueRef) {
-            float d = i2.size() * canvasPerColorTime + canvasBaseTime + 2;
+        vec<vec<uint>>& currentQueue = _state.queues[queueInd];
+        for (uint canvasInd = 0, canvasLen = currentQueue.size();
+            canvasInd < canvasLen;
+            canvasInd++) {
+            vec<uint>& canvasColors = currentQueue[canvasInd];
+            bool isHealthPotion = _state.healthPotions[queueInd][canvasInd];
+            float d = isHealthPotion ? canvasBaseTime/2 : 
+                canvasColors.size() * canvasPerColorTime + canvasBaseTime + 2;
             ptr<Timer> t = Timer::alloc(d);
             queueTimers.push_back(t);
         }
-
         _state.canvasTimers.push_back(queueTimers);
     }
 }

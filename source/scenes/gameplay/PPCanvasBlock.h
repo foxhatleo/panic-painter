@@ -44,6 +44,8 @@ private:
     int _initialColorNumber;
     /*Is this canvas an obstacle?*/
     bool _isObstacle;
+    /*Is this canvas a health potion?*/
+    bool _isHealthPotion;
     bool _walking;
     /** Game state. */
     GameStateController _state;

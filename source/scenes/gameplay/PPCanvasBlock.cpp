@@ -23,6 +23,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _isObstacle = isObstacle; 
     _state = state; 
     _isActive = false;
+    _isHealthPotion = false; 
     _initialColorNumber = numCanvasColors;
     /*string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2",
                            "dog-1", "dog-2", "dog-3", "frog", "octopus"};*/
@@ -57,23 +58,24 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _bg->setPosition(0, 0);
     addChild(_bg);
-
-    _talk_bubble = scene2::PolygonNode::allocWithTexture(assets->get<Texture>
-        ("talk-bubble"));
-    _talk_bubble->setColor(Color4::WHITE);
-    float scaleBubble = getWidth() / (_talk_bubble->getWidth() * 1.75);
-    _talk_bubble->setScale(scaleBubble, scaleBubble);
-    _talk_bubble->setAnchor(Vec2::ANCHOR_TOP_LEFT);
-    _talk_bubble->setPosition(0, getHeight() * 1.5);
-    addChild(_talk_bubble);
+    if (!_isHealthPotion) {
+        _talk_bubble = scene2::PolygonNode::allocWithTexture(assets->get<Texture>
+            ("talk-bubble"));
+        _talk_bubble->setColor(Color4::WHITE);
+        float scaleBubble = getWidth() / (_talk_bubble->getWidth() * 1.75);
+        _talk_bubble->setScale(scaleBubble, scaleBubble);
+        _talk_bubble->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+        _talk_bubble->setPosition(0, getHeight() * 1.5);
+        addChild(_talk_bubble);
 
     // Color strip
-
-    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors, state);
-    _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
-    auto bubbleBox = _talk_bubble->getBoundingBox();
-    _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
-    addChild(_colorStrip);
+ 
+        _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors, state);
+        _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
+        auto bubbleBox = _talk_bubble->getBoundingBox();
+        _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
+        addChild(_colorStrip);
+    }
 
     // Timer label. Uncomment for debugging purposes
     /*_timerText = scene2::Label::to("", assets->get<Font>("roboto"));
@@ -93,7 +95,9 @@ bool CanvasBlock::isFrameComplete() {
 
 void CanvasBlock::update(const vec<uint> &canvasColors,
                          const ptr<Timer> &timer) {
-    _colorStrip->update(canvasColors);
+    if (!_isHealthPotion) {
+        _colorStrip->update(canvasColors);
+    }
     _updateFrame++;
     if (_walking && !_isObstacle) {
         _bg->setTexture(_texture_array[4]);

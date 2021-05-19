@@ -51,6 +51,10 @@ struct GameState {
     /*This records which canvases are obstacles. This will be found in canvasBlock as well but this 
     makes it easier to cause the "blow up" action to occur. */
     vec<vec<bool>> obstacles; 
+
+    /*This records which canvases are health potions. 
+    This is to ensure the correct logic is taken for health potions. */
+    vec<vec<bool>> healthPotions;
     /**
      * This records which canvases are lost due to wrong actions.
      */
