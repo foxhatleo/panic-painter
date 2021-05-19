@@ -6,7 +6,8 @@
 #define BASE_SCALE 0.35
 #define RECT_SCALE 0.4
 #define BUTTON_X_FRAC 0.575
-#define IOS_FRAC 0.15
+#define GRAPHICS_FRAC 0.4
+#define IOS_FRAC 0.17
 #define RESET_FRAC 0.33
 
 bool SettingsScene::init(const asset_t& assets) {
@@ -112,6 +113,7 @@ void SettingsScene::activateUI(
         }
         else if (button->getName() == "visualeffect") {
             button->setToggle(true);
+            button->setScale(button->getScale() * GRAPHICS_FRAC);
             button->setDown(_save->getPaletteLeft());
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .5);
             #if defined(__IPHONEOS__)
