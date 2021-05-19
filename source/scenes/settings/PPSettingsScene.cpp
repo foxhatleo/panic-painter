@@ -6,7 +6,7 @@
 #define BASE_SCALE 0.35
 #define RECT_SCALE 0.4
 #define BUTTON_X_FRAC 0.575
-#define IOS_FRAC 0.5
+#define IOS_FRAC 0.4
 #define RESET_FRAC 0.33
 
 bool SettingsScene::init(const asset_t& assets) {
@@ -87,14 +87,14 @@ void SettingsScene::activateUI(
         if (button->getName() == "colorblind") {
             button->setToggle(true);
             button->setDown(_save->getColorblind()); // set to last saved value
-            if (!button->hasListener())
-            button->addListener([=](const string& name, bool down) {
-                _save->setColorblind(down);
-                });
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .79);
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .79);
             #endif
+            if (!button->hasListener())
+                button->addListener([=](const string& name, bool down) {
+                _save->setColorblind(down);
+                });
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
@@ -105,8 +105,6 @@ void SettingsScene::activateUI(
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .68);
             #endif
-            //button->setPositionX(_tray->getPositionX() + _tray->getWidth() * (BUTTON_X_FRAC+0.025));
-            //button->setPositionY(_sceneSize.getIHeight() * 0.525);
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
@@ -120,10 +118,6 @@ void SettingsScene::activateUI(
             #if defined(__IPHONEOS__)
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .5);
             #endif
-            // TODO: remove following once assets are fixed
-            button->setVisible(false);
-            // END TODO
-
             // TODO: Remove following once both side palettes are supported
             button->setColor(Color4f(1, 1, 1, .5));
             return;
@@ -167,13 +161,12 @@ void SettingsScene::activateUI(
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
-                _save->resetAll(); // TODO: Implement when level progress is implemented (and likely add a confirmation pop-up)
+                _save->resetAll(); 
                 });
         }
         else if (button->getName() == "menubutton") {
             button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
-            //button->setScale(button->getScale() * .8);
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
