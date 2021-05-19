@@ -160,10 +160,9 @@ void SettingsScene::activateUI(
         else if (button->getName() == "reset") {
             button->setScale(button->getScale() * RESET_FRAC);
             button->setPositionY(_tray->getPositionY());
-            button->setPositionX(_tray->getPositionX() + _tray->getWidth() * .05);
+            button->setPositionX(_tray->getPositionX() + (_tray->getWidth()*.5 - button->getWidth()/2));
             #if defined(__OS__) && __IPHONEOS__
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC);
-                button->setPositionX(_tray->getPositionX() * IOS_FRAC + _tray->getWidth() * .05);
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
