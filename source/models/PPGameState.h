@@ -33,6 +33,7 @@ struct GameState {
     
     unordered_map<string, uint> scoreTracker;
 
+    float healthBack; 
     /**
      * The representation of the queue. This is a bit tricky so let me explain.
      *

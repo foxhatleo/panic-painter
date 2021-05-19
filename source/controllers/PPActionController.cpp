@@ -50,7 +50,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                         (input.currentPoint().y > in_start_box.getMaxY() &&
                             input.currentPoint().x < in_start_box.getMaxX() &&
                             input.currentPoint().x > in_start_box.getMinX())) {
-                        CULog("vertical swipe");
+                        _state.clearHealthPotion(i, i2);
                     }
                 }
                 // DRAGGING

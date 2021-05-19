@@ -22,6 +22,8 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.wrongActions.clear();
     _state.recorded.clear();
     _state.obstacles.clear(); 
+    _state.healthPotions.clear(); 
+    _state.healthBack = 0; 
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
         vec<vec<uint>> queue_s;
@@ -43,7 +45,6 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
             //Health Potion
             else if (colors[colors.size() - 1] == ((uint)11)) {
                 hlth_queue_s.push_back(true);
-                colors.pop_back();
                 obs_queue_s.push_back(false);
                 
             }
@@ -129,14 +130,24 @@ void GameStateController::update(float timestep) {
             if (!_state.recorded[i][ind - 1] &&
                 (cs == LOST_DUE_TO_TIME || cs == LOST_DUE_TO_WRONG_ACTION || cs == DONE)) {
                 _state.recorded[i][ind - 1] = true;
-                if (cs == LOST_DUE_TO_TIME) {
-                    _state.scoreTracker["timedOut"]++;
-                    _state.scoreTracker["aggregateScore"] -= 5;
-                } else if (cs == LOST_DUE_TO_WRONG_ACTION) {
-                    _state.scoreTracker["wrongAction"]++;
-                    _state.scoreTracker["aggregateScore"] -= 10;
-                } else {
-                    _state.scoreTracker["correct"]++;
+                //Health potions never count towards or against point total
+                if (!_state.healthPotions[i][ind - 1]) {
+                    if (cs == LOST_DUE_TO_TIME) {
+                        _state.scoreTracker["timedOut"]++;
+                        _state.scoreTracker["aggregateScore"] -= 5;
+                    }
+                    else if (cs == LOST_DUE_TO_WRONG_ACTION) {
+                        _state.scoreTracker["wrongAction"]++;
+                        _state.scoreTracker["aggregateScore"] -= 10;
+                    }
+                    else {
+                        _state.scoreTracker["correct"]++;
+                    }
+                }
+                else {
+                    if (cs == DONE) {
+                        _state.healthBack += 0.8;
+                    }
                 }
                 _state.scoreTracker["aggregateScore"] = max(0, (int) _state.scoreTracker["aggregateScore"]);
                 if (_state.obstacles[i][ind - 1] && 
@@ -210,7 +221,12 @@ ptr<Timer> GameStateController::getTimer(uint q, uint c) const {
 bool GameStateController::getIsObstacle(uint q, uint c) const {
     return _state.obstacles[q][c];
 }
-
+bool GameStateController::getIsHealthPotion(uint q, uint c) const {
+    return _state.healthPotions[q][c];
+}
+float GameStateController::getHealthBack() const {
+    return _state.healthBack; 
+}
 void GameStateController::clearColor(uint q, uint c, uint colorInd) {
     vec<uint> &colors = _state.queues[q][c];
     auto it = begin(colors);
@@ -222,7 +238,11 @@ void GameStateController::clearColor(uint q, uint c, uint colorInd) {
     }
     _state.wrongActions[q][c] = true;
 }
-
+void GameStateController::clearHealthPotion(uint q, uint c) {
+    vec<uint>& colors = _state.queues[q][c];
+    colors.clear(); 
+    return; 
+}
 uint GameStateController::numCanvases(uint q) const {
     return _state.queues[q].size();
 }
