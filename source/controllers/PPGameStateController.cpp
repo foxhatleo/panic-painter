@@ -2,7 +2,7 @@
 
 void GameStateController::_jsonv1_loadColors(const json_t &colors) {
     _state.colors.clear();
-    string shapes[] = {"color-circle", "color-heart", "color-square", "color-star", "color-triangle"};
+    string shapes[] = {"color-circle", "color-heart", "color-square", "color-diamond", "color-triangle"};
     auto colorsArray = colors->asArray();
     for (uint i = 0; i < colorsArray.size(); i++) {
         const vec<int> c = colorsArray[i]->asIntArray();
@@ -193,16 +193,18 @@ bool GameStateController::getIsObstacle(uint q, uint c) const {
     return _state.obstacles[q][c];
 }
 
-void GameStateController::clearColor(uint q, uint c, uint colorInd) {
+GameStateController::ClearResult GameStateController::clearColor(uint q, uint c, uint colorInd) {
     vec<uint> &colors = _state.queues[q][c];
     auto it = begin(colors);
     while (it != end(colors)) {
         if (*it == colorInd) {
+            bool rc = colors.size() == 1;
             colors.erase(it);
-            return;
+            return rc ? ALL_CLEAR : CLEAR;
         } else ++it;
     }
     _state.wrongActions[q][c] = true;
+    return NO_MATCH;
 }
 
 uint GameStateController::numCanvases(uint q) const {

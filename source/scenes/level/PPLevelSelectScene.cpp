@@ -53,8 +53,10 @@ void LevelSelectScene::activateUI(
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
             button->setScale(BASE_SCALE *
                 _safe.size.height / SCENE_SIZE_H);
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _state = L_BACK;
                 }
                 });
@@ -64,8 +66,10 @@ void LevelSelectScene::activateUI(
             button->setScale(BASE_LEVEL_SCALE *
                 _safe.size.height / SCENE_SIZE_H);
             // Set listener
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _levelNum = name;
                     _state = L_SELECTED;
                 }
@@ -130,11 +134,6 @@ void LevelSelectScene::deactivateUI(
 void LevelSelectScene::loadWorld(const char* worldName) {
     _worldName = worldName;
 
-    // Ensure reset
-    if (_scene != nullptr) {
-       // CULog("deactivating ui");
-        deactivateUI(_scene);
-    }
     removeAllChildren();
     resetState();
 

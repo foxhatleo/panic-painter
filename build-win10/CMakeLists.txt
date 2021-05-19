@@ -45,6 +45,8 @@ set(PP_FILES
         ../source/scenes/gameplay/PPLevelComplete.cpp
         ../source/scenes/gameplay/PPLevelComplete.h
         ../source/scenes/gameplay/PPSplashEffect.cpp
+        ../source/scenes/gameplay/PPColorCircle.cpp
+        ../source/scenes/gameplay/PPColorCircle.h
         ../source/scenes/menu/PPMenuScene.h
         ../source/scenes/menu/PPMenuScene.cpp
         ../source/scenes/settings/PPSettingsScene.h

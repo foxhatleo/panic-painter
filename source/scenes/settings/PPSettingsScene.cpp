@@ -7,6 +7,7 @@
 #define RECT_SCALE 0.4
 #define BUTTON_X_FRAC 0.575
 #define IOS_FRAC 0.5
+#define RESET_FRAC 0.37
 
 bool SettingsScene::init(const asset_t& assets) {
     _save = SaveController::getInstance();
@@ -45,9 +46,6 @@ bool SettingsScene::init(const asset_t& assets) {
         _safe.size.height * ((1 - TRAY_FRACTION) / 2));
     addChild(_tray);
 
-    // Initialize buttons
-    activateUI(_scene);
-
     addChild(_scene);
 
     return true;
@@ -82,18 +80,19 @@ void SettingsScene::activateUI(
         // Set button X
         button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         button->setPositionX(_tray->getPositionX() + _tray->getWidth() * BUTTON_X_FRAC);
-        #if defined(__OS__) && __OS__ == __IPHONEOS__
+        #if defined(__OS__)  && __IPHONEOS__
             button->setPositionX(_tray->getPositionX() * IOS_FRAC + _tray->getWidth() * BUTTON_X_FRAC);
         #endif
 
         if (button->getName() == "colorblind") {
             button->setToggle(true);
             button->setDown(_save->getColorblind()); // set to last saved value
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
                 });
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .79);
-            #if defined(__OS__) && __OS__ == __IPHONEOS__
+            #if defined(__OS__) && __IPHONEOS__
                 button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .79);
             #endif
         }
@@ -103,12 +102,12 @@ void SettingsScene::activateUI(
             button->setScale(RECT_SCALE *
                 _safe.size.height / SCENE_SIZE_H);
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .68);
-            #if defined(__OS__) && __OS__ == __IPHONEOS__
-                button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * 68);
+            #if defined(__OS__) && __IPHONEOS__
+                button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .68);
             #endif
             //button->setPositionX(_tray->getPositionX() + _tray->getWidth() * (BUTTON_X_FRAC+0.025));
             //button->setPositionY(_sceneSize.getIHeight() * 0.525);
-
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
                 });
@@ -118,7 +117,9 @@ void SettingsScene::activateUI(
             button->setDown(_save->getPaletteLeft());
             button->setScale(.2);
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .5);
-
+            #if defined(__OS__) && __IPHONEOS__
+                button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .5);
+            #endif
             // TODO: remove following once assets are fixed
             button->setVisible(false);
             // END TODO
@@ -127,7 +128,7 @@ void SettingsScene::activateUI(
             button->setColor(Color4f(1, 1, 1, .5));
             return;
             // END TODO
-
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
                 });
@@ -136,10 +137,10 @@ void SettingsScene::activateUI(
             button->setToggle(true);
             button->setDown(_save->getBgm());
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .32);
-            #if defined(__OS__) && __OS__ == __IPHONEOS__
+            #if defined(__OS__) && __IPHONEOS__
             button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .32);
             #endif
-
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setBgm(down);
                 });
@@ -148,20 +149,23 @@ void SettingsScene::activateUI(
             button->setToggle(true);
             button->setDown(_save->getSfx());
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .16);
-            #if defined(__OS__) && __OS__ == __IPHONEOS__
+            #if defined(__OS__) && __IPHONEOS__
             button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .16);
             #endif
-
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->setSfx(down);
                 });
         }
         else if (button->getName() == "reset") {
-            // TODO: Remove following once reset is supported
-            button->setVisible(false);
-            return;
-            // END TODO
-
+            button->setScale(button->getScale() * RESET_FRAC);
+            button->setPositionY(_tray->getPositionY());
+            button->setPositionX(_tray->getPositionX() + _tray->getWidth() * .05);
+            #if defined(__OS__) && __IPHONEOS__
+                button->setPositionY(_tray->getPositionY() * IOS_FRAC);
+                button->setPositionX(_tray->getPositionX() * IOS_FRAC + _tray->getWidth() * .05);
+            #endif
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 _save->resetAll(); // TODO: Implement when level progress is implemented (and likely add a confirmation pop-up)
                 });
@@ -170,6 +174,7 @@ void SettingsScene::activateUI(
             button->setAnchor(Vec2::ANCHOR_TOP_LEFT);
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
             //button->setScale(button->getScale() * .8);
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
                     _finish = true;
