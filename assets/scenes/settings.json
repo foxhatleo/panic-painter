@@ -68,13 +68,13 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "paletteright"
+                    "texture": "graphicshigh"
                   }
                 },
                 "down": {
                   "type": "Image",
                   "data": {
-                    "texture": "paletteleft"
+                    "texture": "graphicshigh"
                   }
                 }
               }
@@ -145,24 +145,21 @@
                 }
             },
             "menubutton": {
-                "type": "Button",
-                "data": {
-                  "upnode": "up",
-                  "visible"  : true,
-                  "pushsize" : true,
-                  "anchor" : [2.4, -1.0]                
-                },
-                "children": {
-                  "up": {
-                    "type": "Image",
-                    "data": {
-                      "texture": "menubutton"
-                    }
+              "type": "Button",
+              "data": {
+                "upnode": "up",
+                "visible"  : true,
+                "pushsize" : true,
+                "scale"    : 0.5
+              },
+              "children": {
+                "up": {
+                  "type": "Image",
+                  "data": {
+                    "texture": "menubutton"
                   }
-                },
-                "layout": {
-                    "padding" : [0,0,0,50]
                 }
+              }
             }
         }
     }

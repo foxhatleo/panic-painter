@@ -6,6 +6,7 @@
 #define BASE_SCALE 0.35
 #define RECT_SCALE 0.4
 #define BUTTON_X_FRAC 0.575
+#define IOS_FRAC 0.5
 
 bool SettingsScene::init(const asset_t& assets) {
     _save = SaveController::getInstance();
@@ -80,7 +81,10 @@ void SettingsScene::activateUI(
             _safe.size.height / SCENE_SIZE_H);
         // Set button X
         button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-        button->setPositionX(_tray->getWidth() * BUTTON_X_FRAC);
+        button->setPositionX(_tray->getPositionX() + _tray->getWidth() * BUTTON_X_FRAC);
+        #if defined(__OS__) && __OS__ == __IPHONEOS__
+            button->setPositionX(_tray->getPositionX() * IOS_FRAC + _tray->getWidth() * BUTTON_X_FRAC);
+        #endif
 
         if (button->getName() == "colorblind") {
             button->setToggle(true);
@@ -88,21 +92,22 @@ void SettingsScene::activateUI(
             button->addListener([=](const string& name, bool down) {
                 _save->setColorblind(down);
                 });
-            button->setPositionY(_tray->getHeight() * .78);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .79);
+            #if defined(__OS__) && __OS__ == __IPHONEOS__
+                button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .79);
+            #endif
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
             button->setScale(RECT_SCALE *
                 _safe.size.height / SCENE_SIZE_H);
-            //button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .68);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .68);
+            #if defined(__OS__) && __OS__ == __IPHONEOS__
+                button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * 68);
+            #endif
             //button->setPositionX(_tray->getPositionX() + _tray->getWidth() * (BUTTON_X_FRAC+0.025));
-            button->setPositionY(_sceneSize.getIHeight() * 0.525);
-
-            // TODO: Remove following once both side palettes are supported
-            button->setColor(Color4f(1, 1, 1, .5));
-            return;
-            // END TODO
+            //button->setPositionY(_sceneSize.getIHeight() * 0.525);
 
             button->addListener([=](const string& name, bool down) {
                 _save->setPaletteLeft(down);
@@ -111,7 +116,12 @@ void SettingsScene::activateUI(
         else if (button->getName() == "visualeffect") {
             button->setToggle(true);
             button->setDown(_save->getPaletteLeft());
-            button->setPositionY(_tray->getHeight() * .5);
+            button->setScale(.2);
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .5);
+
+            // TODO: remove following once assets are fixed
+            button->setVisible(false);
+            // END TODO
 
             // TODO: Remove following once both side palettes are supported
             button->setColor(Color4f(1, 1, 1, .5));
@@ -124,30 +134,26 @@ void SettingsScene::activateUI(
         }
         else if (button->getName() == "music") {
             button->setToggle(true);
-            button->setDown(_save->getPaletteLeft());
-            button->setPositionY(_tray->getHeight() * .32);
-
-            // TODO: Remove following once music toggle is supported
-            button->setColor(Color4f(1, 1, 1, .5));
-            return;
-            // END TODO
+            button->setDown(_save->getBgm());
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .32);
+            #if defined(__OS__) && __OS__ == __IPHONEOS__
+            button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .32);
+            #endif
 
             button->addListener([=](const string& name, bool down) {
-                _save->setPaletteLeft(down);
+                _save->setBgm(down);
                 });
         }
         else if (button->getName() == "sfx") {
             button->setToggle(true);
-            button->setDown(_save->getPaletteLeft());
-            button->setPositionY(_tray->getHeight() * .15);
-
-            // TODO: Remove following once both side palettes are supported
-            button->setColor(Color4f(1, 1, 1, .5));
-            return;
-            // END TODO
+            button->setDown(_save->getSfx());
+            button->setPositionY(_tray->getPositionY() + _tray->getHeight() * .16);
+            #if defined(__OS__) && __OS__ == __IPHONEOS__
+            button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .16);
+            #endif
 
             button->addListener([=](const string& name, bool down) {
-                _save->setPaletteLeft(down);
+                _save->setSfx(down);
                 });
         }
         else if (button->getName() == "reset") {
