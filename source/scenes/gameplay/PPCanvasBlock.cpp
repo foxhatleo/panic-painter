@@ -28,19 +28,21 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", 
         "bird", "llama", "panda", "octo", "frog"};
     int p = Random::getInstance()->getInt(10 - 1);
+
     if (isObstacle) {
         _texture_array[0] = assets->get<Texture>("obstacle-inactive");
         _texture_array[1] = assets->get<Texture>("obstacle-active");
         _texture_array[2] = assets->get<Texture>("obstacle-explode");
     }
     else {
-        _texture_array[0] = assets->get<Texture>(characters[p] + "-blink");
+        int pBlink = Random::getInstance()->getInt(2) + 1;
+        string blinkTexture = characters[p] == "husky" ? "-blink-" + std::to_string(pBlink) : "-blink";
+        _texture_array[0] = assets->get<Texture>(characters[p] + blinkTexture);
         _texture_array[1] = assets->get<Texture>(characters[p] + "-emotion-1");
         _texture_array[2] = assets->get<Texture>(characters[p] + "-emotion-2");
         _texture_array[3] = assets->get<Texture>(characters[p] + "-emotion-3");
         _texture_array[4] = assets->get<Texture>(characters[p] + "-walk");
     }
-   // _texture_array[3] = assets->get<Texture>("husky-walk");
 
 
     _updateFrame = 0;
@@ -102,7 +104,7 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
     } else {
         _bg->setTexture(_texture);
     }
-    int value = _updateFrame % (Random::getInstance()->getInt(99) + 12);
+    bool keepBlinking = (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP);
     if (_updateFrame % 6 == 0 &&_isObstacle) {
         if (_isActive  && _bg->getFrame() == _bg->getSize() - 1) {
             if (_angerLevel == 0 && timer->timeLeft() < 9) {
@@ -118,11 +120,10 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
             _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
         }
     }
-    else if (!_isActive || timer->timeLeft() > SWITCH_FILMSTRIP) {
-        //Just keep it on blink. However, if eyes are closed, open them quickly
-        if (value == 0 || ((_bg->getFrame() + 1) % 3 == 0 && value < 2))
-            _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
-    } else if (_updateFrame % 6 == 0) {
+    else if (_updateFrame % 12 == 0 && keepBlinking) {
+        _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
+    }
+    else if (_updateFrame % 6 == 0 && !keepBlinking) {
         //Do we need to switch stages of anger ie switch animations? 
         //Note: if a blink, switch the blink immediately to prevent the uniform blinking issue
         if (_bg->getFrame() == _bg->getSize() - 1 || _angerLevel == 0) {
