@@ -93,11 +93,21 @@ void LevelSelectScene::activateUI(
                 menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
             }
 
-            // activate button
-            button->activate();
+            string spacer = "-";
+
+            for (uint i = 1; i <= 5; i++) {
+                if (button->getName() != to_string(i)) continue;
+                if (i == 1 || SaveController::getInstance()->isUnlocked(
+                    _worldName + spacer + to_string(i - 1))) {
+                    button->setColor(Color4::WHITE);
+                    // activate button
+                    button->activate();
+                } else {
+                    button->setColor(Color4f(1,1,1,.5));
+                }
+            }
 
             // deactivate button if no level associated
-            string spacer = "-";
             if (_assets->get<JsonValue>(_worldName + spacer + button->getName().c_str()) == NULL) {
                 // Hides & deactivates buttons that don't have levels associated
                 button->setVisible(false);

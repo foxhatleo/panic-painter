@@ -135,7 +135,7 @@ void MenuScene::update(float timestep) {
         };
         uint levelsLen = 5 * 6;
         for (uint i = 0; i < levelsLen; i++) {
-//            SaveController::getInstance()->unlock(levels[i]);
+            SaveController::getInstance()->unlock(levels[i]);
         }
         Animation::set(_scene, {{"opacity", 0}});
         Animation::to(_scene, .2, {{"opacity", 1}});
