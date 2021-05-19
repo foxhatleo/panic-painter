@@ -307,18 +307,6 @@
     "levelbuttonpass": {
       "file": "textures/levelselect/levelbuttonpass.png"
     },
-    "0star": {
-      "file": "textures/levelselect/0star.png"
-    },
-    "1star": {
-      "file": "textures/levelselect/1star.png"
-    },
-    "2star": {
-      "file": "textures/levelselect/2star.png"
-    },
-    "3star": {
-      "file": "textures/levelselect/3star.png"
-    },
     "level1": {
       "file": "textures/levelselect/level1.png"
     },
@@ -456,6 +444,15 @@
     },
     "settings-tray": {
       "file": "textures/settings/settings-tray.png"
+    },
+    "graphicsoff": {
+      "file": "textures/settings/graphicsoff.png"
+    },
+    "graphicshigh": {
+      "file": "textures/settings/graphicshigh.png"
+    },
+    "graphicslow": {
+      "file": "textures/settings/graphicslow.png"
     }
   },
   "jsons": {

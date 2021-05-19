@@ -47,7 +47,6 @@ void SoundController::useBgm(const string &name) {
         CULog("Clearing background music.");
         return;
     }
-    CULog("Switching to background music \"%s\".", name.c_str());
     ptr<Sound> s = _assets->get<Sound>(name);
     if (s == nullptr) {
         CUWarn("Cannot find music \"%s\". Playing nothing as fallback.", name
@@ -63,13 +62,11 @@ void SoundController::clearSfx() {
 
 void SoundController::playSfx(const string &name, bool loop) {
     if (loop && AudioEngine::get()->isActive(name)) return;
-    CULog("Playing sfx \"%s\".", name.c_str());
     AudioEngine::get()->
     play(name, _assets->get<Sound>(name), loop, _sfxVolume, !loop);
 }
 
 void SoundController::stopSfx(const string &name) {
     if (!AudioEngine::get()->isActive(name)) return;
-    CULog("Stopping sfx \"%s\".", name.c_str());
     AudioEngine::get()->clear(name);
 }
