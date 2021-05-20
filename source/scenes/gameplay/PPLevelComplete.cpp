@@ -41,7 +41,7 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     float lc_width = levelcomplete->getContentWidth();
     float stars_width = stars->getContentWidth();
     Size ds = Size(1024.0, 576.0);
-    
+
     float desired_width = ds.width / 1.3;
     float desired_scale = desired_width / lc_width;
     
@@ -52,14 +52,14 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     levelcomplete->setAnchor(Vec2::ANCHOR_CENTER);
     levelcomplete->setPosition(
         ds.width / 2,
-        ds.height / 2 - 55
+        ds.height / 2
     );
     
     stars->setScale(0);
     stars->setAnchor(Vec2::ANCHOR_CENTER);
     stars->setPosition(
         0.95*ds.width / 2,
-        ds.height * 1.2 - 15
+        ds.height * 1.2 - 120
     );
     
     Animation::to(levelcomplete, .5, {
@@ -80,17 +80,17 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
     
     for (int i = 0; i < 3; i++) {
         auto label = Label::alloc(Size(0.1 * ds.width, 0.05 * ds.height), labelFont);
-        label->setPosition(0.57 * ds.width, (0.53 - 0.1 * i) * ds.height);
+        label->setPosition(0.57 * ds.width, (0.62 - 0.1 * i) * ds.height);
         label->setText(to_string(state.getScoreMetric(metrics[i])));
         label->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
         addChild(label);
     }
     
     auto totalScoreLabel = Label::alloc(Size(0.1 * ds.width, 0.05 * ds.height), labelFont);
-    totalScoreLabel->setPosition(0.57 * ds.width, 0.19 * ds.height);
+    totalScoreLabel->setPosition(0.57 * ds.width, 0.28 * ds.height);
     totalScoreLabel->setText(to_string(state.getScoreMetric("aggregateScore")));
     totalScoreLabel->setHorizontalAlignment(Label::HAlign::HARDRIGHT);
     addChild(totalScoreLabel);
-    
-    setContentSize(desired_width, (desired_scale*levelcomplete->getContentHeight() + desired_stars_scale*stars->getContentHeight()) / 2.1);
+
+    setContentSize(desired_width, (desired_scale*levelcomplete->getContentHeight() + desired_stars_scale*stars->getContentHeight()));
 }
