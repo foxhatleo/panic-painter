@@ -43,7 +43,7 @@ void Canvas::_setup(const asset_t &assets, const vec<Color4> &colors,
     _yForStandBy = _yForActive + getHeight() * .45f;
     _startingY = _yForStandBy + getHeight() * .1f;
 
-    _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors, state, isObstacle);
+    _block = CanvasBlock::alloc(assets, canvasSize, colors, numCanvasColors, state, isObstacle, isHealthPotion);
     _block->setScale(MINI_SCALE, MINI_SCALE);
     _block->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
     _block->setPosition(laneX, _startingY);
