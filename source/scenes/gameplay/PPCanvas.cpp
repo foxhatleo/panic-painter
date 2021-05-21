@@ -3,7 +3,7 @@
 #define PADDING 0
 #define MAX_QUEUE 6
 #define EASING SINE_IN_OUT
-#define DURATION 2
+#define DURATION 1.2
 #define MINI_SCALE 0.75
 #define VANISHING_POINT_EFFECT 0.05f
 
