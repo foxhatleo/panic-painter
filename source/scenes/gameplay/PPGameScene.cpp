@@ -171,7 +171,7 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
-    float currentHealth = (float)_state.getScoreMetric("wrongAction") - _state.getHealthBack();
+    float currentHealth = max((float)_state.getScoreMetric("wrongAction") - _state.getHealthBack(), 0.0f);
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
