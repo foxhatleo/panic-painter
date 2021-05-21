@@ -22,6 +22,7 @@ private:
     Rect _safe;
     Size _sceneSize;
     Vec2 _offsetInSafe;
+    shared_ptr<PolygonNode> _tray;
 
     void activateUI(const std::shared_ptr<cugl::scene2::SceneNode>& scene);
 

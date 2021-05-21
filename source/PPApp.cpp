@@ -97,6 +97,7 @@ void PanicPainterApp::update(float timestep) {
                 // Initialize Menu_Scene and set scene to menu
                 _menu.init(_assets);
                 _currentScene = MENU_SCENE;
+                _menu.activate();
             }
             break;
         }
@@ -105,9 +106,11 @@ void PanicPainterApp::update(float timestep) {
                 // switch to pause screen and let pause screen know what level it is
                 _currentScene = PAUSE_SCENE;
                 _pause.resetState();
+                _pause.activate();
             } else if (_gameplay.isComplete()) {
-                _currentScene = LEVEL_SCENE;
-                _level.resetState();
+                _currentScene = WORLD_SCENE;
+                _world.resetState();
+                _world.activate();
             } else {
                 _gameplay.update(timestep);
             }
@@ -116,21 +119,25 @@ void PanicPainterApp::update(float timestep) {
         case MENU_SCENE: {
             if (_menu.getState() == PLAY) {
                 //_menu.dispose();
-                _gameplay.loadLevel(
-                    "level1"); //TODO: once have save system, should play latest level
+                _gameplay.loadLevel(_menu.level); //TODO: once have save
+                // system, should play latest level
                 _currentScene = GAME_SCENE;
                 _menu.resetState();
+                _menu.deactivate();
             } else if (_menu.getState() == LEVELS) {
                 //_menu.dispose();
                 _currentScene = WORLD_SCENE;
                 _menu.resetState();
                 _level.resetState();
                 _world.resetState();
+                _menu.deactivate();
+                _world.activate();
             } else if (_menu.getState() == SETTINGS) {
                 _currentScene = SETTINGS_SCENE;
                 _menu.resetState();
                 _settings.activate();
                 _settings.resetState();
+                _menu.deactivate();
             } else {
                 _menu.update(timestep);
             }
@@ -141,11 +148,14 @@ void PanicPainterApp::update(float timestep) {
                 _currentScene = MENU_SCENE;
                 _world.resetState();
                 _menu.resetState();
+                _world.deactivate();
+                _menu.activate();
             } else if (_world.getState() == SELECTED) {   
                 _menu.resetState();
                 _world.resetState();
                 _level.loadWorld(
                     _world.getWorld().c_str()); // fetch the specific world
+                _world.deactivate();
                 _currentScene = LEVEL_SCENE;
             }
             break;
@@ -155,15 +165,17 @@ void PanicPainterApp::update(float timestep) {
             if (_level.getState() == L_BACK) {
                 _level.resetState();
                 _world.resetState();
+                _level.deactivate();
+                _world.activate();
                 _currentScene = WORLD_SCENE;
             }
             else if (_level.getState() == L_SELECTED) {
-                _level.resetState();
                 _gameplay.loadLevel(
                     _level.getLevel()); // fetch the specific level
                 _currentScene = GAME_SCENE;
                 _menu.resetState();
                 _level.resetState();
+                _level.deactivate();
             } else {
                 _level.update(timestep);
             }
@@ -175,6 +187,7 @@ void PanicPainterApp::update(float timestep) {
                 // return to game scene without resetting
                 _currentScene = GAME_SCENE;
                 _pause.resetState();
+                _pause.deactivate();
             }
             else if (_pause.getState() == RETRY) {
                 // return to game scene after re-loading level
@@ -183,11 +196,14 @@ void PanicPainterApp::update(float timestep) {
                 // re-fetch the current level
                 _currentScene = GAME_SCENE;
                 _pause.resetState();
+                _pause.deactivate();
             }
             else if (_pause.getState() == MENU) {
                 _currentScene = MENU_SCENE;
                 _menu.resetState();
                 _pause.resetState();
+                _pause.deactivate();
+                _menu.activate();
             }
             else {
                 _pause.update(timestep);
@@ -201,6 +217,7 @@ void PanicPainterApp::update(float timestep) {
                 _settings.resetState();
                 _settings.deactivate();
                 _menu.resetState();
+                _menu.activate();
             }
             break;
         }

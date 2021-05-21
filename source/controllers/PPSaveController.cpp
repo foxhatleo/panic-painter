@@ -23,6 +23,8 @@ void SaveController::_load() {
         _paletteLeft = v->getBool("left", true);
         _sfxVolume = v->getFloat("sfxVolume", 1);
         _bgmVolume = v->getFloat("bgmVolume", 1);
+        _bgm = v->getFloat("bgm", true);
+        _sfx = v->getFloat("sfx", true);
         auto l = v->get("levels");
         if (l != nullptr) {
             for (const auto &li : l->asArray()) {
@@ -41,6 +43,8 @@ void SaveController::_flush() {
     v->appendValue("paletteLeft", _paletteLeft);
     v->appendValue("sfxVolume", _sfxVolume);
     v->appendValue("bgmVolume", _bgmVolume);
+    v->appendValue("bgm", _bgm);
+    v->appendValue("sfx", _sfx);
     json_t l = JsonValue::alloc(JsonValue::Type::ObjectType);
     for (const auto &p : _levels) {
         json_t lv = JsonValue::alloc(JsonValue::Type::ObjectType);
@@ -65,10 +69,16 @@ uint SaveController::getScore(const string &level) const {
 }
 
 float SaveController::getSfxVolume() const {
+    if (!_sfx) {
+        return 0;
+    }
     return _sfxVolume;
 }
 
 float SaveController::getBgmVolume() const {
+    if (!_bgm) {
+        return 0;
+    }
     return _bgmVolume;
 }
 
@@ -78,6 +88,14 @@ bool SaveController::getColorblind() const {
 
 bool SaveController::getPaletteLeft() const {
     return _paletteLeft;
+}
+
+bool SaveController::getBgm() const {
+    return _bgm;
+}
+
+bool SaveController::getSfx() const {
+    return _sfx;
 }
 
 void SaveController::unlock(const string &level) {
@@ -115,8 +133,13 @@ void SaveController::setPaletteLeft(bool value) {
     _flush();
 }
 
-void SaveController::setMusic(bool on) {
-    _music = on;
+void SaveController::setBgm(bool on) {
+    _bgm = on;
+    _flush();
+}
+
+void SaveController::setSfx(bool on) {
+    _sfx = on;
     _flush();
 }
 

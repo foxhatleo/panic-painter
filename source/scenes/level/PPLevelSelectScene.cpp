@@ -53,8 +53,10 @@ void LevelSelectScene::activateUI(
             button->setPosition(0, _offsetInSafe.y + _safe.size.height);
             button->setScale(BASE_SCALE *
                 _safe.size.height / SCENE_SIZE_H);
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _state = L_BACK;
                 }
                 });
@@ -64,8 +66,10 @@ void LevelSelectScene::activateUI(
             button->setScale(BASE_LEVEL_SCALE *
                 _safe.size.height / SCENE_SIZE_H);
             // Set listener
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _levelNum = name;
                     _state = L_SELECTED;
                 }
@@ -89,11 +93,21 @@ void LevelSelectScene::activateUI(
                 menubutton->setTexture(_assets->get<Texture>(worldName + suffix));
             }
 
-            // activate button
-            button->activate();
+            string spacer = "-";
+
+            for (uint i = 1; i <= 5; i++) {
+                if (button->getName() != to_string(i)) continue;
+                if (i == 1 || SaveController::getInstance()->isUnlocked(
+                    _worldName + spacer + to_string(i - 1))) {
+                    button->setColor(Color4::WHITE);
+                    // activate button
+                    button->activate();
+                } else {
+                    button->setColor(Color4f(1,1,1,.5));
+                }
+            }
 
             // deactivate button if no level associated
-            string spacer = "-";
             if (_assets->get<JsonValue>(_worldName + spacer + button->getName().c_str()) == NULL) {
                 // Hides & deactivates buttons that don't have levels associated
                 button->setVisible(false);
@@ -130,11 +144,6 @@ void LevelSelectScene::deactivateUI(
 void LevelSelectScene::loadWorld(const char* worldName) {
     _worldName = worldName;
 
-    // Ensure reset
-    if (_scene != nullptr) {
-       // CULog("deactivating ui");
-        deactivateUI(_scene);
-    }
     removeAllChildren();
     resetState();
 

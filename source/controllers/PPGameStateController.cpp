@@ -94,7 +94,7 @@ void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
             vec<uint>& canvasColors = currentQueue[canvasInd];
             bool isHealthPotion = _state.healthPotions[queueInd][canvasInd];
  
-            float d = isHealthPotion ? canvasBaseTime / 2 :
+            float d = isHealthPotion ? canvasBaseTime / 3 :
                 canvasColors.size() * canvasPerColorTime + canvasBaseTime + 2;
             ptr<Timer> t = Timer::alloc(d);
             queueTimers.push_back(t);
@@ -225,6 +225,7 @@ ptr<Timer> GameStateController::getTimer(uint q, uint c) const {
 bool GameStateController::getIsObstacle(uint q, uint c) const {
     return _state.obstacles[q][c];
 }
+<<<<<<< HEAD
 bool GameStateController::getIsHealthPotion(uint q, uint c) const {
     return _state.healthPotions[q][c];
 }
@@ -232,15 +233,21 @@ float GameStateController::getHealthBack() const {
     return _state.healthBack; 
 }
 void GameStateController::clearColor(uint q, uint c, uint colorInd) {
+=======
+
+GameStateController::ClearResult GameStateController::clearColor(uint q, uint c, uint colorInd) {
+>>>>>>> master
     vec<uint> &colors = _state.queues[q][c];
     auto it = begin(colors);
     while (it != end(colors)) {
         if (*it == colorInd) {
+            bool rc = colors.size() == 1;
             colors.erase(it);
-            return;
+            return rc ? ALL_CLEAR : CLEAR;
         } else ++it;
     }
     _state.wrongActions[q][c] = true;
+    return NO_MATCH;
 }
 void GameStateController::clearHealthPotion(uint q, uint c) {
     vec<uint>& colors = _state.queues[q][c];

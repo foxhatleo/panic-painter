@@ -2,7 +2,10 @@
 #define PANICPAINTER_PPMENUSCENE_H
 
 #include "utils/PPHeader.h"
+#include "utils/PPTimer.h"
+#include "utils/PPAnimation.h"
 #include "controllers/PPSoundController.h"
+#include "controllers/PPSaveController.h"
 
 enum MenuRequest {
     HOME, // Had to call this "HOME" rather than "MENU" to prevent weird bug
@@ -24,11 +27,16 @@ private:
 
     ptr<cugl::scene2::SceneNode> _scene;
 
+    ptr<Timer> _hackTimer;
+    bool _hacking = false;
+
     void activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
     void deactivateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene);
 
 public:
+    string level;
+
     MenuScene() : Scene2() {}
 
     ~MenuScene() { dispose(); }
@@ -40,6 +48,10 @@ public:
     void update(float timestep) override;
 
     void resetState();
+
+    void activate() {
+        activateUI(_scene); }
+    void deactivate() { deactivateUI(_scene); }
 
     MenuRequest getState() const;
 };
