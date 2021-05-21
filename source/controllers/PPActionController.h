@@ -2,7 +2,9 @@
 #define PANICPAINTER_PPACTIONCONTROLLER_H
 
 #include "utils/PPHeader.h"
+#include "utils/PPRandom.h"
 #include "PPInputController.h"
+#include "PPSoundController.h"
 #include "PPGameStateController.h"
 #include "scenes/gameplay/PPCanvas.h"
 

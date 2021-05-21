@@ -56,6 +56,8 @@ public:
         return _state;
     }
 
+    void deactivate() { deactivateUI(_scene); }
+
     string getLevel();
 
     void loadWorld(const char* levelName);

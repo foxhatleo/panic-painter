@@ -27,9 +27,6 @@ bool PauseScene::init(const asset_t &assets) {
     _scene->setContentSize(screenSize);
     _scene->doLayout(); // Repositions the HUD
 
-    // Initialize buttons
-    activateUI(_scene);
-
     addChild(_scene);
     return true;
 }
@@ -47,22 +44,28 @@ void PauseScene::activateUI(
     if (button != nullptr) {
         //CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "resume") {
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _state = RESUME;
                 }
                 });
         }
         else if (button->getName() == "exit") {
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _state = MENU;
                 }
                 });
         }
         else if (button->getName() == "retry") {
+            if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _state = RETRY;
                 }
                 });
