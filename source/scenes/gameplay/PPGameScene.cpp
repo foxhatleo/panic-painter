@@ -2,7 +2,7 @@
 
 #define PALETTE_WIDTH .1f
 #define TIMER_HEIGHT .1f
-#define MISTAKE_ALLLOWED 10
+#define MISTAKE_ALLLOWED 15
 
 void GameScene::dispose() {
     Scene2::dispose();
@@ -181,8 +181,9 @@ void GameScene::update(float timestep) {
         _splash->clear();
         _pauseRequest = true;
     }
-
-    _dangerBar->update(min(1.0f, (float)_state.getScoreMetric("wrongAction") /
+    
+    float totalMistakes = _state.getScoreMetric("wrongAction") + _state.getScoreMetric("timedOut");
+    _dangerBar->update(min(1.0f, (float)(totalMistakes) /
     MISTAKE_ALLLOWED));
 
     set<pair<uint, uint>> activeCanvases;
