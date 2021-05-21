@@ -147,6 +147,9 @@
     "octo-emotion-3": {
       "file": "textures/characters/octo_very_angry.png"
     },
+    "health": {
+      "file": "textures/characters/health.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },

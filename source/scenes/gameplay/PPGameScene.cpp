@@ -59,7 +59,7 @@ void GameScene::loadLevel(const string &levelName) {
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
             auto bound = safeArea;
             bool isObstacle = _state.getIsObstacle(i, i2);
-            bool isHealthPotion = false;
+            bool isHealthPotion = _state.getIsHealthPotion(i, i2);
             if (SaveController::getInstance()->getPaletteLeft()) {
                 bound.origin.x += PALETTE_WIDTH * bound.size.width;
             }
@@ -171,7 +171,7 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
-    float currentHealth = (float)_state.getScoreMetric("wrongAction") -0;
+    float currentHealth = (float)_state.getScoreMetric("wrongAction") - _state.getHealthBack();
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.

@@ -23,8 +23,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _isObstacle = isObstacle; 
     _state = state; 
     _isActive = false;
-    _isHealthPotion = false; 
-    CULog("is a health potion %d", _isHealthPotion);
+    _isHealthPotion = isHealthPotion; 
     _initialColorNumber = numCanvasColors;
     /*string characters[] = {"panda", "bird-1", "bird-2", "cat-1", "cat-2",
                            "dog-1", "dog-2", "dog-3", "frog", "octopus"};*/
@@ -36,9 +35,9 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
         _texture_array[1] = assets->get<Texture>("obstacle-active");
         _texture_array[2] = assets->get<Texture>("obstacle-explode");
     }
-   /* else if (_isHealthPotion) {
-        _texture_array[0] = assets->get<Texture>("health-potion");
-    }*/
+   else if (isHealthPotion) {
+        _texture_array[0] = assets->get<Texture>("health");
+    }
     else {
         _texture_array[0] = assets->get<Texture>(characters[p] + "-blink");
         _texture_array[1] = assets->get<Texture>(characters[p] + "-emotion-1");
