@@ -427,6 +427,9 @@
     "3star": {
       "file": "textures/stars/3star.png"
     },
+    "ribbon": {
+      "file": "textures/stars/ribbon.png"
+    },
     "resetbutton": {
       "file": "textures/settings/resetbutton.png"
     },

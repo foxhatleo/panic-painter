@@ -55,6 +55,14 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
         ds.height / 2
     );
     
+    auto ribbon = PolygonNode::allocWithTexture(assets->get<Texture>("ribbon"));
+    ribbon->setScale(0);
+    ribbon->setAnchor(Vec2::ANCHOR_CENTER);
+    ribbon->setPosition(
+        0.95*ds.width / 2,
+        ds.height * 1.2 - 120
+    );
+    
     stars->setScale(0);
     stars->setAnchor(Vec2::ANCHOR_CENTER);
     stars->setPosition(
@@ -72,7 +80,13 @@ void LevelComplete::_setup(const GameStateController &state, const asset_t &asse
         {"scaleY", desired_stars_scale}
     }, STRONG_OUT);
     
+    Animation::to(ribbon, .5, {
+        {"scaleX", 1.3 * desired_stars_scale},
+        {"scaleY", 1.3 * desired_stars_scale}
+    }, STRONG_OUT);
+    
     addChild(levelcomplete);
+    addChild(ribbon);
     addChild(stars);
     
     string metrics[] = {"correct", "timedOut", "wrongAction"};
