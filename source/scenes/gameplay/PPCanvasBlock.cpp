@@ -56,7 +56,8 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _bg = scene2::AnimationNode::alloc(_texture_array[0], 1, 19);
     _bg->setColor(Color4::WHITE);
     float horizontalScale = getWidth() / (_bg->getWidth());
-    float verticalScale = getHeight() / (_bg->getHeight() * 0.71);
+    float changeVertical = isHealthPotion ? 0.9 : 0.71; 
+    float verticalScale = getHeight() / (_bg->getHeight() * changeVertical);
     _bg->setScale(horizontalScale, verticalScale);
     _bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _bg->setPosition(0, 0);
