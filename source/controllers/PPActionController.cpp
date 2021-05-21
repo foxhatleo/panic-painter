@@ -1,4 +1,5 @@
 #include "PPActionController.h"
+#define LEVEL_MULTIPLIER_INCREMENT 0.1
 
 void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                               uint selectedColor) {
@@ -41,7 +42,12 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                     SoundController::getInstance()->playSfx("scribble");
                     int newColors = (int) _state.getColorsOfCanvas(i, i2).size();
                     if (newColors < prevColors) {
+                        CULog("Previous multiplier: %f", _state.getLevelMultiplier());
                         _state.incrementScoreForSwipe(1);
+                        _state.setLevelMultiplier(min(3.0f,
+                                                      (float)(_state.getLevelMultiplier()
+                                                              + LEVEL_MULTIPLIER_INCREMENT)));
+                        CULog("New multiplier: %f", _state.getLevelMultiplier());
                     }
                     input.clearPreviousTaps();
                 }
@@ -123,6 +129,14 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 SoundController::getInstance()->playSfx("incorrect");
             }
             _state.incrementScoreForSwipe(1 + numCorrect * 1.5);
+            if (toClear.size() == numCorrect) {
+                CULog("Previous multiplier after swipe: %f", _state.getLevelMultiplier());
+                _state.setLevelMultiplier(min(3.0f,
+                                              (float)(_state.getLevelMultiplier() +
+                                                      LEVEL_MULTIPLIER_INCREMENT * numCorrect)));
+                CULog("New multiplier after swipe %f", _state.getLevelMultiplier());
+            }
+            
         }
     }
 }
