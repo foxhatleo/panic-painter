@@ -225,18 +225,14 @@ ptr<Timer> GameStateController::getTimer(uint q, uint c) const {
 bool GameStateController::getIsObstacle(uint q, uint c) const {
     return _state.obstacles[q][c];
 }
-<<<<<<< HEAD
 bool GameStateController::getIsHealthPotion(uint q, uint c) const {
     return _state.healthPotions[q][c];
 }
 float GameStateController::getHealthBack() const {
     return _state.healthBack; 
 }
-void GameStateController::clearColor(uint q, uint c, uint colorInd) {
-=======
 
 GameStateController::ClearResult GameStateController::clearColor(uint q, uint c, uint colorInd) {
->>>>>>> master
     vec<uint> &colors = _state.queues[q][c];
     auto it = begin(colors);
     while (it != end(colors)) {
