@@ -41,7 +41,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
 //                    _canvases[i][i2]->setHover(true);
                 }
                 //Vertical swipe
-                if (_state.getIsHealthPotion(i, i2) && input.justReleased()) {
+                if (_state.getIsObstacle(i, i2) && input.justReleased()) {
                     ptr<SceneNode> lastCanvas = _canvases[i][i2]->getInteractionNode();
                     Mat4 in_start_mat = lastCanvas->getNodeToWorldTransform();
                     Rect in_start_box = in_start_mat.transform(

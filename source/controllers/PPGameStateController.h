@@ -73,9 +73,9 @@ public:
     /** Get if the shape is an obstacle or not*/
     bool getIsObstacle(uint q, uint c) const;
     /** Get if the shape is a health potion or not*/
-    bool getIsHealthPotion(uint q, uint c) const;
+   // bool getIsHealthPotion(uint q, uint c) const;
     /** Get the amount of health back for that level*/
-    float getHealthBack() const;
+    //float getHealthBack() const;
     /** Clear a color on a canvas. */
     void clearColor(uint q, uint c, uint colorInd);
 
