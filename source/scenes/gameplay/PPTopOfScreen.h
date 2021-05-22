@@ -8,6 +8,10 @@
 class TopOfScreen : public SceneNode {
 private:
     ptr<ProgressBar> _progressBar;
+    ptr<PolygonNode> _multiplier;
+    ptr<Texture> _multiplierTextures[11];
+    ptr<PolygonNode> _stars;
+    ptr<Texture> _starsTexture[4];
 
     float _progress;
 
@@ -25,7 +29,7 @@ public:
 
     Vec2 getDangerBarPoint();
 
-    void update(float progress);
+    void update(float progress, uint multiplier = 1);
 };
 
 #endif //PANICPAINTER_PPTOPOFSCREEN_H
