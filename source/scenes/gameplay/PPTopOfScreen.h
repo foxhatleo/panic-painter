@@ -1,17 +1,13 @@
-#ifndef PANICPAINTER_PPDANGERBAR_H
-#define PANICPAINTER_PPDANGERBAR_H
+#ifndef PANICPAINTER_PPTOPOFSCREEN_H
+#define PANICPAINTER_PPTOPOFSCREEN_H
 
 #include "utils/PPHeader.h"
 #include "utils/PPTimer.h"
 #include "utils/PPAnimation.h"
 
-class DangerBar : public SceneNode {
+class TopOfScreen : public SceneNode {
 private:
-    ptr<Label> _levelTimerText;
-
-    ptr<PolygonNode> _levelProgressBar;
-
-    ptr<PolygonNode> _levelProgressBarBackground;
+    ptr<ProgressBar> _progressBar;
 
     float _progress;
 
@@ -20,10 +16,10 @@ private:
     void _setup();
 
 public:
-    explicit DangerBar(const asset_t &assets) :
+    explicit TopOfScreen(const asset_t &assets) :
         _assets(assets), _progress(0) {};
 
-    static ptr<DangerBar> alloc(
+    static ptr<TopOfScreen> alloc(
         const asset_t &assets,
         const Rect &bounds);
 
@@ -32,4 +28,4 @@ public:
     void update(float progress);
 };
 
-#endif //PANICPAINTER_PPDANGERBAR_H
+#endif //PANICPAINTER_PPTOPOFSCREEN_H

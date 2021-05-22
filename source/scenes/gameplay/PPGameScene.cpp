@@ -22,7 +22,7 @@ void GameScene::loadLevel(const string &levelName) {
     removeAllChildren();
 
     _congratulations.reset();
-    _dangerBar.reset();
+    _tos.reset();
     _palette.reset();
     _action.reset();
 
@@ -108,18 +108,6 @@ void GameScene::loadLevel(const string &levelName) {
     addChild(n);
 #endif
 
-    auto gtBound = safeArea;
-    gtBound.origin.y += (1 - TIMER_HEIGHT) * gtBound.size.height;
-    gtBound.size.height *= TIMER_HEIGHT;
-    if (SaveController::getInstance()->getPaletteLeft()) {
-        gtBound.size.width -=
-            gtBound.getMaxX() - _backBtn->getBoundingBox().getMinX();
-    } else {
-        gtBound.size.width -= _backBtn->getBoundingBox().getMaxX();
-        gtBound.origin.x += _backBtn->getWidth();
-    }
-    _dangerBar = DangerBar::alloc(_assets, gtBound);
-
     // change position to keep it to the left of the screen.
     _palette =
         ColorPalette::alloc(Rect(
@@ -139,12 +127,22 @@ void GameScene::loadLevel(const string &levelName) {
         auto mat = Mat4(transform);
         _palette->chooseAlternateTransform(true);
         _palette->setAlternateTransform(mat);
-        #ifdef CU_TOUCH_SCREEN
-            _palette->setPosition(safeArea.size.width, gtBound.size.height);
-        #else
-            _palette->setPosition(gtBound.size.width * 1.1, gtBound.size.height * 0.3);
-        #endif
+        _palette->setPosition(safeArea.size.width, 0);
     }
+
+    auto gtBound = safeArea;
+    gtBound.origin.y += (1 - TIMER_HEIGHT) * gtBound.size.height;
+    gtBound.size.height *= TIMER_HEIGHT;
+    if (SaveController::getInstance()->getPaletteLeft()) {
+        gtBound.origin.x = _palette->getBoundingBox().getMaxX() + 10;
+        gtBound.size.width = _backBtn->getBoundingBox().getMinX() - 10 -
+            gtBound.origin.x;
+    } else {
+        gtBound.origin.x = _backBtn->getBoundingBox().getMaxX() + 10;
+        gtBound.size.width = _palette->getBoundingBox().getMinX() - 10 -
+                             gtBound.origin.x;
+    }
+    _tos = TopOfScreen::alloc(_assets, gtBound);
     
     _splash = SplashEffect::alloc(_assets,
                                   Application::get()->getDisplayBounds(),
@@ -154,7 +152,7 @@ void GameScene::loadLevel(const string &levelName) {
                                 _assets);
 
     addChild(_splash);
-    addChild(_dangerBar);
+    addChild(_tos);
     addChild(_palette);
     addChild(_feedback);
 
@@ -182,8 +180,8 @@ void GameScene::update(float timestep) {
         _pauseRequest = true;
     }
 
-    _dangerBar->update(min(1.0f, (float)_state.getScoreMetric("wrongAction") /
-    MISTAKE_ALLLOWED));
+    _tos->update(min(1.0f, (float)_state.getScoreMetric("wrongAction") /
+                           MISTAKE_ALLLOWED));
 
     set<pair<uint, uint>> activeCanvases;
 
@@ -205,7 +203,7 @@ void GameScene::update(float timestep) {
                                            FeedbackType::FAILURE;
                 _feedback->add(
                     _canvases[i][i2]->getFeedbackStartPointInGlobalCoordinates(),
-                    _dangerBar->getDangerBarPoint(),
+                    _tos->getDangerBarPoint(),
                     t);
             }
 

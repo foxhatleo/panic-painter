@@ -7,7 +7,7 @@
 #include "utils/PPAnimation.h"
 #include "PPCanvas.h"
 #include "PPColorPalette.h"
-#include "PPDangerBar.h"
+#include "PPTopOfScreen.h"
 #include "controllers/PPActionController.h"
 #include "controllers/PPSoundController.h"
 #include "PPSplashEffect.h"
@@ -31,7 +31,7 @@ private:
      */
     vec<vec<ptr<Canvas>>> _canvases;
 
-    ptr<DangerBar> _dangerBar;
+    ptr<TopOfScreen> _tos;
 
     ptr<ColorPalette> _palette;
 

@@ -453,6 +453,19 @@
     },
     "graphicslow": {
       "file": "textures/settings/graphicslow.png"
+    },
+    "health": {
+      "file": "textures/gameplay/health.png",
+      "wrapS": "clamp",
+      "wrapT": "clamp",
+      "minfilter": "linear",
+      "magfilter": "linear",
+      "atlas": {
+        "background": [ 0, 0, 320, 45 ],
+        "foreground": [ 24, 45, 296, 90 ],
+        "leftcap": [ 0, 45, 24, 90 ],
+        "rightcap": [ 296, 45, 320, 90 ]
+      }
     }
   },
   "jsons": {
