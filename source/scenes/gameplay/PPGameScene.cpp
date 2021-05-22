@@ -180,8 +180,10 @@ void GameScene::update(float timestep) {
         _pauseRequest = true;
     }
 
-    _tos->update(min(1.0f, (float)_state.getScoreMetric("wrongAction") /
-                           MISTAKE_ALLLOWED));
+    uint mul = round(_state.getLevelMultiplier() * 10) - 10;
+
+    _tos->update(max(0.0f, 1 - (float)(_state.getScoreMetric("wrongAction") +
+    _state.getScoreMetric("timedOut")) / MISTAKE_ALLLOWED), mul);
 
     set<pair<uint, uint>> activeCanvases;
 

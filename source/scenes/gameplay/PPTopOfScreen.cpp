@@ -59,7 +59,7 @@ void TopOfScreen::update(float progress, uint multiplier) {
         {"progress", progress}
     });
     _multiplier->setTexture(_multiplierTextures[multiplier <=
-    10 ? multiplier - 1 : 10]);
+    9 ? multiplier : 10]);
 }
 
 Vec2 TopOfScreen::getDangerBarPoint() {
