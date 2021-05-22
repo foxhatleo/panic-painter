@@ -75,6 +75,9 @@ struct GameState {
      * as smart pointers so the timer itself can be updated freely.
      */
     vec<vec<ptr<Timer>>> canvasTimers;
+    
+    /** The max score for this level. The stars will be calculated based on this. */
+    float maxScore;
 };
 
 #endif //PANICPAINTER_PPGAMESTATE_H

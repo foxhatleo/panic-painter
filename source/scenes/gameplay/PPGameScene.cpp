@@ -41,7 +41,7 @@ void GameScene::loadLevel(const string &levelName) {
 
     // Ask state to load it.
     _state.loadJson(levelJson);
-
+    CULog("Max Score: %f", _state.getMaxScore());
     Size screenSize = Application::get()->getDisplaySize();
     Rect safeArea = Application::get()->getSafeBounds();
 
@@ -243,8 +243,8 @@ void GameScene::update(float timestep) {
         auto ds = Application::get()->getDisplaySize();
         
         // IMPORTANT TODO: Change this to actually set the score limit of levels.
-        float MAX_SCORE = 1200;
-        float percent = _state.getScoreMetric("aggregateScore") / MAX_SCORE;
+        float maxScore = _state.getMaxScore();
+        float percent = _state.getScoreMetric("aggregateScore") / maxScore;
         
         if (currentHealth > MISTAKE_ALLLOWED || percent < 0.50f) {
             auto lf = PolygonNode::allocWithTexture(_assets->get<Texture>("levelfailed"));

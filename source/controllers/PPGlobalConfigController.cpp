@@ -49,3 +49,7 @@ float GlobalConfigController::getInputHoldThreshold() {
 float GlobalConfigController::getInputConsecutiveTapThreshold() {
     return _getInputConfig()->getFloat("consecutiveTapThreshold");
 }
+
+float GlobalConfigController::getScoreThreshold() {
+    return _getConfig("scoring")->getFloat("scoreThreshold");
+}
