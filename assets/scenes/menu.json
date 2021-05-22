@@ -47,7 +47,7 @@
             "priority" : 1
           }
         },
-        "levelsbutton": {
+        "playbutton": {
           "type": "Button",
           "data": {
             "upnode": "up",
@@ -60,13 +60,13 @@
             "up": {
               "type": "Image",
               "data": {
-                "texture": "levelsbutton"
+                "texture": "playbutton"
               }
             }
           },
           "layout": {
             "x_offset": 0,
-            "y_offset": 0
+            "y_offset": 0.07
           }
         },
         "settingsbutton": {
