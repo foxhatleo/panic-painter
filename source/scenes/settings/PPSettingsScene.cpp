@@ -157,7 +157,7 @@ void SettingsScene::activateUI(
         }
         else if (button->getName() == "reset") {
             button->setPositionY(_offsetInSafe.y);
-            button->setScale(button->getScale()*PALETTE_FRAC);
+            button->setScale(button->getScale()*RESET_FRAC);
             //button->setPositionX(_tray->getPositionX() + (_tray->getWidth() * .5 - button->getWidth() / 2));
             //button->setPositionX(_safe.size.width/2 - button->getWidth()/2);
             #if defined(__IPHONEOS__)
