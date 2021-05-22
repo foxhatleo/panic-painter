@@ -19,20 +19,23 @@ bool LoadingScene::init(const asset_t &assets) {
 
     _assets = assets;
     _assets->loadDirectory("scenes/loading.json");
+    _assets->loadDirectory("config/assets_loading.json");
 
     auto layer = assets->get<scene2::SceneNode>("load");
     layer->setContentSize(screenSize);
     layer->doLayout(); // This rearranges the children to fit the screen
-//
-//    auto bg = PolygonNode::allocWithTexture(assets->get<Texture>("levelcomplete"));
-//    bg->setContentSize(screenSize);
+
+    auto bg = PolygonNode::allocWithTexture(assets->get<Texture>("loading-bg"));
+    bg->setContentSize(screenSize);
+    bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    bg->setPosition(Application::get()->getDisplayBounds().origin);
 //
     _bar = dynamic_pointer_cast<scene2::ProgressBar>(
         assets->get<scene2::SceneNode>("load_bar"));
 
     Application::get()->setClearColor(Color4(192, 192, 192, 255));
-//    addChild(bg);
     addChild(layer);
+    addChild(bg);
 
     return true;
 }
