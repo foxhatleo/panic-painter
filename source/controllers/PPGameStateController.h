@@ -94,6 +94,8 @@ public:
     uint getScoreMetric(string type) const;
     
     void incrementScoreForSwipe(float multiplier);
+    
+    float getMaxScore();
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

@@ -84,6 +84,8 @@ void GameStateController::_jsonv1_load(const json_t &json) {
     _jsonv1_loadColors(json->get("colors"));
     _jsonv1_loadQueues(json->get("queues"));
     _jsonv1_loadTimer(json->get("timer"));
+    auto &gc = GlobalConfigController::getInstance();
+    _state.maxScore = json->getFloat("scoreThreshold", gc.getScoreThreshold());
 }
 
 void GameStateController::loadJson(const json_t &json) {
@@ -235,3 +237,7 @@ uint GameStateController::getScoreMetric(string type) const {
 void GameStateController::incrementScoreForSwipe(float multiplier) {
      _state.scoreTracker["aggregateScore"] += multiplier * 10;
  }
+
+float GameStateController::getMaxScore() {
+    return _state.maxScore;
+}
