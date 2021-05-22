@@ -59,6 +59,7 @@ void GameScene::loadLevel(const string &levelName) {
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
             auto bound = safeArea;
             bool isObstacle = _state.getIsObstacle(i, i2);
+            bool isHealthPotion = _state.getIsHealthPotion(i, i2);
             if (SaveController::getInstance()->getPaletteLeft()) {
                 bound.origin.x += PALETTE_WIDTH * bound.size.width;
             }
@@ -72,6 +73,7 @@ void GameScene::loadLevel(const string &levelName) {
                 bound,
                 _state, 
                 isObstacle,
+                isHealthPotion,
                 i2
             );
             addChild(c);
@@ -169,7 +171,8 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
-
+    float currentHealth = max((float)(_state.getScoreMetric("wrongAction") +
+        _state.getScoreMetric("timedOut")) - _state.getHealthBack(), 0.0f);
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
@@ -182,7 +185,7 @@ void GameScene::update(float timestep) {
         _pauseRequest = true;
     }
 
-    _dangerBar->update(min(1.0f, (float)_state.getScoreMetric("wrongAction") /
+    _dangerBar->update(min(1.0f, currentHealth /
     MISTAKE_ALLLOWED));
 
     set<pair<uint, uint>> activeCanvases;
@@ -231,7 +234,7 @@ void GameScene::update(float timestep) {
     _action->update(activeCanvases, _palette->getSelectedColor());
 
     // Check if the level is complete
-    if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") >
+    if ((activeCanvases.empty() || currentHealth>
     MISTAKE_ALLLOWED) &&
     !_congratulations) {
         _splash->clear();
@@ -243,7 +246,7 @@ void GameScene::update(float timestep) {
         float MAX_SCORE = 1200;
         float percent = _state.getScoreMetric("aggregateScore") / MAX_SCORE;
         
-        if (_state.getScoreMetric("wrongAction") > MISTAKE_ALLLOWED || percent < 0.50f) {
+        if (currentHealth > MISTAKE_ALLLOWED || percent < 0.50f) {
             auto lf = PolygonNode::allocWithTexture(_assets->get<Texture>("levelfailed"));
             lf->setScale(ds.height / lf->getHeight());
             lf->setAnchor(Vec2::ANCHOR_CENTER);
