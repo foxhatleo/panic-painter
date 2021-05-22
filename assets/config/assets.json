@@ -277,9 +277,6 @@
     "level-timer-background": {
       "file": "textures/level-progress/level-timer-background.png"
     },
-    "levelsbutton": {
-      "file": "textures/menu/levelsbutton.png"
-    },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
     },
