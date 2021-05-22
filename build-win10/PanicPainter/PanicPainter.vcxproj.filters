@@ -32,11 +32,11 @@
     <Filter Include="Scenes\Menu">
       <UniqueIdentifier>{e7bf19da-561f-44a9-a829-3b13a5737fe7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scenes\Level">
-      <UniqueIdentifier>{f57ef6e7-b8d0-4f77-900e-717ca32d408e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scenes\Settings">
       <UniqueIdentifier>{9698242b-e130-47a1-a906-ee9adf5f9837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Gameplay\Level">
+      <UniqueIdentifier>{f57ef6e7-b8d0-4f77-900e-717ca32d408e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -101,10 +101,10 @@
       <Filter>Scenes\Menu</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\level\PPWorldSelectScene.cpp">
-      <Filter>Scenes\Level</Filter>
+      <Filter>Scenes\Gameplay\Level</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\level\PPLevelSelectScene.cpp">
-      <Filter>Scenes\Level</Filter>
+      <Filter>Scenes\Gameplay\Level</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\controllers\PPSoundController.cpp">
       <Filter>Controllers</Filter>
@@ -122,6 +122,9 @@
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorCircle.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPSplatNode.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,10 +206,10 @@
       <Filter>Scenes\Menu</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\level\PPWorldSelectScene.h">
-      <Filter>Scenes\Level</Filter>
+      <Filter>Scenes\Gameplay\Level</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\level\PPLevelSelectScene.h">
-      <Filter>Scenes\Level</Filter>
+      <Filter>Scenes\Gameplay\Level</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\controllers\PPSoundController.h">
       <Filter>Controllers</Filter>
@@ -224,6 +227,9 @@
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorCircle.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPSplatNode.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
