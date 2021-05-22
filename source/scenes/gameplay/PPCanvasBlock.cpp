@@ -4,17 +4,17 @@ ptr<CanvasBlock> CanvasBlock::alloc(
     const asset_t &assets,
     float size,
     const vec<Color4>& colors, const int numCanvasColors,
-    const GameStateController &state, bool isObstacle) {
+    const GameStateController &state, bool isObstacle, bool isHealthPotion) {
     auto result = make_shared<CanvasBlock>();
     if (result->initWithBounds(Rect(0, 0, size, size)))
-        result->_setup(assets, colors, numCanvasColors, state, isObstacle);
+        result->_setup(assets, colors, numCanvasColors, state, isObstacle, isHealthPotion);
     else
         return nullptr;
     return result;
 }
 
 
-void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state, bool isObstacle) {
+void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const int numCanvasColors, const GameStateController &state, bool isObstacle, bool isHealthPotion ) {
 #ifdef VIEW_DEBUG
     auto n = PolygonNode::alloc(Rect(Vec2::ZERO, getContentSize()));
     n->setColor(Color4f(0, 1, 0, .3));
@@ -23,6 +23,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _isObstacle = isObstacle; 
     _state = state; 
     _isActive = false;
+    _isHealthPotion = isHealthPotion; 
     _initialColorNumber = numCanvasColors;
 
     string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", 
@@ -33,6 +34,9 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
         _texture_array[0] = assets->get<Texture>("obstacle-inactive");
         _texture_array[1] = assets->get<Texture>("obstacle-active");
         _texture_array[2] = assets->get<Texture>("obstacle-explode");
+    }
+   else if (isHealthPotion) {
+        _texture_array[0] = assets->get<Texture>("health");
     }
     else {
         int pBlink = Random::getInstance()->getInt(2) + 1;
@@ -53,28 +57,30 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _bg = scene2::AnimationNode::alloc(_texture_array[0], 1, 19);
     _bg->setColor(Color4::WHITE);
     float horizontalScale = getWidth() / (_bg->getWidth());
-    float verticalScale = getHeight() / (_bg->getHeight() * 0.71);
+    float changeVertical = isHealthPotion ? 0.9 : 0.71; 
+    float verticalScale = getHeight() / (_bg->getHeight() * changeVertical);
     _bg->setScale(horizontalScale, verticalScale);
     _bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _bg->setPosition(0, 0);
     addChild(_bg);
-
-    _talk_bubble = scene2::PolygonNode::allocWithTexture(assets->get<Texture>
-        ("talk-bubble"));
-    _talk_bubble->setColor(Color4::WHITE);
-    float scaleBubble = getWidth() / (_talk_bubble->getWidth() * 1.75);
-    _talk_bubble->setScale(scaleBubble, scaleBubble);
-    _talk_bubble->setAnchor(Vec2::ANCHOR_TOP_LEFT);
-    _talk_bubble->setPosition(0, getHeight() * 1.5);
-    addChild(_talk_bubble);
+    if (!isHealthPotion) {
+        _talk_bubble = scene2::PolygonNode::allocWithTexture(assets->get<Texture>
+            ("talk-bubble"));
+        _talk_bubble->setColor(Color4::WHITE);
+        float scaleBubble = getWidth() / (_talk_bubble->getWidth() * 1.75);
+        _talk_bubble->setScale(scaleBubble, scaleBubble);
+        _talk_bubble->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+        _talk_bubble->setPosition(0, getHeight() * 1.5);
+        addChild(_talk_bubble);
 
     // Color strip
-
-    _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors, state);
-    _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
-    auto bubbleBox = _talk_bubble->getBoundingBox();
-    _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
-    addChild(_colorStrip);
+ 
+        _colorStrip = ColorStrip::alloc(_talk_bubble->getWidth() * .22f, assets, colors, state);
+        _colorStrip->setAnchor(Vec2::ANCHOR_CENTER);
+        auto bubbleBox = _talk_bubble->getBoundingBox();
+        _colorStrip->setPosition(bubbleBox.getMidX(), bubbleBox.getMidY() + 10);
+        addChild(_colorStrip);
+    }
 
     // Timer label. Uncomment for debugging purposes
     /*_timerText = scene2::Label::to("", assets->get<Font>("roboto"));
@@ -94,9 +100,15 @@ bool CanvasBlock::isFrameComplete() {
 
 void CanvasBlock::update(const vec<uint> &canvasColors,
                          const ptr<Timer> &timer) {
-    _colorStrip->update(canvasColors);
+    if (!_isHealthPotion) {
+        _colorStrip->update(canvasColors);
+    }
     _updateFrame++;
-    if (_walking && !_isObstacle) {
+    if (_updateFrame % 6 == 0 && _isHealthPotion) {
+        _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);
+        return;
+    }
+    if (_walking && (!_isObstacle && !_isHealthPotion)) {
         _bg->setTexture(_texture_array[4]);
         if (_updateFrame % 4 == 0)
             _bg->setFrame(_bg->getFrame() < 18 ? _bg->getFrame() + 1 : 0);

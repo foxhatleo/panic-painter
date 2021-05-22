@@ -25,14 +25,16 @@ protected:
 
     const asset_t &_assets;
     
-    const GameStateController _state;
+    GameStateController _state;
+    void _setup(const GameStateController& state);
 
 public:
     /** @deprecated Constructor. */
-    explicit ColorStrip(uint size, const asset_t &assets, const vec<Color4> &colors,
-                        const GameStateController &state) :
+    explicit ColorStrip(uint size, const asset_t &assets, const vec<Color4> &colors) :
             SceneNode(), _lastNumberOfColors(0),
-            _colors(colors), _assets(assets), _size(size), _state(state) {};
+            _colors(colors), _assets(assets), _size(size) {};
+
+
 
     /** Allocate a color strip. */
     static ptr<ColorStrip> alloc(
@@ -40,6 +42,8 @@ public:
             const asset_t &assets,
             const vec<Color4> &colors,
             const GameStateController &state);
+
+   
 
     /**
      * Update the color strip.

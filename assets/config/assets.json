@@ -270,7 +270,9 @@
     "chick-walk": {
       "file": "textures/characters/chick_walk.png"
     },
-
+    "health": {
+      "file": "textures/characters/health.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
