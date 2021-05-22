@@ -27,7 +27,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                     InputController::inScene(input.currentPoint(),
                                              _canvases[i][i2]->getInteractionNode());
                 // SCRIBBLING
-                if (input.didDoubleTap() && input.justReleased() &&
+                if (input.didDoubleTap() && !_state.getIsHealthPotion(i, i2) && input.justReleased() &&
                     startingPointIn && currentPointIn) {
                     auto n = _state.clearColor(i, i2, selectedColor);
                     if (n == GameStateController::ALL_CLEAR) {
@@ -62,7 +62,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                     }
                 }
                 // DRAGGING
-                if (startingPointIn && input.hasMoved() &&
+                if (!_state.getIsHealthPotion(i, i2) && startingPointIn && input.hasMoved() &&
                     (input.justReleased() || input.isPressing())) {
                     dragStart[0] = i;
                     dragStart[1] = i2;
