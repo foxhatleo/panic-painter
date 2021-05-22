@@ -41,6 +41,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                     int newColors = (int) _state.getColorsOfCanvas(i, i2).size();
                     if (newColors < prevColors) {
                         _state.incrementScoreForSwipe(1);
+                        _state.addSplat(i, i2);
                     }
                     input.clearPreviousTaps();
                 }
@@ -124,7 +125,10 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 if (i == GameStateController::ALL_CLEAR && i == 0) z = 1;
                 else if (i == GameStateController::NO_MATCH) z = 2;
                 int newColors = (int) _state.getColorsOfCanvas(p.first, p.second).size();
-                if (newColors < prevColors) numCorrect += 1;
+                if (newColors < prevColors) {
+                    numCorrect += 1;
+                    _state.addSplat(p.first, p.second);
+                }
             }
             if (z == 1) {
                 SoundController::getInstance()->playSfx(

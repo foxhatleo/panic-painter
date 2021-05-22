@@ -25,6 +25,9 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _isActive = false;
     _isHealthPotion = isHealthPotion; 
     _initialColorNumber = numCanvasColors;
+    _startingSplat = Random::getInstance()->getInt(4, 1);
+    _numSplats = 0; 
+    _addNewSplat = false; 
 
     string characters[] = { "husky", "samoyed", "cat1", "cat2", "chick", 
         "bird", "llama", "octo", "frog", "panda"};
@@ -52,7 +55,14 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _updateFrame = 0;
     _angerLevel = 0;
     // Load in the panda texture from scene and attach to a new polygon node
-
+    _splat1 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
+        ("canvas-splat-1")));
+    _splat2 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
+        ("canvas-splat-2")));
+    _splat3 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
+        ("canvas-splat-3")));
+    _splat4 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
+        ("canvas-splat-4")));
     _texture = _texture_array[0];
     _bg = scene2::AnimationNode::alloc(_texture_array[0], 1, 19);
     _bg->setColor(Color4::WHITE);
@@ -149,6 +159,23 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
             _bg->setFrame(_bg->getFrame() + 1);
         }
         _updateFrame = 0;
+    }
+    if (_addNewSplat && _numSplats <= 4) {
+        int currentSplat = _startingSplat + _numSplats;
+        currentSplat = currentSplat > 4 ? (currentSplat % 4) + 1 : currentSplat; 
+        if (currentSplat == 1) {
+            //Add logic to set scale and shit here
+        }
+        if (currentSplat == 2) {
+            //Add logic to set scale and shit here
+        }
+        if (currentSplat == 3) {
+            //Add logic to set scale and shit here
+        }
+        if (currentSplat == 4) {
+            //Add logic to set scale and shit here
+        }
+        
     }
     //Commenting instead of removing for debug purposes
     //  _timerText->setText(to_string((uint)ceil(timer->timeLeft())));

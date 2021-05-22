@@ -99,6 +99,9 @@ public:
     uint getScoreMetric(string type) const;
     
     void incrementScoreForSwipe(float multiplier);
+
+    void addSplat(uint q, uint c);
+    int getNumSplats(uint q, uint c);
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

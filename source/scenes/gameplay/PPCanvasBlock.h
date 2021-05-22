@@ -27,7 +27,10 @@ private:
 
     /*The request bubble*/
     ptr<PolygonNode> _talk_bubble;
-
+    ptr<PolygonNode>_splat1; 
+    ptr<PolygonNode>_splat2;
+    ptr<PolygonNode>_splat3;
+    ptr<PolygonNode>_splat4;
     /** The color strip. */
     ptr<ColorStrip> _colorStrip;
 
@@ -47,6 +50,9 @@ private:
     /*Is this canvas a health potion?*/
     bool _isHealthPotion;
     bool _walking;
+    bool _addNewSplat; 
+    int _numSplats;
+    int _startingSplat; 
     /** Game state. */
     GameStateController _state;
     ptr<Texture> _texture;
