@@ -15,6 +15,7 @@ void GameStateController::_jsonv1_loadColors(const json_t &colors) {
     _state.scoreTracker["timedOut"] = 0;
     _state.scoreTracker["correct"] = 0;
     _state.scoreTracker["aggregateScore"] = 0;
+    _state.levelMultiplier = 1;
 }
 
 void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
@@ -114,9 +115,11 @@ void GameStateController::update(float timestep) {
                 if (cs == LOST_DUE_TO_TIME) {
                     _state.scoreTracker["timedOut"]++;
                     _state.scoreTracker["aggregateScore"] -= 5;
+                    _state.levelMultiplier = 1;
                 } else if (cs == LOST_DUE_TO_WRONG_ACTION) {
                     _state.scoreTracker["wrongAction"]++;
                     _state.scoreTracker["aggregateScore"] -= 10;
+                    _state.levelMultiplier = 1;
                 } else {
                     _state.scoreTracker["correct"]++;
                 }
@@ -233,5 +236,14 @@ uint GameStateController::getScoreMetric(string type) const {
 }
 
 void GameStateController::incrementScoreForSwipe(float multiplier) {
-     _state.scoreTracker["aggregateScore"] += multiplier * 10;
- }
+     _state.scoreTracker["aggregateScore"] += _state.levelMultiplier * multiplier * 10;
+}
+
+float GameStateController::getLevelMultiplier() const {
+    return _state.levelMultiplier;
+}
+
+void GameStateController::setLevelMultiplier(float lm) {
+    CUAssertLog(lm <= 3.0f, "Cannot set the level multiplier to a value more than 3");
+    _state.levelMultiplier = lm;
+}
