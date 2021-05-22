@@ -23,8 +23,9 @@ void SaveController::_load() {
         _paletteLeft = v->getBool("left", true);
         _sfxVolume = v->getFloat("sfxVolume", 1);
         _bgmVolume = v->getFloat("bgmVolume", 1);
-        _bgm = v->getFloat("bgm", true);
-        _sfx = v->getFloat("sfx", true);
+        _bgm = v->getBool("bgm", true);
+        _sfx = v->getBool("sfx", true);
+        _vfx = v->getBool("vfx", true);
         auto l = v->get("levels");
         if (l != nullptr) {
             for (const auto &li : l->asArray()) {
@@ -45,6 +46,7 @@ void SaveController::_flush() {
     v->appendValue("bgmVolume", _bgmVolume);
     v->appendValue("bgm", _bgm);
     v->appendValue("sfx", _sfx);
+    v->appendValue("vfx", _vfx);
     json_t l = JsonValue::alloc(JsonValue::Type::ObjectType);
     for (const auto &p : _levels) {
         json_t lv = JsonValue::alloc(JsonValue::Type::ObjectType);
@@ -98,6 +100,10 @@ bool SaveController::getSfx() const {
     return _sfx;
 }
 
+bool SaveController::getVfx() const {
+    return _vfx;
+}
+
 void SaveController::unlock(const string &level) {
     _ensureLevel(level).locked = false;
     _flush();
@@ -140,6 +146,11 @@ void SaveController::setBgm(bool on) {
 
 void SaveController::setSfx(bool on) {
     _sfx = on;
+    _flush();
+}
+
+void SaveController::setVfx(bool on) {
+    _vfx = on;
     _flush();
 }
 

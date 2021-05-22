@@ -32,13 +32,16 @@ private:
     // True means sfx is on, false means off
     bool _sfx;
 
+    // True means vfx is high, false means it is low
+    bool _vfx;
+
     float _sfxVolume;
 
     float _bgmVolume;
 
     static inline SaveController *_instance;
 
-    SaveController() : _colorblind(false), _paletteLeft(true), _sfxVolume(1), _bgmVolume(1), _bgm(true), _sfx(true) {
+    SaveController() : _colorblind(false), _paletteLeft(true), _sfxVolume(1), _bgmVolume(1), _bgm(true), _sfx(true), _vfx(false) {
         _load();
     }
 
@@ -71,6 +74,8 @@ public:
 
     bool getSfx() const;
 
+    bool getVfx() const;
+
     void unlock(const string &level);
 
     void lock(const string &level);
@@ -86,6 +91,8 @@ public:
     void setBgm(bool on);
 
     void setSfx(bool on);
+
+    void setVfx(bool on);
 
     void setColorblind(bool value);
 
