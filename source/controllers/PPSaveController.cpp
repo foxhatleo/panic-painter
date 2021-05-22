@@ -23,9 +23,9 @@ void SaveController::_load() {
         _paletteLeft = v->getBool("left", true);
         _sfxVolume = v->getFloat("sfxVolume", 1);
         _bgmVolume = v->getFloat("bgmVolume", 1);
-        _bgm = v->getFloat("bgm", true);
-        _sfx = v->getFloat("sfx", true);
-        _vfx = v->getFloat("vfx", true);
+        _bgm = v->getBool("bgm", true);
+        _sfx = v->getBool("sfx", true);
+        _vfx = v->getBool("vfx", true);
         auto l = v->get("levels");
         if (l != nullptr) {
             for (const auto &li : l->asArray()) {
