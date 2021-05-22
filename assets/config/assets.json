@@ -433,29 +433,38 @@
     "resetbutton": {
       "file": "textures/settings/resetbutton.png"
     },
-    "offbutton": {
-      "file": "textures/settings/offbutton.png"
+    "bgm-off": {
+      "file": "textures/settings/bgm-off.png"
     },
-    "onbutton": {
-      "file": "textures/settings/onbutton.png"
+    "bgm-on": {
+      "file": "textures/settings/bgm-on.png"
     },
-    "paletteleft": {
-      "file": "textures/settings/paletteleft.png"
+    "sfx-off": {
+      "file": "textures/settings/sfx-off.png"
     },
-    "paletteright": {
-      "file": "textures/settings/paletteright.png"
+    "sfx-on": {
+      "file": "textures/settings/sfx-on.png"
+    },
+    "vfx-low": {
+      "file": "textures/settings/vfx-low.png"
+    },
+    "vfx-high": {
+      "file": "textures/settings/vfx-high.png"
+    },
+    "colorblind-off": {
+      "file": "textures/settings/colorblind-off.png"
+    },
+    "colorblind-on": {
+      "file": "textures/settings/colorblind-on.png"
+    },
+    "palette-left": {
+      "file": "textures/settings/palette-left.png"
+    },
+    "palette-right": {
+      "file": "textures/settings/palette-right.png"
     },
     "settings-tray": {
       "file": "textures/settings/settings-tray.png"
-    },
-    "graphicsoff": {
-      "file": "textures/settings/graphicsoff.png"
-    },
-    "graphicshigh": {
-      "file": "textures/settings/graphicshigh.png"
-    },
-    "graphicslow": {
-      "file": "textures/settings/graphicslow.png"
     }
   },
   "jsons": {
