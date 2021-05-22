@@ -456,6 +456,9 @@
     },
     "graphicslow": {
       "file": "textures/settings/graphicslow.png"
+    },
+    "loading-bg": {
+      "file": "textures/loading-bg.png"
     }
   },
   "jsons": {
