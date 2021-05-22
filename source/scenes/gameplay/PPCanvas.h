@@ -48,7 +48,7 @@ private:
                 uint numOfQueues, 
                 const int numCanvasColors,
                 const GameStateController &state, 
-                bool isObstacle, uint rowNum);
+                bool isObstacle, bool isHealthPotion, uint rowNum);
 
 public:
     /** Allocate canvas with a particular bound. See _setup() for arguments. */
@@ -59,7 +59,7 @@ public:
                              uint numOfQueues,
                              const Rect &bound,
                              const GameStateController &state, 
-                             bool isObstacle, uint rowNum);
+                             bool isObstacle, bool isHealthPotion, uint rowNum);
 
 
     ptr<SceneNode> getInteractionNode() const;

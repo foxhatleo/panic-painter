@@ -80,10 +80,15 @@ public:
 
     /** Get if the shape is an obstacle or not*/
     bool getIsObstacle(uint q, uint c) const;
-
+    /** Get if the shape is a health potion or not*/
+    bool getIsHealthPotion(uint q, uint c) const;
+    /** Get the amount of health back for that level*/
+    float getHealthBack() const;
     /** Clear a color on a canvas. */
     ClearResult clearColor(uint q, uint c, uint colorInd);
 
+    /** Clear the health potion*/
+    void clearHealthPotion(uint q, uint c);
     /** Get a copy of game state. */
     GameState getState() const;
     
@@ -94,6 +99,8 @@ public:
     uint getScoreMetric(string type) const;
     
     void incrementScoreForSwipe(float multiplier);
+    
+    float getMaxScore();
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H
