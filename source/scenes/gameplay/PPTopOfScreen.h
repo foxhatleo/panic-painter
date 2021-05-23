@@ -8,6 +8,7 @@
 class TopOfScreen : public SceneNode {
 private:
     ptr<ProgressBar> _progressBar;
+    ptr<ProgressBar> _progressBar2;
     ptr<PolygonNode> _multiplier;
     ptr<Texture> _multiplierTextures[21];
     ptr<PolygonNode> _stars;
