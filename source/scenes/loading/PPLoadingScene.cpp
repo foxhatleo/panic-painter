@@ -26,16 +26,24 @@ bool LoadingScene::init(const asset_t &assets) {
     layer->doLayout(); // This rearranges the children to fit the screen
 
     auto bg = PolygonNode::allocWithTexture(assets->get<Texture>("loading-bg"));
-    bg->setContentSize(screenSize);
+    float bgwr = screenSize.width / bg->getContentWidth();
+    float bghr = screenSize.height / bg->getContentHeight();
+    float bgs = max(bgwr, bghr);
+    float bgx = bgwr >= bghr ? 0 :
+        -(bg->getContentWidth() * bgs - screenSize.width) / 2;
+    float bgy = bgwr <= bghr ? 0 :
+        -(bg->getContentHeight() * bgs - screenSize.height) / 2;
+    bg->setScale(bgs);
     bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    bg->setPosition(Application::get()->getDisplayBounds().origin);
+    bg->setPosition(bgx, bgy);
 //
     _bar = dynamic_pointer_cast<scene2::ProgressBar>(
         assets->get<scene2::SceneNode>("load_bar"));
+    _bar->setPositionY(100);
 
     Application::get()->setClearColor(Color4(192, 192, 192, 255));
-    addChild(layer);
     addChild(bg);
+    addChild(layer);
 
     return true;
 }

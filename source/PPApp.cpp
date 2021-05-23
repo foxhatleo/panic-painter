@@ -35,11 +35,13 @@ void PanicPainterApp::onStartup() {
 
 void PanicPainterApp::onShutdown() {
     _loading.dispose();
-    _gameplay.dispose();
-    _menu.dispose();
-    _world.dispose();
-    _level.dispose();
-    _settings.dispose();
+    if (_currentScene != LOADING_SCENE) {
+        _gameplay.dispose();
+        _menu.dispose();
+        _world.dispose();
+        _level.dispose();
+        _settings.dispose();
+    }
     _assets = nullptr;
     _batch = nullptr;
 
