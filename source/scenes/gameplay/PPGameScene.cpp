@@ -27,8 +27,6 @@ void GameScene::loadLevel(const string &levelName) {
     _action.reset();
     _complete = nullptr;
     
-    _tutorialTracker = 0;
-    
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
     _levelName = levelName;
@@ -42,6 +40,9 @@ void GameScene::loadLevel(const string &levelName) {
 
     // Ask state to load it.
     _state.loadJson(levelJson);
+    
+    _tutorialTracker = 0;
+    
     CULog("Max Score: %f", _state.getMaxScore());
     Size screenSize = Application::get()->getDisplaySize();
     Rect safeArea = Application::get()->getSafeBounds();
@@ -173,7 +174,10 @@ void GameScene::update(float timestep) {
     int prevTutorialTracker = _tutorialTracker;
     if (input.justReleased()) _tutorialTracker += 1;
     
-    if (prevTutorialTracker != _tutorialTracker && _tutorialTracker < 5) CULog("tutorial tracker # %d", _tutorialTracker);
+    if (_tutorialTracker < (int) _state.getTutorialTextures().size()) return;
+    
+    if (prevTutorialTracker != _tutorialTracker && _tutorialTracker < (int) _state.getTutorialTextures().size())
+        CULog("tutorial tracker # %d", _tutorialTracker);
     
     if (_complete) {
         _complete->update(timestep);
@@ -220,8 +224,6 @@ void GameScene::update(float timestep) {
             }
         }
     }
-    
-    if (_tutorialTracker < 5) return;
     
     _feedback->update(timestep);
     _palette->update();

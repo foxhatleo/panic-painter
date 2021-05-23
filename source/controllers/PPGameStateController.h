@@ -30,6 +30,9 @@ private:
 
     /** Load timers in a v1 level file. */
     void _jsonv1_loadTimer(const json_t &timer);
+    
+    /** Load tutorial textures. */
+    void _jsonv1_loadTutorialTextureArray(const json_t &tutorialTextures);
 
     /** Load a v1 level file. */
     void _jsonv1_load(const json_t &json);
@@ -98,9 +101,14 @@ public:
     /** Get the number of canvases that fulfill one of the score metrics. */
     uint getScoreMetric(string type) const;
     
+    /** increment the score for a swipe, depending on the [multiplier] that's decided based on how big the swipe was. Called by ActionController. */
     void incrementScoreForSwipe(float multiplier);
     
+    /** Get the maximum score for this level. Used to set level star thresholds. */
     float getMaxScore();
+    
+    /** Get the string list of all the textures for the tutorial for this level, if any. */
+    vec<string> getTutorialTextures();
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

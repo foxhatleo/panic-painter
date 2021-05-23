@@ -78,6 +78,9 @@ struct GameState {
     
     /** The max score for this level. The stars will be calculated based on this. */
     float maxScore;
+    
+    /** the string list of texture names to display as a tutorial for this level. */
+    vec<string> tutorialTexture;
 };
 
 #endif //PANICPAINTER_PPGAMESTATE_H
