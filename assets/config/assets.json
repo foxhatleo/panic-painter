@@ -270,15 +270,14 @@
     "chick-walk": {
       "file": "textures/characters/chick_walk.png"
     },
-
+    "health": {
+      "file": "textures/characters/health.png"
+    },
     "level-timer-foreground": {
       "file": "textures/level-progress/level-timer-foreground.png"
     },
     "level-timer-background": {
       "file": "textures/level-progress/level-timer-background.png"
-    },
-    "levelsbutton": {
-      "file": "textures/menu/levelsbutton.png"
     },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
@@ -459,6 +458,12 @@
     },
     "loading-bg": {
       "file": "textures/loading-bg.png"
+    },
+    "transition-right": {
+      "file": "textures/transition-right.png"
+    },
+    "transition-left": {
+      "file": "textures/transition-left.png"
     }
   },
   "jsons": {

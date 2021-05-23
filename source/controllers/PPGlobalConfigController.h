@@ -46,6 +46,8 @@ public:
 
     /** Consecutive tap threshold. */
     float getInputConsecutiveTapThreshold();
+    
+    float getScoreThreshold();
 
     static GlobalConfigController &getInstance() { return _instance; }
 };

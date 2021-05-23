@@ -33,6 +33,7 @@ struct GameState {
     
     unordered_map<string, uint> scoreTracker;
 
+    float healthBack; 
     /**
      * The representation of the queue. This is a bit tricky so let me explain.
      *
@@ -48,9 +49,14 @@ struct GameState {
      */
     vec<vec<vec<uint>>> queues;
 
-    /*This records which canvases are obstacles. This will be found in canvasBlock as well but this 
-    makes it easier to cause the "blow up" action to occur. */
-    vec<vec<bool>> obstacles; 
+    /*This records which canvases are obstacles vs health potions. This will be found in canvasBlock as well but this 
+    makes it easier to cause the "blow up" action to occur. The logic is as follows: 
+    0: normal
+    1: obstacle
+    2: health potion
+    3: beach ball (if implemented)*/
+    vec<vec<int>> obstacles; 
+
     /**
      * This records which canvases are lost due to wrong actions.
      */
@@ -69,6 +75,9 @@ struct GameState {
      * as smart pointers so the timer itself can be updated freely.
      */
     vec<vec<ptr<Timer>>> canvasTimers;
+    
+    /** The max score for this level. The stars will be calculated based on this. */
+    float maxScore;
 };
 
 #endif //PANICPAINTER_PPGAMESTATE_H

@@ -66,28 +66,9 @@ MenuScene::activateUI(const std::shared_ptr<cugl::scene2::SceneNode> &scene) {
     std::shared_ptr<scene2::Button> button = std::dynamic_pointer_cast<scene2::Button>(
         scene);
     if (button != nullptr) {
-        //CULog("Activating button %s", button->getName().c_str());
         if (button->getName() == "playbutton") {
             if (!button->hasListener())
             button->addListener([=](const string &name, bool down) {
-                //CULog("PLAY STATUS");
-                if (!down) {
-                    SoundController::getInstance()->playSfx("button");
-                    this->_state = PLAY;
-                    uint lInd = 0;
-                    for (; lInd < levelsLen - 1;) {
-                        if (SaveController::getInstance()->isUnlocked
-                        (levels[lInd])) lInd++;
-                        else break;
-                    }
-                    this->level = levels[lInd];
-                }
-            });
-        }
-        if (button->getName() == "levelsbutton") {
-            if (!button->hasListener())
-            button->addListener([=](const string &name, bool down) {
-                //CULog("LEVEL STATUS");
                 if (!down) {
                     SoundController::getInstance()->playSfx("button");
                     _hacking = false;

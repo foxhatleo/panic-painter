@@ -44,6 +44,8 @@ private:
     int _initialColorNumber;
     /*Is this canvas an obstacle?*/
     bool _isObstacle;
+    /*Is this canvas a health potion?*/
+    bool _isHealthPotion;
     bool _walking;
     /** Game state. */
     GameStateController _state;
@@ -52,7 +54,7 @@ private:
         _texture = t;
     }
     /** Set up this block. */
-    void _setup(const asset_t &assets, const vec<Color4> &colors, const int numCanvasColors, const GameStateController &state, bool isObstacle);
+    void _setup(const asset_t &assets, const vec<Color4> &colors, const int numCanvasColors, const GameStateController &state, bool isObstacle, bool isHealthPotion);
     
 
 public:
@@ -60,7 +62,7 @@ public:
     static ptr<CanvasBlock> alloc(const asset_t &assets,
                                   float size,
                                   const vec<Color4> &colors, const int numCanvasColors,
-                                  const GameStateController &state, bool isObstacle);
+                                  const GameStateController &state, bool isObstacle, bool isHealthPotion);
 
     void setIsActive(bool isActive);
 
