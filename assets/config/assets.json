@@ -451,10 +451,10 @@
       "file": "textures/settings/vfx-high.png"
     },
     "colorblind-off": {
-      "file": "textures/settings/colorblind-off.png"
+      "file": "textures/settings/colorblind-toggle-off.png"
     },
     "colorblind-on": {
-      "file": "textures/settings/colorblind-on.png"
+      "file": "textures/settings/colorblind-toggle-on.png"
     },
     "palette-left": {
       "file": "textures/settings/palette-left.png"
