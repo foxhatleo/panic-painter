@@ -41,14 +41,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                     }
                     SoundController::getInstance()->playSfx("scribble");
                     int newColors = (int) _state.getColorsOfCanvas(i, i2).size();
-                    if (newColors < prevColors) {
-                        CULog("Previous multiplier: %f", _state.getLevelMultiplier());
-                        _state.incrementScoreForSwipe(1);
-                        _state.setLevelMultiplier(min(3.0f,
-                                                      (float)(_state.getLevelMultiplier()
-                                                              + LEVEL_MULTIPLIER_INCREMENT)));
-                        CULog("New multiplier: %f", _state.getLevelMultiplier());
-                    } else {
+                    if (newColors >= prevColors) {
                         _state.setLevelMultiplier(1);
                     }
                     input.clearPreviousTaps();
