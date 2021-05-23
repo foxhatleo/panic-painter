@@ -180,7 +180,9 @@ void GameScene::update(float timestep) {
         _pauseRequest = true;
     }
 
-    uint mul = round(_state.getLevelMultiplier() * 10) - 10;
+    int mul = round(_state.getLevelMultiplier() * 10);
+    if (mul < 10) mul = 10;
+    else if (mul > 30) mul = 30;
 
     float health = 1 - (float)(_state.getScoreMetric("wrongAction") +
         _state.getScoreMetric("timedOut") - _state.getHealthBack()) /
