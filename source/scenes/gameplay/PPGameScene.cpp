@@ -168,8 +168,6 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
-    float currentHealth = max((float)(_state.getScoreMetric("wrongAction") +
-        _state.getScoreMetric("timedOut")) - _state.getHealthBack(), 0.0f);
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
@@ -187,6 +185,8 @@ void GameScene::update(float timestep) {
     float health = 1 - (float)(_state.getScoreMetric("wrongAction") +
         _state.getScoreMetric("timedOut")) /
             (_state.getState().nCanvasInLevel / 3);
+    if (health < 0) health = 0;
+    if (health > 1) health = 1;
     _tos->update(health, mul);
 
     set<pair<uint, uint>> activeCanvases;
