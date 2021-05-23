@@ -47,6 +47,8 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                                                       (float)(_state.getLevelMultiplier()
                                                               + LEVEL_MULTIPLIER_INCREMENT)));
                         CULog("New multiplier: %f", _state.getLevelMultiplier());
+                    } else {
+                        _state.setLevelMultiplier(1);
                     }
                     input.clearPreviousTaps();
                 }
@@ -146,6 +148,8 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                                               (float)(_state.getLevelMultiplier() +
                                                       LEVEL_MULTIPLIER_INCREMENT * numCorrect)));
                 CULog("New multiplier after swipe %f", _state.getLevelMultiplier());
+            } else {
+                _state.setLevelMultiplier(1);
             }
             
         }

@@ -224,6 +224,8 @@ void GameScene::update(float timestep) {
                     _canvases[i][i2]->getFeedbackStartPointInGlobalCoordinates(),
                     _tos->getDangerBarPoint(),
                     t);
+                if (state == LOST_DUE_TO_TIME)
+                    _state.setLevelMultiplier(1);
             }
 
             // At the beginning of a frame, set canvas hover to false.
