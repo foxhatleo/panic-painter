@@ -66,6 +66,7 @@ void SaveController::_flush() {
 }
 
 bool SaveController::isLocked(const string &level) const {
+    return false;
     return _getLevel(level).locked;
 }
 
