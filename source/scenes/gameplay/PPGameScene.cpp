@@ -2,7 +2,6 @@
 
 #define PALETTE_WIDTH .1f
 #define TIMER_HEIGHT .1f
-#define MISTAKE_ALLLOWED 10
 
 void GameScene::dispose() {
     Scene2::dispose();
@@ -22,7 +21,7 @@ void GameScene::loadLevel(const string &levelName) {
     removeAllChildren();
 
     _congratulations.reset();
-    _dangerBar.reset();
+    _tos.reset();
     _palette.reset();
     _action.reset();
     _complete = nullptr;
@@ -112,18 +111,6 @@ void GameScene::loadLevel(const string &levelName) {
     addChild(n);
 #endif
 
-    auto gtBound = safeArea;
-    gtBound.origin.y += (1 - TIMER_HEIGHT) * gtBound.size.height;
-    gtBound.size.height *= TIMER_HEIGHT;
-    if (SaveController::getInstance()->getPaletteLeft()) {
-        gtBound.size.width -=
-            gtBound.getMaxX() - _backBtn->getBoundingBox().getMinX();
-    } else {
-        gtBound.size.width -= _backBtn->getBoundingBox().getMaxX();
-        gtBound.origin.x += _backBtn->getWidth();
-    }
-    _dangerBar = DangerBar::alloc(_assets, gtBound);
-
     // change position to keep it to the left of the screen.
     _palette =
         ColorPalette::alloc(Rect(
@@ -143,12 +130,22 @@ void GameScene::loadLevel(const string &levelName) {
         auto mat = Mat4(transform);
         _palette->chooseAlternateTransform(true);
         _palette->setAlternateTransform(mat);
-        #ifdef CU_TOUCH_SCREEN
-            _palette->setPosition(safeArea.size.width, gtBound.size.height);
-        #else
-            _palette->setPosition(gtBound.size.width * 1.1, gtBound.size.height * 0.3);
-        #endif
+        _palette->setPosition(safeArea.size.width, 0);
     }
+
+    auto gtBound = safeArea;
+    gtBound.origin.y += (1 - TIMER_HEIGHT) * gtBound.size.height;
+    gtBound.size.height *= TIMER_HEIGHT;
+    if (SaveController::getInstance()->getPaletteLeft()) {
+        gtBound.origin.x = _palette->getBoundingBox().getMaxX() + 10;
+        gtBound.size.width = _backBtn->getBoundingBox().getMinX() - 10 -
+            gtBound.origin.x;
+    } else {
+        gtBound.origin.x = _backBtn->getBoundingBox().getMaxX() + 10;
+        gtBound.size.width = _palette->getBoundingBox().getMinX() - 10 -
+                             gtBound.origin.x;
+    }
+    _tos = TopOfScreen::alloc(_assets, gtBound);
     
     _splash = SplashEffect::alloc(_assets,
                                   Application::get()->getDisplayBounds(),
@@ -159,7 +156,7 @@ void GameScene::loadLevel(const string &levelName) {
     
 
     addChild(_splash);
-    addChild(_dangerBar);
+    addChild(_tos);
     addChild(_palette);
     addChild(_feedback);
     if (!_state.getTutorialTextures().empty()) {
@@ -203,8 +200,6 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
-    float currentHealth = max((float)(_state.getScoreMetric("wrongAction") +
-        _state.getScoreMetric("timedOut")) - _state.getHealthBack(), 0.0f);
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
@@ -216,8 +211,27 @@ void GameScene::update(float timestep) {
         _pauseRequest = true;
     }
 
-    _dangerBar->update(min(1.0f, currentHealth /
-    MISTAKE_ALLLOWED));
+    uint mul = round(_state.getLevelMultiplier() * 10) - 10;
+
+    float health = 1 - (float)(_state.getScoreMetric("wrongAction") +
+        _state.getScoreMetric("timedOut")) /
+            (_state.getState().nCanvasInLevel / 3);
+    if (health < 0) health = 0;
+    if (health > 1) health = 1;
+
+    uint stars;
+    uint score = _state.getScoreMetric("aggregateScore");
+    float percent = score / _state.getMaxScore();
+    if (percent < 0.50f) {
+        stars = 0;
+    } else if (percent < 0.70f) {
+        stars = 1;
+    } else if (percent < 0.85f) {
+        stars = 2;
+    } else {
+        stars = 3;
+    }
+    _tos->update(health, mul, stars);
 
     set<pair<uint, uint>> activeCanvases;
 
@@ -239,8 +253,10 @@ void GameScene::update(float timestep) {
                                            FeedbackType::FAILURE;
                 _feedback->add(
                     _canvases[i][i2]->getFeedbackStartPointInGlobalCoordinates(),
-                    _dangerBar->getDangerBarPoint(),
+                    _tos->getDangerBarPoint(),
                     t);
+                if (state == LOST_DUE_TO_TIME)
+                    _state.setLevelMultiplier(1);
             }
         }
     }
@@ -262,31 +278,28 @@ void GameScene::update(float timestep) {
     _action->update(activeCanvases, _palette->getSelectedColor());
     
     // Check if the level is complete
-    if ((activeCanvases.empty() || currentHealth>
-    MISTAKE_ALLLOWED) &&
+    if ((activeCanvases.empty() || health < 0.01f) &&
     !_congratulations) {
         _splash->clear();
         //Gradually clear out the splatters
         _complete = make_shared<Timer>(5);
         auto ds = Application::get()->getDisplaySize();
         
-        // IMPORTANT TODO: Change this to actually set the score limit of levels.
-        float maxScore = _state.getMaxScore();
-        float percent = _state.getScoreMetric("aggregateScore") / maxScore;
-        
-        if (currentHealth > MISTAKE_ALLLOWED || percent < 0.50f) {
+        if (health < 0.01f) {
             auto lf = PolygonNode::allocWithTexture(_assets->get<Texture>("levelfailed"));
             lf->setScale(ds.height / lf->getHeight());
             lf->setAnchor(Vec2::ANCHOR_CENTER);
             lf->setPosition(0.5*ds.width, 0.5*ds.height);
             addChild(lf);
         } else {
-            auto lc = LevelComplete::alloc(_state, _assets, percent);
+            auto lc = LevelComplete::alloc(_state, _assets, stars);
             lc->setScale(ds.height / lc->getHeight());
             lc->setAnchor(Vec2::ANCHOR_CENTER);
             lc->setPosition(0.85*ds.width/2, ds.height/2);
             addChild(lc);
             SaveController::getInstance()->unlock(_levelName);
+            SaveController::getInstance()->setScore(_levelName, score);
+            SaveController::getInstance()->setStars(_levelName, stars);
         
             CULog("timed out: %d", _state.getScoreMetric("timedOut"));
             CULog("correct: %d", _state.getScoreMetric("correct"));

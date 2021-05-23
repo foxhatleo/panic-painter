@@ -103,8 +103,11 @@ public:
     
     /** increment the score for a swipe, depending on the [multiplier] that's decided based on how big the swipe was. Called by ActionController. */
     void incrementScoreForSwipe(float multiplier);
+
+    float getLevelMultiplier() const;
     
-    /** Get the maximum score for this level. Used to set level star thresholds. */
+    void setLevelMultiplier(float lm);
+
     float getMaxScore();
     
     /** Get the string list of all the textures for the tutorial for this level, if any. */

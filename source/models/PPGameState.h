@@ -33,7 +33,10 @@ struct GameState {
     
     unordered_map<string, uint> scoreTracker;
 
-    float healthBack; 
+    uint nCanvasInLevel;
+
+    float healthBack;
+
     /**
      * The representation of the queue. This is a bit tricky so let me explain.
      *
@@ -75,7 +78,10 @@ struct GameState {
      * as smart pointers so the timer itself can be updated freely.
      */
     vec<vec<ptr<Timer>>> canvasTimers;
-    
+
+    /** The level multiplier */
+    float levelMultiplier;
+
     /** The max score for this level. The stars will be calculated based on this. */
     float maxScore;
     
