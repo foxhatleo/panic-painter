@@ -24,9 +24,8 @@ void GameScene::loadLevel(const string &levelName) {
     _tos.reset();
     _palette.reset();
     _action.reset();
-
     _complete = nullptr;
-
+    
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
     _levelName = levelName;
@@ -40,6 +39,9 @@ void GameScene::loadLevel(const string &levelName) {
 
     // Ask state to load it.
     _state.loadJson(levelJson);
+    
+    _tutorialTracker = 0;
+    
     CULog("Max Score: %f", _state.getMaxScore());
     Size screenSize = Application::get()->getDisplaySize();
     Rect safeArea = Application::get()->getSafeBounds();
@@ -150,12 +152,22 @@ void GameScene::loadLevel(const string &levelName) {
 
     _feedback = Feedback::alloc(Application::get()->getDisplayBounds(),
                                 _assets);
+
     if (SaveController::getInstance()->getSfx()) {
         addChild(_splash);
     }
     addChild(_tos);
     addChild(_palette);
     addChild(_feedback);
+    if (!_state.getTutorialTextures().empty()) {
+        _tutorialOverlay = PolygonNode::allocWithTexture(_assets->get<Texture>(_state.getTutorialTextures()[0]));
+        _tutorialOverlay->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+        _tutorialOverlay->setPosition(Application::get()->getSafeBounds().origin);
+        _tutorialOverlay->setContentSize(Application::get()->getSafeBounds().size);
+        _tutorialOverlay->setTag(1);
+        addChild(_tutorialOverlay);
+    }
+
 
     _action = make_shared<ActionController>(_state, _canvases);
 
@@ -164,6 +176,27 @@ void GameScene::loadLevel(const string &levelName) {
 }
 
 void GameScene::update(float timestep) {
+    auto &input = InputController::getInstance();
+    
+    int prevTutorialTracker = _tutorialTracker;
+    int numTutorialOverlays = (int) _state.getTutorialTextures().size();
+    
+    if (numTutorialOverlays > 0) {
+        if (_tutorialTracker < numTutorialOverlays) {
+            _tutorialOverlay->setTexture(_assets->get<Texture>(_state.getTutorialTextures()[_tutorialTracker]));
+        } else if (_tutorialTracker == numTutorialOverlays) {
+            // we've finished all the textures
+            if (getChildByTag(1) != nullptr) removeChildByTag(1);
+        }
+    }
+    
+    if (input.justReleased()) _tutorialTracker += 1;
+    
+    //if (_tutorialTracker < numTutorialOverlays) return;
+    
+    if (prevTutorialTracker != _tutorialTracker && _tutorialTracker < numTutorialOverlays)
+        CULog("tutorial tracker # %d", _tutorialTracker);
+    
     if (_complete) {
         _complete->update(timestep);
         return;
@@ -171,9 +204,9 @@ void GameScene::update(float timestep) {
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
-    _state.update(timestep);
+    if(numTutorialOverlays==0 || _tutorialTracker >= numTutorialOverlays)
+        _state.update(timestep);
 
-    auto &input = InputController::getInstance();
     if (input.justReleased() && input.isJustTap() &&
         InputController::inScene(input.currentPoint(), _backBtnArea)) {
         if (_splash->getParent() != nullptr) {
@@ -234,12 +267,9 @@ void GameScene::update(float timestep) {
                 if (state == LOST_DUE_TO_TIME)
                     _state.setLevelMultiplier(1);
             }
-
-            // At the beginning of a frame, set canvas hover to false.
-//            _canvases[i][i2]->setHover(false);
         }
     }
-
+    
     _feedback->update(timestep);
     _palette->update();
     Rect canvasArea = Application::get()->getSafeBounds();
@@ -257,7 +287,7 @@ void GameScene::update(float timestep) {
             pressing ? input.currentPoint() : Vec2::ZERO);
     }
     _action->update(activeCanvases, _palette->getSelectedColor());
-
+    
     // Check if the level is complete
     if ((activeCanvases.empty() || health < 0.01f) &&
     !_congratulations) {

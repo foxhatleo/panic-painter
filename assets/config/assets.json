@@ -456,6 +456,42 @@
     "settings-tray": {
       "file": "textures/settings/settings-tray.png"
     },
+    "tutorials-dt1": {
+      "file": "textures/tutorials/tutorials-doubletap/1.png"
+    },
+    "tutorials-dt2": {
+      "file": "textures/tutorials/tutorials-doubletap/2.png"
+    },
+    "tutorials-s1": {
+      "file": "textures/tutorials/tutorials-swipe/1.png"
+    },
+    "tutorials-t1": {
+      "file": "textures/tutorials/tutorials-timers/1.png"
+    },
+    "tutorials-t2": {
+      "file": "textures/tutorials/tutorials-timers/2.png"
+    },
+    "tutorials-t3": {
+      "file": "textures/tutorials/tutorials-timers/3.png"
+    },
+    "tutorials-mc1": {
+      "file": "textures/tutorials/tutorials-multicolor/1.png"
+    },
+    "tutorials-tb1": {
+      "file": "textures/tutorials/tutorials-topbar/1.png"
+    },
+    "tutorials-tb2": {
+      "file": "textures/tutorials/tutorials-topbar/2.png"
+    },
+    "tutorials-tb3": {
+      "file": "textures/tutorials/tutorials-topbar/3.png"
+    },
+    "tutorials-b1": {
+      "file": "textures/tutorials/tutorials-bombs/1.png"
+    },
+    "tutorials-p1": {
+      "file": "textures/tutorials/tutorials-potions/1.png"
+    },
     "loading-bg": {
       "file": "textures/loading-bg.png"
     },
@@ -493,6 +529,19 @@
         "rightcap": [ 296, 45, 320, 90 ]
       }
     },
+    "bhealthbar": {
+      "file": "textures/gameplay/badhealth.png",
+      "wrapS": "clamp",
+      "wrapT": "clamp",
+      "minfilter": "linear",
+      "magfilter": "linear",
+      "atlas": {
+        "background": [ 0, 0, 320, 45 ],
+        "foreground": [ 24, 45, 296, 90 ],
+        "leftcap": [ 0, 45, 24, 90 ],
+        "rightcap": [ 296, 45, 320, 90 ]
+      }
+    },
     "transition-right": {
       "file": "textures/transition-right.png"
     },
@@ -507,13 +556,13 @@
     "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
     "settings": "scenes/settings.json",
-    "museum-1" : "levels/museum-1.json",
+    "museum-1" : "levels/tutorial-multicolor.json",
     "museum-2" : "levels/museum-2.json",
     "museum-3" : "levels/museum-3.json",
     "museum-4" : "levels/museum-4.json",
     "museum-5" : "levels/museum-5.json",
-    "city-1" : "levels/city-1.json",
-    "city-2" : "levels/city-2.json",
+    "city-1" : "levels/tutorial-bombs.json",
+    "city-2" : "levels/tutorial-potions.json",
     "city-3" : "levels/city-3.json",
     "city-4" : "levels/city-4.json",
     "city-5" : "levels/city-5.json",
@@ -527,10 +576,10 @@
     "island-3" : "levels/island-3.json",
     "island-4" : "levels/island-4.json",
     "island-5" : "levels/island-5.json",
-    "house-1" : "levels/house-1.json",
-    "house-2" : "levels/house-2.json",
-    "house-3" : "levels/house-3.json",
-    "house-4" : "levels/house-4.json",
+    "house-1" : "levels/tutorial-doubletap.json",
+    "house-2" : "levels/tutorial-swipe.json",
+    "house-3" : "levels/tutorial-timers.json",
+    "house-4" : "levels/tutorial-topbar.json",
     "house-5" : "levels/house-5.json",
     "eiffel-1" : "levels/eiffel-1.json",
     "eiffel-2" : "levels/eiffel-2.json",

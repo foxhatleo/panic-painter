@@ -53,6 +53,19 @@ void TopOfScreen::_setup() {
         (getHeight() - 10) / _progressBar->getContentHeight()
         );
     addChild(_progressBar);
+
+    auto pbg2 = _assets->get<Texture>("bhealthbar_background");
+    auto pfg2 = _assets->get<Texture>("bhealthbar_foreground");
+    auto plc2 = _assets->get<Texture>("bhealthbar_leftcap");
+    auto prc2 = _assets->get<Texture>("bhealthbar_rightcap");
+    _progressBar2 = ProgressBar::allocWithCaps(pbg2, pfg2, plc2, prc2);
+    _progressBar2->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
+    _progressBar2->setPosition(10, getContentHeight() / 2);
+    _progressBar2->setScale(
+        (_stars->getBoundingBox().getMinX() - 20) /
+        _progressBar2->getContentWidth(),
+        (getHeight() - 10) / _progressBar2->getContentHeight()
+    );
 //    addChild(_levelTimerText);
 }
 
@@ -61,8 +74,18 @@ void TopOfScreen::update(float progress, uint multiplier, uint starN) {
     Animation::to(_progressBar, .2f, {
         {"progress", progress}
     });
+    Animation::to(_progressBar2, .2f, {
+        {"progress", progress}
+    });
     _multiplier->setTexture(_multiplierTextures[multiplier - 10]);
     _stars->setTexture(_starsTexture[starN]);
+    if (progress < 0.3 && _progressBar->getParent() != nullptr) {
+        addChild(_progressBar2);
+        removeChild(_progressBar);
+    } else if (progress >= 0.3 && _progressBar2->getParent() != nullptr) {
+        addChild(_progressBar);
+        removeChild(_progressBar2);
+    }
 }
 
 Vec2 TopOfScreen::getDangerBarPoint() {

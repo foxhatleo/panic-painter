@@ -54,6 +54,10 @@ private:
     string _levelName;
 
     string _musicName;
+    
+    int _tutorialTracker;
+    
+    ptr<PolygonNode> _tutorialOverlay;
 
 public:
     GameScene() : Scene2(), _pauseRequest(false), _complete(nullptr) {}
