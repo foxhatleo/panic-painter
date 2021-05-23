@@ -107,8 +107,9 @@ void SettingsScene::activateUI(
         }
         else if (button->getName() == "leftPalette") {
             button->setToggle(true);
+            button->setScale(button->getScale() * PALETTE_FRAC);
             button->setDown(_save->getPaletteLeft());
-            button->setPositionY(_offsetInSafe.y + _safe.size.height * .65);
+            button->setPositionY(_offsetInSafe.y + _safe.size.height * .66);
             #if defined(__IPHONEOS__)
                 //button->setPositionY(_tray->getPositionY() * IOS_FRAC + _tray->getHeight() * .68);
             #endif
@@ -157,7 +158,7 @@ void SettingsScene::activateUI(
         }
         else if (button->getName() == "reset") {
             button->setPositionY(_offsetInSafe.y);
-            button->setScale(button->getScale()*PALETTE_FRAC);
+            button->setScale(button->getScale()*RESET_FRAC);
             //button->setPositionX(_tray->getPositionX() + (_tray->getWidth() * .5 - button->getWidth() / 2));
             //button->setPositionX(_safe.size.width/2 - button->getWidth()/2);
             #if defined(__IPHONEOS__)
