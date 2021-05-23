@@ -294,21 +294,6 @@
     "levelfailed": {
       "file": "textures/levelfailed.png"
     },
-    "levelbutton": {
-      "file": "textures/levelselect/levelbutton.png"
-    },
-    "levelbuttonpass": {
-      "file": "textures/levelselect/levelbuttonpass.png"
-    },
-    "level1": {
-      "file": "textures/levelselect/level1.png"
-    },
-    "level2": {
-      "file": "textures/levelselect/level2.png"
-    },
-    "level3": {
-      "file": "textures/levelselect/level3.png"
-    },
     "backbutton": {
       "file": "textures/backbutton.png"
     },
