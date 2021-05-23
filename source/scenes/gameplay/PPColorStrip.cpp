@@ -5,8 +5,17 @@ ptr<ColorStrip> ColorStrip::alloc(
         const asset_t& assets,
         const vec<Color4> &colors,
         const GameStateController &state) {
-    auto result = make_shared<ColorStrip>(size, assets, colors, state);
-    return (result->init() ? result : nullptr);
+    auto result = make_shared<ColorStrip>(size,  assets, colors);
+    if (result->init())
+        result->_setup(state);
+    else
+        return nullptr;
+    return result;
+}
+
+void ColorStrip::_setup(
+    const GameStateController& state) {
+    _state = state; 
 }
 
 void ColorStrip::update(const vec<uint> &canvasColors) {

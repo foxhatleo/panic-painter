@@ -40,7 +40,7 @@ void GameScene::loadLevel(const string &levelName) {
 
     // Ask state to load it.
     _state.loadJson(levelJson);
-
+    CULog("Max Score: %f", _state.getMaxScore());
     Size screenSize = Application::get()->getDisplaySize();
     Rect safeArea = Application::get()->getSafeBounds();
 
@@ -58,6 +58,7 @@ void GameScene::loadLevel(const string &levelName) {
         for (int i2 = (int) (_state.numCanvases(i)) - 1; i2 >= 0; i2--) {
             auto bound = safeArea;
             bool isObstacle = _state.getIsObstacle(i, i2);
+            bool isHealthPotion = _state.getIsHealthPotion(i, i2);
             if (SaveController::getInstance()->getPaletteLeft()) {
                 bound.origin.x += PALETTE_WIDTH * bound.size.width;
             }
@@ -71,6 +72,7 @@ void GameScene::loadLevel(const string &levelName) {
                 bound,
                 _state, 
                 isObstacle,
+                isHealthPotion,
                 i2
             );
             addChild(c);
@@ -166,7 +168,8 @@ void GameScene::update(float timestep) {
         _complete->update(timestep);
         return;
     }
-
+    float currentHealth = max((float)(_state.getScoreMetric("wrongAction") +
+        _state.getScoreMetric("timedOut")) - _state.getHealthBack(), 0.0f);
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
@@ -240,10 +243,10 @@ void GameScene::update(float timestep) {
         auto ds = Application::get()->getDisplaySize();
         
         // IMPORTANT TODO: Change this to actually set the score limit of levels.
-        float MAX_SCORE = 1200;
-        float percent = _state.getScoreMetric("aggregateScore") / MAX_SCORE;
+        float maxScore = _state.getMaxScore();
+        float percent = _state.getScoreMetric("aggregateScore") / maxScore;
         
-        if (_state.getScoreMetric("wrongAction") > MISTAKE_ALLLOWED || percent < 0.50f) {
+        if (health < 0.01f) {
             auto lf = PolygonNode::allocWithTexture(_assets->get<Texture>("levelfailed"));
             lf->setScale(ds.height / lf->getHeight());
             lf->setAnchor(Vec2::ANCHOR_CENTER);

@@ -60,7 +60,7 @@ set(PP_FILES
         ../source/controllers/PPSoundController.h
         ../source/controllers/PPSoundController.cpp
         ../source/scenes/gameplay/PPFeedback.h
-        ../source/scenes/gameplay/PPFeedback.cpp)
+        ../source/scenes/gameplay/PPFeedback.cpp ../source/scenes/transition/PPTransition.h ../source/scenes/transition/PPTransition.cpp)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 

@@ -270,6 +270,9 @@
     "chick-walk": {
       "file": "textures/characters/chick_walk.png"
     },
+    "health": {
+      "file": "textures/characters/health.png"
+    },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
     },
@@ -458,7 +461,7 @@
     "9x": {"file":  "textures/gameplay/9x.png"},
     "10x": {"file":  "textures/gameplay/10x.png"},
     "max": {"file":  "textures/gameplay/max.png"},
-    "health": {
+    "healthbar": {
       "file": "textures/gameplay/health.png",
       "wrapS": "clamp",
       "wrapT": "clamp",
@@ -469,7 +472,13 @@
         "foreground": [ 24, 45, 296, 90 ],
         "leftcap": [ 0, 45, 24, 90 ],
         "rightcap": [ 296, 45, 320, 90 ]
-      }
+      },
+    },
+    "transition-right": {
+      "file": "textures/transition-right.png"
+    },
+    "transition-left": {
+      "file": "textures/transition-left.png"
     }
   },
   "jsons": {

@@ -27,9 +27,8 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 bool currentPointIn =
                     InputController::inScene(input.currentPoint(),
                                              _canvases[i][i2]->getInteractionNode());
-
                 // SCRIBBLING
-                if (input.didDoubleTap() && input.justReleased() &&
+                if (input.didDoubleTap() && !_state.getIsHealthPotion(i, i2) && input.justReleased() &&
                     startingPointIn && currentPointIn) {
                     auto n = _state.clearColor(i, i2, selectedColor);
                     if (n == GameStateController::ALL_CLEAR) {
@@ -55,9 +54,21 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 if (input.isPressing() && startingPointIn && currentPointIn) {
 //                    _canvases[i][i2]->setHover(true);
                 }
-
+                //Vertical swipe
+                if (_state.getIsHealthPotion(i, i2) && input.justReleased()) {
+                    ptr<SceneNode> lastCanvas = _canvases[i][i2]->getInteractionNode();
+                    Mat4 in_start_mat = lastCanvas->getNodeToWorldTransform();
+                    Rect in_start_box = in_start_mat.transform(
+                        Rect(Vec2::ZERO, lastCanvas->getContentSize()));
+                    if (startingPointIn &&
+                        (input.currentPoint().y > in_start_box.getMaxY() &&
+                            input.currentPoint().x < in_start_box.getMaxX() &&
+                            input.currentPoint().x > in_start_box.getMinX())) {
+                        _state.clearHealthPotion(i, i2);
+                    }
+                }
                 // DRAGGING
-                if (startingPointIn && input.hasMoved() &&
+                if (!_state.getIsHealthPotion(i, i2) && startingPointIn && input.hasMoved() &&
                     (input.justReleased() || input.isPressing())) {
                     dragStart[0] = i;
                     dragStart[1] = i2;

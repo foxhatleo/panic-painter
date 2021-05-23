@@ -37,10 +37,10 @@ void TopOfScreen::_setup() {
     () / 2);
     addChild(_stars);
 
-    auto pbg = _assets->get<Texture>("health_background");
-    auto pfg = _assets->get<Texture>("health_foreground");
-    auto plc = _assets->get<Texture>("health_leftcap");
-    auto prc = _assets->get<Texture>("health_rightcap");
+    auto pbg = _assets->get<Texture>("healthbar_background");
+    auto pfg = _assets->get<Texture>("healthbar_foreground");
+    auto plc = _assets->get<Texture>("healthbar_leftcap");
+    auto prc = _assets->get<Texture>("healthbar_rightcap");
     _progressBar = ProgressBar::allocWithCaps(pbg, pfg, plc, prc);
     _progressBar->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
     _progressBar->setPosition(10, getContentHeight() / 2);
