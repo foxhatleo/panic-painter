@@ -178,10 +178,10 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
     if (numSplats > _numSplats && _numSplats < 4) {
         int currentSplat = _startingSplat + _numSplats;
         currentSplat = currentSplat > 4 ? (currentSplat % 4) + 1 : currentSplat;
-        float xPos = Random::getInstance()->getFloat(_bg->getWidth() / 3,
-            _bg->getWidth() - _bg->getWidth() / 3);
+        float xPos = Random::getInstance()->getFloat(_bg->getWidth() / 4,
+            _bg->getWidth() - (_bg->getWidth() / 4));
         float yPos = Random::getInstance()->getFloat(_bg->getHeight() / 3,
-            _bg->getWidth() - _bg->getHeight() / 3);
+            _bg->getHeight() - (_bg->getHeight() / 3));
         bool addSplat = (_splat4->getParent() == nullptr || _splat4->getColor() != currentColor) &&
             (_splat3->getParent() == nullptr || _splat3->getColor() != currentColor) &&
             (_splat2->getParent() == nullptr || _splat2->getColor() != currentColor) &&
