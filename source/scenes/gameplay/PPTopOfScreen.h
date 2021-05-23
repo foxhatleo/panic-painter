@@ -29,7 +29,7 @@ public:
 
     Vec2 getDangerBarPoint();
 
-    void update(float progress, uint multiplier = 1);
+    void update(float progress, uint multiplier = 1, uint stars = 0);
 };
 
 #endif //PANICPAINTER_PPTOPOFSCREEN_H

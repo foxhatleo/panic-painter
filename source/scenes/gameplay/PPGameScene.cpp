@@ -187,7 +187,20 @@ void GameScene::update(float timestep) {
             (_state.getState().nCanvasInLevel / 3);
     if (health < 0) health = 0;
     if (health > 1) health = 1;
-    _tos->update(health, mul);
+
+    uint stars;
+    uint score = _state.getScoreMetric("aggregateScore");
+    float percent = score / _state.getMaxScore();
+    if (percent < 0.50f) {
+        stars = 0;
+    } else if (percent < 0.70f) {
+        stars = 1;
+    } else if (percent < 0.85f) {
+        stars = 2;
+    } else {
+        stars = 3;
+    }
+    _tos->update(health, mul, stars);
 
     set<pair<uint, uint>> activeCanvases;
 
@@ -242,10 +255,6 @@ void GameScene::update(float timestep) {
         _complete = make_shared<Timer>(5);
         auto ds = Application::get()->getDisplaySize();
         
-        // IMPORTANT TODO: Change this to actually set the score limit of levels.
-        float maxScore = _state.getMaxScore();
-        float percent = _state.getScoreMetric("aggregateScore") / maxScore;
-        
         if (health < 0.01f) {
             auto lf = PolygonNode::allocWithTexture(_assets->get<Texture>("levelfailed"));
             lf->setScale(ds.height / lf->getHeight());
@@ -253,12 +262,14 @@ void GameScene::update(float timestep) {
             lf->setPosition(0.5*ds.width, 0.5*ds.height);
             addChild(lf);
         } else {
-            auto lc = LevelComplete::alloc(_state, _assets, percent);
+            auto lc = LevelComplete::alloc(_state, _assets, stars);
             lc->setScale(ds.height / lc->getHeight());
             lc->setAnchor(Vec2::ANCHOR_CENTER);
             lc->setPosition(0.85*ds.width/2, ds.height/2);
             addChild(lc);
             SaveController::getInstance()->unlock(_levelName);
+            SaveController::getInstance()->setScore(_levelName, score);
+//            SaveController::getInstance()->setStars(_levelName, stars);
         
             CULog("timed out: %d", _state.getScoreMetric("timedOut"));
             CULog("correct: %d", _state.getScoreMetric("correct"));

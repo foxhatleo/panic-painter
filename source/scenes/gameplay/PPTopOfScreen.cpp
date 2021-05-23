@@ -53,13 +53,14 @@ void TopOfScreen::_setup() {
 //    addChild(_levelTimerText);
 }
 
-void TopOfScreen::update(float progress, uint multiplier) {
+void TopOfScreen::update(float progress, uint multiplier, uint starN) {
     _progress = progress;
     Animation::to(_progressBar, .2f, {
         {"progress", progress}
     });
     _multiplier->setTexture(_multiplierTextures[multiplier <=
     9 ? multiplier : 10]);
+    _stars->setTexture(_starsTexture[starN]);
 }
 
 Vec2 TopOfScreen::getDangerBarPoint() {
