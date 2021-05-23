@@ -95,6 +95,7 @@ void SettingsScene::activateUI(
             #endif
             if (!button->hasListener())
                 button->addListener([=](const string& name, bool down) {
+                    SoundController::getInstance()->playSfx("button");
                 _save->setColorblind(down);
                 });
         }
@@ -110,6 +111,7 @@ void SettingsScene::activateUI(
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
+                SoundController::getInstance()->playSfx("button");
                 _save->setPaletteLeft(down);
                 });
         }
@@ -128,12 +130,14 @@ void SettingsScene::activateUI(
             // END TODO
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
+                SoundController::getInstance()->playSfx("button");
                 _save->setPaletteLeft(down);
                 });
         }
         else if (button->getName() == "music") {
             button->setToggle(true);
-            button->setDown(_save->getBgm());
+            button->setDown(SoundController::getInstance()->getBgmVolume() >
+                            0.5);
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() *
             .34);
             #if defined(__IPHONEOS__)
@@ -141,12 +145,14 @@ void SettingsScene::activateUI(
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
-                _save->setBgm(down);
+                SoundController::getInstance()->setBgmVolume(down ? 1 : 0);
+                SoundController::getInstance()->playSfx("button");
                 });
         }
         else if (button->getName() == "sfx") {
             button->setToggle(true);
-            button->setDown(_save->getSfx());
+            button->setDown(SoundController::getInstance()->getSfxVolume() >
+            0.5);
             button->setPositionY(_tray->getPositionY() + _tray->getHeight() *
             .18);
             #if defined(__IPHONEOS__)
@@ -154,7 +160,8 @@ void SettingsScene::activateUI(
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
-                _save->setSfx(down);
+                SoundController::getInstance()->setSfxVolume(down ? 1 : 0);
+                SoundController::getInstance()->playSfx("button");
                 });
         }
         else if (button->getName() == "reset") {
@@ -167,6 +174,7 @@ void SettingsScene::activateUI(
             #endif
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
+                SoundController::getInstance()->playSfx("button");
                 _save->resetAll(); 
                 });
         }
@@ -176,6 +184,7 @@ void SettingsScene::activateUI(
             if (!button->hasListener())
             button->addListener([=](const string& name, bool down) {
                 if (!down) {
+                    SoundController::getInstance()->playSfx("button");
                     _finish = true;
                 }
                 });
