@@ -20,13 +20,13 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "offbutton"
+                    "texture": "colorblind-off"
                   }
                 },
                 "down": {
                     "type": "Image",
                     "data": {
-                      "texture": "onbutton"
+                      "texture": "colorblind-on"
                     }
                 }
               }
@@ -44,13 +44,13 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "paletteright"
+                    "texture": "palette-right"
                   }
                 },
                 "down": {
                   "type": "Image",
                   "data": {
-                    "texture": "paletteleft"
+                    "texture": "palette-left"
                   }
                 }
               }
@@ -68,13 +68,13 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "graphicshigh"
+                    "texture": "vfx-low"
                   }
                 },
                 "down": {
                   "type": "Image",
                   "data": {
-                    "texture": "graphicshigh"
+                    "texture": "vfx-high"
                   }
                 }
               }
@@ -92,13 +92,13 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "offbutton"
+                    "texture": "bgm-off"
                   }
                 },
                 "down": {
                     "type": "Image",
                     "data": {
-                      "texture": "onbutton"
+                      "texture": "bgm-on"
                     }
                 }
               }
@@ -116,13 +116,13 @@
                 "up": {
                   "type": "Image",
                   "data": {
-                    "texture": "offbutton"
+                    "texture": "sfx-off"
                   }
                 },
                 "down": {
                     "type": "Image",
                     "data": {
-                      "texture": "onbutton"
+                      "texture": "sfx-on"
                     }
                 }
               }
