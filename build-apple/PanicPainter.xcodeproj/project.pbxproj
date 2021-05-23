@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11119103265A961E001B3EF0 /* PPTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11119101265A961E001B3EF0 /* PPTransition.cpp */; };
+		11119104265A961E001B3EF0 /* PPTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11119101265A961E001B3EF0 /* PPTransition.cpp */; };
+		11119105265A961E001B3EF0 /* PPTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11119101265A961E001B3EF0 /* PPTransition.cpp */; };
 		C5621DAF2604F10300875B72 /* PPInputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DAA2604F0C100875B72 /* PPInputController.cpp */; };
 		C5621DB02604F10300875B72 /* PPInputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DAA2604F0C100875B72 /* PPInputController.cpp */; };
 		C5621DB12604F10300875B72 /* PPInputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5621DAA2604F0C100875B72 /* PPInputController.cpp */; };
@@ -184,6 +187,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11119101265A961E001B3EF0 /* PPTransition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PPTransition.cpp; path = transition/PPTransition.cpp; sourceTree = "<group>"; };
+		11119102265A961E001B3EF0 /* PPTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPTransition.h; path = transition/PPTransition.h; sourceTree = "<group>"; };
 		C5621DA82604F09100875B72 /* PPActionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPActionController.h; sourceTree = "<group>"; };
 		C5621DA92604F09C00875B72 /* PPGameStateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGameStateController.h; sourceTree = "<group>"; };
 		C5621DAA2604F0C100875B72 /* PPInputController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPInputController.cpp; sourceTree = "<group>"; };
@@ -422,6 +427,8 @@
 		C5FB328925F41BCB000694C3 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				11119101265A961E001B3EF0 /* PPTransition.cpp */,
+				11119102265A961E001B3EF0 /* PPTransition.h */,
 				EE14AAAA26459B4D0005E122 /* settings */,
 				EE1BF6C3261F96400045482E /* level */,
 				EE1BF6C9261F96400045482E /* menu */,
@@ -698,7 +705,7 @@
 					};
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = KMCB293693;
+						DevelopmentTeam = 5SYHVH8RKJ;
 						ProvisioningStyle = Automatic;
 					};
 					EBBF18901D74904A008E2001 = {
@@ -828,6 +835,7 @@
 				C5621DB42604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				EF24BCF6261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				C5FB32A125F41BD1000694C3 /* PPLoadingScene.cpp in Sources */,
+				11119105265A961E001B3EF0 /* PPTransition.cpp in Sources */,
 				EEFA1A7325FA816D004641A1 /* PPAnimation.cpp in Sources */,
 				C5621DCB260B8D7300875B72 /* PPColorStrip.cpp in Sources */,
 				C5621E0A260BACE100875B72 /* PPActionController.cpp in Sources */,
@@ -846,6 +854,7 @@
 				EE14ABA4264AF3430005E122 /* PPSaveController.cpp in Sources */,
 				C5621DB32604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				EEBC476B2638DEEB00748B81 /* PPFeedback.cpp in Sources */,
+				11119104265A961E001B3EF0 /* PPTransition.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				EB7454AF1D74D891002FBAE6 /* PPApp.cpp in Sources */,
 				C5621DB62604F10300875B72 /* PPGlobalConfigController.cpp in Sources */,
@@ -882,6 +891,7 @@
 				EE14ABA3264AF3430005E122 /* PPSaveController.cpp in Sources */,
 				C5621DB22604F10300875B72 /* PPGameStateController.cpp in Sources */,
 				EEBC476A2638DEEB00748B81 /* PPFeedback.cpp in Sources */,
+				11119103265A961E001B3EF0 /* PPTransition.cpp in Sources */,
 				C5FB32A525F41BD2000694C3 /* PPGameScene.cpp in Sources */,
 				EF24BCF4261F8FE200B69D31 /* PPSplashEffect.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
@@ -969,12 +979,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = KMCB293693;
+				DEVELOPMENT_TEAM = 5SYHVH8RKJ;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dragonglass.PanicPainter;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dragonglass.PanicPainter-1";
 				PRODUCT_NAME = "panic-painter-ios";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -998,7 +1008,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dragonglass.PanicPainter;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dragonglass.PanicPainter-1";
 				PRODUCT_NAME = "panic-painter-ios";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
