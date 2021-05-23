@@ -222,11 +222,11 @@ void PanicPainterApp::update(float timestep) {
             }
             else if (_pause.getState() == MENU) {
                 _transition.start([=] () {
-                    _currentScene = MENU_SCENE;
-                    _menu.resetState();
+                    _currentScene = WORLD_SCENE;
+                    _world.resetState();
                     _pause.resetState();
                     _pause.deactivate();
-                    _menu.activate();
+                    _world.activate();
                 });
             }
             else {
