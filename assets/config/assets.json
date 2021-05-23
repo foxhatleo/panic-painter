@@ -33,6 +33,18 @@
     "color-diamond-border": {
       "file": "textures/shapes/diamond-border.png"
     },
+    "canvas-splat-1": {
+      "file": "textures/splats/canvas_splat1.png"
+    },
+    "canvas-splat-2": {
+      "file": "textures/splats/canvas_splat2.png"
+    },
+    "canvas-splat-3": {
+      "file": "textures/splats/canvas_splat3.png"
+    },
+    "canvas-splat-4": {
+      "file": "textures/splats/canvas_splat4.png"
+    },
     "palette-3": {
       "file": "textures/palette/palette-3.png"
     },
@@ -241,13 +253,13 @@
       "file": "textures/characters/cat2_walk.png"
     },
     "obstacle-inactive": {
-      "file": "textures/characters/flower_inactive.png"
+      "file": "textures/characters/balloon_inactive.png"
     },
     "obstacle-active": {
-      "file": "textures/characters/flower_active.png"
+      "file": "textures/characters/balloon_active.png"
     },
     "obstacle-explode": {
-      "file": "textures/characters/flower_explode.png"
+      "file": "textures/characters/balloon_explode.png"
     },
     "chick-blink-1": {
       "file": "textures/characters/chick_blink.png"
@@ -456,6 +468,15 @@
     "tutorials-mc1": {
       "file": "textures/tutorials/tutorials-multicolor/1.png"
     },
+    "tutorials-tb1": {
+      "file": "textures/tutorials/tutorials-topbar/1.png"
+    },
+    "tutorials-tb2": {
+      "file": "textures/tutorials/tutorials-topbar/2.png"
+    },
+    "tutorials-tb3": {
+      "file": "textures/tutorials/tutorials-topbar/3.png"
+    },
     "loading-bg": {
       "file": "textures/loading-bg.png"
     },
@@ -520,7 +541,7 @@
     "house-1" : "levels/tutorial-doubletap.json",
     "house-2" : "levels/tutorial-swipe.json",
     "house-3" : "levels/tutorial-timers.json",
-    "house-4" : "levels/tutorial-4.json",
+    "house-4" : "levels/tutorial-topbar.json",
     "house-5" : "levels/house-5.json",
     "eiffel-1" : "levels/eiffel-1.json",
     "eiffel-2" : "levels/eiffel-2.json",
