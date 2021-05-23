@@ -99,7 +99,11 @@ public:
     uint getScoreMetric(string type) const;
     
     void incrementScoreForSwipe(float multiplier);
+
+    float getLevelMultiplier() const;
     
+    void setLevelMultiplier(float lm);
+
     float getMaxScore();
 };
 

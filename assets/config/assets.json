@@ -273,12 +273,6 @@
     "health": {
       "file": "textures/characters/health.png"
     },
-    "level-timer-foreground": {
-      "file": "textures/level-progress/level-timer-foreground.png"
-    },
-    "level-timer-background": {
-      "file": "textures/level-progress/level-timer-background.png"
-    },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
     },
@@ -299,21 +293,6 @@
     },
     "levelfailed": {
       "file": "textures/levelfailed.png"
-    },
-    "levelbutton": {
-      "file": "textures/levelselect/levelbutton.png"
-    },
-    "levelbuttonpass": {
-      "file": "textures/levelselect/levelbuttonpass.png"
-    },
-    "level1": {
-      "file": "textures/levelselect/level1.png"
-    },
-    "level2": {
-      "file": "textures/levelselect/level2.png"
-    },
-    "level3": {
-      "file": "textures/levelselect/level3.png"
     },
     "backbutton": {
       "file": "textures/backbutton.png"
@@ -458,6 +437,30 @@
     },
     "loading-bg": {
       "file": "textures/loading-bg.png"
+    },
+    "1x": {"file":  "textures/gameplay/1x.png"},
+    "2x": {"file":  "textures/gameplay/2x.png"},
+    "3x": {"file":  "textures/gameplay/3x.png"},
+    "4x": {"file":  "textures/gameplay/4x.png"},
+    "5x": {"file":  "textures/gameplay/5x.png"},
+    "6x": {"file":  "textures/gameplay/6x.png"},
+    "7x": {"file":  "textures/gameplay/7x.png"},
+    "8x": {"file":  "textures/gameplay/8x.png"},
+    "9x": {"file":  "textures/gameplay/9x.png"},
+    "10x": {"file":  "textures/gameplay/10x.png"},
+    "max": {"file":  "textures/gameplay/max.png"},
+    "healthbar": {
+      "file": "textures/gameplay/health.png",
+      "wrapS": "clamp",
+      "wrapT": "clamp",
+      "minfilter": "linear",
+      "magfilter": "linear",
+      "atlas": {
+        "background": [ 0, 0, 320, 45 ],
+        "foreground": [ 24, 45, 296, 90 ],
+        "leftcap": [ 0, 45, 24, 90 ],
+        "rightcap": [ 296, 45, 320, 90 ]
+      }
     },
     "transition-right": {
       "file": "textures/transition-right.png"
