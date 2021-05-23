@@ -327,11 +327,22 @@ vec4 getOneStreak(vec2 center1, vec2 center2, vec4 paintColor1, vec4 paintColor2
     vec4 mixColor = vec4(rLerp, gLerp, bLerp, alphaLerp);
     
     //Change to 1-t to reverse trail
-    float adjFalloff = (t) * alphaLerp;
-
+    //float adjFalloff = (t) * alphaLerp;
+    
+    //updated : size based on alpha not distance
+    float adjFalloff = alphaLerp;
+    float newAlpha = 1.0;
+    float fadePoint = .1;
+    
+    if(alphaLerp < fadePoint){
+        newAlpha = alphaLerp;
+    }
+    
+    vec4 passPaint = vec4(paintColor1.xyz, newAlpha);
+    
     if(inRange(closestPoint,fragCoord, splatCutoffSize)){
         //return vec4(255.0, 0.0, 255.0, 1.0);
-        return splatColor(closestPoint, mixColor, fragCoord, uv, adjFalloff);
+        return splatColor(closestPoint, passPaint, fragCoord, uv, adjFalloff);
     }
 
     return defaultColor;
