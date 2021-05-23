@@ -26,6 +26,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.obstacles.clear();
     _state.splats.clear();
     _state.healthBack = 0; 
+    _state.tutorialTexture.clear();
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
         vec<vec<uint>> queue_s;
@@ -103,10 +104,17 @@ void GameStateController::_jsonv1_loadTimer(const json_t &timer) {
     }
 }
 
+void GameStateController::_jsonv1_loadTutorialTextureArray(const json_t &tutorialTextures) {
+    if (tutorialTextures != nullptr) {
+        _state.tutorialTexture = tutorialTextures->asStringArray();
+    }
+}
+
 void GameStateController::_jsonv1_load(const json_t &json) {
     _jsonv1_loadColors(json->get("colors"));
     _jsonv1_loadQueues(json->get("queues"));
     _jsonv1_loadTimer(json->get("timer"));
+    _jsonv1_loadTutorialTextureArray(json->get("tutorialTextures"));
     auto &gc = GlobalConfigController::getInstance();
     _state.maxScore = json->getFloat("scoreThreshold", gc.getScoreThreshold());
 }
@@ -292,6 +300,10 @@ void GameStateController::setLevelMultiplier(float lm) {
 
 float GameStateController::getMaxScore() {
     return _state.maxScore;
+}
+
+vec<string> GameStateController::getTutorialTextures() {
+    return _state.tutorialTexture;
 }
 void GameStateController::addSplat(uint q, uint c) {
     _state.splats[q][c] = _state.splats[q][c] + 1;

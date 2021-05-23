@@ -1,0 +1,16 @@
+{
+  "colors": [[244, 78, 59], [251, 158, 0], [104, 188, 0], [115, 216, 255]],
+  "queues": [
+    [[1], [2], [3], [3], [0]],
+    [[1], [0], [2], [1], [2]],
+    [[1], [2], [3], [2], [1]],
+    [[1], [3], [0], [2], [1]]
+  ],
+  "timer": {"canvasBaseTime": 4, "canvasPerColorTime": 4},
+  "version": 1,
+  "tutorialTextures": [
+    "tutorials-t1", "tutorials-t2", "tutorials-t3"
+   ],
+   "background": "house-bg",
+   "scoreThreshold": 250
+}
