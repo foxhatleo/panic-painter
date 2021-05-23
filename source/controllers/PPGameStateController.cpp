@@ -40,7 +40,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
                 colors.pop_back();
             }
             //Health Potion
-           else if (colors[colors.size() - 1] == ((uint)11)) {
+           else if (colors[colors.size() - 1] == ((uint)12)) {
                 obs_queue_s.push_back(2);
                 
             }
