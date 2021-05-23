@@ -4,6 +4,8 @@
     "timer":{"levelTime":160,"canvasBaseTime":10},
     "version":1,
     "background": "museum-bg",
-    
+    "tutorialTextures": [
+      "tutorials-mc1"
+    ],
     "scoreThreshold": 300
 }
