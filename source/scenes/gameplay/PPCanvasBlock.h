@@ -81,7 +81,7 @@ public:
      * @param canvasColors The vector of color indexes.
      */
     void update(const vec<uint> &canvasColors,
-                const ptr<Timer> &timer);
+                const ptr<Timer> &timer, int numSplats, Color4 currentColor);
 };
 
 #endif //PANICPAINTER_PPCANVASBLOCK_H

@@ -55,14 +55,27 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     _updateFrame = 0;
     _angerLevel = 0;
     // Load in the panda texture from scene and attach to a new polygon node
+
     _splat1 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
         ("canvas-splat-1")));
+    float splatScale = getWidth() / _splat1->getWidth(); 
+    _splat1->setAnchor(Vec2::ANCHOR_CENTER);
+    _splat1->setScale(splatScale, splatScale);
+
     _splat2 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
         ("canvas-splat-2")));
+    _splat2->setAnchor(Vec2::ANCHOR_CENTER);
+    _splat2->setScale(splatScale, splatScale);
+
     _splat3 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
         ("canvas-splat-3")));
+    _splat2->setAnchor(Vec2::ANCHOR_CENTER);
+    _splat3->setScale(splatScale, splatScale);
+
     _splat4 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
         ("canvas-splat-4")));
+    _splat4->setAnchor(Vec2::ANCHOR_CENTER);
+    _splat4->setScale(splatScale, splatScale);
     _texture = _texture_array[0];
     _bg = scene2::AnimationNode::alloc(_texture_array[0], 1, 19);
     _bg->setColor(Color4::WHITE);
@@ -109,7 +122,7 @@ bool CanvasBlock::isFrameComplete() {
 }
 
 void CanvasBlock::update(const vec<uint> &canvasColors,
-                         const ptr<Timer> &timer) {
+                         const ptr<Timer> &timer, int numSplats, Color4 currentColor) {
     if (!_isHealthPotion) {
         _colorStrip->update(canvasColors);
     }
@@ -160,21 +173,38 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
         }
         _updateFrame = 0;
     }
-    if (_addNewSplat && _numSplats <= 4) {
+    if (numSplats != _numSplats && _numSplats < 4) {
         int currentSplat = _startingSplat + _numSplats;
         currentSplat = currentSplat > 4 ? (currentSplat % 4) + 1 : currentSplat; 
+        float xPos = Random::getInstance()->getFloat(_bg->getWidth() / 4,
+            _bg->getWidth() - _bg->getWidth() / 4);
+        float yPos = Random::getInstance()->getFloat(_bg->getHeight() / 4,
+            _bg->getWidth() - _bg->getHeight() / 4);
         if (currentSplat == 1) {
             //Add logic to set scale and shit here
+            _splat1->setColor(currentColor);
+            _splat1->setPosition(Vec2(xPos, yPos));
+            addChild(_splat1);
         }
         if (currentSplat == 2) {
             //Add logic to set scale and shit here
+            _splat2->setColor(currentColor);
+            _splat2->setPosition(Vec2(xPos, yPos));
+            addChild(_splat2);
         }
         if (currentSplat == 3) {
             //Add logic to set scale and shit here
+            _splat3->setColor(currentColor);
+            _splat3->setPosition(Vec2(xPos, yPos));
+            addChild(_splat3);
         }
         if (currentSplat == 4) {
             //Add logic to set scale and shit here
+            _splat4->setColor(currentColor);
+            _splat4->setPosition(Vec2(xPos, yPos));
+            addChild(_splat4);
         }
+        _numSplats++; 
         
     }
     //Commenting instead of removing for debug purposes
