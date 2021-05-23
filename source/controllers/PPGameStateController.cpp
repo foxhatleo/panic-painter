@@ -22,7 +22,8 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.wrongActions.clear();
     _state.recorded.clear();
     _state.obstacles.clear(); 
-    _state.healthBack = 0; 
+    _state.healthBack = 0;
+    _state.tutorialTexture.clear();
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
         vec<vec<uint>> queue_s;
