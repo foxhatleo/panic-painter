@@ -168,6 +168,7 @@ void GameScene::loadLevel(const string &levelName) {
         addChild(_tutorialOverlay);
     }
 
+
     _action = make_shared<ActionController>(_state, _canvases);
 
     addChild(_backBtn);

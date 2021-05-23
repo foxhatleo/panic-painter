@@ -477,6 +477,9 @@
     "tutorials-tb3": {
       "file": "textures/tutorials/tutorials-topbar/3.png"
     },
+    "tutorials-b1": {
+      "file": "textures/tutorials/tutorials-bombs/1.png"
+    },
     "loading-bg": {
       "file": "textures/loading-bg.png"
     },
