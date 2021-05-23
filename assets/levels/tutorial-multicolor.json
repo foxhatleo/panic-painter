@@ -5,7 +5,7 @@
     "version":1,
     "background": "museum-bg",
     "tutorialTextures": [
-      "tutorials-s1"
+      "tutorials-mc1"
     ],
     "scoreThreshold": 800
 }

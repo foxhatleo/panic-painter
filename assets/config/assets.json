@@ -452,6 +452,10 @@
     },
     "tutorials-t3": {
       "file": "textures/tutorials/tutorials-timers/3.png"
+    },
+    "tutorials-mc1": {
+      "file": "textures/tutorials/tutorials-multicolor/1.png"
+    },
     "loading-bg": {
       "file": "textures/loading-bg.png"
     },
