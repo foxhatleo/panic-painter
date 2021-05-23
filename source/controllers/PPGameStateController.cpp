@@ -152,7 +152,7 @@ void GameStateController::update(float timestep) {
                 }
                 else {
                     if (cs == DONE) {
-                        _state.healthBack += 0.8;
+                        _state.healthBack += 1; 
                     }
                 }
                 _state.scoreTracker["aggregateScore"] = max(0, (int) _state.scoreTracker["aggregateScore"]);
