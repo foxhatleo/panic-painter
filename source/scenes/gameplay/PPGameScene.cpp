@@ -219,7 +219,7 @@ void GameScene::update(float timestep) {
 
     float health = 1 - (float)(_state.getScoreMetric("wrongAction") +
         _state.getScoreMetric("timedOut") - _state.getHealthBack()) /
-            (_state.getState().nCanvasInLevel / 3);
+            (_state.getState().nCanvasInLevel / 4);
     if (health < 0) health = 0;
     if (health > 1) health = 1;
 
