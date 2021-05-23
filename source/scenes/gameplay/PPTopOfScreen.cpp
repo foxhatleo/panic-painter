@@ -16,10 +16,13 @@ void TopOfScreen::_setup() {
 //    n->setColor(Color4f(0, 1, 1, .3));
 //    addChild(n);
 
-    for (uint i = 1; i <= 10; i++) {
-        _multiplierTextures[i - 1] = _assets->get<Texture>(to_string(i) + "x");
+    for (uint i = 10; i <= 30; i++) {
+        string n = to_string(i / 10) + "." + to_string(i % 10) +
+                   "x";
+        CULog("%s", n.c_str());
+        _multiplierTextures[i - 10] =
+            _assets->get<Texture>(n);
     }
-    _multiplierTextures[10] = _assets->get<Texture>("max");
     _multiplier = PolygonNode::allocWithTexture(_multiplierTextures[0]);
     _multiplier->setAnchor(Vec2::ANCHOR_MIDDLE_RIGHT);
     _multiplier->setScale((getHeight()) / _multiplier->getContentWidth());
@@ -58,8 +61,7 @@ void TopOfScreen::update(float progress, uint multiplier, uint starN) {
     Animation::to(_progressBar, .2f, {
         {"progress", progress}
     });
-    _multiplier->setTexture(_multiplierTextures[multiplier <=
-    9 ? multiplier : 10]);
+    _multiplier->setTexture(_multiplierTextures[multiplier - 10]);
     _stars->setTexture(_starsTexture[starN]);
 }
 
