@@ -480,6 +480,9 @@
     "tutorials-b1": {
       "file": "textures/tutorials/tutorials-bombs/1.png"
     },
+    "tutorials-p1": {
+      "file": "textures/tutorials/tutorials-potions/1.png"
+    },
     "loading-bg": {
       "file": "textures/loading-bg.png"
     },
