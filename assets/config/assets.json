@@ -241,13 +241,13 @@
       "file": "textures/characters/cat2_walk.png"
     },
     "obstacle-inactive": {
-      "file": "textures/characters/flower_inactive.png"
+      "file": "textures/characters/balloon_inactive.png"
     },
     "obstacle-active": {
-      "file": "textures/characters/flower_active.png"
+      "file": "textures/characters/balloon_active.png"
     },
     "obstacle-explode": {
-      "file": "textures/characters/flower_explode.png"
+      "file": "textures/characters/balloon_explode.png"
     },
     "chick-blink-1": {
       "file": "textures/characters/chick_blink.png"

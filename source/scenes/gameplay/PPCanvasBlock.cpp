@@ -125,6 +125,9 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
             else if (timer->timeLeft() < 5) {
                 _angerLevel = 2;
             }
+            else if (_angerLevel == 2) {
+                timer->update(1000);
+            }
             _bg_setTexture(_texture_array[_angerLevel]);
             _bg->setFrame(0);
         }
