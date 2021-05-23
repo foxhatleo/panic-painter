@@ -66,7 +66,7 @@ const float MAGIC_BOX_MAGIC = .55; //This number is scary, dont mess with it, .5
 //Splatter
 float centerThreshold = 1.0; //Closer they are, further it goes?
 float edgeThreshold = 100.0;
-float splatFalloffSize = .8;
+float splatFalloffSize = .5;
 float splatCutoffSize = .2;
 vec4 defaultColor = vec4(0,0,0,0);
 vec2 iResolution;
