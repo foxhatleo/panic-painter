@@ -209,8 +209,11 @@ void GameScene::update(float timestep) {
             // Get the derived canvas state and pass it to the canvases.
             auto state = _state.getCanvasState(i, i2);
             auto ps = _canvases[i][i2]->getPreviousState();
-            _canvases[i][i2]->update(state, _state.getColorsOfCanvas(i, i2));
-
+            _canvases[i][i2]->update(state, _state.getNumSplats(i, i2),
+                _state.getColorsOfCanvas(i, i2), _state.getColors()[_palette->getSelectedColor()]);
+            if (_state.getNumSplats(i, i2) >= 4){
+                _state.removeSplats(i, i2);
+               }
             if (state == ACTIVE)
                 activeCanvases.insert(pair<uint, uint>(i, i2));
 

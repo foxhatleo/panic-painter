@@ -33,6 +33,18 @@
     "color-diamond-border": {
       "file": "textures/shapes/diamond-border.png"
     },
+    "canvas-splat-1": {
+      "file": "textures/splats/canvas_splat1.png"
+    },
+    "canvas-splat-2": {
+      "file": "textures/splats/canvas_splat2.png"
+    },
+    "canvas-splat-3": {
+      "file": "textures/splats/canvas_splat3.png"
+    },
+    "canvas-splat-4": {
+      "file": "textures/splats/canvas_splat4.png"
+    },
     "palette-3": {
       "file": "textures/palette/palette-3.png"
     },

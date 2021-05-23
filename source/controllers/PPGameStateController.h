@@ -105,6 +105,10 @@ public:
     void setLevelMultiplier(float lm);
 
     float getMaxScore();
+
+    void addSplat(uint q, uint c);
+    int getNumSplats(uint q, uint c);
+    void removeSplats(uint q, uint c);
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H
