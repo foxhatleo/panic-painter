@@ -52,7 +52,7 @@ void CanvasBlock::_setup(const asset_t &assets, const vec<Color4>& colors, const
     //Splat generation
     _splat1 = scene2::PolygonNode::allocWithTexture((assets->get<Texture>
         ("canvas-splat-1")));
-    float splatScale = getWidth() / (_splat1->getWidth()*2);
+    float splatScale = getWidth() / (_splat1->getWidth()*1.75);
     _splat1->setAnchor(Vec2::ANCHOR_CENTER);
     _splat1->setScale(splatScale, splatScale);
 
