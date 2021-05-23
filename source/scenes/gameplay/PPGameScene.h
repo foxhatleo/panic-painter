@@ -54,6 +54,8 @@ private:
     string _levelName;
 
     string _musicName;
+    
+    int _tutorialTracker;
 
 public:
     GameScene() : Scene2(), _pauseRequest(false), _complete(nullptr) {}

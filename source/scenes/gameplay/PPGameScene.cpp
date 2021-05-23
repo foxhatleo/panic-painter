@@ -25,9 +25,10 @@ void GameScene::loadLevel(const string &levelName) {
     _dangerBar.reset();
     _palette.reset();
     _action.reset();
-
     _complete = nullptr;
-
+    
+    _tutorialTracker = 0;
+    
     // Find Level file.
     const json_t levelJson = _assets->get<JsonValue>(levelName);
     _levelName = levelName;
@@ -167,6 +168,13 @@ void GameScene::loadLevel(const string &levelName) {
 }
 
 void GameScene::update(float timestep) {
+    auto &input = InputController::getInstance();
+    
+    int prevTutorialTracker = _tutorialTracker;
+    if (input.justReleased()) _tutorialTracker += 1;
+    
+    if (prevTutorialTracker != _tutorialTracker && _tutorialTracker < 5) CULog("tutorial tracker # %d", _tutorialTracker);
+    
     if (_complete) {
         _complete->update(timestep);
         return;
@@ -178,7 +186,6 @@ void GameScene::update(float timestep) {
     // So the first thing is to update the game state.
     _state.update(timestep);
 
-    auto &input = InputController::getInstance();
     if (input.justReleased() && input.isJustTap() &&
         InputController::inScene(input.currentPoint(), _backBtnArea)) {
         _splash->clear();
@@ -211,12 +218,11 @@ void GameScene::update(float timestep) {
                     _dangerBar->getDangerBarPoint(),
                     t);
             }
-
-            // At the beginning of a frame, set canvas hover to false.
-//            _canvases[i][i2]->setHover(false);
         }
     }
-
+    
+    if (_tutorialTracker < 5) return;
+    
     _feedback->update(timestep);
     _palette->update();
     Rect canvasArea = Application::get()->getSafeBounds();
