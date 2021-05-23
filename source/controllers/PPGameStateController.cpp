@@ -19,6 +19,7 @@ void GameStateController::_jsonv1_loadColors(const json_t &colors) {
 }
 
 void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
+    _state.nCanvasInLevel = 0;
     _state.queues.clear();
     _state.wrongActions.clear();
     _state.recorded.clear();
@@ -31,6 +32,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
         vec<bool> obs_queue_s;
         // Build canvas of each queue.
         for (const auto &canvas : queue->asArray()) {
+            _state.nCanvasInLevel++;
             const auto r = canvas->asIntArray();
             // This is to cast vec<int> to vec<uint>.
             vec<uint> colors(r.begin(), r.end());

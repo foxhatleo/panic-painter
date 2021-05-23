@@ -33,6 +33,8 @@ struct GameState {
     
     unordered_map<string, uint> scoreTracker;
 
+    uint nCanvasInLevel;
+
     /**
      * The representation of the queue. This is a bit tricky so let me explain.
      *

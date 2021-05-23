@@ -2,7 +2,6 @@
 
 #define PALETTE_WIDTH .1f
 #define TIMER_HEIGHT .1f
-#define MISTAKE_ALLLOWED 10
 
 void GameScene::dispose() {
     Scene2::dispose();
@@ -182,8 +181,10 @@ void GameScene::update(float timestep) {
 
     uint mul = round(_state.getLevelMultiplier() * 10) - 10;
 
-    _tos->update(max(0.0f, 1 - (float)(_state.getScoreMetric("wrongAction") +
-    _state.getScoreMetric("timedOut")) / MISTAKE_ALLLOWED), mul);
+    float health = 1 - (float)(_state.getScoreMetric("wrongAction") +
+        _state.getScoreMetric("timedOut")) /
+            (_state.getState().nCanvasInLevel / 3);
+    _tos->update(health, mul);
 
     set<pair<uint, uint>> activeCanvases;
 
@@ -231,8 +232,7 @@ void GameScene::update(float timestep) {
     _action->update(activeCanvases, _palette->getSelectedColor());
 
     // Check if the level is complete
-    if ((activeCanvases.empty() || _state.getScoreMetric("wrongAction") >
-    MISTAKE_ALLLOWED) &&
+    if ((activeCanvases.empty() || health < 0.01f) &&
     !_congratulations) {
         _splash->clear();
         //Gradually clear out the splatters
