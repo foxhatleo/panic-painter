@@ -9,7 +9,7 @@
   "timer": {"canvasBaseTime": 4, "canvasPerColorTime": 4},
   "version": 1,
   "tutorialTextures": [
-    "tutorials-dt1", "tutorials-dt2", "tutorials-dt3"
+    "tutorials-t1", "tutorials-t2", "tutorials-t3"
    ],
    "background": "house-bg",
    "scoreThreshold": 250

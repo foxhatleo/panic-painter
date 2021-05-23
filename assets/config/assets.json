@@ -462,8 +462,17 @@
     "tutorials-dt2": {
       "file": "textures/tutorials/tutorials-doubletap/2.png"
     },
-    "tutorials-dt3": {
-      "file": "textures/tutorials/tutorials-doubletap/3.png"
+    "tutorials-s1": {
+      "file": "textures/tutorials/tutorials-swipe/1.png"
+    },
+    "tutorials-t1": {
+      "file": "textures/tutorials/tutorials-timers/1.png"
+    },
+    "tutorials-t2": {
+      "file": "textures/tutorials/tutorials-timers/2.png"
+    },
+    "tutorials-t3": {
+      "file": "textures/tutorials/tutorials-timers/3.png"
     }
   },
   "jsons": {
@@ -473,7 +482,7 @@
     "worldselect": "scenes/worldselect.json",
     "levelselect": "scenes/levelselect.json",
     "settings": "scenes/settings.json",
-    "museum-1" : "levels/museum-1.json",
+    "museum-1" : "levels/tutorial-multicolor.json",
     "museum-2" : "levels/museum-2.json",
     "museum-3" : "levels/museum-3.json",
     "museum-4" : "levels/museum-4.json",

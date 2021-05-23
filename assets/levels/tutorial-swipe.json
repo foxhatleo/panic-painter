@@ -10,7 +10,7 @@
   "version": 1,
   "background": "house-bg",
   "tutorialTextures": [
-      "tutorials-dt1", "tutorials-dt2", "tutorials-dt3"
+    "tutorials-s1"
   ],
   "scoreThreshold": 250
 }
