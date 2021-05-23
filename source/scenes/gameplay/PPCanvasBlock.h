@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "utils/PPTimer.h"
+#include "controllers/PPInputController.h"
 #include "PPColorStrip.h"
 #include "utils/PPAnimation.h"
 #include "controllers/PPGameStateController.h"

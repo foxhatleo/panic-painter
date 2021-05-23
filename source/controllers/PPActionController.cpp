@@ -105,8 +105,8 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                      input.currentPoint().x <= in_end_box.getMaxX() :
                      input.currentPoint().x >= in_end_box.getMinX())
                     ) {
-//                    _canvases[i][i2]->setHover(input.isPressing());
                     _state.addSplat(i, i2);
+//                    _canvases[i][i2]->setHover(input.isPressing());
                     toClear.push_back({i, i2});
                 }
             }

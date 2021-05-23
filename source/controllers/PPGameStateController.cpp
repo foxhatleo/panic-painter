@@ -287,3 +287,6 @@ void GameStateController::addSplat(uint q, uint c) {
 int GameStateController::getNumSplats(uint q, uint c) {
     return _state.splats[q][c];
 }
+void GameStateController::removeSplats(uint q, uint c) {
+    _state.splats[q][c] = 0; 
+}

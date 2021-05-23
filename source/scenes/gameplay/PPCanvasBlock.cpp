@@ -171,13 +171,24 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
             _bg->setFrame(_bg->getFrame() + 1);
         }
         _updateFrame = 0;
-        if (numSplats != _numSplats && _numSplats < 4) {
-            int currentSplat = _startingSplat + _numSplats;
-            currentSplat = currentSplat > 4 ? (currentSplat % 4) + 1 : currentSplat;
-            float xPos = Random::getInstance()->getFloat(_bg->getWidth() / 3,
-                _bg->getWidth() - _bg->getWidth() / 3);
-            float yPos = Random::getInstance()->getFloat(_bg->getHeight() / 3,
-                _bg->getWidth() - _bg->getHeight() / 3);
+        
+    }
+    //Commenting instead of removing for debug purposes
+    //  _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
+    if (numSplats > _numSplats && _numSplats < 4) {
+        int currentSplat = _startingSplat + _numSplats;
+        currentSplat = currentSplat > 4 ? (currentSplat % 4) + 1 : currentSplat;
+        float xPos = Random::getInstance()->getFloat(_bg->getWidth() / 3,
+            _bg->getWidth() - _bg->getWidth() / 3);
+        float yPos = Random::getInstance()->getFloat(_bg->getHeight() / 3,
+            _bg->getWidth() - _bg->getHeight() / 3);
+        bool addSplat = (_splat4->getParent() == nullptr || _splat4->getColor() != currentColor) &&
+            (_splat3->getParent() == nullptr || _splat3->getColor() != currentColor) &&
+            (_splat2->getParent() == nullptr || _splat2->getColor() != currentColor) &&
+            (_splat1->getParent() == nullptr || _splat1->getColor() != currentColor);
+        auto& input = InputController::getInstance();
+        bool justReleased = (input.didDoubleTap() || input.justReleased());
+        if (addSplat && justReleased) {
             if (currentSplat == 1) {
                 //Add logic to set scale and shit here
                 if (_splat1->getParent() == nullptr) {
@@ -185,52 +196,35 @@ void CanvasBlock::update(const vec<uint> &canvasColors,
                     _splat1->setPosition(Vec2(xPos, yPos));
                     addChild(_splat1);
                 }
-                else {
-                    currentSplat++; 
-                    _numSplats++; 
-                }
             }
-            if (currentSplat == 2) {
+            else if (currentSplat == 2) {
                 //Add logic to set scale and shit here
                 if (_splat2->getParent() == nullptr) {
                     _splat2->setColor(currentColor);
                     _splat2->setPosition(Vec2(xPos, yPos));
                     addChild(_splat2);
                 }
-                else {
-                    currentSplat++;
-                    _numSplats++;
-                }
             }
-            if (currentSplat == 3) {
+            else if (currentSplat == 3) {
                 //Add logic to set scale and shit here
                 if (_splat3->getParent() == nullptr) {
                     _splat3->setColor(currentColor);
                     _splat3->setPosition(Vec2(xPos, yPos));
                     addChild(_splat3);
                 }
-                else {
-                    currentSplat++;
-                    _numSplats++;
-                }
             }
-            if (currentSplat == 4) {
+            else if (currentSplat == 4) {
                 //Add logic to set scale and shit here
                 if (_splat4->getParent() == nullptr) {
                     _splat4->setColor(currentColor);
                     _splat4->setPosition(Vec2(xPos, yPos));
                     addChild(_splat4);
                 }
-                else {
-                    _numSplats++;
-                }
             }
             _numSplats++;
 
         }
     }
-    //Commenting instead of removing for debug purposes
-    //  _timerText->setText(to_string((uint)ceil(timer->timeLeft())));
 }
 
 void CanvasBlock::setWalking(bool value) {
