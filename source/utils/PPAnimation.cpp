@@ -68,6 +68,11 @@ void Animation::_init() {
                 entry.second += M_PI * 2;
             }
             _from.insert({"angle", b});
+        } else if (entry.first == "progress") {
+            ptr<ProgressBar> n = dynamic_pointer_cast<scene2::ProgressBar>
+                (_lockedTarget);
+            if (n == nullptr) continue;
+            setFrom("progress", n->getProgress());
         }
     }
     _initted = true;
@@ -135,6 +140,14 @@ void Animation::_render(float timestep) {
                 if (v < 0) v += M_PI * 2;
             }
             _lockedTarget->setAngle(v);
+
+        } else if (entry.first == "progress") {
+            ptr<ProgressBar> n = dynamic_pointer_cast<scene2::ProgressBar>
+                (_lockedTarget);
+            if (n == nullptr) continue;
+            float b = _from.find("progress")->second;
+            float v = (entry.second - b) * progress + b;
+            n->setProgress(v);
 
         }
     }

@@ -115,9 +115,6 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scenes\gameplay\PPDangerBar.cpp">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp">
       <Filter>Scenes\Settings</Filter>
     </ClCompile>
@@ -125,6 +122,9 @@
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorCircle.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPTopOfScreen.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\transition\PPTransition.cpp">
@@ -220,9 +220,6 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPDangerBar.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h">
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
@@ -230,6 +227,9 @@
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorCircle.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPTopOfScreen.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\transition\PPTransition.h">
