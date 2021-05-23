@@ -6,6 +6,7 @@ void SoundController::init(const asset_t &assets) {
     _assets = assets;
     _bgm = AudioEngine::get()->getMusicQueue();
     _bgmVolume = SaveController::getInstance()->getBgmVolume();
+    _bgm->setVolume(_bgmVolume);
     _sfxVolume = SaveController::getInstance()->getSfxVolume();
     CULog("Volume setting from save: [bgm]%.2f, [sfx]%.2f",
           _bgmVolume, _sfxVolume);
@@ -22,6 +23,7 @@ float SoundController::getSfxVolume() const {
 
 void SoundController::setBgmVolume(float value) {
     _bgmVolume = value;
+    _bgm->setVolume(value);
     SaveController::getInstance()->setBgmVolume(value);
 }
 

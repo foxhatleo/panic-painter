@@ -464,6 +464,12 @@
     },
     "settings-tray": {
       "file": "textures/settings/settings-tray.png"
+    },
+    "transition-right": {
+      "file": "textures/transition-right.png"
+    },
+    "transition-left": {
+      "file": "textures/transition-left.png"
     }
   },
   "jsons": {
