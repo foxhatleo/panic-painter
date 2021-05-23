@@ -270,13 +270,6 @@
     "chick-walk": {
       "file": "textures/characters/chick_walk.png"
     },
-
-    "level-timer-foreground": {
-      "file": "textures/level-progress/level-timer-foreground.png"
-    },
-    "level-timer-background": {
-      "file": "textures/level-progress/level-timer-background.png"
-    },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
     },
