@@ -204,7 +204,7 @@ void GameScene::update(float timestep) {
     SoundController::getInstance()->useBgm(_musicName);
 
     // So the first thing is to update the game state.
-    if(numTutorialOverlays==0 || _tutorialTracker >= numTutorialOverlays)
+    if(numTutorialOverlays==0 || _tutorialTracker == numTutorialOverlays)
         _state.update(timestep);
 
     if (input.justReleased() && input.isJustTap() &&
