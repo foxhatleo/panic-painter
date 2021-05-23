@@ -271,7 +271,7 @@ void GameScene::update(float timestep) {
             addChild(lc);
             SaveController::getInstance()->unlock(_levelName);
             SaveController::getInstance()->setScore(_levelName, score);
-//            SaveController::getInstance()->setStars(_levelName, stars);
+            SaveController::getInstance()->setStars(_levelName, stars);
         
             CULog("timed out: %d", _state.getScoreMetric("timedOut"));
             CULog("correct: %d", _state.getScoreMetric("correct"));
