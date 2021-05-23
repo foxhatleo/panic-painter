@@ -156,11 +156,20 @@ void GameScene::loadLevel(const string &levelName) {
 
     _feedback = Feedback::alloc(Application::get()->getDisplayBounds(),
                                 _assets);
+    
 
     addChild(_splash);
     addChild(_dangerBar);
     addChild(_palette);
     addChild(_feedback);
+    if (!_state.getTutorialTextures().empty()) {
+        _tutorialOverlay = PolygonNode::allocWithTexture(_assets->get<Texture>(_state.getTutorialTextures()[0]));
+        _tutorialOverlay->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+        _tutorialOverlay->setPosition(Application::get()->getSafeBounds().origin);
+        _tutorialOverlay->setContentSize(Application::get()->getSafeBounds().size);
+        _tutorialOverlay->setTag(1);
+        addChild(_tutorialOverlay);
+    }
 
     _action = make_shared<ActionController>(_state, _canvases);
 
@@ -172,11 +181,22 @@ void GameScene::update(float timestep) {
     auto &input = InputController::getInstance();
     
     int prevTutorialTracker = _tutorialTracker;
+    int numTutorialOverlays = (int) _state.getTutorialTextures().size();
+    
+    if (numTutorialOverlays > 0) {
+        if (_tutorialTracker < numTutorialOverlays) {
+            _tutorialOverlay->setTexture(_assets->get<Texture>(_state.getTutorialTextures()[_tutorialTracker]));
+        } else if (_tutorialTracker == numTutorialOverlays) {
+            // we've finished all the textures
+            if (getChildByTag(1) != nullptr) removeChildByTag(1);
+        }
+    }
+    
     if (input.justReleased()) _tutorialTracker += 1;
     
-    if (_tutorialTracker < (int) _state.getTutorialTextures().size()) return;
+    //if (_tutorialTracker < numTutorialOverlays) return;
     
-    if (prevTutorialTracker != _tutorialTracker && _tutorialTracker < (int) _state.getTutorialTextures().size())
+    if (prevTutorialTracker != _tutorialTracker && _tutorialTracker < numTutorialOverlays)
         CULog("tutorial tracker # %d", _tutorialTracker);
     
     if (_complete) {
@@ -240,7 +260,7 @@ void GameScene::update(float timestep) {
                     _state.getColors()[_palette->getSelectedColor()],
                     pressing ? input.currentPoint() : Vec2::ZERO);
     _action->update(activeCanvases, _palette->getSelectedColor());
-
+    
     // Check if the level is complete
     if ((activeCanvases.empty() || currentHealth>
     MISTAKE_ALLLOWED) &&

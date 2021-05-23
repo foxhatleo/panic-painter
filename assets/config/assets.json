@@ -455,6 +455,15 @@
     },
     "graphicslow": {
       "file": "textures/settings/graphicslow.png"
+    },
+    "tutorials-dt1": {
+      "file": "textures/tutorials/tutorials-doubletap/1.png"
+    },
+    "tutorials-dt2": {
+      "file": "textures/tutorials/tutorials-doubletap/2.png"
+    },
+    "tutorials-dt3": {
+      "file": "textures/tutorials/tutorials-doubletap/3.png"
     }
   },
   "jsons": {
