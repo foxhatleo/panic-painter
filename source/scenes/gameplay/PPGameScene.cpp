@@ -144,15 +144,15 @@ void GameScene::loadLevel(const string &levelName) {
                              gtBound.origin.x;
     }
     _tos = TopOfScreen::alloc(_assets, gtBound);
-    
     _splash = SplashEffect::alloc(_assets,
                                   Application::get()->getDisplayBounds(),
                                   1);
 
     _feedback = Feedback::alloc(Application::get()->getDisplayBounds(),
                                 _assets);
-
-    addChild(_splash);
+    if (SaveController::getInstance()->getSfx()) {
+        addChild(_splash);
+    }
     addChild(_tos);
     addChild(_palette);
     addChild(_feedback);
@@ -176,7 +176,9 @@ void GameScene::update(float timestep) {
     auto &input = InputController::getInstance();
     if (input.justReleased() && input.isJustTap() &&
         InputController::inScene(input.currentPoint(), _backBtnArea)) {
-        _splash->clear();
+        if (_splash->getParent() != nullptr) {
+            _splash->clear();
+        }
         _pauseRequest = true;
     }
 
@@ -248,16 +250,20 @@ void GameScene::update(float timestep) {
     }
     bool pressing = input.isPressing() &&
                     !InputController::inScene(input.currentPoint(), _palette->getBoundingBox());
-    _splash->update(timestep,
-                    activeCanvases.empty() ? Color4::CLEAR : 
-                    _state.getColors()[_palette->getSelectedColor()],
-                    pressing ? input.currentPoint() : Vec2::ZERO);
+    if (_splash->getParent() != nullptr) {
+        _splash->update(timestep,
+            activeCanvases.empty() ? Color4::CLEAR :
+            _state.getColors()[_palette->getSelectedColor()],
+            pressing ? input.currentPoint() : Vec2::ZERO);
+    }
     _action->update(activeCanvases, _palette->getSelectedColor());
 
     // Check if the level is complete
     if ((activeCanvases.empty() || health < 0.01f) &&
     !_congratulations) {
-        _splash->clear();
+        if (_splash->getParent() != nullptr) {
+            _splash->clear();
+        }
         //Gradually clear out the splatters
         _complete = make_shared<Timer>(5);
         auto ds = Application::get()->getDisplaySize();
