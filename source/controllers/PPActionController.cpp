@@ -43,6 +43,8 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                     int newColors = (int) _state.getColorsOfCanvas(i, i2).size();
                     if (newColors >= prevColors) {
                         _state.setLevelMultiplier(1);
+                    } else {
+                        _state.incrementScoreForSwipe(1);
                     }
                     input.clearPreviousTaps();
                 }
