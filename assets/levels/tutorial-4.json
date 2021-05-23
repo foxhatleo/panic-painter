@@ -6,5 +6,6 @@
     "tutorialTextures": [
         "tutorials-dt1", "tutorials-dt2", "tutorials-dt3"
        ],
+    "background": "house-bg",
     "scoreThreshold": 300
 }
