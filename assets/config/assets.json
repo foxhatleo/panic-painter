@@ -455,6 +455,12 @@
     },
     "graphicslow": {
       "file": "textures/settings/graphicslow.png"
+    },
+    "transition-right": {
+      "file": "textures/transition-right.png"
+    },
+    "transition-left": {
+      "file": "textures/transition-left.png"
     }
   },
   "jsons": {
