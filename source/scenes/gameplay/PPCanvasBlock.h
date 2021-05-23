@@ -34,6 +34,11 @@ private:
     /** The timer text. */
     ptr<Label> _timerText;
 
+    ptr<PolygonNode>_splat1;
+    ptr<PolygonNode>_splat2;
+    ptr<PolygonNode>_splat3;
+    ptr<PolygonNode>_splat4;
+
     /*When to update the animation*/
     int _updateFrame;
     /*How angry is the character*/
@@ -47,6 +52,9 @@ private:
     /*Is this canvas a health potion?*/
     bool _isHealthPotion;
     bool _walking;
+    /*Texture splats*/
+    int _numSplats;
+    int _startingSplat;
     /** Game state. */
     GameStateController _state;
     ptr<Texture> _texture;
@@ -74,8 +82,8 @@ public:
      * Update the canvas block.
      * @param canvasColors The vector of color indexes.
      */
-    void update(const vec<uint> &canvasColors,
-                const ptr<Timer> &timer);
+    void update(const vec<uint>& canvasColors,
+        const ptr<Timer>& timer,int numSplats, Color4 currentColor);
 };
 
 #endif //PANICPAINTER_PPCANVASBLOCK_H

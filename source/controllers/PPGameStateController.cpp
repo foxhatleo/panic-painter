@@ -21,7 +21,8 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
     _state.queues.clear();
     _state.wrongActions.clear();
     _state.recorded.clear();
-    _state.obstacles.clear(); 
+    _state.obstacles.clear();
+    _state.splats.clear();
     _state.healthBack = 0; 
     // Build each queue.
     for (const auto &queue : queues->asArray()) {
@@ -29,6 +30,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
         vec<bool> wa_queue_s;
         vec<bool> r_queue_s;
         vec<int> obs_queue_s;
+        vec<int> splts_queue_s;
         // Build canvas of each queue.
         for (const auto &canvas : queue->asArray()) {
             const auto r = canvas->asIntArray();
@@ -50,6 +52,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
             queue_s.push_back(colors);
             wa_queue_s.push_back(false);
             r_queue_s.push_back(false);
+            splts_queue_s.push_back(0);
 
 
         }
@@ -57,6 +60,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
         _state.recorded.push_back(r_queue_s);
         _state.queues.push_back(queue_s);
         _state.obstacles.push_back(obs_queue_s);
+        _state.splats.push_back(splts_queue_s);
     }
 }
 
@@ -276,4 +280,10 @@ void GameStateController::incrementScoreForSwipe(float multiplier) {
 
 float GameStateController::getMaxScore() {
     return _state.maxScore;
+}
+void GameStateController::addSplat(uint q, uint c) {
+    _state.splats[q][c] = _state.splats[q][c] + 1;
+}
+int GameStateController::getNumSplats(uint q, uint c) {
+    return _state.splats[q][c];
 }

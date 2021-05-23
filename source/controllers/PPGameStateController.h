@@ -101,6 +101,9 @@ public:
     void incrementScoreForSwipe(float multiplier);
     
     float getMaxScore();
+
+    void addSplat(uint q, uint c);
+    int getNumSplats(uint q, uint c);
 };
 
 #endif //PANICPAINTER_PPGAMESTATECONTROLLER_H

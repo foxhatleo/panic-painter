@@ -29,6 +29,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 // SCRIBBLING
                 if (input.didDoubleTap() && !_state.getIsHealthPotion(i, i2) && input.justReleased() &&
                     startingPointIn && currentPointIn) {
+                    _state.addSplat(i, i2);
                     auto n = _state.clearColor(i, i2, selectedColor);
                     if (n == GameStateController::ALL_CLEAR) {
                         SoundController::getInstance()->playSfx(
@@ -105,6 +106,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                      input.currentPoint().x >= in_end_box.getMinX())
                     ) {
 //                    _canvases[i][i2]->setHover(input.isPressing());
+                    _state.addSplat(i, i2);
                     toClear.push_back({i, i2});
                 }
             }
@@ -124,7 +126,10 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 if (i == GameStateController::ALL_CLEAR && i == 0) z = 1;
                 else if (i == GameStateController::NO_MATCH) z = 2;
                 int newColors = (int) _state.getColorsOfCanvas(p.first, p.second).size();
-                if (newColors < prevColors) numCorrect += 1;
+                if (newColors < prevColors) { 
+                    numCorrect += 1;
+                    
+                }
             }
             if (z == 1) {
                 SoundController::getInstance()->playSfx(

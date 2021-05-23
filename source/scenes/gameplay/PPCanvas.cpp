@@ -73,7 +73,7 @@ Vec2 Canvas::getFeedbackStartPointInGlobalCoordinates() {
     );
 }
 
-void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
+void Canvas::update(CanvasState state, int numSplats, const vec<uint>& canvasColors, Color4 currentColor) {
     // If this canvas should be visible:
     if (state == ACTIVE || state == STANDBY) {
         // Add the block if necessary.
@@ -97,7 +97,7 @@ void Canvas::update(CanvasState state, const vec<uint> &canvasColors) {
 
         // Update block.
         _block->setIsActive(state == ACTIVE);
-        _block->update(canvasColors, _timer);
+        _block->update(canvasColors, _timer, numSplats, currentColor);
 
         // If the block is going from shown to hidden.
     } else if (_block->getParent() != nullptr && state != _previousState) {

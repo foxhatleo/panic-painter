@@ -57,6 +57,8 @@ struct GameState {
     3: beach ball (if implemented)*/
     vec<vec<int>> obstacles; 
 
+    //This keeps track as to how many splats each canvas has
+    vec<vec<int>> splats;
     /**
      * This records which canvases are lost due to wrong actions.
      */
