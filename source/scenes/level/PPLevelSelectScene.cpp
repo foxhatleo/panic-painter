@@ -105,6 +105,19 @@ void LevelSelectScene::activateUI(
                 } else {
                     button->setColor(Color4f(1,1,1,.5));
                 }
+                if (SaveController::getInstance()->isUnlocked(_worldName +
+                spacer + to_string(i))) {
+                    string s = to_string(SaveController::getInstance()->getStars
+                        (_worldName +spacer + to_string(i)));
+                    auto t = _assets->get<Texture>(s + "star");
+                    auto stars = PolygonNode::allocWithTexture(t);
+                    stars->setAnchor(Vec2::ANCHOR_CENTER);
+                    stars->setPosition(button->getPositionX(),
+                    button->getPositionY());
+                    stars->setScale(button->getWidth() /
+                    stars->getContentWidth() * 0.8);
+                    addChild(stars);
+                }
             }
 
             // deactivate button if no level associated
@@ -164,11 +177,11 @@ void LevelSelectScene::loadWorld(const char* worldName) {
     background->setContentSize(_sceneSize);
     addChild(background);
 
-    // Initialize buttons
-    activateUI(_scene, worldName);
-
     // Add scene as child
     addChild(_scene);
+
+    // Initialize buttons
+    activateUI(_scene, worldName);
 }
 
 void LevelSelectScene::update(float timestep) {
