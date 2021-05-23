@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "controllers/PPSoundController.h"
+#include "utils/PPAnimation.h"
 
 /**
  * Loading scene.

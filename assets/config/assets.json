@@ -435,6 +435,9 @@
     "graphicslow": {
       "file": "textures/settings/graphicslow.png"
     },
+    "loading-bg": {
+      "file": "textures/loading-bg.png"
+    },
     "1x": {"file":  "textures/gameplay/1x.png"},
     "2x": {"file":  "textures/gameplay/2x.png"},
     "3x": {"file":  "textures/gameplay/3x.png"},

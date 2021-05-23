@@ -132,6 +132,8 @@ void ColorPaletteView::_setup(const GameStateController &state) {
         _buttons.push_back(btn);
         _buttonStates.push_back(i != _selectedColor ? INACTIVE : ACTIVE);
     }
+    
+    _buttons[0]->setScale(1.3);
 }
 
 void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
@@ -139,7 +141,7 @@ void ColorPaletteView::_animateButtonState(uint ind, const ColorButtonState s) {
     _buttonStates[ind] = s;
     float scale = s == INACTIVE ?
                   INACTIVE_SCALE :
-                  (s == PRESSED ? PRESSED_SCALE : 1);
+                  (s == PRESSED ? PRESSED_SCALE : 1.3);
     Animation::to(
         _buttons[ind], .2,
         {
