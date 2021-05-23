@@ -33,7 +33,10 @@ struct GameState {
     
     unordered_map<string, uint> scoreTracker;
 
-    float healthBack; 
+    uint nCanvasInLevel;
+
+    float healthBack;
+
     /**
      * The representation of the queue. This is a bit tricky so let me explain.
      *
@@ -57,6 +60,8 @@ struct GameState {
     3: beach ball (if implemented)*/
     vec<vec<int>> obstacles; 
 
+    //This keeps track as to how many splats each canvas has
+    vec<vec<int>> splats;
     /**
      * This records which canvases are lost due to wrong actions.
      */
@@ -75,9 +80,13 @@ struct GameState {
      * as smart pointers so the timer itself can be updated freely.
      */
     vec<vec<ptr<Timer>>> canvasTimers;
-    
+
+    /** The level multiplier */
+    float levelMultiplier;
+
     /** The max score for this level. The stars will be calculated based on this. */
     float maxScore;
+
 };
 
 #endif //PANICPAINTER_PPGAMESTATE_H

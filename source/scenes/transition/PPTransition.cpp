@@ -3,6 +3,7 @@
 #define DURATION .3f
 
 void Transition::init(const asset_t &assets) {
+    if (isActive()) return;
     Scene2::init(Application::get()->getDisplaySize());
 
     _tblack = PolygonNode::alloc(
@@ -23,6 +24,8 @@ void Transition::init(const asset_t &assets) {
     _tright->setPosition(0, 0);
     _tright->setScale(targetW / _tleft->getContentWidth(),
                       targetH / _tleft->getContentHeight());
+
+    setActive(true);
 }
 
 void Transition::dispose() {

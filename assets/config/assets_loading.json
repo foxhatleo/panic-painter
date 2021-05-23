@@ -1,0 +1,7 @@
+{
+  "textures": {
+      "loading-bg": {
+          "file": "textures/loading-bg.png"
+      }
+  }
+}

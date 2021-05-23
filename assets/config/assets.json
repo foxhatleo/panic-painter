@@ -33,6 +33,18 @@
     "color-diamond-border": {
       "file": "textures/shapes/diamond-border.png"
     },
+    "canvas-splat-1": {
+      "file": "textures/splats/canvas_splat1.png"
+    },
+    "canvas-splat-2": {
+      "file": "textures/splats/canvas_splat2.png"
+    },
+    "canvas-splat-3": {
+      "file": "textures/splats/canvas_splat3.png"
+    },
+    "canvas-splat-4": {
+      "file": "textures/splats/canvas_splat4.png"
+    },
     "palette-3": {
       "file": "textures/palette/palette-3.png"
     },
@@ -241,13 +253,13 @@
       "file": "textures/characters/cat2_walk.png"
     },
     "obstacle-inactive": {
-      "file": "textures/characters/flower_inactive.png"
+      "file": "textures/characters/balloon_inactive.png"
     },
     "obstacle-active": {
-      "file": "textures/characters/flower_active.png"
+      "file": "textures/characters/balloon_active.png"
     },
     "obstacle-explode": {
-      "file": "textures/characters/flower_explode.png"
+      "file": "textures/characters/balloon_explode.png"
     },
     "chick-blink-1": {
       "file": "textures/characters/chick_blink.png"
@@ -273,12 +285,6 @@
     "health": {
       "file": "textures/characters/health.png"
     },
-    "level-timer-foreground": {
-      "file": "textures/level-progress/level-timer-foreground.png"
-    },
-    "level-timer-background": {
-      "file": "textures/level-progress/level-timer-background.png"
-    },
     "playbutton": {
       "file": "textures/menu/playbutton.png"
     },
@@ -299,21 +305,6 @@
     },
     "levelfailed": {
       "file": "textures/levelfailed.png"
-    },
-    "levelbutton": {
-      "file": "textures/levelselect/levelbutton.png"
-    },
-    "levelbuttonpass": {
-      "file": "textures/levelselect/levelbuttonpass.png"
-    },
-    "level1": {
-      "file": "textures/levelselect/level1.png"
-    },
-    "level2": {
-      "file": "textures/levelselect/level2.png"
-    },
-    "level3": {
-      "file": "textures/levelselect/level3.png"
     },
     "backbutton": {
       "file": "textures/backbutton.png"
@@ -464,6 +455,33 @@
     },
     "settings-tray": {
       "file": "textures/settings/settings-tray.png"
+    },
+    "loading-bg": {
+      "file": "textures/loading-bg.png"
+    },
+    "1x": {"file":  "textures/gameplay/1x.png"},
+    "2x": {"file":  "textures/gameplay/2x.png"},
+    "3x": {"file":  "textures/gameplay/3x.png"},
+    "4x": {"file":  "textures/gameplay/4x.png"},
+    "5x": {"file":  "textures/gameplay/5x.png"},
+    "6x": {"file":  "textures/gameplay/6x.png"},
+    "7x": {"file":  "textures/gameplay/7x.png"},
+    "8x": {"file":  "textures/gameplay/8x.png"},
+    "9x": {"file":  "textures/gameplay/9x.png"},
+    "10x": {"file":  "textures/gameplay/10x.png"},
+    "max": {"file":  "textures/gameplay/max.png"},
+    "healthbar": {
+      "file": "textures/gameplay/health.png",
+      "wrapS": "clamp",
+      "wrapT": "clamp",
+      "minfilter": "linear",
+      "magfilter": "linear",
+      "atlas": {
+        "background": [ 0, 0, 320, 45 ],
+        "foreground": [ 24, 45, 296, 90 ],
+        "leftcap": [ 0, 45, 24, 90 ],
+        "rightcap": [ 296, 45, 320, 90 ]
+      }
     },
     "transition-right": {
       "file": "textures/transition-right.png"

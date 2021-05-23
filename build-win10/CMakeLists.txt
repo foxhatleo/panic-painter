@@ -39,8 +39,8 @@ set(PP_FILES
         ../source/controllers/PPActionController.cpp
         ../source/scenes/pause/PPPauseScene.h
         ../source/scenes/pause/PPPauseScene.cpp
-        ../source/scenes/gameplay/PPDangerBar.h
-        ../source/scenes/gameplay/PPDangerBar.cpp
+        ../source/scenes/gameplay/PPTopOfScreen.h
+        ../source/scenes/gameplay/PPTopOfScreen.cpp
         ../source/scenes/gameplay/PPSplashEffect.h
         ../source/scenes/gameplay/PPLevelComplete.cpp
         ../source/scenes/gameplay/PPLevelComplete.h

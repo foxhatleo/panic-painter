@@ -1,4 +1,5 @@
 #include "PPActionController.h"
+#define LEVEL_MULTIPLIER_INCREMENT 0.1
 
 void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                               uint selectedColor) {
@@ -29,6 +30,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 // SCRIBBLING
                 if (input.didDoubleTap() && !_state.getIsHealthPotion(i, i2) && input.justReleased() &&
                     startingPointIn && currentPointIn) {
+                    _state.addSplat(i, i2);
                     auto n = _state.clearColor(i, i2, selectedColor);
                     if (n == GameStateController::ALL_CLEAR) {
                         SoundController::getInstance()->playSfx(
@@ -40,7 +42,14 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                     SoundController::getInstance()->playSfx("scribble");
                     int newColors = (int) _state.getColorsOfCanvas(i, i2).size();
                     if (newColors < prevColors) {
+                        CULog("Previous multiplier: %f", _state.getLevelMultiplier());
                         _state.incrementScoreForSwipe(1);
+                        _state.setLevelMultiplier(min(3.0f,
+                                                      (float)(_state.getLevelMultiplier()
+                                                              + LEVEL_MULTIPLIER_INCREMENT)));
+                        CULog("New multiplier: %f", _state.getLevelMultiplier());
+                    } else {
+                        _state.setLevelMultiplier(1);
                     }
                     input.clearPreviousTaps();
                 }
@@ -104,6 +113,7 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                      input.currentPoint().x <= in_end_box.getMaxX() :
                      input.currentPoint().x >= in_end_box.getMinX())
                     ) {
+                    _state.addSplat(i, i2);
 //                    _canvases[i][i2]->setHover(input.isPressing());
                     toClear.push_back({i, i2});
                 }
@@ -124,7 +134,10 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 if (i == GameStateController::ALL_CLEAR && i == 0) z = 1;
                 else if (i == GameStateController::NO_MATCH) z = 2;
                 int newColors = (int) _state.getColorsOfCanvas(p.first, p.second).size();
-                if (newColors < prevColors) numCorrect += 1;
+                if (newColors < prevColors) { 
+                    numCorrect += 1;
+                    
+                }
             }
             if (z == 1) {
                 SoundController::getInstance()->playSfx(
@@ -134,6 +147,16 @@ void ActionController::update(const set<pair<uint, uint>> &activeCanvases,
                 SoundController::getInstance()->playSfx("incorrect");
             }
             _state.incrementScoreForSwipe(1 + numCorrect * 1.5);
+            if (toClear.size() == numCorrect) {
+                CULog("Previous multiplier after swipe: %f", _state.getLevelMultiplier());
+                _state.setLevelMultiplier(min(3.0f,
+                                              (float)(_state.getLevelMultiplier() +
+                                                      LEVEL_MULTIPLIER_INCREMENT * numCorrect)));
+                CULog("New multiplier after swipe %f", _state.getLevelMultiplier());
+            } else {
+                _state.setLevelMultiplier(1);
+            }
+            
         }
     }
 }

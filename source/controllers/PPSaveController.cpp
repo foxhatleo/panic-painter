@@ -26,13 +26,15 @@ void SaveController::_load() {
         _bgm = v->getBool("bgm", true);
         _sfx = v->getBool("sfx", true);
         _vfx = v->getBool("vfx", true);
+
         auto l = v->get("levels");
         if (l != nullptr) {
             for (const auto &li : l->asArray()) {
                 auto k = li->key();
                 bool locked = li->getBool("locked", true);
                 uint score = li->getInt("score", 0);
-                _levels[k] = LevelMetadata(locked, score);
+                uint stars = li->getInt("stars", 0);
+                _levels[k] = LevelMetadata(locked, score, stars);
             }
         }
     }
@@ -52,6 +54,7 @@ void SaveController::_flush() {
         json_t lv = JsonValue::alloc(JsonValue::Type::ObjectType);
         lv->appendValue("locked", p.second.locked);
         lv->appendValue("score", (long)p.second.score);
+        lv->appendValue("stars", (long)p.second.stars);
         l->appendChild(p.first, lv);
     }
     v->appendChild("levels", l);
@@ -66,8 +69,12 @@ bool SaveController::isLocked(const string &level) const {
     return _getLevel(level).locked;
 }
 
-uint SaveController::getScore(const string &level) const {
+unsigned long SaveController::getScore(const string &level) const {
     return _getLevel(level).score;
+}
+
+uint SaveController::getStars(const string &level) const {
+    return _getLevel(level).stars;
 }
 
 float SaveController::getSfxVolume() const {
@@ -114,8 +121,13 @@ void SaveController::lock(const string &level) {
     _flush();
 }
 
-void SaveController::setScore(const string &level, uint score) {
+void SaveController::setScore(const string &level, unsigned long score) {
     _ensureLevel(level).score = score;
+    _flush();
+}
+
+void SaveController::setStars(const string &level, uint stars) {
+    _ensureLevel(level).stars = stars;
     _flush();
 }
 

@@ -11,11 +11,13 @@ class SaveController {
 private:
     struct LevelMetadata {
         bool locked;
-        uint score;
-        LevelMetadata() : locked(true), score(0) {}
-        LevelMetadata(bool locked, uint score) {
+        unsigned long score;
+        uint stars;
+        LevelMetadata() : locked(true), score(0), stars(0) {}
+        LevelMetadata(bool locked, unsigned long score, uint stars) {
             this->score = score;
             this->locked = locked;
+            this->stars = stars;
         }
     };
 
@@ -58,7 +60,9 @@ public:
 
     bool isUnlocked(const string &level) const { return !isLocked(level); }
 
-    uint getScore(const string &level) const;
+    unsigned long getScore(const string &level) const;
+
+    uint getStars(const string &level) const;
 
     /** @deprecated Use SoundController instead. */
     float getSfxVolume() const;
@@ -80,7 +84,9 @@ public:
 
     void lock(const string &level);
 
-    void setScore(const string &level, uint score);
+    void setScore(const string &level, unsigned long score);
+
+    void setStars(const string &level, uint stars);
 
     /** @deprecated Use SoundController instead. */
     void setSfxVolume(float value);

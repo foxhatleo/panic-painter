@@ -11,10 +11,10 @@
 ptr<LevelComplete> LevelComplete::alloc(
         const GameStateController &state,
         const asset_t& assets,
-        float percent) {
+        uint stars) {
     auto result = make_shared<LevelComplete>(state, assets);
     if (result->init()) {
-        result->_setup(state, assets, percent);
+        result->_setup(state, assets, stars);
     }
     else {
         return nullptr;
@@ -23,16 +23,17 @@ ptr<LevelComplete> LevelComplete::alloc(
     return result;
 }
 
-void LevelComplete::_setup(const GameStateController &state, const asset_t &assets, float percent) {
+void LevelComplete::_setup(const GameStateController &state, const asset_t
+&assets, uint starsN) {
     auto levelcomplete = PolygonNode::allocWithTexture(
         assets->get<Texture>("levelcomplete"));
     
     ptr<PolygonNode> stars;
-    if (percent < 0.50f) {
+    if (starsN == 0) {
         stars = PolygonNode::allocWithTexture(assets->get<Texture>("0star"));
-    } else if (percent < 0.70f) {
+    } else if (starsN == 1) {
         stars = PolygonNode::allocWithTexture(assets->get<Texture>("1star"));
-    } else if (percent < 0.85f) {
+    } else if (starsN == 2) {
         stars = PolygonNode::allocWithTexture(assets->get<Texture>("2star"));
     } else {
         stars = PolygonNode::allocWithTexture(assets->get<Texture>("3star"));
