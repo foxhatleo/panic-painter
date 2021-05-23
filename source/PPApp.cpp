@@ -77,31 +77,33 @@ void PanicPainterApp::update(float timestep) {
                 _loading.update(0.01f);
 
             } else {
-                // Loading is done. Dispose loading.
-                _loading.dispose();
-                onLoaded();
-
-                // Initializing game scene.
-                _gameplay.init(_assets);
-
-                // Initialize world select screen
-                _world.init(_assets);
-
-                // Initialize level select screen
-                _level.init(_assets);
-
-                // Initialize pause screen
-                _pause.init(_assets);
-
-                // Initialize settings screen
-                _settings.init(_assets);
-
                 _transition.init(_assets);
+                _transition.start([=] () {
+                    onLoaded();
 
-                // Initialize Menu_Scene and set scene to menu
-                _menu.init(_assets);
-                _currentScene = MENU_SCENE;
-                _menu.activate();
+                    // Initializing game scene.
+                    _gameplay.init(_assets);
+
+                    // Initialize world select screen
+                    _world.init(_assets);
+
+                    // Initialize level select screen
+                    _level.init(_assets);
+
+                    // Initialize pause screen
+                    _pause.init(_assets);
+
+                    // Initialize settings screen
+                    _settings.init(_assets);
+
+                    _transition.init(_assets);
+
+                    // Initialize Menu_Scene and set scene to menu
+                    _menu.init(_assets);
+                    _loading.dispose();
+                    _currentScene = MENU_SCENE;
+                    _menu.activate();
+                });
             }
             break;
         }
@@ -302,6 +304,6 @@ void PanicPainterApp::draw() {
         }
     }
 
-    if (_currentScene != LOADING_SCENE)
+    if (_transition.isActive())
         _transition.render(_batch);
 }
