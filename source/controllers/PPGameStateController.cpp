@@ -15,9 +15,11 @@ void GameStateController::_jsonv1_loadColors(const json_t &colors) {
     _state.scoreTracker["timedOut"] = 0;
     _state.scoreTracker["correct"] = 0;
     _state.scoreTracker["aggregateScore"] = 0;
+    _state.levelMultiplier = 1;
 }
 
 void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
+    _state.nCanvasInLevel = 0;
     _state.queues.clear();
     _state.wrongActions.clear();
     _state.recorded.clear();
@@ -33,6 +35,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
         vec<int> splts_queue_s;
         // Build canvas of each queue.
         for (const auto &canvas : queue->asArray()) {
+            _state.nCanvasInLevel++;
             const auto r = canvas->asIntArray();
             // This is to cast vec<int> to vec<uint>.
             vec<uint> colors(r.begin(), r.end());
@@ -42,7 +45,7 @@ void GameStateController::_jsonv1_loadQueues(const json_t &queues) {
                 colors.pop_back();
             }
             //Health Potion
-           else if (colors[colors.size() - 1] == ((uint)11)) {
+           else if (colors[colors.size() - 1] == ((uint)12)) {
                 obs_queue_s.push_back(2);
                 
             }
@@ -275,7 +278,16 @@ uint GameStateController::getScoreMetric(string type) const {
 }
 
 void GameStateController::incrementScoreForSwipe(float multiplier) {
-     _state.scoreTracker["aggregateScore"] += multiplier * 10;
+     _state.scoreTracker["aggregateScore"] += _state.levelMultiplier * multiplier * 10;
+}
+
+float GameStateController::getLevelMultiplier() const {
+    return _state.levelMultiplier;
+}
+
+void GameStateController::setLevelMultiplier(float lm) {
+    CUAssertLog(lm <= 3.0f, "Cannot set the level multiplier to a value more than 3");
+    _state.levelMultiplier = lm;
  }
 
 float GameStateController::getMaxScore() {

@@ -19,15 +19,36 @@ bool LoadingScene::init(const asset_t &assets) {
 
     _assets = assets;
     _assets->loadDirectory("scenes/loading.json");
+    _assets->loadDirectory("config/assets_loading.json");
 
     auto layer = assets->get<scene2::SceneNode>("load");
     layer->setContentSize(screenSize);
     layer->doLayout(); // This rearranges the children to fit the screen
 
+    auto bbg = PolygonNode::alloc(Rect(Vec2::ZERO, screenSize));
+    bbg->setColor(Color4::BLACK);
+    addChild(bbg);
+
+    auto bg = PolygonNode::allocWithTexture(assets->get<Texture>("loading-bg"));
+    float bgwr = screenSize.width / bg->getContentWidth();
+    float bghr = screenSize.height / bg->getContentHeight();
+    float bgs = max(bgwr, bghr);
+    float bgx = bgwr >= bghr ? 0 :
+        -(bg->getContentWidth() * bgs - screenSize.width) / 2;
+    float bgy = bgwr <= bghr ? 0 :
+        -(bg->getContentHeight() * bgs - screenSize.height) / 2;
+    bg->setScale(bgs);
+    bg->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    bg->setPosition(bgx, bgy);
+    Animation::set(bg, {{"opacity", 0}});
+    Animation::to(bg, .5, {{"opacity", 1}});
+//
     _bar = dynamic_pointer_cast<scene2::ProgressBar>(
         assets->get<scene2::SceneNode>("load_bar"));
+    _bar->setPositionY(100);
 
     Application::get()->setClearColor(Color4(192, 192, 192, 255));
+    addChild(bg);
     addChild(layer);
 
     return true;

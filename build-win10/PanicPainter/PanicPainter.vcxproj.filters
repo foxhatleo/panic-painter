@@ -38,6 +38,9 @@
     <Filter Include="Scenes\Settings">
       <UniqueIdentifier>{9698242b-e130-47a1-a906-ee9adf5f9837}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Transition">
+      <UniqueIdentifier>{ba9df0ce-e2e5-446e-ae69-45b04b832d1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\main.cpp">
@@ -112,9 +115,6 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPFeedback.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\scenes\gameplay\PPDangerBar.cpp">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp">
       <Filter>Scenes\Settings</Filter>
     </ClCompile>
@@ -123,6 +123,12 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scenes\gameplay\PPColorCircle.cpp">
       <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\gameplay\PPTopOfScreen.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scenes\transition\PPTransition.cpp">
+      <Filter>Scenes\Transition</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,9 +220,6 @@
     <ClInclude Include="..\..\source\scenes\gameplay\PPFeedback.h">
       <Filter>Scenes\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\scenes\gameplay\PPDangerBar.h">
-      <Filter>Scenes\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h">
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
@@ -225,6 +228,12 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPColorCircle.h">
       <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\gameplay\PPTopOfScreen.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\transition\PPTransition.h">
+      <Filter>Scenes\Transition</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
