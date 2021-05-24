@@ -37,8 +37,7 @@
                 "upnode": "up",
                 "downnode": "down",
                 "visible"  : true,
-                "pushsize" : true,
-                "anchor" : [0, 0]
+                "pushsize" : true
               },
               "children": {
                 "up": {
@@ -150,7 +149,8 @@
                 "upnode": "up",
                 "visible"  : true,
                 "pushsize" : true,
-                "scale"    : 0.5
+                "scale"    : 0.5,
+                "anchor" : [0, 0]
               },
               "children": {
                 "up": {
@@ -160,7 +160,23 @@
                   }
                 }
               }
+            },
+          "creditsbutton": {
+            "type": "Button",
+            "data": {
+              "upnode": "up",
+              "visible"  : true,
+              "pushsize" : true
+            },
+            "children": {
+              "up": {
+                "type": "Image",
+                "data": {
+                  "texture": "credits-button"
+                }
+              }
             }
+          }
         }
     }
   }

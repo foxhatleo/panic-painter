@@ -41,6 +41,7 @@ void PanicPainterApp::onShutdown() {
         _world.dispose();
         _level.dispose();
         _settings.dispose();
+        _credits.dispose();
     }
     _assets = nullptr;
     _batch = nullptr;
@@ -93,6 +94,7 @@ void PanicPainterApp::update(float timestep) {
 
                 // Initialize settings screen
                 _settings.init(_assets);
+                _credits.init(_assets);
 
                 // Initialize Menu_Scene and set scene to menu
                 _menu.init(_assets);
@@ -109,23 +111,22 @@ void PanicPainterApp::update(float timestep) {
                 _pause.resetState();
                 _pause.activate();
             } else if (_gameplay.isComplete()) {
-                _currentScene = WORLD_SCENE;
-                _world.resetState();
-                _world.activate();
+                if (_gameplay.getLevel() == "space-5") {
+                    _currentScene = CREDITS_SCENE;
+                    _credits.resetState();
+                    _credits.activate(false);
+                } else {
+                    _currentScene = WORLD_SCENE;
+                    _world.resetState();
+                    _world.activate();
+                }
             } else {
                 _gameplay.update(timestep);
             }
             break;
         }
         case MENU_SCENE: {
-            if (_menu.getState() == PLAY) {
-                //_menu.dispose();
-                _gameplay.loadLevel(_menu.level); //TODO: once have save
-                // system, should play latest level
-                _currentScene = GAME_SCENE;
-                _menu.resetState();
-                _menu.deactivate();
-            } else if (_menu.getState() == LEVELS) {
+            if (_menu.getState() == LEVELS) {
                 //_menu.dispose();
                 _currentScene = WORLD_SCENE;
                 _menu.resetState();
@@ -219,6 +220,31 @@ void PanicPainterApp::update(float timestep) {
                 _settings.deactivate();
                 _menu.resetState();
                 _menu.activate();
+            } else if (_settings.isToCredits()) {
+                _currentScene = CREDITS_SCENE;
+                _settings.resetState();
+                _settings.deactivate();
+                _credits.resetState();
+                _credits.activate();
+            }
+            break;
+        }
+
+        case CREDITS_SCENE: {
+            if (_credits.isFinished()) {
+                _credits.deactivate();
+                _credits.resetState();
+                if (_credits.isFromSettings()) {
+                    _settings.resetState();
+                    _settings.activate();
+                    _currentScene = SETTINGS_SCENE;
+                } else {
+                    _menu.resetState();
+                    _menu.activate();
+                    _currentScene = MENU_SCENE;
+                }
+            } else {
+                _credits.update(timestep);
             }
             break;
         }
@@ -268,6 +294,11 @@ void PanicPainterApp::draw() {
 
         case SETTINGS_SCENE: {
             _settings.render(_batch);
+            break;
+        }
+
+        case CREDITS_SCENE: {
+            _credits.render(_batch);
             break;
         }
 

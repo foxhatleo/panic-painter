@@ -10,7 +10,6 @@
 enum MenuRequest {
     HOME, // Had to call this "HOME" rather than "MENU" to prevent weird bug
     // HOME just means stay on the menu (home) page
-    PLAY,
     LEVELS,
     SETTINGS,
 };
