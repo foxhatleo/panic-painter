@@ -153,7 +153,7 @@ void GameScene::loadLevel(const string &levelName) {
     _feedback = Feedback::alloc(Application::get()->getDisplayBounds(),
                                 _assets);
 
-    if (SaveController::getInstance()->getSfx()) {
+    if (SaveController::getInstance()->getVfx()) {
         addChild(_splash);
     }
     addChild(_tos);
