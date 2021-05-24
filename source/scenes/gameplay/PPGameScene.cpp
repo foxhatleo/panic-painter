@@ -152,7 +152,6 @@ void GameScene::loadLevel(const string &levelName) {
 
     _feedback = Feedback::alloc(Application::get()->getDisplayBounds(),
                                 _assets);
-
     if (SaveController::getInstance()->getVfx()) {
         addChild(_splash);
     }
@@ -209,7 +208,7 @@ void GameScene::update(float timestep) {
 
     if (input.justReleased() && input.isJustTap() &&
         InputController::inScene(input.currentPoint(), _backBtnArea)) {
-        if (_splash->getParent() != nullptr) {
+        if ((SaveController::getInstance()->getVfx())) {
             _splash->clear();
         }
         _pauseRequest = true;
@@ -280,7 +279,7 @@ void GameScene::update(float timestep) {
     }
     bool pressing = input.isPressing() &&
                     !InputController::inScene(input.currentPoint(), _palette->getBoundingBox());
-    if (_splash->getParent() != nullptr) {
+    if (SaveController::getInstance()->getVfx()) {
         _splash->update(timestep,
             activeCanvases.empty() ? Color4::CLEAR :
             _state.getColors()[_palette->getSelectedColor()],
@@ -291,7 +290,7 @@ void GameScene::update(float timestep) {
     // Check if the level is complete
     if ((activeCanvases.empty() || health < 0.01f) &&
     !_congratulations) {
-        if (_splash->getParent() != nullptr) {
+        if (SaveController::getInstance()->getVfx()) {
             _splash->clear();
         }
         //Gradually clear out the splatters
