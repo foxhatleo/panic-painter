@@ -1,6 +1,5 @@
 #include "PPFeedback.h"
 
-#define MAX_COMBO_TIME 3
 
 ptr<Feedback> Feedback::alloc(const Rect &screen, const asset_t &assets) {
     auto result =
@@ -15,8 +14,6 @@ ptr<Feedback> Feedback::alloc(const Rect &screen, const asset_t &assets) {
 void Feedback::_setup(const Rect &screen, const asset_t &assets) {
     _assets = assets;
     _screen = screen;
-    _combo = 0;
-    _timeSinceCombo = 0;
     _goodjobs.push_back("Fabulous!");
     _goodjobs.push_back("Beautiful!");
     _goodjobs.push_back("Gorgeous!");
@@ -36,111 +33,72 @@ void Feedback::add(Vec2 at, Vec2 dangerBarPoint, FeedbackType type) {
 }
 
 void Feedback::update(float timestep) {
-    if (_combo > 0) {
-        _timeSinceCombo += timestep;
-        if (_timeSinceCombo > MAX_COMBO_TIME) {
-            _timeSinceCombo = 0;
-            _combo = 0;
-        }
-    }
     if (_items.size() == 0) return;
-    bool combo = true;
-    for (auto & element : _items) {
-        if (element.type != SUCCESS) combo = false;
-    }
-    if (combo) {
-        _combo++;
-        _timeSinceCombo = 0;
-    } else {
-        _combo = 0;
-        _timeSinceCombo = 0;
-    }
     for (auto & element : _items) {
         FeedbackType type = element.type;
         Vec2 at = element.at;
         Vec2 dangerBarPoint = element.dangerBarPoint;
-        ptr<Texture> txtu;
+        string txtt;
+        ptr<Texture> txtu[3];
         switch (type) {
             case SUCCESS: {
-                txtu = _assets->get<Texture>("feedbackyes");
+                txtt = "correct";
                 break;
             }
             case FAILURE: {
-                txtu = _assets->get<Texture>("feedbackno");
+                txtt = "wrong";
                 break;
             }
             default: {
                 CUAssertLog(false, "Unknown feedback type.");
             }
         }
+        for (uint i = 1; i <= 3; i++) {
+            txtu[i - 1] =
+                _assets->get<Texture>("feedback-" + txtt + to_string(i));
+        }
         if (type == SUCCESS) {
             for (uint i = 0; i < 25; i++) {
-                auto n = PolygonNode::allocWithTexture(txtu);
+                auto n = PolygonNode::allocWithTexture
+                    (txtu[Random::getInstance()->getInt(2, 0)]);
                 n->setAnchor(Vec2::ANCHOR_CENTER);
                 n->setPosition(at);
                 float scale =
-                    (_screen.size.width * 0.06f) / n->getContentWidth();
+                    (_screen.size.width * 0.1f) / n->getContentWidth();
                 n->setScale(scale);
                 addChild(n);
                 double theta =
                     (2.0 * M_PI) * Random::getInstance()->getFloat(1);
                 double rx = cos(theta);
                 double ry = sin(theta);
-                Animation::to(n, .3f, {
+                Animation::to(n, .6f, {
                     {"x",       Animation::relative(
                         rx * _screen.size.width * 0.1f)},
                     {"y",       Animation::relative(
                         ry * _screen.size.width * 0.1f)},
-                    {"opacity", 0},
-                    {"delay",   0.02f * i}
+                    {"opacity", 0}
                 }, SINE_IN_OUT, [=]() {
                     removeChild(n);
                 });
             }
-            auto font = _assets->get<Font>("jua");
-            string txt = _goodjobs[
-                Random::getInstance()->getInt(_goodjobs.size() - 1)];
-            auto t = Label::alloc(txt, font);
-            t->setHorizontalAlignment(Label::HAlign::CENTER);
-            t->setVerticalAlignment(Label::VAlign::BOTTOM);
-            t->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
-            t->setPosition(at + Vec2(0, _screen.size.width * 0.02f));
-            addChild(t);
-            Animation::to(t, .8f, {
-                {"y",       Animation::relative(_screen.size.height * .3f)},
-                {"opacity", 0}
-            }, STRONG_IN, [=]() {
-                removeChild(t);
-            });
-            if (_combo > 1) {
-                auto font = _assets->get<Font>("jua");
-                string comboText = "COMBO ";
-                comboText.append(to_string(_combo));
-                auto t = Label::alloc(comboText, font);
-                t->setHorizontalAlignment(Label::HAlign::CENTER);
-                t->setVerticalAlignment(Label::VAlign::BOTTOM);
-                t->setAnchor(Vec2::ANCHOR_BOTTOM_CENTER);
-                t->setPosition(at + Vec2(0, _screen.size.width * 0.055f));
-                addChild(t);
-                Animation::to(t, .8f, {
-                    {"y",       Animation::relative(_screen.size.height * .3f)},
-                    {"opacity", 0}
-                }, STRONG_IN, [=]() {
-                    removeChild(t);
-                });
-            }
         } else {
             for (uint i = 0; i < 10; i++) {
-                auto n = PolygonNode::allocWithTexture(txtu);
+                int shakeSize = _screen.size.width * 0.02f;
+                auto shake = Vec2(
+                    Random::getInstance()->getInt(shakeSize, -shakeSize),
+                    Random::getInstance()->getInt(shakeSize, -shakeSize)
+                    );
+                auto n = PolygonNode::allocWithTexture
+                    (txtu[Random::getInstance()->getInt(2, 0)]);
                 n->setAnchor(Vec2::ANCHOR_CENTER);
-                n->setPosition(at);
+                n->setPosition(at + shake);
                 float scale =
-                    (_screen.size.width * 0.04f) / n->getContentWidth();
+                    (_screen.size.width * 0.08f) / n->getContentWidth();
                 n->setScale(scale);
                 addChild(n);
                 Animation::to(n, .5f, {
-                    {"x",       dangerBarPoint.x},
-                    {"y",       dangerBarPoint.y},
+                    {"x",       dangerBarPoint.x + shake.x},
+                    {"y",       dangerBarPoint.y + shake.y},
                     {"opacity", 0},
                     {"delay",   0.02f * i}
                 }, SINE_IN_OUT, [=]() {

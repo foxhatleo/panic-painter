@@ -77,7 +77,24 @@ void TopOfScreen::update(float progress, uint multiplier, uint starN) {
     Animation::to(_progressBar2, .2f, {
         {"progress", progress}
     });
-    _multiplier->setTexture(_multiplierTextures[multiplier - 10]);
+    auto t = _multiplierTextures[multiplier - 10];
+    if (_multiplier->getTexture() != t) {
+        _multiplier->setTexture(t);
+        auto mf = PolygonNode::allocWithTexture(t);
+        mf->setAnchor(Vec2::ANCHOR_MIDDLE_RIGHT);
+        float s = (getHeight()) / mf->getContentWidth();
+        mf->setScale(s);
+        mf->setPosition(getWidth() - 10, getHeight() / 2);
+        if (multiplier == 10) {
+            mf->setColor(Color4::RED);
+        }
+        addChild(mf);
+        Animation::to(mf, .7f, {{"opacity", 0},
+            {"scale", multiplier == 10 ? s : s * 5}},
+                      SINE_IN_OUT, [=]() {
+                removeChild(mf);
+            });
+    }
     _stars->setTexture(_starsTexture[starN]);
     if (progress < 0.3 && _progressBar->getParent() != nullptr) {
         addChild(_progressBar2);
@@ -89,8 +106,10 @@ void TopOfScreen::update(float progress, uint multiplier, uint starN) {
 }
 
 Vec2 TopOfScreen::getDangerBarPoint() {
-    return _progressBar->getNodeToWorldTransform().transform(
-        Vec2(_progressBar->getContentWidth() * _progress, 0)
+    auto p = _progressBar->getParent() == nullptr ? _progressBar2 :
+        _progressBar;
+    return p->getNodeToWorldTransform().transform(
+        Vec2(p->getContentWidth() * _progress, 0)
         );
 }
 

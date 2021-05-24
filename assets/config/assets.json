@@ -597,14 +597,6 @@
     "roboto": {
       "file": "fonts/Roboto-Regular.ttf",
       "size": 40
-    },
-    "roboto-mobile": {
-      "file": "fonts/Roboto-Regular.ttf",
-      "size": 80
-    },
-    "jua": {
-      "file": "fonts/Jua-Regular.ttf",
-      "size": 40
     }
   },
   "sounds": {
