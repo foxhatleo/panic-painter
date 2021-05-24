@@ -43,6 +43,9 @@ void Animation::_init() {
             setFrom("scaleX", _lockedTarget->getScaleX());
         } else if (entry.first == "scaleY") {
             setFrom("scaleY", _lockedTarget->getScaleY());
+        } else if (entry.first == "scale") {
+            { setFrom("scaleX", _lockedTarget->getScaleX()); }
+            { setFrom("scaleY", _lockedTarget->getScaleY()); }
         } else if (entry.first == "opacity" ||
                    entry.first == "alpha") {
             // In the event that someone used [0-1] for opacity instead of
@@ -119,6 +122,13 @@ void Animation::_render(float timestep) {
             float b = _from.find("scaleY")->second;
             float v = (entry.second - b) * progress + b;
             _lockedTarget->setScale(_lockedTarget->getScaleX(), v);
+
+        } else if (entry.first == "scale") {
+            float b = _from.find("scaleX")->second;
+            float v = (entry.second - b) * progress + b;
+            float b2 = _from.find("scaleY")->second;
+            float v2 = (entry.second - b2) * progress + b2;
+            _lockedTarget->setScale(v, v2);
 
         } else if (entry.first == "opacity" ||
                    entry.first == "alpha") {

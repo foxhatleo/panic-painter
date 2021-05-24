@@ -3,6 +3,7 @@
 
 #include "utils/PPHeader.h"
 #include "utils/PPAnimation.h"
+#include "utils/PPRandom.h"
 
 enum FeedbackType {
     FAILURE, SUCCESS
@@ -17,8 +18,6 @@ struct FeedbackItem {
 class Feedback : public SceneNode {
     asset_t _assets;
     Rect _screen;
-    uint _combo;
-    float _timeSinceCombo;
     vec<string> _goodjobs;
     vec<FeedbackItem> _items;
 
