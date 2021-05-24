@@ -108,5 +108,6 @@
     "levelTime": 160,
     "canvasBaseTime": 10
   },
-  "version": 1
+  "version": 1,
+  "scoreThreshold": 6000
 }
