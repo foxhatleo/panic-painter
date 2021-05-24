@@ -114,7 +114,7 @@ void GameScene::loadLevel(const string &levelName) {
     // change position to keep it to the left of the screen.
     _palette =
         ColorPalette::alloc(Rect(
-            safeArea.origin + Vec2(10, safeArea.size.height * TIMER_HEIGHT / 2),
+            safeArea.origin + Vec2(10, (safeArea.size.height * TIMER_HEIGHT) / 2 - 15),
             Size(
                 safeArea.size.width * PALETTE_WIDTH,
                 safeArea.size.height * (1 - TIMER_HEIGHT)
@@ -130,7 +130,7 @@ void GameScene::loadLevel(const string &levelName) {
         auto mat = Mat4(transform);
         _palette->chooseAlternateTransform(true);
         _palette->setAlternateTransform(mat);
-        _palette->setPosition(safeArea.size.width, 0);
+        _palette->setPosition(safeArea.size.width, safeArea.size.height - _palette->getHeight());
     }
 
     auto gtBound = safeArea;
