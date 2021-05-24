@@ -1,5 +1,5 @@
 {
-  
+
   "colors": [
     [ 244, 78, 59 ],
     [ 251, 158, 0 ],
@@ -154,5 +154,6 @@
     "levelTime": 160,
     "canvasBaseTime": 6
   },
-  "version": 1
+  "version": 1,
+  "scoreThreshold": 8600
 }
