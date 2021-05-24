@@ -336,11 +336,23 @@
     "eiffel-bg": {
       "file": "textures/level-backgrounds/eiffel.png"
     },
-    "feedbackno": {
-      "file": "textures/feedbackno.png"
+    "feedback-wrong1": {
+      "file": "textures/gameplay/feedback/wrong1.png"
     },
-    "feedbackyes": {
-      "file": "textures/feedbackyes.png"
+    "feedback-wrong2": {
+      "file": "textures/gameplay/feedback/wrong2.png"
+    },
+    "feedback-wrong3": {
+      "file": "textures/gameplay/feedback/wrong3.png"
+    },
+    "feedback-correct1": {
+      "file": "textures/gameplay/feedback/correct1.png"
+    },
+    "feedback-correct2": {
+      "file": "textures/gameplay/feedback/correct2.png"
+    },
+    "feedback-correct3": {
+      "file": "textures/gameplay/feedback/correct3.png"
     },
     "space-bg": {
       "file": "textures/level-backgrounds/space.png"
