@@ -11,7 +11,6 @@
 #include "scenes/level/PPLevelSelectScene.h"
 #include "scenes/pause/PPPauseScene.h"
 #include "scenes/settings/PPSettingsScene.h"
-#include "scenes/transition/PPTransition.h"
 #include "controllers/PPGlobalConfigController.h"
 #include "controllers/PPSaveController.h"
 #include "controllers/PPInputController.h"
@@ -55,8 +54,6 @@ protected:
     PauseScene _pause;
     /** Settings scene. */
     SettingsScene _settings;
-    /** Transition. */
-    Transition _transition;
 
 public:
     /** Constructor. */
