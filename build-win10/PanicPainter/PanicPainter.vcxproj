@@ -220,7 +220,6 @@
     <ClCompile Include="..\..\source\scenes\menu\PPMenuScene.cpp" />
     <ClCompile Include="..\..\source\scenes\pause\PPPauseScene.cpp" />
     <ClCompile Include="..\..\source\scenes\settings\PPSettingsScene.cpp" />
-    <ClCompile Include="..\..\source\scenes\transition\PPTransition.cpp" />
     <ClCompile Include="..\..\source\utils\PPAnimation.cpp" />
     <ClCompile Include="..\..\source\utils\PPTimer.cpp" />
     <ClCompile Include="..\..\source\utils\PPRandom.cpp" />
@@ -262,7 +261,6 @@
     <ClInclude Include="..\..\source\scenes\menu\PPMenuScene.h" />
     <ClInclude Include="..\..\source\scenes\pause\PPPauseScene.h" />
     <ClInclude Include="..\..\source\scenes\settings\PPSettingsScene.h" />
-    <ClInclude Include="..\..\source\scenes\transition\PPTransition.h" />
     <ClInclude Include="..\..\source\utils\PPAnimation.h" />
     <ClInclude Include="..\..\source\utils\PPHeader.h" />
     <ClInclude Include="..\..\source\utils\PPTimer.h" />
