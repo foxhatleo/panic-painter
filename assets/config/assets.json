@@ -541,12 +541,6 @@
         "leftcap": [ 0, 45, 24, 90 ],
         "rightcap": [ 296, 45, 320, 90 ]
       }
-    },
-    "transition-right": {
-      "file": "textures/transition-right.png"
-    },
-    "transition-left": {
-      "file": "textures/transition-left.png"
     }
   },
   "jsons": {
