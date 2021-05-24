@@ -14,6 +14,7 @@ private:
     asset_t _assets;
 
     bool _finish;
+    bool _toCredits;
 
     SaveController* _save;
 
@@ -43,8 +44,12 @@ public:
 
     void update(float timestep) override;
 
-    bool isFinished() {
+    bool isFinished() const {
         return _finish;
+    };
+
+    bool isToCredits() const {
+        return _toCredits;
     };
 
     void activate() {
@@ -53,6 +58,7 @@ public:
     
     void resetState() {
         _finish = false;
+        _toCredits = false;
     };
 
     void deactivate() {

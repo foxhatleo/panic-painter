@@ -158,6 +158,21 @@ void SettingsScene::activateUI(
                 }
                 });
         }
+        else if (button->getName() == "creditsbutton") {
+            button->setAnchor(Vec2::ANCHOR_TOP_RIGHT);
+            button->setPosition(_offsetInSafe.x + _safe.size.width * 0.95,
+                                _offsetInSafe.y + _safe.size.height * 0.15);
+            button->setScale(
+                _safe.size.width * 0.15 / button->getContentWidth());
+
+            if (!button->hasListener())
+                button->addListener([=](const string& name, bool down) {
+                    if (!down) {
+                        SoundController::getInstance()->playSfx("button");
+                        _toCredits = true;
+                    }
+                });
+        }
         button->activate();
     }
     else {

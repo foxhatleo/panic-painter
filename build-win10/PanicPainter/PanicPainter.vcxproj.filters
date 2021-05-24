@@ -124,6 +124,9 @@
     <ClCompile Include="..\..\source\scenes\gameplay\PPTopOfScreen.cpp">
       <Filter>Scenes\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\scenes\settings\PPCreditsScene.cpp">
+      <Filter>Scenes\Settings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PanicPainter.rc">
@@ -225,6 +228,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scenes\gameplay\PPTopOfScreen.h">
       <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scenes\settings\PPCreditsScene.h">
+      <Filter>Scenes\Settings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

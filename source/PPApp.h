@@ -11,6 +11,7 @@
 #include "scenes/level/PPLevelSelectScene.h"
 #include "scenes/pause/PPPauseScene.h"
 #include "scenes/settings/PPSettingsScene.h"
+#include "scenes/settings/PPCreditsScene.h"
 #include "controllers/PPGlobalConfigController.h"
 #include "controllers/PPSaveController.h"
 #include "controllers/PPInputController.h"
@@ -24,7 +25,8 @@ enum Scene {
     WORLD_SCENE,
     LEVEL_SCENE,
     PAUSE_SCENE,
-    SETTINGS_SCENE
+    SETTINGS_SCENE,
+    CREDITS_SCENE
 };
 
 /**
@@ -54,6 +56,7 @@ protected:
     PauseScene _pause;
     /** Settings scene. */
     SettingsScene _settings;
+    CreditsScene _credits;
 
 public:
     /** Constructor. */

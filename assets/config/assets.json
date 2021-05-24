@@ -423,6 +423,12 @@
     "resetbutton": {
       "file": "textures/settings/resetbutton.png"
     },
+    "credit": {
+      "file": "textures/credit.png"
+    },
+    "credits-button": {
+      "file": "textures/settings/credits-button.png"
+    },
     "bgm-off": {
       "file": "textures/settings/bgm-off.png"
     },
