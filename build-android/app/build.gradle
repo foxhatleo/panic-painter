@@ -8,8 +8,8 @@ android {
         applicationId "dragonglass.panicpainter"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 519
-        versionName "0.0519"
+        versionCode 105240
+        versionName "1.524.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -22,8 +22,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,5,19,0
- PRODUCTVERSION 0,5,19,0
+ FILEVERSION 1,5,24,0
+ PRODUCTVERSION 1,5,24,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -40,12 +40,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Dragonglass Studios"
             VALUE "FileDescription", "Panic Painter"
-            VALUE "FileVersion", "0.5.19.0"
+            VALUE "FileVersion", "1.5.24.0"
             VALUE "InternalName", "PanicPainter.exe"
             VALUE "LegalCopyright", "Copyright (C) 2021 Dragonglass Studios"
             VALUE "OriginalFilename", "PanicPainter.exe"
             VALUE "ProductName", "Panic Painter"
-            VALUE "ProductVersion", "0.5.19.0"
+            VALUE "ProductVersion", "1.5.24.0"
         END
     END
     BLOCK "VarFileInfo"
