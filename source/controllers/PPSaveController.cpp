@@ -18,7 +18,7 @@ void SaveController::_load() {
     auto r = JsonReader::alloc(SAVE_PATH);
     if (r == nullptr) return;
     json_t v = r->readJson();
-    if (v->getInt("version", 1) == 1) {
+    if (v->getInt("version", 2) == 2) {
         _colorblind = v->getBool("colorblind", false);
         _paletteLeft = v->getBool("paletteLeft", true);
         _sfxVolume = v->getFloat("sfxVolume", 1);
