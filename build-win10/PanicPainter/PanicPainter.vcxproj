@@ -229,9 +229,6 @@
     <ResourceCompile Include="PanicPainter.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\cugl\build-win10\CUGL\CUGL.vcxproj">
       <Project>{60c028a4-977f-44e9-a709-d79a153d6f69}</Project>
     </ProjectReference>
@@ -268,6 +265,10 @@
     <ClInclude Include="..\..\source\utils\PPTimer.h" />
     <ClInclude Include="..\..\source\utils\PPTypeDefs.h" />
     <ClInclude Include="..\..\source\utils\PPRandom.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

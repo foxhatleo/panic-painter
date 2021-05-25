@@ -134,11 +134,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\source\PPApp.h">
       <Filter>Application</Filter>
     </ClInclude>
@@ -232,5 +227,11 @@
     <ClInclude Include="..\..\source\scenes\settings\PPCreditsScene.h">
       <Filter>Scenes\Settings</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
